@@ -16,7 +16,8 @@ void GENIE_to_LUND(TString inputFile = "", TString outputFile = "", int nFiles =
   TFile* inFile = new TFile(inputFile);
   cout << "Making LUND file " << outputFile <<endl;
 
-  TString lundPath = "./lundfiles/";
+  TString lundPath = "/lustre19/expphy/volatile/clas12/asportes/simulationFiles/598636MeV_Q2_0_4_test_2";
+//  TString lundPath = "./lundfiles/";
 
   //  int nFiles =  800;
   
