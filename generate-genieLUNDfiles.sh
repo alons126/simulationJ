@@ -13,7 +13,9 @@ Ar40_PATH=/lustre19/expphy/volatile/clas12/mgolden/simulation/elements/40Ar/
 #10M in each gst file
 #Usage of GENIE_to_LUND.C("inputFile","outputFile_prefix",#outputFiles,#eventsPerRun,"target",A,Z)
 
-root 'GENIE_to_LUND.C("${C12_PATH}/e_on_1000060120_598636MeV.gst.root","c12_2gev",1000,"1-foil",6,6)'
+root 'GENIE_to_LUND.C("/lustre19/expphy/volatile/clas12/asportes/truthLevelROOTFiles/12C_Q2_0_4/e_on_1000060120_598636MeV.gst.root","c12_598636MeV_Q2_0_4",1000,"1-foil",6,6)'
+
+# root 'GENIE_to_LUND.C("${C12_PATH}/e_on_1000060120_598636MeV.gst.root","c12_598636MeV_Q2_0_4",1000,"1-foil",6,6)'
 # root 'GENIE_to_LUND.C("${C12_PATH}/e_on_1000060120_598636MeV.gst.root","c12_2gev",100,100000,"1-foil",6,6)' # Original
 #root 'GENIE_to_LUND.C("${C12_PATH}/mgolden_G18_10a_02_11a_1000060120_402962.gst.root","c12_4gev",100,100000,"1-foil",6,6)'
 #root 'GENIE_to_LUND.C("${C12_PATH}/mgolden_G18_10a_02_11a_1000060120_598636.gst.root","c12_6gev",100,100000,"1-foil",6,6)'
