@@ -12,11 +12,11 @@ using namespace std;
 void GENIE_to_LUND(TString inputFile = "", TString outputFile = "", int nFiles = 800, string target = "liquid", int A = 1, int Z = 1) 
 {
   //Read in target parameter files                                                           
-  cout << "Converting file " << inputFile << endl;
+  cout << "\nConverting file " << inputFile << endl;
   TFile* inFile = new TFile(inputFile);
-  cout << "Making LUND file " << outputFile <<endl;
+  cout << "\nMaking LUND file " << outputFile <<endl;
 
-  TString lundPath = "/lustre19/expphy/volatile/clas12/asportes/simulationFiles/598636MeV_Q2_0_4_test_2";
+  TString lundPath = "/lustre19/expphy/volatile/clas12/asportes/simulationFiles/598636MeV_Q2_0_4_test_2/lundfiles/";
 //  TString lundPath = "./lundfiles/";
 
   //  int nFiles =  800;
@@ -69,7 +69,7 @@ void GENIE_to_LUND(TString inputFile = "", TString outputFile = "", int nFiles =
   T->SetBranchAddress("pzl", &pzl);
   
   int nEvents = T->GetEntries();
-  cout<<"Number of events "<<nEvents<<endl;
+  cout<<"\nNumber of events "<<nEvents<<endl;
   
   TString formatstring, outstring;
   
@@ -164,4 +164,7 @@ void GENIE_to_LUND(TString inputFile = "", TString outputFile = "", int nFiles =
       outfile.close();
       
     }
+
+  cout << "\nFINISHED.\n";
+
 }
