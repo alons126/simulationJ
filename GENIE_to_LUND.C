@@ -81,7 +81,8 @@ void GENIE_to_LUND(TString inputFile = "", TString outputFile = "", int nFiles =
     cout<<"\nEvents/file "<<nEvents/nFiles<<endl;
 
     //Split large GENIE output into 10000 lund files
-  for (int iFiles = 1; iFiles < nFiles; iFiles++)
+  for (int iFiles = 1; iFiles < (nFiles + 1); iFiles++)
+//  for (int iFiles = 1; iFiles < nFiles; iFiles++)
     {
       TString outfilename = Form("%s/%s_%d.dat",lundPath.Data(),outputFile.Data(),iFiles);	
       ofstream outfile;
