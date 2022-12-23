@@ -6,7 +6,7 @@
 #SBATCH --job-name=mc_c12_598636MeV_Q2_0_4_test_2_num_1
 #SBATCH --partition=production                                                               
 #SBATCH --time=30:00:00                                                                                               
-##SBATCH --output=/farm_out/%u/%x-%j-%N.out
+#SBATCH --output=/farm_out/%u/%x-%j-%N.out
 #SBATCH --error=//farm_out/%u/%x-%j-%N.err                                                                           
 #SBATCH --array=1-1000
 
@@ -23,8 +23,6 @@ source /etc/profile.d/modules.sh
 source /group/clas12/packages/setup.sh
 module load sqlite/dev
 module load clas12/dev
-
-##SBATCH --output=/farm_out/%u/%x-%j-%N.out
 
 gemc -USE_GUI=0  -SCALE_FIELD="TorusSymmetric, $TORUS" -SCALE_FIELD="clas12-newSolenoid, -1.0" -N=$NEVENTS -INPUT_GEN_FILE="lund, /lustre19/expphy/volatile/clas12/asportes/simulationFiles/598636MeV_Q2_0_4_test_2/lundfiles/${FILE_PREFIX}_${SLURM_ARRAY_TASK_ID}.dat" -OUTPUT="hipo, /lustre19/expphy/volatile/clas12/asportes/simulationFiles/598636MeV_Q2_0_4_test_2/mchipo/mc_${FILE_PREFIX}_${SLURM_ARRAY_TASK_ID}_torus$TORUS.hipo" $GCARD
 
