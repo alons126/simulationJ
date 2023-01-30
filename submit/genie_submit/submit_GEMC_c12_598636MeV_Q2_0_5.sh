@@ -5,7 +5,7 @@
 #SBATCH --account=clas12                                                                                             
 #SBATCH --job-name=mc_c12_598636MeV_Q2_0_5_test_1
 #SBATCH --partition=production                                                               
-#SBATCH --time=30:00:00                                                                                               
+#SBATCH --time=30:00:00
 #SBATCH --output=/farm_out/%u/%x-%j-%N.out
 #SBATCH --error=//farm_out/%u/%x-%j-%N.err                                                                           
 #SBATCH --array=1-1000

@@ -140,26 +140,28 @@ void GENIE_to_LUND(TString inputFile = "", TString outputFile = "", int nFiles =
 	  
 	  for(int iPart = 0; iPart < nf; iPart++)
 	    {
-	      if(pdgf[iPart] == 2212)
-		{//p
-		  part_num++;
-		  outfile << addParticle(part_num,pdgf[iPart],TVector3(pxf[iPart], pyf[iPart], pzf[iPart]),mass_p,vtx);
-		}
-	      else if(pdgf[iPart] == 2112)
-		{//n
-		  part_num++;
-		  outfile << addParticle(part_num,pdgf[iPart],TVector3(pxf[iPart], pyf[iPart], pzf[iPart]),mass_n,vtx);
-		}
-//	      else if(pdgf[iPart] == 211)
-//		{//pi+
+            outfile << addParticle(part_num,pdgf[iPart],TVector3(pxf[iPart], pyf[iPart], pzf[iPart]),mass_p,vtx);
+
+//            if(pdgf[iPart] == 2212)
+//		{//p
 //		  part_num++;
-//		  outfile << addParticle(part_num,pdgf[iPart],TVector3(pxf[iPart], pyf[iPart], pzf[iPart]),mass_pi,vtx);
+//		  outfile << addParticle(part_num,pdgf[iPart],TVector3(pxf[iPart], pyf[iPart], pzf[iPart]),mass_p,vtx);
 //		}
-//	      else if(pdgf[iPart] == -211)
-//		{//pi-
+//	      else if(pdgf[iPart] == 2112)
+//		{//n
 //		  part_num++;
-//		  outfile << addParticle(part_num,pdgf[iPart],TVector3(pxf[iPart], pyf[iPart], pzf[iPart]),mass_pi,vtx);
+//		  outfile << addParticle(part_num,pdgf[iPart],TVector3(pxf[iPart], pyf[iPart], pzf[iPart]),mass_n,vtx);
 //		}
+////	      else if(pdgf[iPart] == 211)
+////		{//pi+
+////		  part_num++;
+////		  outfile << addParticle(part_num,pdgf[iPart],TVector3(pxf[iPart], pyf[iPart], pzf[iPart]),mass_pi,vtx);
+////		}
+////	      else if(pdgf[iPart] == -211)
+////		{//pi-
+////		  part_num++;
+////		  outfile << addParticle(part_num,pdgf[iPart],TVector3(pxf[iPart], pyf[iPart], pzf[iPart]),mass_pi,vtx);
+////		}
 	      
 	    }
 	  
