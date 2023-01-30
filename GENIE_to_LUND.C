@@ -115,16 +115,29 @@ void GENIE_to_LUND(TString inputFile = "", TString outputFile = "", int nFiles =
 	  int nf_mod = 1;
 	  for(int iPart = 0; iPart < nf; iPart++)
 	    {
-	      if(pdgf[iPart] == 2212)
 		nf_mod++;
-	      else if(pdgf[iPart] == 2112)
-		nf_mod++;
+//	      else if(pdgf[iPart] == 2112)
+//		nf_mod++;
 //	      else if(pdgf[iPart] == 211)
 //		nf_mod++;
 //	      else if(pdgf[iPart] == -211)
 //		nf_mod++;
 	    }
-	  
+
+//
+//	  int nf_mod = 1;
+//	  for(int iPart = 0; iPart < nf; iPart++)
+//	    {
+//	      if(pdgf[iPart] == 2212)
+//		nf_mod++;
+//	      else if(pdgf[iPart] == 2112)
+//		nf_mod++;
+////	      else if(pdgf[iPart] == 211)
+////		nf_mod++;
+////	      else if(pdgf[iPart] == -211)
+////		nf_mod++;
+//	    }
+
 	  // LUND header for the event:
 	  formatstring = "%i \t %i \t %i \t %f \t %f \t %i \t %f \t %i \t %d \t %.2f \n";
 	  outstring = Form(formatstring, nf_mod, A, Z, RES_ID/*targP*/, beamP, beamType, beamE, interactN, i, code);
@@ -133,15 +146,26 @@ void GENIE_to_LUND(TString inputFile = "", TString outputFile = "", int nFiles =
 
 	  auto vtx = randomVertex(target); //get vertex of event                                  
 	  
-	  int part_num = 0;
-	  //electron
-	  outfile << addParticle(1,11,TVector3(pxl,pyl,pzl),mass_e,vtx);
-	  part_num++;
-	  
+	  int part_num = 1;
+
 	  for(int iPart = 0; iPart < nf; iPart++)
 	    {
             outfile << addParticle(part_num,pdgf[iPart],TVector3(pxf[iPart], pyf[iPart], pzf[iPart]),mass_p,vtx);
+            part_num++;
+	    }
+	  
+	}
 
+//
+//	  int part_num = 0;
+//	  //electron
+//	  outfile << addParticle(1,11,TVector3(pxl,pyl,pzl),mass_e,vtx);
+//	  part_num++;
+//
+//	  for(int iPart = 0; iPart < nf; iPart++)
+//	    {
+//            outfile << addParticle(part_num,pdgf[iPart],TVector3(pxf[iPart], pyf[iPart], pzf[iPart]),mass_p,vtx);
+//
 //            if(pdgf[iPart] == 2212)
 //		{//p
 //		  part_num++;
@@ -162,11 +186,11 @@ void GENIE_to_LUND(TString inputFile = "", TString outputFile = "", int nFiles =
 ////		  part_num++;
 ////		  outfile << addParticle(part_num,pdgf[iPart],TVector3(pxf[iPart], pyf[iPart], pzf[iPart]),mass_pi,vtx);
 ////		}
-	      
-	    }
-	  
-	}
-      
+//
+//	    }
+//
+//	}
+
       outfile.close();
       
     }
