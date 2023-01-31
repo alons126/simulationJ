@@ -16,7 +16,7 @@ void GENIE_to_LUND(TString inputFile = "", TString outputFile = "", int nFiles =
   TFile* inFile = new TFile(inputFile);
   cout << "\nMaking LUND file " << outputFile <<endl;
 
-  TString lundPath = "/lustre19/expphy/volatile/clas12/asportes/simulationFiles/598636MeV_Q2_0_5_test_2/lundfiles/";
+  TString lundPath = "/lustre19/expphy/volatile/clas12/asportes/simulationFiles/598636MeV_Q2_0_5_test_3/lundfiles/";
 //  TString lundPath = "./lundfiles/";
 
   //  int nFiles =  800;
@@ -146,15 +146,52 @@ void GENIE_to_LUND(TString inputFile = "", TString outputFile = "", int nFiles =
 
 	  auto vtx = randomVertex(target); //get vertex of event                                  
 	  
-	  int part_num = 1;
+//	  int part_num = 1;
+//
+//	  for(int iPart = 0; iPart < nf; iPart++)
+//	    {
+//            outfile << addParticle(part_num,pdgf[iPart],TVector3(pxf[iPart], pyf[iPart], pzf[iPart]),mass_p,vtx);
+//            part_num++;
+//	    }
+//
+//	}
+
+
+	  int part_num = 0;
+	  //electron
+	  outfile << addParticle(1,11,TVector3(pxl,pyl,pzl),mass_e,vtx);
+	  part_num++;
 
 	  for(int iPart = 0; iPart < nf; iPart++)
 	    {
             outfile << addParticle(part_num,pdgf[iPart],TVector3(pxf[iPart], pyf[iPart], pzf[iPart]),mass_p,vtx);
             part_num++;
+
+//            if(pdgf[iPart] == 2212)
+//		{//p
+//		  part_num++;
+//		  outfile << addParticle(part_num,pdgf[iPart],TVector3(pxf[iPart], pyf[iPart], pzf[iPart]),mass_p,vtx);
+//		}
+//	      else if(pdgf[iPart] == 2112)
+//		{//n
+//		  part_num++;
+//		  outfile << addParticle(part_num,pdgf[iPart],TVector3(pxf[iPart], pyf[iPart], pzf[iPart]),mass_n,vtx);
+//		}
+//	      else if(pdgf[iPart] == 211)
+//		{//pi+
+//		  part_num++;
+//		  outfile << addParticle(part_num,pdgf[iPart],TVector3(pxf[iPart], pyf[iPart], pzf[iPart]),mass_pi,vtx);
+//		}
+//	      else if(pdgf[iPart] == -211)
+//		{//pi-
+//		  part_num++;
+//		  outfile << addParticle(part_num,pdgf[iPart],TVector3(pxf[iPart], pyf[iPart], pzf[iPart]),mass_pi,vtx);
+//		}
+
 	    }
-	  
+
 	}
+
 
 //
 //	  int part_num = 0;
