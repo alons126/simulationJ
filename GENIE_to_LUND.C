@@ -111,17 +111,18 @@ void GENIE_to_LUND(TString inputFile = "", TString outputFile = "", int nFiles =
 
 	  
 	  RES_ID = double(resid);
-	  
+
 	  int nf_mod = 1;
 	  for(int iPart = 0; iPart < nf; iPart++)
 	    {
-		nf_mod++;
+          if(pdgf[iPart] == 2212)
+            nf_mod++;
 	      else if(pdgf[iPart] == 2112)
-		nf_mod++;
+		    nf_mod++;
 	      else if(pdgf[iPart] == 211)
-		nf_mod++;
+		    nf_mod++;
 	      else if(pdgf[iPart] == -211)
-		nf_mod++;
+		    nf_mod++;
 	    }
 
 //
@@ -201,8 +202,6 @@ void GENIE_to_LUND(TString inputFile = "", TString outputFile = "", int nFiles =
 
 	  for(int iPart = 0; iPart < nf; iPart++)
 	    {
-            outfile << addParticle(part_num,pdgf[iPart],TVector3(pxf[iPart], pyf[iPart], pzf[iPart]),mass_p,vtx);
-
             if(pdgf[iPart] == 2212)
 		{//p
 		  part_num++;
