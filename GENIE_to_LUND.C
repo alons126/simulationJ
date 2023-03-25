@@ -313,8 +313,6 @@ void GENIE_to_LUND(TString inputFile = "", TString outputFile = "", int nFiles =
                 part_num++;
                 outfile << addParticle(part_num,pdgf[iPart],TVector3(pxf[iPart], pyf[iPart], pzf[iPart]),mass_pi,vtx);
             }
-
-
             else if(pdgf[iPart] == 111)
             { // Pi0
                 part_num++;
