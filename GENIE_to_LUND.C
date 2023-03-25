@@ -113,12 +113,67 @@ void GENIE_to_LUND(TString inputFile = "", TString outputFile = "", int nFiles =
 	  
 	  RES_ID = double(resid);
 
-	  int nf_mod = 1;
+//        //<editor-fold desc="Failed gen">
+//        int nf_mod = 1;
+//	  for(int iPart = 0; iPart < nf; iPart++)
+//	    {
+//          if(abs(pdgf[iPart]) < 10000 && pdgf[iPart] != 11)
+//            nf_mod++;
+//	    }
+//        //</editor-fold>
+
+      //<editor-fold desc="Ca48">
+      int nf_mod = 1;
 	  for(int iPart = 0; iPart < nf; iPart++)
 	    {
-          if(abs(pdgf[iPart]) < 10000 && pdgf[iPart] != 11)
+          if(pdgf[iPart] == 2212) // Proton
             nf_mod++;
+	      else if(pdgf[iPart] == 2112) // Neutron
+		    nf_mod++;
+	      else if(pdgf[iPart] == 211) // Pi+
+		    nf_mod++;
+	      else if(pdgf[iPart] == -211) // Pi-
+		    nf_mod++;
+	      else if(pdgf[iPart] == 111) // Pi0
+		    nf_mod++;
+	      else if(pdgf[iPart] == 321) // K+
+		    nf_mod++;
+	      else if(pdgf[iPart] == -321) // K-
+		    nf_mod++;
+	      else if(pdgf[iPart] == 311) // K0
+		    nf_mod++;
+	      else if(pdgf[iPart] == -311) // anti-K0 (?)
+		    nf_mod++;
+	      else if(pdgf[iPart] == 22) // Photons
+		    nf_mod++;
+	      else if(pdgf[iPart] == 3122) // Lambda
+		    nf_mod++;
+	      else if(pdgf[iPart] == 3222) // Sigma+
+		    nf_mod++;
+	      else if(pdgf[iPart] == 3112) // Sigma-
+		    nf_mod++;
+	      else if(pdgf[iPart] == 3212) // Sigma0
+		    nf_mod++;
+	      else if(pdgf[iPart] == -11) // Positron
+		    nf_mod++;
+	      else if(pdgf[iPart] == -2112) // Anti-neutron
+		    nf_mod++;
+	      else if(pdgf[iPart] == -2212) // Anti-proton
+		    nf_mod++;
+	      else if(pdgf[iPart] == 130) // K0_L
+		    nf_mod++;
+          else if(pdgf[iPart] == 12) // nu_e
+              nf_mod++;
+	      else if(pdgf[iPart] == -12) // Anti-nu_e
+		    nf_mod++;
+	      else if(pdgf[iPart] == 13) // Mu
+		    nf_mod++;
+	      else if(pdgf[iPart] == -13) // Anti-Mu
+		    nf_mod++;
+	      else if(pdgf[iPart] == -3122) // Anti-Lambda
+		    nf_mod++;
 	    }
+        //</editor-fold>
 
         //<editor-fold desc="T5">
         //	  int nf_mod = 1;
@@ -132,7 +187,6 @@ void GENIE_to_LUND(TString inputFile = "", TString outputFile = "", int nFiles =
 //		    nf_mod++;
 //	      else if(pdgf[iPart] == -211) // Pi-
 //		    nf_mod++;
-//
 //	      else if(pdgf[iPart] == 111) // Pi0
 //		    nf_mod++;
 //	      else if(pdgf[iPart] == 321) // K+
@@ -172,8 +226,8 @@ void GENIE_to_LUND(TString inputFile = "", TString outputFile = "", int nFiles =
 //	    }
         //</editor-fold>
 
-        //<editor-fold desc="original">
-        //	  int nf_mod = 1;
+//        //<editor-fold desc="original">
+//        	  int nf_mod = 1;
 //	  for(int iPart = 0; iPart < nf; iPart++)
 //	    {
 //	      if(pdgf[iPart] == 2212)
@@ -185,7 +239,7 @@ void GENIE_to_LUND(TString inputFile = "", TString outputFile = "", int nFiles =
 ////	      else if(pdgf[iPart] == -211)
 ////		nf_mod++;
 //	    }
-        //</editor-fold>
+//        //</editor-fold>
 
 	  // LUND header for the event:
 	  formatstring = "%i \t %i \t %i \t %f \t %f \t %i \t %f \t %i \t %d \t %.2f \n";
@@ -239,12 +293,123 @@ void GENIE_to_LUND(TString inputFile = "", TString outputFile = "", int nFiles =
 
 	  for(int iPart = 0; iPart < nf; iPart++)
 	    {
-          if(abs(pdgf[iPart]) < 10000 && pdgf[iPart] != 11)
-          {
-		  part_num++;
-		  outfile << addParticle(part_num,pdgf[iPart],TVector3(pxf[iPart], pyf[iPart], pzf[iPart]),mass_p,vtx);
-		 }
+            if(pdgf[iPart] == 2212)
+            {//p
+                part_num++;
+                outfile << addParticle(part_num,pdgf[iPart],TVector3(pxf[iPart], pyf[iPart], pzf[iPart]),mass_p,vtx);
+            }
+            else if(pdgf[iPart] == 2112)
+            {//n
+                part_num++;
+                outfile << addParticle(part_num,pdgf[iPart],TVector3(pxf[iPart], pyf[iPart], pzf[iPart]),mass_n,vtx);
+            }
+            else if(pdgf[iPart] == 211)
+            {//pi+
+                part_num++;
+                outfile << addParticle(part_num,pdgf[iPart],TVector3(pxf[iPart], pyf[iPart], pzf[iPart]),mass_pi,vtx);
+            }
+            else if(pdgf[iPart] == -211)
+            {//pi-
+                part_num++;
+                outfile << addParticle(part_num,pdgf[iPart],TVector3(pxf[iPart], pyf[iPart], pzf[iPart]),mass_pi,vtx);
+            }
 
+
+            else if(pdgf[iPart] == 111)
+            { // Pi0
+                part_num++;
+                outfile << addParticle(part_num,pdgf[iPart],TVector3(pxf[iPart], pyf[iPart], pzf[iPart]),mass_pi,vtx);
+            }
+            else if(pdgf[iPart] == 321)
+            { // K+
+                part_num++;
+                outfile << addParticle(part_num,pdgf[iPart],TVector3(pxf[iPart], pyf[iPart], pzf[iPart]),mass_pi,vtx);
+            }
+            else if(pdgf[iPart] == -321)
+            { // K-
+                part_num++;
+                outfile << addParticle(part_num,pdgf[iPart],TVector3(pxf[iPart], pyf[iPart], pzf[iPart]),mass_pi,vtx);
+            }
+            else if(pdgf[iPart] == 311)
+            { // K0
+                part_num++;
+                outfile << addParticle(part_num,pdgf[iPart],TVector3(pxf[iPart], pyf[iPart], pzf[iPart]),mass_pi,vtx);
+            }
+            else if(pdgf[iPart] == -311)
+            { // anti-K0 (?)
+                part_num++;
+                outfile << addParticle(part_num,pdgf[iPart],TVector3(pxf[iPart], pyf[iPart], pzf[iPart]),mass_pi,vtx);
+            }
+            else if(pdgf[iPart] == 22)
+            { // Photons
+                part_num++;
+                outfile << addParticle(part_num,pdgf[iPart],TVector3(pxf[iPart], pyf[iPart], pzf[iPart]),mass_pi,vtx);
+            }
+            else if(pdgf[iPart] == 3122)
+            { // Lambda
+                part_num++;
+                outfile << addParticle(part_num,pdgf[iPart],TVector3(pxf[iPart], pyf[iPart], pzf[iPart]),mass_pi,vtx);
+            }
+            else if(pdgf[iPart] == 3222)
+            { // Sigma+
+                part_num++;
+                outfile << addParticle(part_num,pdgf[iPart],TVector3(pxf[iPart], pyf[iPart], pzf[iPart]),mass_pi,vtx);
+            }
+            else if(pdgf[iPart] == 3112)
+            { // Sigma-
+                part_num++;
+                outfile << addParticle(part_num,pdgf[iPart],TVector3(pxf[iPart], pyf[iPart], pzf[iPart]),mass_pi,vtx);
+            }
+            else if(pdgf[iPart] == 3212)
+            { // Sigma0
+                part_num++;
+                outfile << addParticle(part_num,pdgf[iPart],TVector3(pxf[iPart], pyf[iPart], pzf[iPart]),mass_pi,vtx);
+            }
+            else if(pdgf[iPart] == -11)
+            { // Positron
+                part_num++;
+                outfile << addParticle(part_num,pdgf[iPart],TVector3(pxf[iPart], pyf[iPart], pzf[iPart]),mass_pi,vtx);
+            }
+            else if(pdgf[iPart] == -2112)
+            { // Anti-neutron
+                part_num++;
+                outfile << addParticle(part_num,pdgf[iPart],TVector3(pxf[iPart], pyf[iPart], pzf[iPart]),mass_pi,vtx);
+            }
+            else if(pdgf[iPart] == -2212)
+            { // Anti-proton
+                part_num++;
+                outfile << addParticle(part_num,pdgf[iPart],TVector3(pxf[iPart], pyf[iPart], pzf[iPart]),mass_pi,vtx);
+            }
+            else if(pdgf[iPart] == 130)
+            { // K0_L
+                part_num++;
+                outfile << addParticle(part_num,pdgf[iPart],TVector3(pxf[iPart], pyf[iPart], pzf[iPart]),mass_pi,vtx);
+            }
+            else if(pdgf[iPart] == 12)
+            { // Nu_e
+                part_num++;
+                outfile << addParticle(part_num,pdgf[iPart],TVector3(pxf[iPart], pyf[iPart], pzf[iPart]),mass_pi,vtx);
+            }
+            else if(pdgf[iPart] == -12)
+            { // Anti-nu_e
+                part_num++;
+                outfile << addParticle(part_num,pdgf[iPart],TVector3(pxf[iPart], pyf[iPart], pzf[iPart]),mass_pi,vtx);
+            }
+            else if(pdgf[iPart] == 13)
+            { // Mu
+                part_num++;
+                outfile << addParticle(part_num,pdgf[iPart],TVector3(pxf[iPart], pyf[iPart], pzf[iPart]),mass_pi,vtx);
+            }
+            else if(pdgf[iPart] == -13)
+            { // Anti-Mu
+                part_num++;
+                outfile << addParticle(part_num,pdgf[iPart],TVector3(pxf[iPart], pyf[iPart], pzf[iPart]),mass_pi,vtx);
+            }
+            else if(pdgf[iPart] == -3122)
+            { // Anti-Lambda
+                part_num++;
+                outfile << addParticle(part_num,pdgf[iPart],TVector3(pxf[iPart], pyf[iPart], pzf[iPart]),mass_pi,vtx);
+            }
 	    }
 
 	}
