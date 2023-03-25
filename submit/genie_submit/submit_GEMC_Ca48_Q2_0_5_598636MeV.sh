@@ -12,7 +12,7 @@
 
 NEVENTS=10000
 TORUS=-1.0
-FILE_PREFIX=c12_598636MeV_Q2_0_5 #Change file prefix for your simulation
+FILE_PREFIX=Ca48_G18_10a_02_11b_Q205_598636MeV #Change file prefix for your simulation
 
 GCARD=/u/home/asportes/clas12simulations/simulationJ/submit/rgm.gcard
 YAML=/u/home/asportes/clas12simulations/simulationJ/submit/rgm_mc.yaml
