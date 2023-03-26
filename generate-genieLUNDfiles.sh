@@ -17,7 +17,7 @@ Ar40_PATH=/lustre19/expphy/volatile/clas12/mgolden/simulation/elements/40Ar/
 #Usage of GENIE_to_LUND.C("inputFile","outputFile_prefix",#outputFiles,#eventsPerRun,"target",A,Z)
 
 root 'GENIE_to_LUND.C("/lustre19/expphy/volatile/clas12/asportes/truthLevelROOTFiles/Ca48_G18_10a_02_11b_Q205_598636MeV/Ca48_G18_10a_02_11b_Q205_598636MeV.root","Ca48_G18_10a_02_11b_Q205_598636MeV",1000,"1-foil",48,20)' # Ca48_G18_10a_02_11b_Q205_598636MeV
-root 'GENIE_to_LUND.C("/lustre19/expphy/volatile/clas12/asportes/truthLevelROOTFiles/H1_G18_10a_02_11b_Q205_598636MeV/H1_G18_10a_02_11b_Q205_598636MeV.root","H1_G18_10a_02_11b_Q205_598636MeV",1000,"1-foil",1,1)' # H1_G18_10a_02_11b_Q205_598636MeV
+root 'GENIE_to_LUND.C("/lustre19/expphy/volatile/clas12/asportes/truthLevelROOTFiles/H1_G18_10a_02_11b_Q205_598636MeV/H1_G18_10a_02_11b_Q205_598636MeV.root","H1_G18_10a_02_11b_Q205_598636MeV",1000,"liquid",1,1)' # H1_G18_10a_02_11b_Q205_598636MeV
 root 'GENIE_to_LUND.C("/lustre19/expphy/volatile/clas12/asportes/truthLevelROOTFiles/12C_Q2_0_5/e_on_1000060120_598636MeV_Q2_0_5.gst.root","c12_598636MeV_Q2_0_5",1000,"1-foil",6,6)'
 
 
