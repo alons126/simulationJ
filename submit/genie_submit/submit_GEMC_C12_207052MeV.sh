@@ -3,7 +3,7 @@
 #SBATCH --ntasks=1                                                                                                   
 #SBATCH --mem-per-cpu=2000                                                                                            
 #SBATCH --account=clas12                                                                                             
-#SBATCH --job-name=C12_G18_10a_02_11b_207052MeV_T5
+#SBATCH --job-name=C12_G18_10a_02_11b_207052MeV_T6
 #SBATCH --partition=production                                                               
 #SBATCH --time=30:00:00
 #SBATCH --output=/farm_out/%u/%x-%j-%N.out
@@ -11,7 +11,7 @@
 #SBATCH --array=1-1000
 
 NEVENTS=10000
-TORUS=0.5
+TORUS=-1
 FILE_PREFIX=C12_G18_10a_02_11b_207052MeV #Change file prefix for your simulation
 
 GCARD=/u/home/asportes/clas12simulations/simulationJ/submit/rgm.gcard
