@@ -11,7 +11,7 @@
 #SBATCH --array=1-1000
 
 NEVENTS=10000
-TORUS=-1.0
+TORUS=+0.5
 FILE_PREFIX=C12_G18_10a_02_11b_207052MeV #Change file prefix for your simulation
 
 GCARD=/u/home/asportes/clas12simulations/simulationJ/submit/rgm.gcard
