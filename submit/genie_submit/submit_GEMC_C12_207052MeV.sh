@@ -21,10 +21,12 @@ YAML=/u/home/asportes/clas12simulations/simulationJ/submit/rgm_mc.yaml
 
 source /etc/profile.d/modules.sh
 source /group/clas12/packages/setup.sh
+module load sqlite/pro
+module load clas12/pro
 # module load sqlite/4.4.1
 # module load clas12/pro
-module load sqlite/dev
-module load clas12/dev
+# module load sqlite/dev
+# module load clas12/dev
 
 gemc -USE_GUI=0  -SCALE_FIELD="TorusSymmetric, $TORUS" -SCALE_FIELD="clas12-newSolenoid, -1.0" -N=$NEVENTS -INPUT_GEN_FILE="lund, /lustre19/expphy/volatile/clas12/asportes/simulationFiles/C12_G18_10a_02_11b_207052MeV/lundfiles/${FILE_PREFIX}_${SLURM_ARRAY_TASK_ID}.dat" -OUTPUT="hipo, /lustre19/expphy/volatile/clas12/asportes/simulationFiles/C12_G18_10a_02_11b_207052MeV/mchipo/mc_${FILE_PREFIX}_${SLURM_ARRAY_TASK_ID}_torus$TORUS.hipo" $GCARD
 
