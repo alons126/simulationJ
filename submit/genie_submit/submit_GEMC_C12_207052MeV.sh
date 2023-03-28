@@ -3,7 +3,7 @@
 #SBATCH --ntasks=1                                                                                                   
 #SBATCH --mem-per-cpu=2000                                                                                            
 #SBATCH --account=clas12                                                                                             
-#SBATCH --job-name=C12_G18_10a_02_11b_207052MeV_T1
+#SBATCH --job-name=C12_G18_10a_02_11b_207052MeV_T2
 #SBATCH --partition=production                                                               
 #SBATCH --time=30:00:00
 #SBATCH --output=/farm_out/%u/%x-%j-%N.out
