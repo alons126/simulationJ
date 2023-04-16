@@ -126,7 +126,60 @@ void GENIE_to_LUND(TString inputFile = "", TString outputFile = "", int nFiles =
 //	    }
 //        //</editor-fold>
 
-      //<editor-fold desc="Ca48">
+//      //<editor-fold desc="Ca48">
+//      int nf_mod = 1;
+//	  for(int iPart = 0; iPart < nf; iPart++)
+//	    {
+//          if(pdgf[iPart] == 2212) // Proton
+//            nf_mod++;
+//	      else if(pdgf[iPart] == 2112) // Neutron
+//		    nf_mod++;
+//	      else if(pdgf[iPart] == 211) // Pi+
+//		    nf_mod++;
+//	      else if(pdgf[iPart] == -211) // Pi-
+//		    nf_mod++;
+//	      else if(pdgf[iPart] == 111) // Pi0
+//		    nf_mod++;
+//	      else if(pdgf[iPart] == 321) // K+
+//		    nf_mod++;
+//	      else if(pdgf[iPart] == -321) // K-
+//		    nf_mod++;
+//	      else if(pdgf[iPart] == 311) // K0
+//		    nf_mod++;
+//	      else if(pdgf[iPart] == -311) // anti-K0 (?)
+//		    nf_mod++;
+//	      else if(pdgf[iPart] == 22) // Photons
+//		    nf_mod++;
+//	      else if(pdgf[iPart] == 3122) // Lambda
+//		    nf_mod++;
+//	      else if(pdgf[iPart] == 3222) // Sigma+
+//		    nf_mod++;
+//	      else if(pdgf[iPart] == 3112) // Sigma-
+//		    nf_mod++;
+//	      else if(pdgf[iPart] == 3212) // Sigma0
+//		    nf_mod++;
+//	      else if(pdgf[iPart] == -11) // Positron
+//		    nf_mod++;
+//	      else if(pdgf[iPart] == -2112) // Anti-neutron
+//		    nf_mod++;
+//	      else if(pdgf[iPart] == -2212) // Anti-proton
+//		    nf_mod++;
+//	      else if(pdgf[iPart] == 130) // K0_L
+//		    nf_mod++;
+//          else if(pdgf[iPart] == 12) // nu_e
+//              nf_mod++;
+//	      else if(pdgf[iPart] == -12) // Anti-nu_e
+//		    nf_mod++;
+//	      else if(pdgf[iPart] == 13) // Mu
+//		    nf_mod++;
+//	      else if(pdgf[iPart] == -13) // Anti-Mu
+//		    nf_mod++;
+//	      else if(pdgf[iPart] == -3122) // Anti-Lambda
+//		    nf_mod++;
+//	    }
+//        //</editor-fold>
+
+      //<editor-fold desc="Ca48_G18_10a_02_11b_207052MeV">
       int nf_mod = 1;
 	  for(int iPart = 0; iPart < nf; iPart++)
 	    {
@@ -166,9 +219,9 @@ void GENIE_to_LUND(TString inputFile = "", TString outputFile = "", int nFiles =
 		    nf_mod++;
 	      else if(pdgf[iPart] == 130) // K0_L
 		    nf_mod++;
-          else if(pdgf[iPart] == 12) // nu_e
-              nf_mod++;
-	      else if(pdgf[iPart] == -12) // Anti-nu_e
+	      else if(pdgf[iPart] == 12) // nu_e
+		    nf_mod++;
+	      else if(pdgf[iPart] == -12) // nu_e
 		    nf_mod++;
 	      else if(pdgf[iPart] == 13) // Mu
 		    nf_mod++;
@@ -179,8 +232,8 @@ void GENIE_to_LUND(TString inputFile = "", TString outputFile = "", int nFiles =
 	    }
         //</editor-fold>
 
-        //<editor-fold desc="T5">
-        //	  int nf_mod = 1;
+//      //<editor-fold desc="T5">
+//      int nf_mod = 1;
 //	  for(int iPart = 0; iPart < nf; iPart++)
 //	    {
 //          if(pdgf[iPart] == 2212) // Proton
@@ -228,7 +281,7 @@ void GENIE_to_LUND(TString inputFile = "", TString outputFile = "", int nFiles =
 //	      else if(pdgf[iPart] == -3122) // Anti-Lambda
 //		    nf_mod++;
 //	    }
-        //</editor-fold>
+//        //</editor-fold>
 
 //        //<editor-fold desc="original">
 //        	  int nf_mod = 1;
