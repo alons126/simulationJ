@@ -8,7 +8,7 @@
 #SBATCH --time=30:00:00
 #SBATCH --output=/farm_out/%u/%x-%j-%N.out
 #SBATCH --error=//farm_out/%u/%x-%j-%N.err
-#SBATCH --array=1-5
+#SBATCH --array=1-1000
 
 NEVENTS=10000
 TORUS=0.5
