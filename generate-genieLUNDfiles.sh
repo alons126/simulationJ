@@ -23,6 +23,10 @@ root 'GENIE_to_LUND.C("/lustre19/expphy/volatile/clas12/asportes/truthLevelROOTF
 root 'GENIE_to_LUND.C("/lustre19/expphy/volatile/clas12/asportes/truthLevelROOTFiles/C12_G18_10a_02_11b_207052MeV/C12_G18_10a_02_11b_207052MeV.root", "C12_G18_10a_02_11b_207052MeV", 1000, "1-foil", 6, 6)'
 
 
+# C12_G18_10a_02_11b_402962MeV:
+root 'GENIE_to_LUND.C("/lustre19/expphy/volatile/clas12/asportes/truthLevelROOTFiles/C12_G18_10a_02_11b_402962MeV/C12_G18_10a_02_11b_402962MeV.root","C12_G18_10a_02_11b_402962MeV",1000,"1-foil",12,6)'
+
+
 # Ca48_G18_10a_02_11b_207052MeV:
 # Ca48_G18_10a_02_11b_207052MeV_PATH_TRUTH_LEVEL=/lustre19/expphy/volatile/clas12/asportes/truthLevelROOTFiles/Ca48_G18_10a_02_11b_207052MeV/
 root 'GENIE_to_LUND.C("/lustre19/expphy/volatile/clas12/asportes/truthLevelROOTFiles/Ca48_G18_10a_02_11b_207052MeV/Ca48_G18_10a_02_11b_207052MeV.root","Ca48_G18_10a_02_11b_207052MeV",1000,"Ca",48,20)'
