@@ -3,7 +3,7 @@
 #SBATCH --ntasks=1                                                                                                   
 #SBATCH --mem-per-cpu=2000                                                                                            
 #SBATCH --account=clas12                                                                                             
-#SBATCH --job-name=Ar40_G18_10a_02_11b_207052MeV_T2
+#SBATCH --job-name=Ar40_G18_10a_02_11b_207052MeV_T3
 #SBATCH --partition=production                                                               
 #SBATCH --time=30:00:00
 #SBATCH --output=/farm_out/%u/%x-%j-%N.out
@@ -19,8 +19,10 @@ YAML=/u/home/asportes/clas12simulations/simulationJ/submit/rgm_mc.yaml
 
 source /etc/profile.d/modules.sh
 source /group/clas12/packages/setup.sh
-module load sqlite/4.4.1
+module load sqlite/dev
 module load clas12/pro
+# module load sqlite/4.4.1
+# module load clas12/pro
 # module load sqlite/dev #original
 # module load clas12/dev #original
 
