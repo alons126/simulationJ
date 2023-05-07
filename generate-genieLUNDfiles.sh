@@ -17,28 +17,27 @@ Ar40_PATH=/lustre19/expphy/volatile/clas12/mgolden/simulation/elements/40Ar/
 #Usage of GENIE_to_LUND.C("inputFile","outputFile_prefix",#outputFiles,#eventsPerRun,"target",A,Z)
 
 
-# C12_G18_10a_02_11b_207052MeV:
-root 'GENIE_to_LUND.C("/lustre19/expphy/volatile/clas12/asportes/truthLevelROOTFiles/C12_G18_10a_02_11b_207052MeV/C12_G18_10a_02_11b_207052MeV.root","C12_G18_10a_02_11b_207052MeV",1000,"1-foil",12,6)'
-# C12_G18_10a_02_11b_207052MeV:
-root 'GENIE_to_LUND.C("/lustre19/expphy/volatile/clas12/asportes/truthLevelROOTFiles/C12_G18_10a_02_11b_207052MeV/C12_G18_10a_02_11b_207052MeV.root", "C12_G18_10a_02_11b_207052MeV", 1000, "1-foil", 6, 6)'
-
-
-# C12_G18_10a_02_11b_402962MeV:
-root 'GENIE_to_LUND.C("/lustre19/expphy/volatile/clas12/asportes/truthLevelROOTFiles/C12_G18_10a_02_11b_402962MeV/C12_G18_10a_02_11b_402962MeV.root","C12_G18_10a_02_11b_402962MeV",1000,"1-foil",12,6)'
-
-
-# Ca48_G18_10a_02_11b_207052MeV:
-# Ca48_G18_10a_02_11b_207052MeV_PATH_TRUTH_LEVEL=/lustre19/expphy/volatile/clas12/asportes/truthLevelROOTFiles/Ca48_G18_10a_02_11b_207052MeV/
-root 'GENIE_to_LUND.C("/lustre19/expphy/volatile/clas12/asportes/truthLevelROOTFiles/Ca48_G18_10a_02_11b_207052MeV/Ca48_G18_10a_02_11b_207052MeV.root","Ca48_G18_10a_02_11b_207052MeV",1000,"Ca",48,20)'
-
-
-# Ca48_G18_10a_02_11b_Q205_598636MeV:
-root 'GENIE_to_LUND.C("/lustre19/expphy/volatile/clas12/asportes/truthLevelROOTFiles/Ca48_G18_10a_02_11b_Q205_598636MeV/Ca48_G18_10a_02_11b_Q205_598636MeV.root","Ca48_G18_10a_02_11b_Q205_598636MeV",1000,"1-foil",48,20)'
 # H1_G18_10a_02_11b_Q205_598636MeV:
 root 'GENIE_to_LUND.C("/lustre19/expphy/volatile/clas12/asportes/truthLevelROOTFiles/H1_G18_10a_02_11b_Q205_598636MeV/H1_G18_10a_02_11b_Q205_598636MeV.root","H1_G18_10a_02_11b_Q205_598636MeV",1000,"liquid",1,1)'
 root 'GENIE_to_LUND.C("/lustre19/expphy/volatile/clas12/asportes/truthLevelROOTFiles/12C_Q2_0_5/e_on_1000060120_598636MeV_Q2_0_5.gst.root","c12_598636MeV_Q2_0_5",1000,"1-foil",6,6)'
 
 
+# C12_G18_10a_02_11b_207052MeV:
+root 'GENIE_to_LUND.C("/lustre19/expphy/volatile/clas12/asportes/truthLevelROOTFiles/C12_G18_10a_02_11b_207052MeV/C12_G18_10a_02_11b_207052MeV.root","C12_G18_10a_02_11b_207052MeV",1000,"1-foil",12,6)'
+# C12_G18_10a_02_11b_207052MeV:
+root 'GENIE_to_LUND.C("/lustre19/expphy/volatile/clas12/asportes/truthLevelROOTFiles/C12_G18_10a_02_11b_207052MeV/C12_G18_10a_02_11b_207052MeV.root", "C12_G18_10a_02_11b_207052MeV", 1000, "1-foil", 6, 6)'
+# C12_G18_10a_02_11b_402962MeV:
+root 'GENIE_to_LUND.C("/lustre19/expphy/volatile/clas12/asportes/truthLevelROOTFiles/C12_G18_10a_02_11b_402962MeV/C12_G18_10a_02_11b_402962MeV.root","C12_G18_10a_02_11b_402962MeV",1000,"1-foil",12,6)'
+
+
+# Ar40_G18_10a_02_11b_207052MeV:
+root 'GENIE_to_LUND.C("/lustre19/expphy/volatile/clas12/asportes/truthLevelROOTFiles/Ar40_G18_10a_02_11b_207052MeV/Ar40_G18_10a_02_11b_207052MeV.root","Ar40_G18_10a_02_11b_207052MeV",1000,"Ar",40,18)'
+
+
+# Ca48_G18_10a_02_11b_207052MeV:
+root 'GENIE_to_LUND.C("/lustre19/expphy/volatile/clas12/asportes/truthLevelROOTFiles/Ca48_G18_10a_02_11b_207052MeV/Ca48_G18_10a_02_11b_207052MeV.root","Ca48_G18_10a_02_11b_207052MeV",1000,"Ca",48,20)'
+# Ca48_G18_10a_02_11b_Q205_598636MeV:
+root 'GENIE_to_LUND.C("/lustre19/expphy/volatile/clas12/asportes/truthLevelROOTFiles/Ca48_G18_10a_02_11b_Q205_598636MeV/Ca48_G18_10a_02_11b_Q205_598636MeV.root","Ca48_G18_10a_02_11b_Q205_598636MeV",1000,"1-foil",48,20)'
 # root 'GENIE_to_LUND.C("${C12_PATH}/e_on_1000060120_598636MeV.gst.root","c12_598636MeV_Q2_0_4",1000,"1-foil",6,6)'
 # root 'GENIE_to_LUND.C("${C12_PATH}/e_on_1000060120_598636MeV.gst.root","c12_2gev",100,100000,"1-foil",6,6)' # Original
 #root 'GENIE_to_LUND.C("${C12_PATH}/mgolden_G18_10a_02_11a_1000060120_402962.gst.root","c12_4gev",100,100000,"1-foil",6,6)'
