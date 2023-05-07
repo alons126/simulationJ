@@ -8,7 +8,8 @@
 
 using namespace std;
 
-
+// A ("Mass number") = number of protons plus the number neutrons
+// Z ("Atomic number") = number of protons
 void GENIE_to_LUND(TString inputFile = "", TString outputFile = "", int nFiles = 800, string target = "liquid", int A = 1, int Z = 1) 
 {
   //Read in target parameter files                                                           
@@ -18,11 +19,11 @@ void GENIE_to_LUND(TString inputFile = "", TString outputFile = "", int nFiles =
 
 //  TString lundPath = "/lustre19/expphy/volatile/clas12/asportes/simulationFiles/H1_G18_10a_02_11b_Q205_598636MeV/lundfiles/"; // H1_G18_10a_02_11b_Q205_598636MeV
 
-//  TString lundPath = "/lustre19/expphy/volatile/clas12/asportes/simulationFiles/C12_G18_10a_02_11b_207052MeV/lundfiles/"; // C12_G18_10a_02_11b_207052MeV
+  TString lundPath = "/lustre19/expphy/volatile/clas12/asportes/simulationFiles/C12_G18_10a_02_11b_207052MeV/lundfiles/"; // C12_G18_10a_02_11b_207052MeV
 //  TString lundPath = "/lustre19/expphy/volatile/clas12/asportes/simulationFiles/C12_G18_10a_02_11b_402962MeV/lundfiles/"; // C12_G18_10a_02_11b_402962MeV
 //  TString lundPath = "/lustre19/expphy/volatile/clas12/asportes/simulationFiles/598636MeV_Q2_0_5_test_5/lundfiles/";
 
-  TString lundPath = "/lustre19/expphy/volatile/clas12/asportes/simulationFiles/Ar40_G18_10a_02_11b_207052MeV/lundfiles/"; // Ar40_G18_10a_02_11b_207052MeV
+//  TString lundPath = "/lustre19/expphy/volatile/clas12/asportes/simulationFiles/Ar40_G18_10a_02_11b_207052MeV/lundfiles/"; // Ar40_G18_10a_02_11b_207052MeV
 
 //  TString lundPath = "/lustre19/expphy/volatile/clas12/asportes/simulationFiles/Ca48_G18_10a_02_11b_207052MeV/lundfiles/"; // Ca48_G18_10a_02_11b_207052MeV
 //  TString lundPath = "/lustre19/expphy/volatile/clas12/asportes/simulationFiles/Ca48_G18_10a_02_11b_Q205_598636MeV/lundfiles/"; // Ca48_G18_10a_02_11b_Q205_598636MeV

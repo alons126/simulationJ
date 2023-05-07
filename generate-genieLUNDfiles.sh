@@ -15,7 +15,8 @@ Ar40_PATH=/lustre19/expphy/volatile/clas12/mgolden/simulation/elements/40Ar/
 
 #10M in each gst file
 #Usage of GENIE_to_LUND.C("inputFile","outputFile_prefix",#outputFiles,#eventsPerRun,"target",A,Z)
-
+# A ("Mass number") = number of protons plus the number neutrons
+# Z ("Atomic number") = number of protons
 
 # H1_G18_10a_02_11b_Q205_598636MeV:
 root 'GENIE_to_LUND.C("/lustre19/expphy/volatile/clas12/asportes/truthLevelROOTFiles/H1_G18_10a_02_11b_Q205_598636MeV/H1_G18_10a_02_11b_Q205_598636MeV.root","H1_G18_10a_02_11b_Q205_598636MeV",1000,"liquid",1,1)'
