@@ -14,8 +14,10 @@ NEVENTS=10000
 TORUS=-1.0
 FILE_PREFIX=C12_G18_02a_00_000_Q208_598636MeV #Change file prefix for your simulation
 
-GCARD=rgm.gcard
-YAML=rgm_mc.yaml
+GCARD=/u/home/asportes/clas12simulations/simulationJ/submit/rgm.gcard
+YAML=/u/home/asportes/clas12simulations/simulationJ/submit/rgm_mc.yaml
+# GCARD=rgm.gcard
+# YAML=rgm_mc.yaml
 
 source /etc/profile.d/modules.sh
 source /group/clas12/packages/setup.sh
