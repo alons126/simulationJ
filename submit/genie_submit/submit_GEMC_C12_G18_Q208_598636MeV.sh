@@ -27,6 +27,6 @@ module load sqlite/dev
 #module load clas12/pro
 # I had to switch to the software versions Justin uses to avoid a seg fault
 
-gemc -USE_GUI=0  -SCALE_FIELD="TorusSymmetric, $TORUS" -SCALE_FIELD="clas12-newSolenoid, -1.0" -N=10000 -INPUT_GEN_FILE="lund, /lustre19/expphy/volatile/clas12/asportes/simulationFiles/C12_G18_02a_00_000_Q208_598636MeV/lundfiles/lund_${FILE_PREFIX}_${SLURM_ARRAY_TASK_ID}.txt" -OUTPUT="hipo, /lustre19/expphy/volatile/clas12/asportes/simulationFiles/C12_G18_02a_00_000_Q208_598636MeV/mchipo/mc_${FILE_PREFIX}_${SLURM_ARRAY_TASK_ID}_torus$TORUS.hipo" $GCARD
+gemc -USE_GUI=0  -SCALE_FIELD="TorusSymmetric, $TORUS" -SCALE_FIELD="clas12-newSolenoid, -1.0" -N=10000 -INPUT_GEN_FILE="lund, /lustre19/expphy/volatile/clas12/asportes/simulationFiles/C12_G18_02a_00_000_Q208_598636MeV/lundfiles/lund_${FILE_PREFIX}_${SLURM_ARRAY_TASK_ID}.dat" -OUTPUT="hipo, /lustre19/expphy/volatile/clas12/asportes/simulationFiles/C12_G18_02a_00_000_Q208_598636MeV/mchipo/mc_${FILE_PREFIX}_${SLURM_ARRAY_TASK_ID}_torus$TORUS.hipo" $GCARD
 echo FINISHED GEMC
 recon-util -y $YAML -i /lustre19/expphy/volatile/clas12/asportes/simulationFiles/C12_G18_02a_00_000_Q208_598636MeV/mchipo/mc_${FILE_PREFIX}_${SLURM_ARRAY_TASK_ID}_torus${TORUS}.hipo -o /lustre19/expphy/volatile/clas12/asportes/simulationFiles/C12_G18_02a_00_000_Q208_598636MeV/reconhipo/recon_${FILE_PREFIX}_${SLURM_ARRAY_TASK_ID}_torus${TORUS}.hipo
