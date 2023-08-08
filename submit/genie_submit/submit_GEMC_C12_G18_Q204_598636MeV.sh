@@ -3,12 +3,12 @@
 #SBATCH --ntasks=1                                                                                                   
 #SBATCH --mem-per-cpu=2000                                                                                            
 #SBATCH --account=clas12                                                                                             
-#SBATCH --job-name=C12_G18_02a_00_000_Q204_598636MeV_T2
+#SBATCH --job-name=C12_G18_02a_00_000_Q204_598636MeV_T1
 #SBATCH --partition=production                                                               
 #SBATCH --time=20:00:00                                                                                               
 #SBATCH --output=/farm_out/%u/%x-%j-%N.out                                                                           
 #SBATCH --error=//farm_out/%u/%x-%j-%N.err                                                                           
-#SBATCH --array=1-960
+#SBATCH --array=1-2400
 
 NEVENTS=10000
 TORUS=-1.0
