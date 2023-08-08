@@ -33,6 +33,8 @@ root 'GENIE_to_LUND.C("/lustre19/expphy/volatile/clas12/asportes/truthLevelROOTF
 root 'GENIE_to_LUND.C("/lustre19/expphy/volatile/clas12/asportes/truthLevelROOTFiles/C12_G18_10a_02_11b_402962MeV/C12_G18_10a_02_11b_402962MeV.root","C12_G18_10a_02_11b_402962MeV",1000,"1-foil",12,6)'
 # C12_G18_02a_00_000_Q208_598636MeV:
 root 'GENIE_to_LUND.C("/lustre19/expphy/volatile/clas12/asportes/truthLevelROOTFiles/C12_G18_02a_00_000_Q208_598636MeV/11_1000060120_EM_5_98636GeV_G18_02a_00_000_Q2_0_8.gst.root","C12_G18_02a_00_000_Q208_598636MeV",1000,"1-foil",12,6)'
+# C12_G18_02a_00_000_Q204_598636MeV:
+root 'GENIE_to_LUND.C("/lustre19/expphy/volatile/clas12/asportes/truthLevelROOTFiles/C12_G18_02a_00_000_Q204_598636MeV/11_1000060120_EM_5_98636GeV_G18_02a_00_000_Q2_0_8.gst.root","C12_G18_02a_00_000_Q204_598636MeV",2400,"1-foil",12,6)'
 
 
 # Ar40_G18_10a_02_11b_207052MeV:
