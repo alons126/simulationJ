@@ -10,7 +10,7 @@
 #SBATCH --error=//farm_out/%u/%x-%j-%N.err                                                                           
 #SBATCH --array=1-10 #Number of files 1-N                                                                                                
 
-NEVENTS=10
+NEVENTS=10000
 #-1.0 for inbending(6,4 GeV) 0.5 for outbending (2 Gev)
 TORUS=-1.0 
 #Change file prefix for your simulation                                                                                                                          
