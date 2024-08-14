@@ -20,16 +20,19 @@ FILE_PREFIX=Uniform_sample_598636MeV
 OUTPATH=/lustre19/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/598636MeV/
 
 #choose the Gcard for your target type
-GCARD=./gcards/rgm_calcium_tmp.gcard 
+GCARD=/u/home/asportes/clas12simulations/simulationJ/NeutronVeto/Simulation/rgm.gcard
+##GCARD=./gcards/rgm_calcium_tmp.gcard
 #Reconstruction yaml file
-YAML=rgm_mc_ai.yaml
+YAML=/u/home/asportes/clas12simulations/simulationJ/NeutronVeto/Simulation/rgm_mc.yaml
 
 #------DONT NEED TO TOUCH UNDER HERE UNLESS YOU NEED TOO------
 LUNDOUT=${OUTPATH}/lundfiles/
 MCOUT=${OUTPATH}/mchipo/
 RECONOUT=${OUTPATH}/reconhipo/
 
-source ../environment_gemc.sh
+source ../environment_gemc.csh
+#source /u/home/asportes/clas12simulations/simulationJ/Simulation/environment_gemc.sh
+#source ../environment_gemc.sh
 
 #SUBMIT GEMC MC
 gemc -USE_GUI=0  -SCALE_FIELD="TorusSymmetric, $TORUS" -SCALE_FIELD="clas12-newSolenoid, -1.0" -N=$NEVENTS -INPUT_GEN_FILE="lund, ${LUNDOUT}/lund_${FILE_PREFIX}_${SLURM_ARRAY_TASK_ID}.txt" -OUTPUT="hipo, ${MCOUT}/mc_${FILE_PREFIX}_${SLURM_ARRAY_TASK_ID}_torus$TORUS.hipo" $GCARD
