@@ -17,24 +17,20 @@ TORUS=-1.0
 FILE_PREFIX=Uniform_sample_598636MeV
 
 #set output file path location, don't forget to set up dir using setupdir.sh
-OUTPATH=/lustre19/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/598636MeV/
+OUTPATH=/lustre19/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/598636MeV
 
 #choose the Gcard for your target type
-GCARD=/u/home/asportes/clas12simulations/simulationJ/NeutronVeto/Simulation/rgm.gcard
+GCARD=/u/home/asportes/clas12simulations/simulationJ/Simulation/submit/rgm.gcard
+#GCARD=/u/home/asportes/clas12simulations/simulationJ/NeutronVeto/Simulation/rgm.gcard
 ##GCARD=./gcards/rgm_calcium_tmp.gcard
 #Reconstruction yaml file
-YAML=/u/home/asportes/clas12simulations/simulationJ/NeutronVeto/Simulation/rgm_mc.yaml
+YAML=/u/home/asportes/clas12simulations/simulationJ/Simulation/submit/rgm_fall2021-cv.yaml
+#YAML=/u/home/asportes/clas12simulations/simulationJ/NeutronVeto/Simulation/rgm_mc.yaml
 
 #------DONT NEED TO TOUCH UNDER HERE UNLESS YOU NEED TOO------
 LUNDOUT=${OUTPATH}/lundfiles/
 MCOUT=${OUTPATH}/mchipo/
 RECONOUT=${OUTPATH}/reconhipo/
-
-##rm -rf ${OUTPATH}/mchipo/* ## remove old files in resubmission (my addition)
-##rm -rf ${OUTPATH}/reconhipo/* ## remove old files in resubmission (my addition)
-##rm -rf MCOUT ## remove old files in resubmission (my addition)
-##rm -rf RECONOUT ## remove old files in resubmission (my addition)
-#mkdir mchipo reconhipo rootfiles
 
 #source /u/home/asportes/clas12simulations/simulationJ/Simulation/environment_gemc.csh
 source /u/home/asportes/clas12simulations/simulationJ/environment.csh
