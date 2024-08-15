@@ -3,6 +3,11 @@
 OUTPATH0=/lustre19/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/598636MeV/
 
 echo
+echo "Pulling updates..."
+git pull
+echo
+
+echo
 echo "Clearing farm_out directory..."
 rm /u/scifarm/farm_out/asportes/*
 echo
