@@ -1,6 +1,6 @@
 #!/bin/bash                                                                                                          
 
-export OUTPATH0=/lustre19/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/598636MeV/
+export JOB_OUT_PATH=/lustre19/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/598636MeV/
 
 echo
 echo "Pulling updates..."
@@ -14,14 +14,14 @@ echo
 
 echo
 echo "Removing old directory structure for MC simulation here..."
-rm -rf ${OUTPATH0}/mchipo
-rm -rf ${OUTPATH0}/reconhipo
-rm -rf ${OUTPATH0}/rootfiles
+rm -rf ${JOB_OUT_PATH}/mchipo
+rm -rf ${JOB_OUT_PATH}/reconhipo
+rm -rf ${JOB_OUT_PATH}/rootfiles
 echo
 
 echo
 echo "Setting up directory structure for MC simulation here..."
-mkdir ${OUTPATH0}/mchipo ${OUTPATH0}/reconhipo ${OUTPATH0}/rootfiles
+mkdir ${JOB_OUT_PATH}/mchipo ${JOB_OUT_PATH}/reconhipo ${JOB_OUT_PATH}/rootfiles
 echo
 
 echo
