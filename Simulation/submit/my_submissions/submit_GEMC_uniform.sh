@@ -36,8 +36,9 @@ RECONOUT=${OUTPATH}/reconhipo/
 ##rm -rf RECONOUT ## remove old files in resubmission (my addition)
 #mkdir mchipo reconhipo rootfiles
 
-source /u/home/asportes/clas12simulations/simulationJ/environment.csh
-#source ../environment_gemc.csh
+source /u/home/asportes/clas12simulations/simulationJ/Simulation/environment_gemc.csh
+#source /u/home/asportes/clas12simulations/simulationJ/environment.csh
+#source ../../environment_gemc.csh
 #source /u/home/asportes/clas12simulations/simulationJ/Simulation/environment_gemc.sh
 #source ../environment_gemc.sh ## oritignal
 
