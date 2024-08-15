@@ -30,9 +30,16 @@ LUNDOUT=${OUTPATH}/lundfiles/
 MCOUT=${OUTPATH}/mchipo/
 RECONOUT=${OUTPATH}/reconhipo/
 
-source ../environment_gemc.csh
+##rm -rf ${OUTPATH}/mchipo/* ## remove old files in resubmission (my addition)
+##rm -rf ${OUTPATH}/reconhipo/* ## remove old files in resubmission (my addition)
+##rm -rf MCOUT ## remove old files in resubmission (my addition)
+##rm -rf RECONOUT ## remove old files in resubmission (my addition)
+#mkdir mchipo reconhipo rootfiles
+
+source /u/home/asportes/clas12simulations/simulationJ/environment.csh
+#source ../environment_gemc.csh
 #source /u/home/asportes/clas12simulations/simulationJ/Simulation/environment_gemc.sh
-#source ../environment_gemc.sh
+#source ../environment_gemc.sh ## oritignal
 
 #SUBMIT GEMC MC
 gemc -USE_GUI=0  -SCALE_FIELD="TorusSymmetric, $TORUS" -SCALE_FIELD="clas12-newSolenoid, -1.0" -N=$NEVENTS -INPUT_GEN_FILE="lund, ${LUNDOUT}/lund_${FILE_PREFIX}_${SLURM_ARRAY_TASK_ID}.txt" -OUTPUT="hipo, ${MCOUT}/mc_${FILE_PREFIX}_${SLURM_ARRAY_TASK_ID}_torus$TORUS.hipo" $GCARD
