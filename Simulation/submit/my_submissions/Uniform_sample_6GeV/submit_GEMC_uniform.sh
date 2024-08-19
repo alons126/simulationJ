@@ -29,11 +29,8 @@ LUNDOUT=${OUTPATH}/lundfiles/
 MCOUT=${OUTPATH}/mchipo/
 RECONOUT=${OUTPATH}/reconhipo/
 
-source /u/home/asportes/clas12simulations/simulationJ/Simulation/my_environment_gemc.csh
-#source /u/home/asportes/clas12simulations/simulationJ/Simulation/environment_gemc.csh
+source /u/home/asportes/clas12simulations/simulationJ/Simulation/environment_gemc.csh
 #source /u/home/asportes/clas12simulations/simulationJ/environment.csh
-#source ../../environment_gemc.csh
-#source /u/home/asportes/clas12simulations/simulationJ/Simulation/environment_gemc.sh
 #source ../environment_gemc.sh ## oritignal
 
 #SUBMIT GEMC MC
