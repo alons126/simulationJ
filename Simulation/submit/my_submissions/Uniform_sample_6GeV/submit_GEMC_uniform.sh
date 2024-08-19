@@ -18,7 +18,7 @@ FILE_PREFIX=Uniform_sample_598636MeV
 
 #set output file path location, don't forget to set up dir using setupdir.sh
 OUTPATH=/lustre19/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/598636MeV
-SUBMIT_SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+SUBMIT_SCRIPT_DIR=/u/home/asportes/clas12simulations/simulationJ/Simulation/submit/my_submissions/Uniform_sample_6GeV
 
 #choose the Gcard for your target type
 GCARD=${SUBMIT_SCRIPT_DIR}/rgm.gcard
