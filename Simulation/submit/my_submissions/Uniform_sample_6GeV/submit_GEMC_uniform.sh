@@ -18,11 +18,12 @@ FILE_PREFIX=Uniform_sample_598636MeV
 
 #set output file path location, don't forget to set up dir using setupdir.sh
 OUTPATH=/lustre19/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/598636MeV
+SUBMIT_SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 #choose the Gcard for your target type
-GCARD=./rgm.gcard
+GCARD=${SUBMIT_SCRIPT_DIR}/rgm.gcard
 #Reconstruction yaml file
-YAML=./rgm_fall2021-cv.yaml
+YAML=${SUBMIT_SCRIPT_DIR}/rgm_fall2021-cv.yaml
 
 #------DONT NEED TO TOUCH UNDER HERE UNLESS YOU NEED TOO------
 LUNDOUT=${OUTPATH}/lundfiles/
@@ -31,7 +32,7 @@ RECONOUT=${OUTPATH}/reconhipo/
 
 source /u/home/asportes/clas12simulations/simulationJ/Simulation/environment_gemc.csh
 #source /u/home/asportes/clas12simulations/simulationJ/environment.csh
-#source ../environment_gemc.sh ## oritignal
+#source ../environment_gemc.sh ## original
 
 #SUBMIT GEMC MC
 gemc -USE_GUI=0  -SCALE_FIELD="TorusSymmetric, $TORUS" -SCALE_FIELD="clas12-newSolenoid, -1.0" -N=$NEVENTS -INPUT_GEN_FILE="lund, ${LUNDOUT}/lund_${FILE_PREFIX}_${SLURM_ARRAY_TASK_ID}.txt" -OUTPUT="hipo, ${MCOUT}/mc_${FILE_PREFIX}_${SLURM_ARRAY_TASK_ID}_torus$TORUS.hipo" $GCARD
