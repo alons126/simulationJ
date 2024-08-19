@@ -14,7 +14,7 @@ NEVENTS=10000
 #-1.0 for inbending(6,4 GeV) 0.5 for outbending (2 Gev)
 TORUS=-1.0 
 #Change file prefix for your simulation                                                                                                                          
-FILE_PREFIX=Uniform_sample_598636MeV
+FILE_PREFIX=Uniform_sample_598636MeV_woMomCon
 
 #set output file path location, don't forget to set up dir using setupdir.sh
 OUTPATH=/lustre19/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/598636MeV
