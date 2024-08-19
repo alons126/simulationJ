@@ -21,7 +21,8 @@ OUTPATH=/lustre19/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n
 SUBMIT_SCRIPT_DIR=/u/home/asportes/clas12simulations/simulationJ/Simulation/submit/my_submissions/Uniform_sample_6GeV
 
 #choose the Gcard for your target type
-GCARD=${SUBMIT_SCRIPT_DIR}/rgm.gcard
+GCARD=${SUBMIT_SCRIPT_DIR}/rgm_fall2021_C.gcard
+#GCARD=${SUBMIT_SCRIPT_DIR}/rgm.gcard
 #Reconstruction yaml file
 YAML=${SUBMIT_SCRIPT_DIR}/rgm_fall2021-cv.yaml
 
