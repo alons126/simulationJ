@@ -26,13 +26,16 @@ GCARD=${SUBMIT_SCRIPT_DIR}/rgm_fall2021_C.gcard
 #Reconstruction yaml file
 YAML=${SUBMIT_SCRIPT_DIR}/rgm_fall2021-cv.yaml
 
-#------DONT NEED TO TOUCH UNDER HERE UNLESS YOU NEED TOO------
-LUNDOUT=${OUTPATH}/lundfiles/
-MCOUT=${OUTPATH}/mchipo/
-RECONOUT=${OUTPATH}/reconhipo/
+#------DONT NEED TO TOUCH UNDER HERE UNLESS YOU NEED TOO------:qq
+LUNDOUT=${OUTPATH}/lundfiles
+MCOUT=${OUTPATH}/mchipo
+RECONOUT=${OUTPATH}/reconhipo
+#LUNDOUT=${OUTPATH}/lundfiles/
+#MCOUT=${OUTPATH}/mchipo/
+#RECONOUT=${OUTPATH}/reconhipo/
 
-source /u/home/asportes/clas12simulations/simulationJ/Simulation/environment_gemc.csh
-#source /u/home/asportes/clas12simulations/simulationJ/environment.csh
+#source /u/home/asportes/clas12simulations/simulationJ/Simulation/environment_gemc.csh
+source /u/home/asportes/clas12simulations/simulationJ/environment.csh
 #source ../environment_gemc.sh ## original
 
 #SUBMIT GEMC MC
