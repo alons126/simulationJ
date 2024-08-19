@@ -1,6 +1,7 @@
 #!/bin/csh
 
 setenv JOB_OUT_PATH /lustre19/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/598636MeV/
+setenv SUBMIT_SCRIPT_PATH ./Uniform_sample_6GeV/
 
 echo
 echo "Pulling updates..."
@@ -26,5 +27,5 @@ echo
 
 echo
 echo "Submitting sbatch job..."
-sbatch submit_GEMC_uniform.sh
+sbatch ${SUBMIT_SCRIPT_PATH}/submit_GEMC_uniform.sh
 echo

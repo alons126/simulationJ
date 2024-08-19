@@ -20,12 +20,9 @@ FILE_PREFIX=Uniform_sample_598636MeV
 OUTPATH=/lustre19/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/598636MeV
 
 #choose the Gcard for your target type
-GCARD=/u/home/asportes/clas12simulations/simulationJ/Simulation/submit/rgm.gcard
-#GCARD=/u/home/asportes/clas12simulations/simulationJ/NeutronVeto/Simulation/rgm.gcard
-##GCARD=./gcards/rgm_calcium_tmp.gcard
+GCARD=./rgm.gcard
 #Reconstruction yaml file
-YAML=/u/home/asportes/clas12simulations/simulationJ/Simulation/submit/rgm_fall2021-cv.yaml
-#YAML=/u/home/asportes/clas12simulations/simulationJ/NeutronVeto/Simulation/rgm_mc.yaml
+YAML=./rgm_fall2021-cv.yaml
 
 #------DONT NEED TO TOUCH UNDER HERE UNLESS YOU NEED TOO------
 LUNDOUT=${OUTPATH}/lundfiles/
