@@ -1,6 +1,6 @@
 #!/bin/csh
 
-setenv JOB_OUT_PATH /lustre19/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/598636MeV/
+setenv JOB_OUT_PATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/598636MeV/
 setenv SUBMIT_SCRIPT_PATH ./Uniform_sample_6GeV/
 
 echo
