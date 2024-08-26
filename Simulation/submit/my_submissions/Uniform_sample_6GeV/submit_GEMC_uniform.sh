@@ -17,7 +17,7 @@ TORUS=-1.0
 FILE_PREFIX=Uniform_sample_598636MeV_woMomCon
 
 #set output file path location, don't forget to set up dir using setupdir.sh
-OUTPATH=/lustre19/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/598636MeV
+OUTPATH=/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/598636MeV
 SUBMIT_SCRIPT_DIR=/u/home/asportes/clas12simulations/simulationJ/Simulation/submit/my_submissions/Uniform_sample_6GeV
 
 #choose the Gcard for your target type
@@ -32,7 +32,7 @@ MCOUT=${OUTPATH}/mchipo
 RECONOUT=${OUTPATH}/reconhipo
 
 #source /u/home/asportes/clas12simulations/simulationJ/Simulation/environment_gemc.csh
-source /u/home/asportes/clas12simulations/simulationJ/environment.csh
+#source /u/home/asportes/clas12simulations/simulationJ/environment.csh
 #source ../environment_gemc.sh ## original
 
 #SUBMIT GEMC MC
