@@ -1,6 +1,10 @@
 #!/bin/csh
 
-setenv JOB_OUT_PATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/598636MeV/
+setenv BEAM_E 5986MeV
+setenv JOB_OUT_PATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/${BEAM_E}
+setenv JOB_OUT_PATH_1E ${JOB_OUT_PATH}/OutPut_1e
+setenv JOB_OUT_PATH_EP ${JOB_OUT_PATH}/OutPut_ep
+setenv JOB_OUT_PATH_EN ${JOB_OUT_PATH}/OutPut_en
 setenv SUBMIT_SCRIPT_PATH ./Uniform_sample_6GeV/
 
 echo
@@ -15,17 +19,35 @@ echo
 
 echo
 echo "Removing old directory structure for MC simulation here..."
-rm -rf ${JOB_OUT_PATH}/mchipo
-rm -rf ${JOB_OUT_PATH}/reconhipo
-rm -rf ${JOB_OUT_PATH}/rootfiles
+rm -rf ${JOB_OUT_PATH_1E}/mchipo
+rm -rf ${JOB_OUT_PATH_1E}/reconhipo
+rm -rf ${JOB_OUT_PATH_1E}/rootfiles
+
+rm -rf ${JOB_OUT_PATH_EP}/mchipo
+rm -rf ${JOB_OUT_PATH_EP}/reconhipo
+rm -rf ${JOB_OUT_PATH_EP}/rootfiles
+
+rm -rf ${JOB_OUT_PATH_EN}/mchipo
+rm -rf ${JOB_OUT_PATH_EN}/reconhipo
+rm -rf ${JOB_OUT_PATH_EN}/rootfiles
 echo
 
 echo
 echo "Setting up directory structure for MC simulation here..."
-mkdir ${JOB_OUT_PATH}/mchipo ${JOB_OUT_PATH}/reconhipo ${JOB_OUT_PATH}/rootfiles
+mkdir ${JOB_OUT_PATH_1E}/mchipo ${JOB_OUT_PATH_1E}/reconhipo ${JOB_OUT_PATH_1E}/rootfiles
+mkdir ${JOB_OUT_PATH_EP}/mchipo ${JOB_OUT_PATH_EP}/reconhipo ${JOB_OUT_PATH_EP}/rootfiles
+mkdir ${JOB_OUT_PATH_EN}/mchipo ${JOB_OUT_PATH_EN}/reconhipo ${JOB_OUT_PATH_EN}/rootfiles
 echo
 
 echo
-echo "Submitting sbatch job..."
-sbatch ${SUBMIT_SCRIPT_PATH}/submit_GEMC_uniform.sh
+echo "Submitting 1e sbatch job..."
+sbatch ${SUBMIT_SCRIPT_PATH}/submit_GEMC_uniform_1e.sh
+echo
+
+echo "Submitting ep sbatch job..."
+sbatch ${SUBMIT_SCRIPT_PATH}/submit_GEMC_uniform_ep.sh
+echo
+
+echo "Submitting en sbatch job..."
+sbatch ${SUBMIT_SCRIPT_PATH}/submit_GEMC_uniform_en.sh
 echo
