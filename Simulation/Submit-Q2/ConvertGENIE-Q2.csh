@@ -3,7 +3,7 @@
 setenv TARGET C12
 setenv GENIE_TUNE G18_10a_00_000
 setenv Q2_CUT 0_03
-setenv BEAM_E 5986MeV
+setenv BEAM_E 2070MeV
 
 setenv TARGET_TYPE 4-foil
 setenv TARGET_A 12
