@@ -10,7 +10,7 @@
 
 using namespace std;
 
-void GENIE_to_LUND(TString inputFile = "", TString outputFile = "", int nFiles = 800, string target = "liquid", int A = 1, int Z = 1) 
+void GENIE_to_LUND(TString inputFile = "", TString lundPath = "./lundfiles/", TString outputFile = "", int nFiles = 800, string target = "liquid", int A = 1, int Z = 1)
 {
 
 	cout<<"Q2 = " << 0.19 <<endl;
@@ -22,7 +22,7 @@ void GENIE_to_LUND(TString inputFile = "", TString outputFile = "", int nFiles =
   TFile* inFile = new TFile(inputFile);
   cout << "Making LUND file " << outputFile <<endl;
 
-  TString lundPath = "./lundfiles/";
+//  TString lundPath = "./lundfiles/";
 
   //  int nFiles =  800;
   
