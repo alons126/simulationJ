@@ -26,6 +26,13 @@ void GENIE_to_LUND(TString inputFile = "", TString lundPath = "./lundfiles/", TS
   while (Q2_master < Q2_max)
     {
 
+
+
+    	//TODO: change Q2 in lund file name according to Q2_master
+    	//TODO: apply the Q2 cut on the branch
+
+
+
   	  cout << "\n" << endl;
 
       TString TempOutPutPath = "/Q2_" + doubleToString(Q2_master);
