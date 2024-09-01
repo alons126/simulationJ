@@ -22,10 +22,14 @@ void GENIE_to_LUND(TString inputFile = "", TString lundPath = "./lundfiles/", TS
 
       TString TempOutPutPath = "/Q2_" + doubleToString(Q2_master);
 
+      cout << TempOutPutPath << endl;
+
   	  gSystem->Exec("mkdir -p " + lundPath + TempOutPutPath);
   	  gSystem->Exec("mkdir -p " + lundPath + TempOutPutPath + "/lundfiles");
   	  gSystem->Exec("mkdir -p " + lundPath + TempOutPutPath + "/mchipo");
   	  gSystem->Exec("mkdir -p " + lundPath + TempOutPutPath + "/reconhipo");
+
+  	  outputFile = outputFile + TempOutPutPath;
 
 	  //Read in target parameter files
 	  cout << "Converting file " << inputFile << endl;
