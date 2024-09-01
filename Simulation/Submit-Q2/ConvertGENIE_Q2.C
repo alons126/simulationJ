@@ -10,9 +10,9 @@
 
 using namespace std;
 
-/* root -l -q ConvertGENIE-Q2.C */
+/* root -l -q ConvertGENIE_Q2.C */
 
-void ConvertGENIE-Q2() {
+void ConvertGENIE_Q2() {
   TString TARGET = "C12";
   TString GENIE_TUNE = "G18_10a_00_000";
   TString Q2_CUT = "0_03";
