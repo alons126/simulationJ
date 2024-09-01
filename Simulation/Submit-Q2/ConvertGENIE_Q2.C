@@ -43,12 +43,12 @@ void ConvertGENIE_Q2() {
   gSystem->Exec("mkdir -p " + RECO_SAMPLE_OUTPUT_DIR + "/mchipo");
   gSystem->Exec("mkdir -p " + RECO_SAMPLE_OUTPUT_DIR + "/reconhipo");
 
-  GENIE_to_LUND.C((TRUTH_SAMPLE_INPUT_DIR + "/" + RECO_SAMPLES_SUBDIR + "/" + TRUTH_SAMPLE_ROOT_FILE),
-                  (RECO_SAMPLE_OUTPUT_DIR + "/" + RECO_SAMPLES_LUNDDIR),
-                  TRUTH_SAMPLE_ROOT_FILE_PREFIX,
-                  NUM_OF_FILES,
-                  TARGET_TYPE,
-                  TARGET_A,
-                  TARGET_Z);
+  GENIE_to_LUND((TRUTH_SAMPLE_INPUT_DIR + "/" + RECO_SAMPLES_SUBDIR + "/" + TRUTH_SAMPLE_ROOT_FILE),
+                (RECO_SAMPLE_OUTPUT_DIR + "/" + RECO_SAMPLES_LUNDDIR),
+                TRUTH_SAMPLE_ROOT_FILE_PREFIX,
+                NUM_OF_FILES,
+                TARGET_TYPE,
+                TARGET_A,
+                TARGET_Z);
 
 }
