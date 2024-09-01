@@ -101,7 +101,8 @@ void GENIE_to_LUND(TString inputFile = "", TString lundPath = "./lundfiles/", TS
 	  for (int iFiles = 1; iFiles < nFiles; iFiles++)
 	    {
 	      TString outfilename = Form("%s/%s_%d.txt",lundPath.Data(),TempOutPutFile.Data(),iFiles);
-          cout << outfilename << endl;
+          cout << "outfilename = " <<outfilename << endl;
+          cout << "lundPath = " <<lundPath << endl;
 
 	      ofstream outfile;
 	      outfile.open(outfilename);
