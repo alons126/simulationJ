@@ -29,13 +29,13 @@ void GENIE_to_LUND(TString inputFile = "", TString lundPath = "./lundfiles/", TS
   	  gSystem->Exec("mkdir -p " + lundPath + TempOutPutPath + "/mchipo");
   	  gSystem->Exec("mkdir -p " + lundPath + TempOutPutPath + "/reconhipo");
 
-  	  outputFile = outputFile + TempOutPutPath + "/lundfiles";
-    	cout << "outputFile =  " << outputFile << endl;
+  	  TString TempOutPutFile = outputFile + TempOutPutPath + "/lundfiles";
+    	cout << "TempOutPutFile =  " << TempOutPutFile << endl;
 
 	  //Read in target parameter files
 	  cout << "Converting file " << inputFile << endl;
 	  TFile* inFile = new TFile(inputFile);
-	  cout << "Making LUND file " << outputFile <<endl;
+	  cout << "Making LUND file " << TempOutPutFile <<endl;
 
 	  TTree* T = (TTree*)inFile->Get("gst");
 
@@ -100,7 +100,7 @@ void GENIE_to_LUND(TString inputFile = "", TString lundPath = "./lundfiles/", TS
 	  //Split large GENIE output into 10000 lund files
 	  for (int iFiles = 1; iFiles < nFiles; iFiles++)
 	    {
-	      TString outfilename = Form("%s/%s_%d.dat",lundPath.Data(),outputFile.Data(),iFiles);
+	      TString outfilename = Form("%s/%s_%d.dat",lundPath.Data(),TempOutPutFile.Data(),iFiles);
 	      ofstream outfile;
 	      outfile.open(outfilename);
 	      int start = (iFiles-1)*10000;
