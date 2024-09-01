@@ -15,6 +15,11 @@ void GENIE_to_LUND(TString inputFile = "", TString lundPath = "./lundfiles/", TS
                    double Q2_min = 0, double Q2_max = 1., double dQ2 = 0.02)
 {
 
+	cout << "inputFile = " << inputFile << endl;
+	cout << "lundPath = " << lundPath << endl;
+	cout << "outputFile = " << outputFile << endl;
+	cout << "\n" << endl;
+
   double Q2_master = Q2_min;
 
   while (Q2_master < Q2_max)
