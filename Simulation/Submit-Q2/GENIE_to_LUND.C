@@ -12,7 +12,7 @@ using namespace std;
 
 void GENIE_to_LUND(TString inputFile = "", TString lundPath = "./lundfiles/", TString outputFile = "",
                    int nFiles = 800, string target = "liquid", int A = 1, int Z = 1,
-                   double Q2_min, double Q2_max, double dQ2)
+                   double Q2_min = 0, double Q2_max = 1., double dQ2 = 0.02)
 {
 
   double Q2_master = Q2_min;
