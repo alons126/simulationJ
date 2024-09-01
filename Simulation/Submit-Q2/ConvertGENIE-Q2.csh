@@ -15,6 +15,7 @@ setenv TRUTH_SAMPLE_ROOT_FILE_PREFIX ${TARGET}_${GENIE_TUNE}_Q2_${Q2_CUT}_${BEAM
 setenv TRUTH_SAMPLE_ROOT_FILE ${TRUTH_SAMPLE_ROOT_FILE_PREFIX}.root
 
 setenv RECO_SAMPLES_TOPDIR /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/2N_Analysis_Reco_Samples
+setenv RECO_SAMPLES_SUBDIR master-routine_validation_01-eScattering
 mkdir -p ${RECO_SAMPLES_TOPDIR}/${TARGET}
 mkdir -p ${RECO_SAMPLES_TOPDIR}/${TARGET}/${GENIE_TUNE}
 mkdir -p ${RECO_SAMPLES_TOPDIR}/${TARGET}/${GENIE_TUNE}/Q2_th_test_samples
@@ -26,6 +27,6 @@ mkdir ${RECO_SAMPLE_OUTPUT_DIR}/mchipo
 mkdir ${RECO_SAMPLE_OUTPUT_DIR}/reconhipo
 
 
-root -l 'GENIE_to_LUND.C(gSystem->Getenv("TRUTH_SAMPLE_INPUT_DIR")/master-routine_validation_01-eScattering/gSystem->Getenv("TRUTH_SAMPLE_ROOT_FILE"),gSystem->Getenv("RECO_SAMPLE_OUTPUT_DIR")/lundfiles,gSystem->Getenv("TRUTH_SAMPLE_ROOT_FILE_PREFIX"),gSystem->Getenv("NUM_OF_FILES"),gSystem->Getenv("TARGET_TYPE"),gSystem->Getenv("TARGET_A"),gSystem->Getenv("TARGET_Z"))'
+root -l 'GENIE_to_LUND.C(gSystem->Getenv("TRUTH_SAMPLE_INPUT_DIR")/gSystem->Getenv("RECO_SAMPLES_SUBDIR")/gSystem->Getenv("TRUTH_SAMPLE_ROOT_FILE"),gSystem->Getenv("RECO_SAMPLE_OUTPUT_DIR")/lundfiles,gSystem->Getenv("TRUTH_SAMPLE_ROOT_FILE_PREFIX"),gSystem->Getenv("NUM_OF_FILES"),gSystem->Getenv("TARGET_TYPE"),gSystem->Getenv("TARGET_A"),gSystem->Getenv("TARGET_Z"))'
 # root -l 'GENIE_to_LUND.C(${TRUTH_SAMPLE_INPUT_DIR}/master-routine_validation_01-eScattering/${TRUTH_SAMPLE_ROOT_FILE},${RECO_SAMPLE_OUTPUT_DIR}/lundfiles,${TRUTH_SAMPLE_ROOT_FILE_PREFIX},${NUM_OF_FILES},${TARGET_TYPE},${TARGET_A},${TARGET_Z})'
 
