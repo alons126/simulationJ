@@ -26,5 +26,6 @@ mkdir ${RECO_SAMPLE_OUTPUT_DIR}/mchipo
 mkdir ${RECO_SAMPLE_OUTPUT_DIR}/reconhipo
 
 
+root -l 'GENIE_to_LUND.C(gSystem->Getenv("TRUTH_SAMPLE_INPUT_DIR")/master-routine_validation_01-eScattering/gSystem->Getenv("TRUTH_SAMPLE_ROOT_FILE"),gSystem->Getenv("RECO_SAMPLE_OUTPUT_DIR")/lundfiles,gSystem->Getenv("TRUTH_SAMPLE_ROOT_FILE_PREFIX"),gSystem->Getenv("NUM_OF_FILES"),gSystem->Getenv("TARGET_TYPE"),gSystem->Getenv("TARGET_A"),gSystem->Getenv("TARGET_Z"))'
 # root -l 'GENIE_to_LUND.C(${TRUTH_SAMPLE_INPUT_DIR}/master-routine_validation_01-eScattering/${TRUTH_SAMPLE_ROOT_FILE},${RECO_SAMPLE_OUTPUT_DIR}/lundfiles,${TRUTH_SAMPLE_ROOT_FILE_PREFIX},${NUM_OF_FILES},${TARGET_TYPE},${TARGET_A},${TARGET_Z})'
 
