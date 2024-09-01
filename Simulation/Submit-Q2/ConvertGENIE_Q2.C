@@ -19,7 +19,7 @@ void ConvertGENIE_Q2() {
   TString BEAM_E = "2070MeV";
 
   int NUM_OF_FILES = 5;
-  TString TARGET_TYPE = "4-foil";
+  string TARGET_TYPE = "4-foil";
   int TARGET_A = 12;
   int TARGET_Z = 6;
 
