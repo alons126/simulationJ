@@ -50,6 +50,9 @@ void ConvertGENIE_Q2() {
                 NUM_OF_FILES,
                 TARGET_TYPE,
                 TARGET_A,
-                TARGET_Z);
+                TARGET_Z,
+                0.03,
+                0.1,
+                0.02);
 
 }
