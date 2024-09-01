@@ -25,3 +25,5 @@ add_subdirectory(Analysis)
 add_subdirectory(Monitoring)
 add_subdirectory(NeutronVeto)
 #add_subdirectory(NeutronEfficiency)
+add_executable(MyAdditions Simulation/Submit-Q2/doubleToString.cpp
+        Simulation/targets.h)

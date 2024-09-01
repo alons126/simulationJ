@@ -2,15 +2,21 @@
 #include "TFile.h"
 #include "TTree.h"
 #include "TRandom3.h"
-#include "targets.h"
+#include "../targets.h"
 #include <fstream>
 #include <iostream>
 
-using namespace std;
+#include "doubleToString.cpp"
 
+using namespace std;
 
 void GENIE_to_LUND(TString inputFile = "", TString outputFile = "", int nFiles = 800, string target = "liquid", int A = 1, int Z = 1) 
 {
+
+	cout<<"Q2 = " << 0.19 <<endl;
+	cout<<"Q2 = " << doubleToString(0.19) <<endl;
+	exit(0);
+
   //Read in target parameter files                                                           
   cout << "Converting file " << inputFile << endl;
   TFile* inFile = new TFile(inputFile);
@@ -48,6 +54,8 @@ void GENIE_to_LUND(TString inputFile = "", TString outputFile = "", int nFiles =
   Double_t        pyl;
   Double_t        pzl;
   
+  Double_t        Q2;
+
   T->SetBranchAddress("qel", &qel);
   T->SetBranchAddress("mec", &mec);
   T->SetBranchAddress("res", &res);
@@ -67,6 +75,12 @@ void GENIE_to_LUND(TString inputFile = "", TString outputFile = "", int nFiles =
   T->SetBranchAddress("pyl", &pyl);
   T->SetBranchAddress("pzl", &pzl);
   
+  T->SetBranchAddress("Q2", &Q2);
+
+
+
+
+
   int nEvents = T->GetEntries();
   cout<<"Number of events "<<nEvents<<endl;
   
@@ -130,7 +144,7 @@ void GENIE_to_LUND(TString inputFile = "", TString outputFile = "", int nFiles =
 	  
 	  int part_num = 0;
 	  //electron
-	  outfile << addParticle(1,11,TVector3(pxl,pyl,pzl),mass_e,vtx);
+	  outfile << addParticle(1,1,11,TVector3(pxl,pyl,pzl),mass_e,vtx);
 	  part_num++;
 	  
 	  for(int iPart = 0; iPart < nf; iPart++)
@@ -138,22 +152,22 @@ void GENIE_to_LUND(TString inputFile = "", TString outputFile = "", int nFiles =
 	      if(pdgf[iPart] == 2212)
 		{//p
 		  part_num++;
-		  outfile << addParticle(part_num,pdgf[iPart],TVector3(pxf[iPart], pyf[iPart], pzf[iPart]),mass_p,vtx);
+		  outfile << addParticle(part_num,1,pdgf[iPart],TVector3(pxf[iPart], pyf[iPart], pzf[iPart]),mass_p,vtx);
 		}
 	      else if(pdgf[iPart] == 2112)
 		{//n
 		  part_num++;
-		  outfile << addParticle(part_num,pdgf[iPart],TVector3(pxf[iPart], pyf[iPart], pzf[iPart]),mass_n,vtx);
+		  outfile << addParticle(part_num,1,pdgf[iPart],TVector3(pxf[iPart], pyf[iPart], pzf[iPart]),mass_n,vtx);
 		}
 	      else if(pdgf[iPart] == 211)
 		{//pi+
 		  part_num++;
-		  outfile << addParticle(part_num,pdgf[iPart],TVector3(pxf[iPart], pyf[iPart], pzf[iPart]),mass_pi,vtx);
+		  outfile << addParticle(part_num,1,pdgf[iPart],TVector3(pxf[iPart], pyf[iPart], pzf[iPart]),mass_pi,vtx);
 		}
 	      else if(pdgf[iPart] == -211)
 		{//pi-
 		  part_num++;
-		  outfile << addParticle(part_num,pdgf[iPart],TVector3(pxf[iPart], pyf[iPart], pzf[iPart]),mass_pi,vtx);
+		  outfile << addParticle(part_num,1,pdgf[iPart],TVector3(pxf[iPart], pyf[iPart], pzf[iPart]),mass_pi,vtx);
 		}
 	      
 	    }
