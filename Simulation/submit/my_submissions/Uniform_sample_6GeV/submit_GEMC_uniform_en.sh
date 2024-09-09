@@ -8,7 +8,7 @@
 #SBATCH --time=20:00:00                                                                                               
 #SBATCH --output=/farm_out/%u/%x-%j-%N.out                                                                           
 #SBATCH --error=//farm_out/%u/%x-%j-%N.err                                                                           
-#SBATCH --array=1-10 #Number of files 1-N                                                                                                
+#SBATCH --array=1-10000 #Number of files 1-N                                                                                                
 
 NEVENTS=10000
 #-1.0 for inbending(6,4 GeV) 0.5 for outbending (2 Gev)
@@ -26,7 +26,7 @@ GCARD=${SUBMIT_SCRIPT_DIR}/rgm_fall2021_C.gcard
 #Reconstruction yaml file
 YAML=${SUBMIT_SCRIPT_DIR}/rgm_fall2021-cv.yaml
 
-#------DONT NEED TO TOUCH UNDER HERE UNLESS YOU NEED TOO------:qq
+#------DONT NEED TO TOUCH UNDER HERE UNLESS YOU NEED TOO------
 LUNDOUT=${OUTPATH}/lundfiles
 MCOUT=${OUTPATH}/mchipo
 RECONOUT=${OUTPATH}/reconhipo
