@@ -9,10 +9,10 @@ setenv JOB_OUT_PATH_1E ${JOB_OUT_PATH}/OutPut_e_tester_1e
 setenv SUBMIT_SCRIPT_PATH ./Uniform_sample_4GeV/
 # setenv SUBMIT_SCRIPT_PATH ./Uniform_sample_2GeV/
 
-echo
-echo "Pulling updates..."
-git pull
-echo
+# echo
+# echo "Pulling updates..."
+# git pull
+# echo
 
 echo
 echo "Clearing farm_out directory..."
