@@ -8,8 +8,7 @@
 #SBATCH --time=20:00:00                                                                                               
 #SBATCH --output=/farm_out/%u/%x-%j-%N.out                                                                           
 #SBATCH --error=//farm_out/%u/%x-%j-%N.err                                                                           
-#SBATCH --array=1-10 #Number of files 1-N                                                                                                
-####SBATCH --array=1-1000 #Number of files 1-N                                                                                                
+#SBATCH --array=1-1000 #Number of files 1-N                                                                                                
 
 NEVENTS=10000
 #-1.0 for inbending(6,4 GeV) 0.5 for outbending (2 Gev)
