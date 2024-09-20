@@ -116,25 +116,31 @@ void GENIE_to_LUND(TString inputFile = "", TString lundPath = "./lundfiles/", TS
 
         int iFiles = 1;
 
+        int MaxEventsPerFile = 10000;
+        int FilledEvents = 0;
+
+        int start = 0;
+
         nFiles = 5;
 
         // Split large GENIE output into 10000 lund files
         while (iFiles <= nFiles)
         {
+            cout << "iFiles = " << iFiles << "\n";
+
             TString outfilename = Form("%s/%s_%d.txt", TempLundPath.Data(), outputFile.Data(), iFiles);
-            // cout << "\n"                 << endl;
-            // cout << "\n"                 << endl;
-            // cout << "outfilename = " << outfilename << endl;
-            // cout << "lundPath = " << lundPath << endl;
 
             ofstream outfile;
             outfile.open(outfilename);
-            int start = (iFiles - 1) * 10000;
-            int end = iFiles * 10000;
+            // int start = (iFiles - 1) * 10000;
+            // int end = iFiles * 10000;
 
-            for (int i = 0; i < 10000; i++)
+            int j = 0;
+            cout << "j = " << j << "\n";
+
+            while (FilledEvents <= MaxEventsPerFile)
             {
-                T->GetEntry(i + start);
+                T->GetEntry(j + start);
 
                 if (Q2 >= Q2_master)
                 {
@@ -203,10 +209,23 @@ void GENIE_to_LUND(TString inputFile = "", TString lundPath = "./lundfiles/", TS
                             outfile << addParticle(part_num, 1, pdgf[iPart], TVector3(pxf[iPart], pyf[iPart], pzf[iPart]), mass_pi, vtx);
                         }
                     }
+
+                    ++FilledEvents;
+                }
+
+                ++j;
+
+                if (j > nEvents)
+                {
+                    break;
                 }
             }
 
             outfile.close();
+
+            start = j;
+            cout << "start = " << start << "\n";
+
             ++iFiles;
         }
 
