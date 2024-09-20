@@ -15,13 +15,11 @@ void GENIE_to_LUND(TString inputFile = "", TString lundPath = "./lundfiles/", TS
                    double Q2_min = 0, double Q2_max = 1., double dQ2 = 0.02)
 {
 
-    cout << "\n"
-         << endl;
+    cout << "\n";
     cout << "inputFile = " << inputFile << endl;
     cout << "lundPath = " << lundPath << endl;
     cout << "outputFile = " << outputFile << endl;
-    cout << "\n"
-         << endl;
+    cout << "\n";
 
     double Q2_master = Q2_min;
 
@@ -31,12 +29,11 @@ void GENIE_to_LUND(TString inputFile = "", TString lundPath = "./lundfiles/", TS
         // TODO: change Q2 in lund file name according to Q2_master
         // TODO: apply the Q2 cut on the branch
 
-        cout << "\n"
-             << endl;
+        cout << "\n";
 
-        TString TempOutPutPath = "/Q2_" + doubleToString(Q2_master);
+        // TString TempOutPutPath = "/Q2_" + doubleToString(Q2_master);
 
-        cout << "TempOutPutPath = " << TempOutPutPath << endl;
+        // cout << "TempOutPutPath = " << TempOutPutPath << endl;
 
         cout << "lundPath = " << lundPath << endl;
 
@@ -131,69 +128,72 @@ void GENIE_to_LUND(TString inputFile = "", TString lundPath = "./lundfiles/", TS
             {
                 T->GetEntry(i + start);
 
-                // Stores reaction mechanism qel = 1, mec = 2, rec = 3, dis=4
-                double code = 0.;
-
-                if (qel)
-                    code = 1.;
-                else if (mec)
-                    code = 2.;
-                else if (res)
-                    code = 3.;
-                else if (dis)
-                    code = 4.;
-
-                if (code < .01)
-                    continue;
-
-                RES_ID = double(resid);
-
-                int nf_mod = 1;
-                for (int iPart = 0; iPart < nf; iPart++)
+                if (Q2 >= Q2_master)
                 {
-                    if (pdgf[iPart] == 2212)
-                        nf_mod++;
-                    else if (pdgf[iPart] == 2112)
-                        nf_mod++;
-                    else if (pdgf[iPart] == 211)
-                        nf_mod++;
-                    else if (pdgf[iPart] == -211)
-                        nf_mod++;
-                }
+                    // Stores reaction mechanism qel = 1, mec = 2, rec = 3, dis=4
+                    double code = 0.;
 
-                // LUND header for the event:
-                formatstring = "%i \t %i \t %i \t %f \t %f \t %i \t %f \t %i \t %d \t %.2f \n";
-                outstring = Form(formatstring, nf_mod, A, Z, RES_ID /*targP*/, beamP, beamType, beamE, interactN, i, code);
-                outfile << outstring;
+                    if (qel)
+                        code = 1.;
+                    else if (mec)
+                        code = 2.;
+                    else if (res)
+                        code = 3.;
+                    else if (dis)
+                        code = 4.;
 
-                auto vtx = randomVertex(target); // get vertex of event
+                    if (code < .01)
+                        continue;
 
-                int part_num = 0;
-                // electron
-                outfile << addParticle(1, 1, 11, TVector3(pxl, pyl, pzl), mass_e, vtx);
-                part_num++;
+                    RES_ID = double(resid);
 
-                for (int iPart = 0; iPart < nf; iPart++)
-                {
-                    if (pdgf[iPart] == 2212)
-                    { // p
-                        part_num++;
-                        outfile << addParticle(part_num, 1, pdgf[iPart], TVector3(pxf[iPart], pyf[iPart], pzf[iPart]), mass_p, vtx);
+                    int nf_mod = 1;
+                    for (int iPart = 0; iPart < nf; iPart++)
+                    {
+                        if (pdgf[iPart] == 2212)
+                            nf_mod++;
+                        else if (pdgf[iPart] == 2112)
+                            nf_mod++;
+                        else if (pdgf[iPart] == 211)
+                            nf_mod++;
+                        else if (pdgf[iPart] == -211)
+                            nf_mod++;
                     }
-                    else if (pdgf[iPart] == 2112)
-                    { // n
-                        part_num++;
-                        outfile << addParticle(part_num, 1, pdgf[iPart], TVector3(pxf[iPart], pyf[iPart], pzf[iPart]), mass_n, vtx);
-                    }
-                    else if (pdgf[iPart] == 211)
-                    { // pi+
-                        part_num++;
-                        outfile << addParticle(part_num, 1, pdgf[iPart], TVector3(pxf[iPart], pyf[iPart], pzf[iPart]), mass_pi, vtx);
-                    }
-                    else if (pdgf[iPart] == -211)
-                    { // pi-
-                        part_num++;
-                        outfile << addParticle(part_num, 1, pdgf[iPart], TVector3(pxf[iPart], pyf[iPart], pzf[iPart]), mass_pi, vtx);
+
+                    // LUND header for the event:
+                    formatstring = "%i \t %i \t %i \t %f \t %f \t %i \t %f \t %i \t %d \t %.2f \n";
+                    outstring = Form(formatstring, nf_mod, A, Z, RES_ID /*targP*/, beamP, beamType, beamE, interactN, i, code);
+                    outfile << outstring;
+
+                    auto vtx = randomVertex(target); // get vertex of event
+
+                    int part_num = 0;
+                    // electron
+                    outfile << addParticle(1, 1, 11, TVector3(pxl, pyl, pzl), mass_e, vtx);
+                    part_num++;
+
+                    for (int iPart = 0; iPart < nf; iPart++)
+                    {
+                        if (pdgf[iPart] == 2212)
+                        { // p
+                            part_num++;
+                            outfile << addParticle(part_num, 1, pdgf[iPart], TVector3(pxf[iPart], pyf[iPart], pzf[iPart]), mass_p, vtx);
+                        }
+                        else if (pdgf[iPart] == 2112)
+                        { // n
+                            part_num++;
+                            outfile << addParticle(part_num, 1, pdgf[iPart], TVector3(pxf[iPart], pyf[iPart], pzf[iPart]), mass_n, vtx);
+                        }
+                        else if (pdgf[iPart] == 211)
+                        { // pi+
+                            part_num++;
+                            outfile << addParticle(part_num, 1, pdgf[iPart], TVector3(pxf[iPart], pyf[iPart], pzf[iPart]), mass_pi, vtx);
+                        }
+                        else if (pdgf[iPart] == -211)
+                        { // pi-
+                            part_num++;
+                            outfile << addParticle(part_num, 1, pdgf[iPart], TVector3(pxf[iPart], pyf[iPart], pzf[iPart]), mass_pi, vtx);
+                        }
                     }
                 }
             }
