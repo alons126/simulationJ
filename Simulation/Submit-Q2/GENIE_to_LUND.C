@@ -31,10 +31,9 @@ void GENIE_to_LUND(TString inputFile = "", TString lundPath = "./lundfiles/", TS
 
         cout << "\n";
 
-        // TString TempOutPutPath = "/Q2_" + doubleToString(Q2_master);
+        TString TempOutPutPath = "/Q2_" + doubleToString(Q2_master);
 
-        // cout << "TempOutPutPath = " << TempOutPutPath << endl;
-
+        cout << "TempOutPutPath = " << TempOutPutPath << endl;
         cout << "lundPath = " << lundPath << endl;
 
         gSystem->Exec("mkdir -p " + lundPath + TempOutPutPath);
