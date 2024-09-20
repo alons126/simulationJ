@@ -122,7 +122,7 @@ void GENIE_to_LUND(TString inputFile = "", TString lundPath = "./lundfiles/", TS
         int start = 0;
 
         nFiles = 5;
-    
+
         cout << "\n";
 
         // Split large GENIE output into 10000 lund files
@@ -212,10 +212,11 @@ void GENIE_to_LUND(TString inputFile = "", TString lundPath = "./lundfiles/", TS
                         }
                     }
 
-                    cout << "Q2 = " << Q2 << "\n";
-                    cout << "FilledEvents = " << FilledEvents << "\n";
-
                     ++FilledEvents;
+
+                    cout << "Q2 = " << Q2 << "\n";
+                    cout << "FilledEvents = " << FilledEvents << "\n\n";
+                    cout << "j = " << j << "\n\n";
                 }
 
                 ++j;
