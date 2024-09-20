@@ -102,16 +102,25 @@ void GENIE_to_LUND(TString inputFile = "", TString lundPath = "./lundfiles/", TS
         T->SetBranchAddress("Q2", &Q2);
 
         int nEvents = T->GetEntries();
-        cout << "Number of events " << nEvents << endl;
+
+        cout << "\nQ2_master = " << Q2_master << endl;
 
         TString formatstring, outstring;
 
         // Check the number of files is not more than what is in the file
         if (nFiles > nEvents / 10000)
+        {
             nFiles = nEvents / 10000;
+        }
+
+        cout << "Number of events " << nEvents << endl;
+
+        int iFiles = 1;
+
+        nFiles = 5;
 
         // Split large GENIE output into 10000 lund files
-        for (int iFiles = 1; iFiles < nFiles; iFiles++)
+        while (iFiles <= nFiles)
         {
             TString outfilename = Form("%s/%s_%d.txt", TempLundPath.Data(), outputFile.Data(), iFiles);
             // cout << "\n"                 << endl;
@@ -199,6 +208,7 @@ void GENIE_to_LUND(TString inputFile = "", TString lundPath = "./lundfiles/", TS
             }
 
             outfile.close();
+            ++iFiles;
         }
 
         Q2_master = Q2_master + dQ2;
