@@ -122,7 +122,6 @@ void GENIE_to_LUND(TString inputFile = "", TString lundPath = "./lundfiles/", TS
         int start = 0;
 
         nFiles = 5;
-    
 
         // Split large GENIE output into 10000 lund files
         while (iFiles <= nFiles)
@@ -177,7 +176,7 @@ void GENIE_to_LUND(TString inputFile = "", TString lundPath = "./lundfiles/", TS
 
                     // LUND header for the event:
                     formatstring = "%i \t %i \t %i \t %f \t %f \t %i \t %f \t %i \t %d \t %.2f \n";
-                    outstring = Form(formatstring, nf_mod, A, Z, RES_ID /*targP*/, beamP, beamType, beamE, interactN, j, code);
+                    outstring = Form(formatstring, nf_mod, A, Z, RES_ID /*targP*/, beamP, beamType, beamE, interactN, i, code);
                     outfile << outstring;
 
                     auto vtx = randomVertex(target); // get vertex of event
