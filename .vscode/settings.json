@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "ConvertGENIE_Q2.C": "cpp"
+        "ConvertGENIE_Q2.C": "cpp",
+        "GENIE_to_LUND.C": "cpp"
     }
 }
