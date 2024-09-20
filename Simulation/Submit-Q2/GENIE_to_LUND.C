@@ -25,7 +25,7 @@ void GENIE_to_LUND(TString inputFile = "", TString lundPath = "./lundfiles/", TS
 
     double Q2_master = Q2_min;
 
-    while (Q2_master < Q2_max)
+    while (Q2_master < (Q2_max + dQ2))
     {
 
         // TODO: change Q2 in lund file name according to Q2_master
