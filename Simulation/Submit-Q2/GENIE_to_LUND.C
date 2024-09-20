@@ -116,13 +116,14 @@ void GENIE_to_LUND(TString inputFile = "", TString lundPath = "./lundfiles/", TS
 
         int iFiles = 1;
 
-        int MaxEventsPerFile = 10000;
+        int MaxEventsPerFile = 3;
         int FilledEvents = 0;
 
         int start = 0;
 
         nFiles = 5;
     
+        cout << "\n";
 
         // Split large GENIE output into 10000 lund files
         while (iFiles <= nFiles)
@@ -210,6 +211,9 @@ void GENIE_to_LUND(TString inputFile = "", TString lundPath = "./lundfiles/", TS
                             outfile << addParticle(part_num, 1, pdgf[iPart], TVector3(pxf[iPart], pyf[iPart], pzf[iPart]), mass_pi, vtx);
                         }
                     }
+
+                    cout << "Q2 = " << Q2 << "\n";
+                    cout << "FilledEvents = " << FilledEvents << "\n";
 
                     ++FilledEvents;
                 }
