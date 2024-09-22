@@ -118,7 +118,6 @@ void GENIE_to_LUND(TString inputFile = "", TString lundPath = "./lundfiles/", TS
         int iFiles = 1;
 
         int MaxEventsPerFile = 3;
-        int FilledEvents = 0;
 
         int start = 0;
 
@@ -139,6 +138,8 @@ void GENIE_to_LUND(TString inputFile = "", TString lundPath = "./lundfiles/", TS
             outfile.open(outfilename);
             // int start = (iFiles - 1) * 10000;
             // int end = iFiles * 10000;
+
+            int FilledEvents = 0;
 
             while (FilledEvents <= MaxEventsPerFile)
             {
