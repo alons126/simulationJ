@@ -129,6 +129,7 @@ void GENIE_to_LUND(TString inputFile = "", TString lundPath = "./lundfiles/", TS
 
         while (iFiles <= nFiles)
         {
+            cout << "-----------------------------------------------------------------\n";
             cout << "iFiles = " << iFiles << "\n";
             cout << "j = " << j << "\n";
 
@@ -141,7 +142,7 @@ void GENIE_to_LUND(TString inputFile = "", TString lundPath = "./lundfiles/", TS
 
             int FilledEvents = 0;
 
-            while (FilledEvents <= MaxEventsPerFile)
+            while (FilledEvents < MaxEventsPerFile)
             {
                 T->GetEntry(j + start);
 
