@@ -14,6 +14,7 @@ void GENIE_to_LUND(TString inputFile = "", TString lundPath = "./lundfiles/", TS
                    int nFiles = 800, string target = "liquid", int A = 1, int Z = 1,
                    double Q2_min = 0, double Q2_max = 1., double dQ2 = 0.02)
 {
+    bool PrintOut = false;
 
     cout << "\n";
     cout << "inputFile = " << inputFile << endl;
@@ -121,9 +122,12 @@ void GENIE_to_LUND(TString inputFile = "", TString lundPath = "./lundfiles/", TS
 
         // nFiles = 5;
 
-        cout << "nFiles = " << nFiles << endl;
-        cout << "Number of events = " << nEvents << endl;
-        cout << "MaxEventsPerFile = " << MaxEventsPerFile << endl;
+        if (PrintOut)
+        {
+            cout << "nFiles = " << nFiles << endl;
+            cout << "Number of events = " << nEvents << endl;
+            cout << "MaxEventsPerFile = " << MaxEventsPerFile << endl;
+        }
 
         cout << "\n";
 
@@ -131,9 +135,12 @@ void GENIE_to_LUND(TString inputFile = "", TString lundPath = "./lundfiles/", TS
         {
             if (!((nEvents - (j + start)) < 0))
             {
-                cout << "-----------------------------------------------------------------\n";
-                cout << "iFiles = " << iFiles << "\n";
-                cout << "j = " << j << "\n";
+                if (PrintOut)
+                {
+                    cout << "-----------------------------------------------------------------\n";
+                    cout << "iFiles = " << iFiles << "\n";
+                    cout << "j = " << j << "\n";
+                }
 
                 TString outfilename = Form("%s/%s_%d.txt", TempLundPath.Data(), outputFile.Data(), iFiles);
 
@@ -218,12 +225,15 @@ void GENIE_to_LUND(TString inputFile = "", TString lundPath = "./lundfiles/", TS
 
                         ++FilledEvents;
 
-                        cout << "\niFiles = " << iFiles << "\n";
-                        cout << "Q2 = " << Q2 << "\n";
-                        cout << "FilledEvents = " << FilledEvents << "\n";
-                        cout << "j = " << j << "\n";
-                        cout << "start = " << start << "\n";
-                        cout << "\n";
+                        if (PrintOut)
+                        {
+                            cout << "\niFiles = " << iFiles << "\n";
+                            cout << "Q2 = " << Q2 << "\n";
+                            cout << "FilledEvents = " << FilledEvents << "\n";
+                            cout << "j = " << j << "\n";
+                            cout << "start = " << start << "\n";
+                            cout << "\n";
+                        }
                     }
 
                     ++j;
@@ -237,7 +247,11 @@ void GENIE_to_LUND(TString inputFile = "", TString lundPath = "./lundfiles/", TS
                 outfile.close();
 
                 start = j;
-                cout << "start = " << start << "\n";
+
+                if (PrintOut)
+                {
+                    cout << "start = " << start << "\n";
+                }
 
                 ++iFiles;
             }
