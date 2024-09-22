@@ -28,6 +28,7 @@ void GENIE_to_LUND(TString inputFile = "", TString lundPath = "./lundfiles/", TS
 
         // TODO: change Q2 in lund file name according to Q2_master
         // TODO: apply the Q2 cut on the branch
+        // TODO: fix the event fill proccess
 
         cout << "\n";
 
@@ -123,12 +124,14 @@ void GENIE_to_LUND(TString inputFile = "", TString lundPath = "./lundfiles/", TS
 
         nFiles = 5;
 
+        int j = 0;
+
         cout << "\n";
 
-        // Split large GENIE output into 10000 lund files
         while (iFiles <= nFiles)
         {
             cout << "iFiles = " << iFiles << "\n";
+            cout << "j = " << j << "\n";
 
             TString outfilename = Form("%s/%s_%d.txt", TempLundPath.Data(), outputFile.Data(), iFiles);
 
@@ -136,9 +139,6 @@ void GENIE_to_LUND(TString inputFile = "", TString lundPath = "./lundfiles/", TS
             outfile.open(outfilename);
             // int start = (iFiles - 1) * 10000;
             // int end = iFiles * 10000;
-
-            int j = 0;
-            cout << "j = " << j << "\n";
 
             while (FilledEvents <= MaxEventsPerFile)
             {
@@ -215,8 +215,9 @@ void GENIE_to_LUND(TString inputFile = "", TString lundPath = "./lundfiles/", TS
                     ++FilledEvents;
 
                     cout << "Q2 = " << Q2 << "\n";
-                    cout << "FilledEvents = " << FilledEvents << "\n\n";
-                    cout << "j = " << j << "\n\n";
+                    cout << "FilledEvents = " << FilledEvents << "\n";
+                    cout << "j = " << j << "\n";
+                    cout << "\n";
                 }
 
                 ++j;
