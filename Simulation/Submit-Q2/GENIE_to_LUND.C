@@ -113,131 +113,140 @@ void GENIE_to_LUND(TString inputFile = "", TString lundPath = "./lundfiles/", TS
             nFiles = nEvents / 10000;
         }
 
-        cout << "Number of events " << nEvents << endl;
-
         int iFiles = 1;
 
-        int MaxEventsPerFile = 3;
-
+        int MaxEventsPerFile = 10000;
+        int j = 0;
         int start = 0;
 
-        nFiles = 5;
+        // nFiles = 5;
 
-        int j = 0;
+        cout << "nFiles = " << nFiles << endl;
+        cout << "Number of events = " << nEvents << endl;
+        cout << "MaxEventsPerFile = " << MaxEventsPerFile << endl;
 
         cout << "\n";
 
         while (iFiles <= nFiles)
         {
-            cout << "-----------------------------------------------------------------\n";
-            cout << "iFiles = " << iFiles << "\n";
-            cout << "j = " << j << "\n";
-
-            TString outfilename = Form("%s/%s_%d.txt", TempLundPath.Data(), outputFile.Data(), iFiles);
-
-            ofstream outfile;
-            outfile.open(outfilename);
-            // int start = (iFiles - 1) * 10000;
-            // int end = iFiles * 10000;
-
-            int FilledEvents = 0;
-
-            while (FilledEvents < MaxEventsPerFile)
+            if (!((nEvents - (j + start)) < 0))
             {
-                T->GetEntry(j + start);
+                cout << "-----------------------------------------------------------------\n";
+                cout << "iFiles = " << iFiles << "\n";
+                cout << "j = " << j << "\n";
 
-                if (Q2 >= Q2_master)
+                TString outfilename = Form("%s/%s_%d.txt", TempLundPath.Data(), outputFile.Data(), iFiles);
+
+                ofstream outfile;
+                outfile.open(outfilename);
+                // int start = (iFiles - 1) * 10000;
+                // int end = iFiles * 10000;
+
+                int FilledEvents = 0;
+
+                while (FilledEvents < MaxEventsPerFile)
                 {
-                    // Stores reaction mechanism qel = 1, mec = 2, rec = 3, dis=4
-                    double code = 0.;
+                    T->GetEntry(j + start);
 
-                    if (qel)
-                        code = 1.;
-                    else if (mec)
-                        code = 2.;
-                    else if (res)
-                        code = 3.;
-                    else if (dis)
-                        code = 4.;
-
-                    if (code < .01)
-                        continue;
-
-                    RES_ID = double(resid);
-
-                    int nf_mod = 1;
-                    for (int iPart = 0; iPart < nf; iPart++)
+                    if (Q2 >= Q2_master)
                     {
-                        if (pdgf[iPart] == 2212)
-                            nf_mod++;
-                        else if (pdgf[iPart] == 2112)
-                            nf_mod++;
-                        else if (pdgf[iPart] == 211)
-                            nf_mod++;
-                        else if (pdgf[iPart] == -211)
-                            nf_mod++;
+                        // Stores reaction mechanism qel = 1, mec = 2, rec = 3, dis=4
+                        double code = 0.;
+
+                        if (qel)
+                            code = 1.;
+                        else if (mec)
+                            code = 2.;
+                        else if (res)
+                            code = 3.;
+                        else if (dis)
+                            code = 4.;
+
+                        if (code < .01)
+                            continue;
+
+                        RES_ID = double(resid);
+
+                        int nf_mod = 1;
+                        for (int iPart = 0; iPart < nf; iPart++)
+                        {
+                            if (pdgf[iPart] == 2212)
+                                nf_mod++;
+                            else if (pdgf[iPart] == 2112)
+                                nf_mod++;
+                            else if (pdgf[iPart] == 211)
+                                nf_mod++;
+                            else if (pdgf[iPart] == -211)
+                                nf_mod++;
+                        }
+
+                        // LUND header for the event:
+                        formatstring = "%i \t %i \t %i \t %f \t %f \t %i \t %f \t %i \t %d \t %.2f \n";
+                        outstring = Form(formatstring, nf_mod, A, Z, RES_ID /*targP*/, beamP, beamType, beamE, interactN, j, code);
+                        outfile << outstring;
+
+                        auto vtx = randomVertex(target); // get vertex of event
+
+                        int part_num = 0;
+                        // electron
+                        outfile << addParticle(1, 1, 11, TVector3(pxl, pyl, pzl), mass_e, vtx);
+                        part_num++;
+
+                        for (int iPart = 0; iPart < nf; iPart++)
+                        {
+                            if (pdgf[iPart] == 2212)
+                            { // p
+                                part_num++;
+                                outfile << addParticle(part_num, 1, pdgf[iPart], TVector3(pxf[iPart], pyf[iPart], pzf[iPart]), mass_p, vtx);
+                            }
+                            else if (pdgf[iPart] == 2112)
+                            { // n
+                                part_num++;
+                                outfile << addParticle(part_num, 1, pdgf[iPart], TVector3(pxf[iPart], pyf[iPart], pzf[iPart]), mass_n, vtx);
+                            }
+                            else if (pdgf[iPart] == 211)
+                            { // pi+
+                                part_num++;
+                                outfile << addParticle(part_num, 1, pdgf[iPart], TVector3(pxf[iPart], pyf[iPart], pzf[iPart]), mass_pi, vtx);
+                            }
+                            else if (pdgf[iPart] == -211)
+                            { // pi-
+                                part_num++;
+                                outfile << addParticle(part_num, 1, pdgf[iPart], TVector3(pxf[iPart], pyf[iPart], pzf[iPart]), mass_pi, vtx);
+                            }
+                        }
+
+                        ++FilledEvents;
+
+                        cout << "\niFiles = " << iFiles << "\n";
+                        cout << "Q2 = " << Q2 << "\n";
+                        cout << "FilledEvents = " << FilledEvents << "\n";
+                        cout << "j = " << j << "\n";
+                        cout << "start = " << start << "\n";
+                        cout << "\n";
                     }
 
-                    // LUND header for the event:
-                    formatstring = "%i \t %i \t %i \t %f \t %f \t %i \t %f \t %i \t %d \t %.2f \n";
-                    outstring = Form(formatstring, nf_mod, A, Z, RES_ID /*targP*/, beamP, beamType, beamE, interactN, j, code);
-                    outfile << outstring;
+                    ++j;
 
-                    auto vtx = randomVertex(target); // get vertex of event
-
-                    int part_num = 0;
-                    // electron
-                    outfile << addParticle(1, 1, 11, TVector3(pxl, pyl, pzl), mass_e, vtx);
-                    part_num++;
-
-                    for (int iPart = 0; iPart < nf; iPart++)
+                    if (j > nEvents)
                     {
-                        if (pdgf[iPart] == 2212)
-                        { // p
-                            part_num++;
-                            outfile << addParticle(part_num, 1, pdgf[iPart], TVector3(pxf[iPart], pyf[iPart], pzf[iPart]), mass_p, vtx);
-                        }
-                        else if (pdgf[iPart] == 2112)
-                        { // n
-                            part_num++;
-                            outfile << addParticle(part_num, 1, pdgf[iPart], TVector3(pxf[iPart], pyf[iPart], pzf[iPart]), mass_n, vtx);
-                        }
-                        else if (pdgf[iPart] == 211)
-                        { // pi+
-                            part_num++;
-                            outfile << addParticle(part_num, 1, pdgf[iPart], TVector3(pxf[iPart], pyf[iPart], pzf[iPart]), mass_pi, vtx);
-                        }
-                        else if (pdgf[iPart] == -211)
-                        { // pi-
-                            part_num++;
-                            outfile << addParticle(part_num, 1, pdgf[iPart], TVector3(pxf[iPart], pyf[iPart], pzf[iPart]), mass_pi, vtx);
-                        }
+                        break;
                     }
-
-                    ++FilledEvents;
-
-                    cout << "\niFiles = " << iFiles << "\n";
-                    cout << "Q2 = " << Q2 << "\n";
-                    cout << "FilledEvents = " << FilledEvents << "\n";
-                    cout << "j = " << j << "\n";
-                    cout << "start = " << start << "\n";
-                    cout << "\n";
                 }
 
-                ++j;
+                outfile.close();
 
-                if (j > nEvents)
-                {
-                    break;
-                }
+                start = j;
+                cout << "start = " << start << "\n";
+
+                ++iFiles;
             }
-
-            outfile.close();
-
-            start = j;
-            cout << "start = " << start << "\n";
-
-            ++iFiles;
+            else
+            {
+                cout << "Not enough events to fill " << nFiles << " files with Q2 >= " << doubleToString(Q2_master) << "\n";
+                cout << "Saved " << iFiles << " instead.\n";
+                break;
+            }
         }
 
         Q2_master = Q2_master + dQ2;
