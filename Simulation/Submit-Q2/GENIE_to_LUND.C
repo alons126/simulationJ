@@ -219,6 +219,7 @@ void GENIE_to_LUND(TString inputFile = "", TString lundPath = "./lundfiles/", TS
                     cout << "Q2 = " << Q2 << "\n";
                     cout << "FilledEvents = " << FilledEvents << "\n";
                     cout << "j = " << j << "\n";
+                    cout << "start = " << start << "\n";
                     cout << "\n";
                 }
 
