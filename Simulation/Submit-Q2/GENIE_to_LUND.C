@@ -16,11 +16,14 @@ void GENIE_to_LUND(TString inputFile = "", TString lundPath = "./lundfiles/", TS
 {
     bool PrintOut = false;
 
-    cout << "\n";
-    cout << "inputFile = " << inputFile << endl;
-    cout << "lundPath = " << lundPath << endl;
-    cout << "outputFile = " << outputFile << endl;
-    cout << "\n";
+    if (PrintOut)
+    {
+        cout << "\n";
+        cout << "inputFile = " << inputFile << endl;
+        cout << "lundPath = " << lundPath << endl;
+        cout << "outputFile = " << outputFile << endl;
+        cout << "\n";
+    }
 
     double Q2_master = Q2_min;
 
@@ -104,7 +107,10 @@ void GENIE_to_LUND(TString inputFile = "", TString lundPath = "./lundfiles/", TS
 
         int nEvents = T->GetEntries();
 
-        cout << "\nQ2_master = " << Q2_master << endl;
+        if (PrintOut)
+        {
+            cout << "\nQ2_master = " << Q2_master << endl;
+        }
 
         TString formatstring, outstring;
 
