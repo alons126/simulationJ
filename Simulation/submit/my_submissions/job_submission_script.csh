@@ -16,10 +16,10 @@ echo "Pulling updates..."
 git pull
 echo
 
-# echo
-# echo "Clearing farm_out directory..."
-# rm /u/scifarm/farm_out/asportes/*
-# echo
+echo
+echo "Clearing farm_out directory..."
+rm /u/scifarm/farm_out/asportes/*
+echo
 
 echo
 echo "Removing old directory structure for MC simulation here..."
