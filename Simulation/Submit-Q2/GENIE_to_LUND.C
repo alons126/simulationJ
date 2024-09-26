@@ -349,151 +349,151 @@ void GENIE_to_LUND(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
                     {
                         if (nf == 1)
                         {
-                            Q2_1N_TL_all_int.Fill(Q2);
+                            Q2_1N_TL_all_int->Fill(Q2);
 
                             if (qel)
                             {
-                                Q2_1N_TL_QE_only.Fill(Q2);
+                                Q2_1N_TL_QE_only->Fill(Q2);
                             }
                             else if (mec)
                             {
-                                Q2_1N_TL_MEC_only.Fill(Q2);
+                                Q2_1N_TL_MEC_only->Fill(Q2);
                             }
                             else if (res)
                             {
-                                Q2_1N_TL_RES_only.Fill(Q2);
+                                Q2_1N_TL_RES_only->Fill(Q2);
                             }
                             else if (dis)
                             {
-                                Q2_1N_TL_DIS_only.Fill(Q2);
+                                Q2_1N_TL_DIS_only->Fill(Q2);
                             }
 
                             if (nfp == 1)
                             {
-                                Q2_1p_TL_all_int.Fill(Q2);
+                                Q2_1p_TL_all_int->Fill(Q2);
 
                                 if (qel)
                                 {
-                                    Q2_1p_TL_QE_only.Fill(Q2);
+                                    Q2_1p_TL_QE_only->Fill(Q2);
                                 }
                                 else if (mec)
                                 {
-                                    Q2_1p_TL_MEC_only.Fill(Q2);
+                                    Q2_1p_TL_MEC_only->Fill(Q2);
                                 }
                                 else if (res)
                                 {
-                                    Q2_1p_TL_RES_only.Fill(Q2);
+                                    Q2_1p_TL_RES_only->Fill(Q2);
                                 }
                                 else if (dis)
                                 {
-                                    Q2_1p_TL_DIS_only.Fill(Q2);
+                                    Q2_1p_TL_DIS_only->Fill(Q2);
                                 }
                             }
                             else if (nfn == 1)
                             {
-                                Q2_1n_TL_all_int.Fill(Q2);
+                                Q2_1n_TL_all_int->Fill(Q2);
 
                                 if (qel)
                                 {
-                                    Q2_1n_TL_QE_only.Fill(Q2);
+                                    Q2_1n_TL_QE_only->Fill(Q2);
                                 }
                                 else if (mec)
                                 {
-                                    Q2_1n_TL_MEC_only.Fill(Q2);
+                                    Q2_1n_TL_MEC_only->Fill(Q2);
                                 }
                                 else if (res)
                                 {
-                                    Q2_1n_TL_RES_only.Fill(Q2);
+                                    Q2_1n_TL_RES_only->Fill(Q2);
                                 }
                                 else if (dis)
                                 {
-                                    Q2_1n_TL_DIS_only.Fill(Q2);
+                                    Q2_1n_TL_DIS_only->Fill(Q2);
                                 }
                             }
                         }
                         else if (nf == 2)
                         {
-                            Q2_2N_TL_all_int.Fill(Q2);
+                            Q2_2N_TL_all_int->Fill(Q2);
 
                             if (qel)
                             {
-                                Q2_2N_TL_QE_only.Fill(Q2);
+                                Q2_2N_TL_QE_only->Fill(Q2);
                             }
                             else if (mec)
                             {
-                                Q2_2N_TL_MEC_only.Fill(Q2);
+                                Q2_2N_TL_MEC_only->Fill(Q2);
                             }
                             else if (res)
                             {
-                                Q2_2N_TL_RES_only.Fill(Q2);
+                                Q2_2N_TL_RES_only->Fill(Q2);
                             }
                             else if (dis)
                             {
-                                Q2_2N_TL_DIS_only.Fill(Q2);
+                                Q2_2N_TL_DIS_only->Fill(Q2);
                             }
 
                             if (nfp == 2)
                             {
-                                Q2_2p_TL_all_int.Fill(Q2);
+                                Q2_2p_TL_all_int->Fill(Q2);
 
                                 if (qel)
                                 {
-                                    Q2_2p_TL_QE_only.Fill(Q2);
+                                    Q2_2p_TL_QE_only->Fill(Q2);
                                 }
                                 else if (mec)
                                 {
-                                    Q2_2p_TL_MEC_only.Fill(Q2);
+                                    Q2_2p_TL_MEC_only->Fill(Q2);
                                 }
                                 else if (res)
                                 {
-                                    Q2_2p_TL_RES_only.Fill(Q2);
+                                    Q2_2p_TL_RES_only->Fill(Q2);
                                 }
                                 else if (dis)
                                 {
-                                    Q2_2p_TL_DIS_only.Fill(Q2);
+                                    Q2_2p_TL_DIS_only->Fill(Q2);
                                 }
                             }
                             else if (nfn == 1 && nfp == 1)
                             {
-                                Q2_1n1p_TL_all_int.Fill(Q2);
+                                Q2_1n1p_TL_all_int->Fill(Q2);
 
                                 if (qel)
                                 {
-                                    Q2_1n1p_TL_QE_only.Fill(Q2);
+                                    Q2_1n1p_TL_QE_only->Fill(Q2);
                                 }
                                 else if (mec)
                                 {
-                                    Q2_1n1p_TL_MEC_only.Fill(Q2);
+                                    Q2_1n1p_TL_MEC_only->Fill(Q2);
                                 }
                                 else if (res)
                                 {
-                                    Q2_1n1p_TL_RES_only.Fill(Q2);
+                                    Q2_1n1p_TL_RES_only->Fill(Q2);
                                 }
                                 else if (dis)
                                 {
-                                    Q2_1n1p_TL_DIS_only.Fill(Q2);
+                                    Q2_1n1p_TL_DIS_only->Fill(Q2);
                                 }
                             }
                         }
                         else
                         {
-                            Q2_1e_cut_TL_all_int.Fill(Q2);
+                            Q2_1e_cut_TL_all_int->Fill(Q2);
 
                             if (qel)
                             {
-                                Q2_1e_cut_TL_QE_only.Fill(Q2);
+                                Q2_1e_cut_TL_QE_only->Fill(Q2);
                             }
                             else if (mec)
                             {
-                                Q2_1e_cut_TL_MEC_only.Fill(Q2);
+                                Q2_1e_cut_TL_MEC_only->Fill(Q2);
                             }
                             else if (res)
                             {
-                                Q2_1e_cut_TL_RES_only.Fill(Q2);
+                                Q2_1e_cut_TL_RES_only->Fill(Q2);
                             }
                             else if (dis)
                             {
-                                Q2_1e_cut_TL_DIS_only.Fill(Q2);
+                                Q2_1e_cut_TL_DIS_only->Fill(Q2);
                             }
                         }
 
