@@ -666,5 +666,6 @@ void GENIE_to_LUND(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
         delete canvas;
 
         Q2_master = Q2_master + dQ2;
+        gDirectory->Clear();
     }
 }
