@@ -359,7 +359,6 @@ void GENIE_to_LUND(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
 
         while (iFiles <= nFiles)
         {
-            bool condition = !((nEvents - (j + start)) < 0);
             int j = 0;
 
             if (PrintOut)
