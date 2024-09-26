@@ -16,7 +16,7 @@ void GENIE_to_LUND(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
                    double Q2_min = 0, double Q2_max = 1., double dQ2 = 0.02)
 {
     bool PrintOut = true;
-    bool CountQ2AndExit = true;
+    bool CountQ2AndExit = false;
 
     std::string sample_target0 = TARGET.Data(), sample_genie_tune0 = GENIE_TUNE.Data(), sample_beamE0 = BEAM_E.Data();
     string sample_target1, sample_genie_tune1, sample_beamE1;
