@@ -17,6 +17,55 @@ void GENIE_to_LUND(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
 {
     bool PrintOut = false;
 
+    std::string target0 = TARGET.Data(), genie_tune0 = GENIE_TUNE.Data(), beamE0 = BEAM_E.Data();
+    string target, genie_tune, beamE;
+    double Q2_ulim, Q2_llim;
+
+    if (target0 == "H1")
+    {
+        target = "_H1";
+    }
+    else if (target0 == "D2")
+    {
+        target = "_D2";
+    }
+    else if (target0 == "C12")
+    {
+        target = "_C12";
+    }
+    else if (target0 == "Ar40")
+    {
+        target = "_Ar40";
+    }
+
+    if (genie_tune0 == "G18_10a_00_000")
+    {
+        genie_tune = "_G18";
+    }
+    else if (genie_tune0 == "GEM21_11a_00_000")
+    {
+        genie_tune = "_SuSa";
+    }
+
+    if (beamE0 == "2070MeV")
+    {
+        beamE = "_2GeV";
+        Q2_ulim = 0.5;
+        Q2_llim = 0.;
+    }
+    else if (beamE0 == "4029MeV")
+    {
+        beamE = "_4GeV";
+        Q2_ulim = 1.;
+        Q2_llim = 0.;
+    }
+    else if (beamE0 == "5986MeV")
+    {
+        beamE = "_6GeV";
+        Q2_ulim = 2.;
+        Q2_llim = 0.;
+    }
+
     if (PrintOut)
     {
         cout << "\n";
@@ -34,17 +83,134 @@ void GENIE_to_LUND(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
         // TODO: apply the Q2 cut on the branch
         // TODO: fix the event fill proccess
 
-        std::string genie_tune = GENIE_TUNE.Data();
+        std::vector<TH1D *> histList;
+        std::vector<TString> pageTitles;
 
-        if (genie_tune == "G18_10a_00_000")
-        {
-            cout << "genie_tune = " << genie_tune << "\n";
-        }
+        TString HistNamePrefix_1e_cut = "TL_Q2cut_" + doubleToString(Q2_master) + "_1e_cut" + target + genie_tune + beamE;
+        TString HistTitlePrefix_1e_cut = "TL_Q2cut_" + doubleToString(Q2_master) + "_1e_cut" + target + genie_tune + beamE;
+        pageTitles.push_back("Q^{2} plots for (e,e')");
+        TH1D *Q2_1e_cut_TL_all_int = new TH1D(HistNamePrefix_1e_cut, HistTitlePrefix_1e_cut + " (All Int.);Q^{2} [GeV^{2}/c^{2}]", 100, Q2_llim, Q2_ulim);
+        histList.push_back(Q2_1e_cut_TL_all_int);
+        pageTitles.push_back("");
+        TH1D *Q2_1e_cut_TL_QE_only = new TH1D(HistNamePrefix_1e_cut, HistTitlePrefix_1e_cut + " (QE Only);Q^{2} [GeV^{2}/c^{2}]", 100, Q2_llim, Q2_ulim);
+        histList.push_back(Q2_1e_cut_TL_QE_only);
+        pageTitles.push_back("");
+        TH1D *Q2_1e_cut_TL_MEC_only = new TH1D(HistNamePrefix_1e_cut, HistTitlePrefix_1e_cut + " (MEC Only);Q^{2} [GeV^{2}/c^{2}]", 100, Q2_llim, Q2_ulim);
+        histList.push_back(Q2_1e_cut_TL_MEC_only);
+        pageTitles.push_back("");
+        TH1D *Q2_1e_cut_TL_RES_only = new TH1D(HistNamePrefix_1e_cut, HistTitlePrefix_1e_cut + " (RES Only);Q^{2} [GeV^{2}/c^{2}]", 100, Q2_llim, Q2_ulim);
+        histList.push_back(Q2_1e_cut_TL_RES_only);
+        pageTitles.push_back("");
+        TH1D *Q2_1e_cut_TL_DIS_only = new TH1D(HistNamePrefix_1e_cut, HistTitlePrefix_1e_cut + " (DIS Only);Q^{2} [GeV^{2}/c^{2}]", 100, Q2_llim, Q2_ulim);
+        histList.push_back(Q2_1e_cut_TL_DIS_only);
 
-        // if (GENIE_TUNE.Data())
+        TString HistNamePrefix_1p = "TL_Q2cut_" + doubleToString(Q2_master) + "_1p" + target + genie_tune + beamE;
+        TString HistTitlePrefix_1p = "TL_Q2cut_" + doubleToString(Q2_master) + "_1p" + target + genie_tune + beamE;
+        pageTitles.push_back("Q^{2} plots for (e,e')");
+        TH1D *Q2_1p_TL_all_int = new TH1D(HistNamePrefix_1p, HistTitlePrefix_1p + " (All Int.);Q^{2} [GeV^{2}/c^{2}]", 100, Q2_llim, Q2_ulim);
+        histList.push_back(Q2_1p_TL_all_int);
+        pageTitles.push_back("");
+        TH1D *Q2_1p_TL_QE_only = new TH1D(HistNamePrefix_1p, HistTitlePrefix_1p + " (QE Only);Q^{2} [GeV^{2}/c^{2}]", 100, Q2_llim, Q2_ulim);
+        histList.push_back(Q2_1p_TL_QE_only);
+        pageTitles.push_back("");
+        TH1D *Q2_1p_TL_MEC_only = new TH1D(HistNamePrefix_1p, HistTitlePrefix_1p + " (MEC Only);Q^{2} [GeV^{2}/c^{2}]", 100, Q2_llim, Q2_ulim);
+        histList.push_back(Q2_1p_TL_MEC_only);
+        pageTitles.push_back("");
+        TH1D *Q2_1p_TL_RES_only = new TH1D(HistNamePrefix_1p, HistTitlePrefix_1p + " (RES Only);Q^{2} [GeV^{2}/c^{2}]", 100, Q2_llim, Q2_ulim);
+        histList.push_back(Q2_1p_TL_RES_only);
+        pageTitles.push_back("");
+        TH1D *Q2_1p_TL_DIS_only = new TH1D(HistNamePrefix_1p, HistTitlePrefix_1p + " (DIS Only);Q^{2} [GeV^{2}/c^{2}]", 100, Q2_llim, Q2_ulim);
+        histList.push_back(Q2_1p_TL_DIS_only);
 
-        // TString HistPrefix = "TL_Q2cut_" + doubleToString(Q2_master) + "_1e_cut_" + TARGET + GENIE_TUNE;
-        // TH1D *Q2_1e_cut_TL_all_int = new TH1D("Q2_1e_cut_TL_all_int" + "_" + TARGET, );
+        TString HistNamePrefix_1n = "TL_Q2cut_" + doubleToString(Q2_master) + "_1n" + target + genie_tune + beamE;
+        TString HistTitlePrefix_1n = "TL_Q2cut_" + doubleToString(Q2_master) + "_1n" + target + genie_tune + beamE;
+        pageTitles.push_back("Q^{2} plots for (e,e')");
+        TH1D *Q2_1n_TL_all_int = new TH1D(HistNamePrefix_1n, HistTitlePrefix_1n + " (All Int.);Q^{2} [GeV^{2}/c^{2}]", 100, Q2_llim, Q2_ulim);
+        histList.push_back(Q2_1n_TL_all_int);
+        pageTitles.push_back("");
+        TH1D *Q2_1n_TL_QE_only = new TH1D(HistNamePrefix_1n, HistTitlePrefix_1n + " (QE Only);Q^{2} [GeV^{2}/c^{2}]", 100, Q2_llim, Q2_ulim);
+        histList.push_back(Q2_1n_TL_QE_only);
+        pageTitles.push_back("");
+        TH1D *Q2_1n_TL_MEC_only = new TH1D(HistNamePrefix_1n, HistTitlePrefix_1n + " (MEC Only);Q^{2} [GeV^{2}/c^{2}]", 100, Q2_llim, Q2_ulim);
+        histList.push_back(Q2_1n_TL_MEC_only);
+        pageTitles.push_back("");
+        TH1D *Q2_1n_TL_RES_only = new TH1D(HistNamePrefix_1n, HistTitlePrefix_1n + " (RES Only);Q^{2} [GeV^{2}/c^{2}]", 100, Q2_llim, Q2_ulim);
+        histList.push_back(Q2_1n_TL_RES_only);
+        pageTitles.push_back("");
+        TH1D *Q2_1n_TL_DIS_only = new TH1D(HistNamePrefix_1n, HistTitlePrefix_1n + " (DIS Only);Q^{2} [GeV^{2}/c^{2}]", 100, Q2_llim, Q2_ulim);
+        histList.push_back(Q2_1n_TL_DIS_only);
+
+        TString HistNamePrefix_1N = "TL_Q2cut_" + doubleToString(Q2_master) + "_1N" + target + genie_tune + beamE;
+        TString HistTitlePrefix_1N = "TL_Q2cut_" + doubleToString(Q2_master) + "_1N" + target + genie_tune + beamE;
+        pageTitles.push_back("Q^{2} plots for (e,e')");
+        TH1D *Q2_1N_TL_all_int = new TH1D(HistNamePrefix_1N, HistTitlePrefix_1N + " (All Int.);Q^{2} [GeV^{2}/c^{2}]", 100, Q2_llim, Q2_ulim);
+        histList.push_back(Q2_1N_TL_all_int);
+        pageTitles.push_back("");
+        TH1D *Q2_1N_TL_QE_only = new TH1D(HistNamePrefix_1N, HistTitlePrefix_1N + " (QE Only);Q^{2} [GeV^{2}/c^{2}]", 100, Q2_llim, Q2_ulim);
+        histList.push_back(Q2_1N_TL_QE_only);
+        pageTitles.push_back("");
+        TH1D *Q2_1N_TL_MEC_only = new TH1D(HistNamePrefix_1N, HistTitlePrefix_1N + " (MEC Only);Q^{2} [GeV^{2}/c^{2}]", 100, Q2_llim, Q2_ulim);
+        histList.push_back(Q2_1N_TL_MEC_only);
+        pageTitles.push_back("");
+        TH1D *Q2_1N_TL_RES_only = new TH1D(HistNamePrefix_1N, HistTitlePrefix_1N + " (RES Only);Q^{2} [GeV^{2}/c^{2}]", 100, Q2_llim, Q2_ulim);
+        histList.push_back(Q2_1N_TL_RES_only);
+        pageTitles.push_back("");
+        TH1D *Q2_1N_TL_DIS_only = new TH1D(HistNamePrefix_1N, HistTitlePrefix_1N + " (DIS Only);Q^{2} [GeV^{2}/c^{2}]", 100, Q2_llim, Q2_ulim);
+        histList.push_back(Q2_1N_TL_DIS_only);
+
+        TString HistNamePrefix_2p = "TL_Q2cut_" + doubleToString(Q2_master) + "_2p" + target + genie_tune + beamE;
+        TString HistTitlePrefix_2p = "TL_Q2cut_" + doubleToString(Q2_master) + "_2p" + target + genie_tune + beamE;
+        pageTitles.push_back("Q^{2} plots for (e,e')");
+        TH1D *Q2_2p_TL_all_int = new TH1D(HistNamePrefix_2p, HistTitlePrefix_2p + " (All Int.);Q^{2} [GeV^{2}/c^{2}]", 100, Q2_llim, Q2_ulim);
+        histList.push_back(Q2_2p_TL_all_int);
+        pageTitles.push_back("");
+        TH1D *Q2_2p_TL_QE_only = new TH1D(HistNamePrefix_2p, HistTitlePrefix_2p + " (QE Only);Q^{2} [GeV^{2}/c^{2}]", 100, Q2_llim, Q2_ulim);
+        histList.push_back(Q2_2p_TL_QE_only);
+        pageTitles.push_back("");
+        TH1D *Q2_2p_TL_MEC_only = new TH1D(HistNamePrefix_2p, HistTitlePrefix_2p + " (MEC Only);Q^{2} [GeV^{2}/c^{2}]", 100, Q2_llim, Q2_ulim);
+        histList.push_back(Q2_2p_TL_MEC_only);
+        pageTitles.push_back("");
+        TH1D *Q2_2p_TL_RES_only = new TH1D(HistNamePrefix_2p, HistTitlePrefix_2p + " (RES Only);Q^{2} [GeV^{2}/c^{2}]", 100, Q2_llim, Q2_ulim);
+        histList.push_back(Q2_2p_TL_RES_only);
+        pageTitles.push_back("");
+        TH1D *Q2_2p_TL_DIS_only = new TH1D(HistNamePrefix_2p, HistTitlePrefix_2p + " (DIS Only);Q^{2} [GeV^{2}/c^{2}]", 100, Q2_llim, Q2_ulim);
+        histList.push_back(Q2_2p_TL_DIS_only);
+
+        TString HistNamePrefix_1n1p = "TL_Q2cut_" + doubleToString(Q2_master) + "_1n1p" + target + genie_tune + beamE;
+        TString HistTitlePrefix_1n1p = "TL_Q2cut_" + doubleToString(Q2_master) + "_1n1p" + target + genie_tune + beamE;
+        pageTitles.push_back("Q^{2} plots for (e,e')");
+        TH1D *Q2_1n1p_TL_all_int = new TH1D(HistNamePrefix_1n1p, HistTitlePrefix_1n1p + " (All Int.);Q^{2} [GeV^{2}/c^{2}]", 100, Q2_llim, Q2_ulim);
+        histList.push_back(Q2_1n1p_TL_all_int);
+        pageTitles.push_back("");
+        TH1D *Q2_1n1p_TL_QE_only = new TH1D(HistNamePrefix_1n1p, HistTitlePrefix_1n1p + " (QE Only);Q^{2} [GeV^{2}/c^{2}]", 100, Q2_llim, Q2_ulim);
+        histList.push_back(Q2_1n1p_TL_QE_only);
+        pageTitles.push_back("");
+        TH1D *Q2_1n1p_TL_MEC_only = new TH1D(HistNamePrefix_1n1p, HistTitlePrefix_1n1p + " (MEC Only);Q^{2} [GeV^{2}/c^{2}]", 100, Q2_llim, Q2_ulim);
+        histList.push_back(Q2_1n1p_TL_MEC_only);
+        pageTitles.push_back("");
+        TH1D *Q2_1n1p_TL_RES_only = new TH1D(HistNamePrefix_1n1p, HistTitlePrefix_1n1p + " (RES Only);Q^{2} [GeV^{2}/c^{2}]", 100, Q2_llim, Q2_ulim);
+        histList.push_back(Q2_1n1p_TL_RES_only);
+        pageTitles.push_back("");
+        TH1D *Q2_1n1p_TL_DIS_only = new TH1D(HistNamePrefix_1n1p, HistTitlePrefix_1n1p + " (DIS Only);Q^{2} [GeV^{2}/c^{2}]", 100, Q2_llim, Q2_ulim);
+        histList.push_back(Q2_1n1p_TL_DIS_only);
+
+        TString HistNamePrefix_2N = "TL_Q2cut_" + doubleToString(Q2_master) + "_2N" + target + genie_tune + beamE;
+        TString HistTitlePrefix_2N = "TL_Q2cut_" + doubleToString(Q2_master) + "_2N" + target + genie_tune + beamE;
+        pageTitles.push_back("Q^{2} plots for (e,e')");
+        TH1D *Q2_2N_TL_1e_cutall_int = new TH1D(HistNamePrefix_2N, HistTitlePrefix_2N + " (All Int.);Q^{2} [GeV^{2}/c^{2}]", 100, Q2_llim, Q2_ulim);
+        histList.push_back(Q2_2N_TL_all_int);
+        pageTitles.push_back("");
+        TH1D *Q2_2N_TL_QE_only = new TH1D(HistNamePrefix_2N, HistTitlePrefix_2N + " (QE Only);Q^{2} [GeV^{2}/c^{2}]", 100, Q2_llim, Q2_ulim);
+        histList.push_back(Q2_2N_TL_QE_only);
+        pageTitles.push_back("");
+        TH1D *Q2_2N_TL_MEC_only = new TH1D(HistNamePrefix_2N, HistTitlePrefix_2N + " (MEC Only);Q^{2} [GeV^{2}/c^{2}]", 100, Q2_llim, Q2_ulim);
+        histList.push_back(Q2_2N_TL_MEC_only);
+        pageTitles.push_back("");
+        TH1D *Q2_2N_TL_RES_only = new TH1D(HistNamePrefix_2N, HistTitlePrefix_2N + " (RES Only);Q^{2} [GeV^{2}/c^{2}]", 100, Q2_llim, Q2_ulim);
+        histList.push_back(Q2_2N_TL_RES_only);
+        pageTitles.push_back("");
+        TH1D *Q2_2N_TL_DIS_only = new TH1D(HistNamePrefix_2N, HistTitlePrefix_2N + " (DIS Only);Q^{2} [GeV^{2}/c^{2}]", 100, Q2_llim, Q2_ulim);
+        histList.push_back(Q2_2N_TL_DIS_only);
 
         cout << "\n";
 
@@ -95,6 +261,9 @@ void GENIE_to_LUND(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
         Double_t pzl;
 
         Double_t Q2;
+        Int_t nf;
+        Int_t nfp;
+        Int_t nfn;
 
         T->SetBranchAddress("qel", &qel);
         T->SetBranchAddress("mec", &mec);
@@ -116,6 +285,9 @@ void GENIE_to_LUND(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
         T->SetBranchAddress("pzl", &pzl);
 
         T->SetBranchAddress("Q2", &Q2);
+        T->SetBranchAddress("nf", &nf);
+        T->SetBranchAddress("nfp", &nfp);
+        T->SetBranchAddress("nfn", &nfn);
 
         int nEvents = T->GetEntries();
 
@@ -175,6 +347,156 @@ void GENIE_to_LUND(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
 
                     if (Q2 >= Q2_master)
                     {
+                        if (nf == 1)
+                        {
+                            Q2_1N_TL_all_int.Fill(Q2);
+
+                            if (qel)
+                            {
+                                Q2_1N_TL_QE_only.Fill(Q2);
+                            }
+                            else if (mec)
+                            {
+                                Q2_1N_TL_MEC_only.Fill(Q2);
+                            }
+                            else if (res)
+                            {
+                                Q2_1N_TL_RES_only.Fill(Q2);
+                            }
+                            else if (dis)
+                            {
+                                Q2_1N_TL_DIS_only.Fill(Q2);
+                            }
+
+                            if (nfp == 1)
+                            {
+                                Q2_1p_TL_all_int.Fill(Q2);
+
+                                if (qel)
+                                {
+                                    Q2_1p_TL_QE_only.Fill(Q2);
+                                }
+                                else if (mec)
+                                {
+                                    Q2_1p_TL_MEC_only.Fill(Q2);
+                                }
+                                else if (res)
+                                {
+                                    Q2_1p_TL_RES_only.Fill(Q2);
+                                }
+                                else if (dis)
+                                {
+                                    Q2_1p_TL_DIS_only.Fill(Q2);
+                                }
+                            }
+                            else if (nfn == 1)
+                            {
+                                Q2_1n_TL_all_int.Fill(Q2);
+
+                                if (qel)
+                                {
+                                    Q2_1n_TL_QE_only.Fill(Q2);
+                                }
+                                else if (mec)
+                                {
+                                    Q2_1n_TL_MEC_only.Fill(Q2);
+                                }
+                                else if (res)
+                                {
+                                    Q2_1n_TL_RES_only.Fill(Q2);
+                                }
+                                else if (dis)
+                                {
+                                    Q2_1n_TL_DIS_only.Fill(Q2);
+                                }
+                            }
+                        }
+                        else if (nf == 2)
+                        {
+                            Q2_2N_TL_all_int.Fill(Q2);
+
+                            if (qel)
+                            {
+                                Q2_2N_TL_QE_only.Fill(Q2);
+                            }
+                            else if (mec)
+                            {
+                                Q2_2N_TL_MEC_only.Fill(Q2);
+                            }
+                            else if (res)
+                            {
+                                Q2_2N_TL_RES_only.Fill(Q2);
+                            }
+                            else if (dis)
+                            {
+                                Q2_2N_TL_DIS_only.Fill(Q2);
+                            }
+
+                            if (nfp == 2)
+                            {
+                                Q2_2p_TL_all_int.Fill(Q2);
+
+                                if (qel)
+                                {
+                                    Q2_2p_TL_QE_only.Fill(Q2);
+                                }
+                                else if (mec)
+                                {
+                                    Q2_2p_TL_MEC_only.Fill(Q2);
+                                }
+                                else if (res)
+                                {
+                                    Q2_2p_TL_RES_only.Fill(Q2);
+                                }
+                                else if (dis)
+                                {
+                                    Q2_2p_TL_DIS_only.Fill(Q2);
+                                }
+                            }
+                            else if (nfn == 1 && nfp == 1)
+                            {
+                                Q2_1n1p_TL_all_int.Fill(Q2);
+
+                                if (qel)
+                                {
+                                    Q2_1n1p_TL_QE_only.Fill(Q2);
+                                }
+                                else if (mec)
+                                {
+                                    Q2_1n1p_TL_MEC_only.Fill(Q2);
+                                }
+                                else if (res)
+                                {
+                                    Q2_1n1p_TL_RES_only.Fill(Q2);
+                                }
+                                else if (dis)
+                                {
+                                    Q2_1n1p_TL_DIS_only.Fill(Q2);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            Q2_1e_cut_TL_all_int.Fill(Q2);
+
+                            if (qel)
+                            {
+                                Q2_1e_cut_TL_QE_only.Fill(Q2);
+                            }
+                            else if (mec)
+                            {
+                                Q2_1e_cut_TL_MEC_only.Fill(Q2);
+                            }
+                            else if (res)
+                            {
+                                Q2_1e_cut_TL_RES_only.Fill(Q2);
+                            }
+                            else if (dis)
+                            {
+                                Q2_1e_cut_TL_DIS_only.Fill(Q2);
+                            }
+                        }
+
                         // Stores reaction mechanism qel = 1, mec = 2, rec = 3, dis=4
                         double code = 0.;
 
@@ -280,6 +602,42 @@ void GENIE_to_LUND(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
                 break;
             }
         }
+
+        std::string TempFilePath0 = TempLundPath.Data();
+        std::string TempFilePath = TempFilePath0 + "/";
+        std::string pdfFileName = TempFilePath + "Q2_" + doubleToString(Q2_master) + ".pdf";
+        const char *pdfFile = pdfFileName.c_str();
+
+        // Create a canvas
+        TCanvas *canvas = new TCanvas("canvas", "Canvas for saving histograms", 800, 600);
+
+        // Start the multi-page PDF
+        canvas->Print(Form("%s[", pdfFile)); // Open the PDF file
+
+        // Loop through the list of histograms
+        for (int i = 0; i < histList.size(); i++)
+        {
+            canvas->cd(); // Select the canvas
+            std::string pageTitleTemp = pageTitles.at(i).Data();
+
+            if (pageTitleTemp != "")
+            {
+                TLatex text;
+                text.SetTextSize(0.05);
+                text.DrawLatex(0.2, 0.9, pageTitles.at(i));
+            }
+
+            canvas->Clear();
+
+            canvas->cd();
+            histList.at(i)->Draw(); // Draw the histogram on the canvas
+            canvas->Print(pdfFile); // Save the current canvas (histogram) to the PDF
+        }
+
+        // End the multi-page PDF
+        canvas->Print(Form("%s]", pdfFile)); // Close the PDF file
+
+        delete canvas;
 
         Q2_master = Q2_master + dQ2;
     }

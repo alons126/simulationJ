@@ -56,6 +56,8 @@
         "unordered_map": "cpp",
         "variant": "cpp",
         "vector": "cpp",
-        "algorithm": "cpp"
+        "algorithm": "cpp",
+        "GENIE_to_LUND copy 3.C": "cpp",
+        "Q2_histograms.C": "cpp"
     }
 }
