@@ -106,7 +106,7 @@ void GENIE_to_LUND(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
 
         TString HistNamePrefix_1p = "TL_Q2cut_" + doubleToString(Q2_master) + "_1p" + sample_target + sample_genie_tune + sample_beamE;
         TString HistTitlePrefix_1p = "TL_Q2cut_" + doubleToString(Q2_master) + "_1p" + sample_target + sample_genie_tune + sample_beamE;
-        pageTitles.push_back("Q^{2} plots for (e,e')");
+        pageTitles.push_back("Q^{2} plots for 1p");
         TH1D *Q2_1p_TL_all_int = new TH1D(HistNamePrefix_1p, HistTitlePrefix_1p + " (All Int.);Q^{2} [GeV^{2}/c^{2}]", 100, Q2_llim, Q2_ulim);
         histList.push_back(Q2_1p_TL_all_int);
         pageTitles.push_back("");
@@ -124,7 +124,7 @@ void GENIE_to_LUND(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
 
         TString HistNamePrefix_1n = "TL_Q2cut_" + doubleToString(Q2_master) + "_1n" + sample_target + sample_genie_tune + sample_beamE;
         TString HistTitlePrefix_1n = "TL_Q2cut_" + doubleToString(Q2_master) + "_1n" + sample_target + sample_genie_tune + sample_beamE;
-        pageTitles.push_back("Q^{2} plots for (e,e')");
+        pageTitles.push_back("Q^{2} plots for 1n");
         TH1D *Q2_1n_TL_all_int = new TH1D(HistNamePrefix_1n, HistTitlePrefix_1n + " (All Int.);Q^{2} [GeV^{2}/c^{2}]", 100, Q2_llim, Q2_ulim);
         histList.push_back(Q2_1n_TL_all_int);
         pageTitles.push_back("");
@@ -142,7 +142,7 @@ void GENIE_to_LUND(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
 
         TString HistNamePrefix_1N = "TL_Q2cut_" + doubleToString(Q2_master) + "_1N" + sample_target + sample_genie_tune + sample_beamE;
         TString HistTitlePrefix_1N = "TL_Q2cut_" + doubleToString(Q2_master) + "_1N" + sample_target + sample_genie_tune + sample_beamE;
-        pageTitles.push_back("Q^{2} plots for (e,e')");
+        pageTitles.push_back("Q^{2} plots for 1N");
         TH1D *Q2_1N_TL_all_int = new TH1D(HistNamePrefix_1N, HistTitlePrefix_1N + " (All Int.);Q^{2} [GeV^{2}/c^{2}]", 100, Q2_llim, Q2_ulim);
         histList.push_back(Q2_1N_TL_all_int);
         pageTitles.push_back("");
@@ -160,7 +160,7 @@ void GENIE_to_LUND(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
 
         TString HistNamePrefix_2p = "TL_Q2cut_" + doubleToString(Q2_master) + "_2p" + sample_target + sample_genie_tune + sample_beamE;
         TString HistTitlePrefix_2p = "TL_Q2cut_" + doubleToString(Q2_master) + "_2p" + sample_target + sample_genie_tune + sample_beamE;
-        pageTitles.push_back("Q^{2} plots for (e,e')");
+        pageTitles.push_back("Q^{2} plots for 2p");
         TH1D *Q2_2p_TL_all_int = new TH1D(HistNamePrefix_2p, HistTitlePrefix_2p + " (All Int.);Q^{2} [GeV^{2}/c^{2}]", 100, Q2_llim, Q2_ulim);
         histList.push_back(Q2_2p_TL_all_int);
         pageTitles.push_back("");
@@ -178,7 +178,7 @@ void GENIE_to_LUND(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
 
         TString HistNamePrefix_1n1p = "TL_Q2cut_" + doubleToString(Q2_master) + "_1n1p" + sample_target + sample_genie_tune + sample_beamE;
         TString HistTitlePrefix_1n1p = "TL_Q2cut_" + doubleToString(Q2_master) + "_1n1p" + sample_target + sample_genie_tune + sample_beamE;
-        pageTitles.push_back("Q^{2} plots for (e,e')");
+        pageTitles.push_back("Q^{2} plots for 1n1p");
         TH1D *Q2_1n1p_TL_all_int = new TH1D(HistNamePrefix_1n1p, HistTitlePrefix_1n1p + " (All Int.);Q^{2} [GeV^{2}/c^{2}]", 100, Q2_llim, Q2_ulim);
         histList.push_back(Q2_1n1p_TL_all_int);
         pageTitles.push_back("");
@@ -196,7 +196,7 @@ void GENIE_to_LUND(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
 
         TString HistNamePrefix_2N = "TL_Q2cut_" + doubleToString(Q2_master) + "_2N" + sample_target + sample_genie_tune + sample_beamE;
         TString HistTitlePrefix_2N = "TL_Q2cut_" + doubleToString(Q2_master) + "_2N" + sample_target + sample_genie_tune + sample_beamE;
-        pageTitles.push_back("Q^{2} plots for (e,e')");
+        pageTitles.push_back("Q^{2} plots for 2N");
         TH1D *Q2_2N_TL_all_int = new TH1D(HistNamePrefix_2N, HistTitlePrefix_2N + " (All Int.);Q^{2} [GeV^{2}/c^{2}]", 100, Q2_llim, Q2_ulim);
         histList.push_back(Q2_2N_TL_all_int);
         pageTitles.push_back("");
@@ -609,6 +609,8 @@ void GENIE_to_LUND(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
 
         // Create a canvas
         TCanvas *canvas = new TCanvas("canvas", "Canvas for saving histograms", 800, 600);
+        canvas->cd()->SetGrid();
+        canvas->cd()->SetBottomMargin(0.14), canvas->cd()->SetLeftMargin(0.18), canvas->cd()->SetRightMargin(0.12);
 
         // Start the multi-page PDF
         canvas->Print(Form("%s[", pdfFile)); // Open the PDF file
@@ -629,6 +631,16 @@ void GENIE_to_LUND(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
             canvas->Clear();
 
             canvas->cd();
+            histList.at(i)->GetXaxis()->SetTitleSize(0.06);
+            histList.at(i)->GetXaxis()->SetLabelSize(0.0425);
+            histList.at(i)->GetXaxis()->CenterTitle(true);
+            histList.at(i)->GetYaxis()->SetTitle("Number of events");
+            histList.at(i)->GetYaxis()->SetTitleSize(0.06);
+            histList.at(i)->GetYaxis()->SetLabelSize(0.0425);
+            histList.at(i)->GetYaxis()->CenterTitle(true);
+            histList.at(i)->SetLineWidth(LineWidth);
+            histList.at(i)->SetLineStyle(0);
+            histList.at(i)->SetLineColor(kBlue);
             histList.at(i)->Draw(); // Draw the histogram on the canvas
             canvas->Print(pdfFile); // Save the current canvas (histogram) to the PDF
         }
