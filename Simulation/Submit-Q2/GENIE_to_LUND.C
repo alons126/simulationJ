@@ -629,6 +629,8 @@ void GENIE_to_LUND(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
         for (int i = 0; i < histList.size(); i++)
         {
             canvas->cd(); // Select the canvas
+            canvas->Clear();
+
             std::string pageTitleTemp = pageTitles.at(i).Data();
 
             if (pageTitleTemp != "")
