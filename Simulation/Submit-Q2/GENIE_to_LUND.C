@@ -18,50 +18,60 @@ void GENIE_to_LUND(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
     bool PrintOut = false;
 
     std::string sample_target0 = TARGET.Data(), sample_genie_tune0 = GENIE_TUNE.Data(), sample_beamE0 = BEAM_E.Data();
-    string sample_target, sample_genie_tune, sample_beamE;
+    string sample_target1, sample_genie_tune1, sample_beamE1;
+    string sample_target2, sample_genie_tune2, sample_beamE2;
     double Q2_ulim, Q2_llim;
 
     if (sample_target0 == "H1")
     {
-        sample_target = "_H1";
+        sample_target1 = "_H1";
+        sample_target2 = "H1 ";
     }
     else if (sample_target0 == "D2")
     {
-        sample_target = "_D2";
+        sample_target1 = "_D2";
+        sample_target2 = "D2 ";
     }
     else if (sample_target0 == "C12")
     {
-        sample_target = "_C12";
+        sample_target1 = "_C12";
+        sample_target2 = "C12 ";
     }
     else if (sample_target0 == "Ar40")
     {
-        sample_target = "_Ar40";
+        sample_target1 = "_Ar40";
+        sample_target2 = "Ar40 ";
     }
 
     if (sample_genie_tune0 == "G18_10a_00_000")
     {
-        sample_genie_tune = "_G18";
+        sample_genie_tune1 = "_G18";
+        sample_genie_tune2 = "G18";
     }
     else if (sample_genie_tune0 == "GEM21_11a_00_000")
     {
-        sample_genie_tune = "_SuSa";
+        sample_genie_tune1 = "_SuSa";
+        sample_genie_tune2 = "SuSa";
     }
 
     if (sample_beamE0 == "2070MeV")
     {
-        sample_beamE = "_2GeV";
+        sample_beamE1 = "_2GeV";
+        sample_beamE2 = " @2GeV";
         Q2_ulim = 0.5;
         Q2_llim = 0.;
     }
     else if (sample_beamE0 == "4029MeV")
     {
-        sample_beamE = "_4GeV";
+        sample_beamE1 = "_4GeV";
+        sample_beamE2 = " @4GeV";
         Q2_ulim = 1.;
         Q2_llim = 0.;
     }
     else if (sample_beamE0 == "5986MeV")
     {
-        sample_beamE = "_6GeV";
+        sample_beamE1 = "_6GeV";
+        sample_beamE2 = " @6GeV";
         Q2_ulim = 2.;
         Q2_llim = 0.;
     }
@@ -86,8 +96,8 @@ void GENIE_to_LUND(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
         std::vector<TH1D *> histList;
         std::vector<TString> pageTitles;
 
-        TString HistNamePrefix_1e_cut = "TL_Q2cut_" + doubleToString(Q2_master) + "_1e_cut" + sample_target + sample_genie_tune + sample_beamE;
-        TString HistTitlePrefix_1e_cut = "TL_Q2cut_" + doubleToString(Q2_master) + "_1e_cut" + sample_target + sample_genie_tune + sample_beamE;
+        TString HistNamePrefix_1e_cut = "TL_Q2cut_" + doubleToString(Q2_master) + "_1e_cut" + sample_target1 + sample_genie_tune1 + sample_beamE1;
+        TString HistTitlePrefix_1e_cut = "Q^{2} for (e,e') with Q^{2}_{TL cut} #geq " + doubleToString(Q2_master) + " GeV^{2}/c^{2} on" + sample_target2 + sample_genie_tune2 + sample_beamE2;
         pageTitles.push_back("Q^{2} plots for (e,e')");
         TH1D *Q2_1e_cut_TL_all_int = new TH1D(HistNamePrefix_1e_cut, HistTitlePrefix_1e_cut + " (All Int.);Q^{2} [GeV^{2}/c^{2}]", 100, Q2_llim, Q2_ulim);
         histList.push_back(Q2_1e_cut_TL_all_int);
@@ -104,8 +114,8 @@ void GENIE_to_LUND(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
         TH1D *Q2_1e_cut_TL_DIS_only = new TH1D(HistNamePrefix_1e_cut, HistTitlePrefix_1e_cut + " (DIS Only);Q^{2} [GeV^{2}/c^{2}]", 100, Q2_llim, Q2_ulim);
         histList.push_back(Q2_1e_cut_TL_DIS_only);
 
-        TString HistNamePrefix_1p = "TL_Q2cut_" + doubleToString(Q2_master) + "_1p" + sample_target + sample_genie_tune + sample_beamE;
-        TString HistTitlePrefix_1p = "TL_Q2cut_" + doubleToString(Q2_master) + "_1p" + sample_target + sample_genie_tune + sample_beamE;
+        TString HistNamePrefix_1p = "TL_Q2cut_" + doubleToString(Q2_master) + "_1p" + sample_target1 + sample_genie_tune1 + sample_beamE1;
+        TString HistTitlePrefix_1p = "TL_Q2cut_" + doubleToString(Q2_master) + "_1p" + sample_target2 + sample_genie_tune2 + sample_beamE2;
         pageTitles.push_back("Q^{2} plots for 1p");
         TH1D *Q2_1p_TL_all_int = new TH1D(HistNamePrefix_1p, HistTitlePrefix_1p + " (All Int.);Q^{2} [GeV^{2}/c^{2}]", 100, Q2_llim, Q2_ulim);
         histList.push_back(Q2_1p_TL_all_int);
@@ -122,8 +132,8 @@ void GENIE_to_LUND(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
         TH1D *Q2_1p_TL_DIS_only = new TH1D(HistNamePrefix_1p, HistTitlePrefix_1p + " (DIS Only);Q^{2} [GeV^{2}/c^{2}]", 100, Q2_llim, Q2_ulim);
         histList.push_back(Q2_1p_TL_DIS_only);
 
-        TString HistNamePrefix_1n = "TL_Q2cut_" + doubleToString(Q2_master) + "_1n" + sample_target + sample_genie_tune + sample_beamE;
-        TString HistTitlePrefix_1n = "TL_Q2cut_" + doubleToString(Q2_master) + "_1n" + sample_target + sample_genie_tune + sample_beamE;
+        TString HistNamePrefix_1n = "TL_Q2cut_" + doubleToString(Q2_master) + "_1n" + sample_target1 + sample_genie_tune1 + sample_beamE1;
+        TString HistTitlePrefix_1n = "TL_Q2cut_" + doubleToString(Q2_master) + "_1n" + sample_target2 + sample_genie_tune2 + sample_beamE2;
         pageTitles.push_back("Q^{2} plots for 1n");
         TH1D *Q2_1n_TL_all_int = new TH1D(HistNamePrefix_1n, HistTitlePrefix_1n + " (All Int.);Q^{2} [GeV^{2}/c^{2}]", 100, Q2_llim, Q2_ulim);
         histList.push_back(Q2_1n_TL_all_int);
@@ -140,8 +150,8 @@ void GENIE_to_LUND(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
         TH1D *Q2_1n_TL_DIS_only = new TH1D(HistNamePrefix_1n, HistTitlePrefix_1n + " (DIS Only);Q^{2} [GeV^{2}/c^{2}]", 100, Q2_llim, Q2_ulim);
         histList.push_back(Q2_1n_TL_DIS_only);
 
-        TString HistNamePrefix_1N = "TL_Q2cut_" + doubleToString(Q2_master) + "_1N" + sample_target + sample_genie_tune + sample_beamE;
-        TString HistTitlePrefix_1N = "TL_Q2cut_" + doubleToString(Q2_master) + "_1N" + sample_target + sample_genie_tune + sample_beamE;
+        TString HistNamePrefix_1N = "TL_Q2cut_" + doubleToString(Q2_master) + "_1N" + sample_target1 + sample_genie_tune1 + sample_beamE1;
+        TString HistTitlePrefix_1N = "TL_Q2cut_" + doubleToString(Q2_master) + "_1N" + sample_target2 + sample_genie_tune2 + sample_beamE2;
         pageTitles.push_back("Q^{2} plots for 1N");
         TH1D *Q2_1N_TL_all_int = new TH1D(HistNamePrefix_1N, HistTitlePrefix_1N + " (All Int.);Q^{2} [GeV^{2}/c^{2}]", 100, Q2_llim, Q2_ulim);
         histList.push_back(Q2_1N_TL_all_int);
@@ -158,8 +168,8 @@ void GENIE_to_LUND(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
         TH1D *Q2_1N_TL_DIS_only = new TH1D(HistNamePrefix_1N, HistTitlePrefix_1N + " (DIS Only);Q^{2} [GeV^{2}/c^{2}]", 100, Q2_llim, Q2_ulim);
         histList.push_back(Q2_1N_TL_DIS_only);
 
-        TString HistNamePrefix_2p = "TL_Q2cut_" + doubleToString(Q2_master) + "_2p" + sample_target + sample_genie_tune + sample_beamE;
-        TString HistTitlePrefix_2p = "TL_Q2cut_" + doubleToString(Q2_master) + "_2p" + sample_target + sample_genie_tune + sample_beamE;
+        TString HistNamePrefix_2p = "TL_Q2cut_" + doubleToString(Q2_master) + "_2p" + sample_target1 + sample_genie_tune1 + sample_beamE1;
+        TString HistTitlePrefix_2p = "TL_Q2cut_" + doubleToString(Q2_master) + "_2p" + sample_target2 + sample_genie_tune2 + sample_beamE2;
         pageTitles.push_back("Q^{2} plots for 2p");
         TH1D *Q2_2p_TL_all_int = new TH1D(HistNamePrefix_2p, HistTitlePrefix_2p + " (All Int.);Q^{2} [GeV^{2}/c^{2}]", 100, Q2_llim, Q2_ulim);
         histList.push_back(Q2_2p_TL_all_int);
@@ -176,8 +186,8 @@ void GENIE_to_LUND(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
         TH1D *Q2_2p_TL_DIS_only = new TH1D(HistNamePrefix_2p, HistTitlePrefix_2p + " (DIS Only);Q^{2} [GeV^{2}/c^{2}]", 100, Q2_llim, Q2_ulim);
         histList.push_back(Q2_2p_TL_DIS_only);
 
-        TString HistNamePrefix_1n1p = "TL_Q2cut_" + doubleToString(Q2_master) + "_1n1p" + sample_target + sample_genie_tune + sample_beamE;
-        TString HistTitlePrefix_1n1p = "TL_Q2cut_" + doubleToString(Q2_master) + "_1n1p" + sample_target + sample_genie_tune + sample_beamE;
+        TString HistNamePrefix_1n1p = "TL_Q2cut_" + doubleToString(Q2_master) + "_1n1p" + sample_target1 + sample_genie_tune1 + sample_beamE1;
+        TString HistTitlePrefix_1n1p = "TL_Q2cut_" + doubleToString(Q2_master) + "_1n1p" + sample_target2 + sample_genie_tune2 + sample_beamE2;
         pageTitles.push_back("Q^{2} plots for 1n1p");
         TH1D *Q2_1n1p_TL_all_int = new TH1D(HistNamePrefix_1n1p, HistTitlePrefix_1n1p + " (All Int.);Q^{2} [GeV^{2}/c^{2}]", 100, Q2_llim, Q2_ulim);
         histList.push_back(Q2_1n1p_TL_all_int);
@@ -194,8 +204,8 @@ void GENIE_to_LUND(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
         TH1D *Q2_1n1p_TL_DIS_only = new TH1D(HistNamePrefix_1n1p, HistTitlePrefix_1n1p + " (DIS Only);Q^{2} [GeV^{2}/c^{2}]", 100, Q2_llim, Q2_ulim);
         histList.push_back(Q2_1n1p_TL_DIS_only);
 
-        TString HistNamePrefix_2N = "TL_Q2cut_" + doubleToString(Q2_master) + "_2N" + sample_target + sample_genie_tune + sample_beamE;
-        TString HistTitlePrefix_2N = "TL_Q2cut_" + doubleToString(Q2_master) + "_2N" + sample_target + sample_genie_tune + sample_beamE;
+        TString HistNamePrefix_2N = "TL_Q2cut_" + doubleToString(Q2_master) + "_2N" + sample_target1 + sample_genie_tune1 + sample_beamE1;
+        TString HistTitlePrefix_2N = "TL_Q2cut_" + doubleToString(Q2_master) + "_2N" + sample_target2 + sample_genie_tune2 + sample_beamE2;
         pageTitles.push_back("Q^{2} plots for 2N");
         TH1D *Q2_2N_TL_all_int = new TH1D(HistNamePrefix_2N, HistTitlePrefix_2N + " (All Int.);Q^{2} [GeV^{2}/c^{2}]", 100, Q2_llim, Q2_ulim);
         histList.push_back(Q2_2N_TL_all_int);
