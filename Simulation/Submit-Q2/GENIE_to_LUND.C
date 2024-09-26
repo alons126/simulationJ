@@ -337,6 +337,7 @@ void GENIE_to_LUND(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
 
         int Q2_above_cut_counter = 0;
         int Q2_above_cut_counter_debug = 0;
+        int matched = 0;
         vector<int> Q2_above_cut_ind;
 
         for (int k = 0; k < nEvents; k++)
@@ -386,6 +387,14 @@ void GENIE_to_LUND(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
 
                 if (Q2 >= Q2_master)
                 {
+                    for (int q = 0; q < Q2_above_cut_ind.size(); q++)
+                    {
+                        if ((Q2 >= Q2_master) && ((j + start) == Q2_above_cut_ind.at(q)))
+                        {
+                            ++matched;
+                        }
+                    }
+
                     if (nf == 1)
                     {
                         Q2_1N_TL_all_int->Fill(Q2);
@@ -708,6 +717,7 @@ void GENIE_to_LUND(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
 
         cout << "\nQ2_above_cut_counter = " << Q2_above_cut_counter << "\n";
         cout << "Q2_above_cut_counter_debug = " << Q2_above_cut_counter_debug << "\n\n";
+        cout << "matched = " << matched << "\n\n";
 
         Q2_master = Q2_master + dQ2;
     }
