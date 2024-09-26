@@ -319,7 +319,7 @@ void GENIE_to_LUND(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
         int iFiles = 1;
 
         int MaxEventsPerFile = 10000;
-        int j = 0;
+        // int j = 0;
         int start = 0;
 
         // nFiles = 5;
@@ -334,7 +334,7 @@ void GENIE_to_LUND(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
         cout << "\n";
 
         int Q2_above_cut_counter = 0;
-        vector <int> Q2_above_cut_ind;
+        vector<int> Q2_above_cut_ind;
 
         for (int k = 0; k < nEvents; k++)
         {
@@ -360,289 +360,288 @@ void GENIE_to_LUND(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
         while (iFiles <= nFiles)
         {
             bool condition = !((nEvents - (j + start)) < 0);
+            int j = 0;
 
-            if (true)
+            if (PrintOut)
             {
-                if (PrintOut)
+                cout << "-----------------------------------------------------------------\n";
+                cout << "iFiles = " << iFiles << "\n";
+                cout << "j = " << j << "\n";
+            }
+
+            TString outfilename = Form("%s/%s_%d.txt", TempLundPath.Data(), outputFile.Data(), iFiles);
+
+            ofstream outfile;
+            outfile.open(outfilename);
+            // int start = (iFiles - 1) * 10000;
+            // int end = iFiles * 10000;
+
+            int FilledEvents = 0;
+
+            while (FilledEvents < MaxEventsPerFile)
+            {
+                T->GetEntry(j + start);
+
+                if (Q2 >= Q2_master)
                 {
-                    cout << "-----------------------------------------------------------------\n";
-                    cout << "iFiles = " << iFiles << "\n";
-                    cout << "j = " << j << "\n";
-                }
-
-                TString outfilename = Form("%s/%s_%d.txt", TempLundPath.Data(), outputFile.Data(), iFiles);
-
-                ofstream outfile;
-                outfile.open(outfilename);
-                // int start = (iFiles - 1) * 10000;
-                // int end = iFiles * 10000;
-
-                int FilledEvents = 0;
-
-                while (FilledEvents < MaxEventsPerFile)
-                {
-                    T->GetEntry(j + start);
-
-                    if (Q2 >= Q2_master)
+                    if (nf == 1)
                     {
-                        if (nf == 1)
-                        {
-                            Q2_1N_TL_all_int->Fill(Q2);
-
-                            if (qel)
-                            {
-                                Q2_1N_TL_QE_only->Fill(Q2);
-                            }
-                            else if (mec)
-                            {
-                                Q2_1N_TL_MEC_only->Fill(Q2);
-                            }
-                            else if (res)
-                            {
-                                Q2_1N_TL_RES_only->Fill(Q2);
-                            }
-                            else if (dis)
-                            {
-                                Q2_1N_TL_DIS_only->Fill(Q2);
-                            }
-
-                            if (nfp == 1)
-                            {
-                                Q2_1p_TL_all_int->Fill(Q2);
-
-                                if (qel)
-                                {
-                                    Q2_1p_TL_QE_only->Fill(Q2);
-                                }
-                                else if (mec)
-                                {
-                                    Q2_1p_TL_MEC_only->Fill(Q2);
-                                }
-                                else if (res)
-                                {
-                                    Q2_1p_TL_RES_only->Fill(Q2);
-                                }
-                                else if (dis)
-                                {
-                                    Q2_1p_TL_DIS_only->Fill(Q2);
-                                }
-                            }
-                            else if (nfn == 1)
-                            {
-                                Q2_1n_TL_all_int->Fill(Q2);
-
-                                if (qel)
-                                {
-                                    Q2_1n_TL_QE_only->Fill(Q2);
-                                }
-                                else if (mec)
-                                {
-                                    Q2_1n_TL_MEC_only->Fill(Q2);
-                                }
-                                else if (res)
-                                {
-                                    Q2_1n_TL_RES_only->Fill(Q2);
-                                }
-                                else if (dis)
-                                {
-                                    Q2_1n_TL_DIS_only->Fill(Q2);
-                                }
-                            }
-                        }
-                        else if (nf == 2)
-                        {
-                            Q2_2N_TL_all_int->Fill(Q2);
-
-                            if (qel)
-                            {
-                                Q2_2N_TL_QE_only->Fill(Q2);
-                            }
-                            else if (mec)
-                            {
-                                Q2_2N_TL_MEC_only->Fill(Q2);
-                            }
-                            else if (res)
-                            {
-                                Q2_2N_TL_RES_only->Fill(Q2);
-                            }
-                            else if (dis)
-                            {
-                                Q2_2N_TL_DIS_only->Fill(Q2);
-                            }
-
-                            if (nfp == 2)
-                            {
-                                Q2_2p_TL_all_int->Fill(Q2);
-
-                                if (qel)
-                                {
-                                    Q2_2p_TL_QE_only->Fill(Q2);
-                                }
-                                else if (mec)
-                                {
-                                    Q2_2p_TL_MEC_only->Fill(Q2);
-                                }
-                                else if (res)
-                                {
-                                    Q2_2p_TL_RES_only->Fill(Q2);
-                                }
-                                else if (dis)
-                                {
-                                    Q2_2p_TL_DIS_only->Fill(Q2);
-                                }
-                            }
-                            else if (nfn == 1 && nfp == 1)
-                            {
-                                Q2_1n1p_TL_all_int->Fill(Q2);
-
-                                if (qel)
-                                {
-                                    Q2_1n1p_TL_QE_only->Fill(Q2);
-                                }
-                                else if (mec)
-                                {
-                                    Q2_1n1p_TL_MEC_only->Fill(Q2);
-                                }
-                                else if (res)
-                                {
-                                    Q2_1n1p_TL_RES_only->Fill(Q2);
-                                }
-                                else if (dis)
-                                {
-                                    Q2_1n1p_TL_DIS_only->Fill(Q2);
-                                }
-                            }
-                        }
-                        else
-                        {
-                            Q2_1e_cut_TL_all_int->Fill(Q2);
-
-                            if (qel)
-                            {
-                                Q2_1e_cut_TL_QE_only->Fill(Q2);
-                            }
-                            else if (mec)
-                            {
-                                Q2_1e_cut_TL_MEC_only->Fill(Q2);
-                            }
-                            else if (res)
-                            {
-                                Q2_1e_cut_TL_RES_only->Fill(Q2);
-                            }
-                            else if (dis)
-                            {
-                                Q2_1e_cut_TL_DIS_only->Fill(Q2);
-                            }
-                        }
-
-                        // Stores reaction mechanism qel = 1, mec = 2, rec = 3, dis=4
-                        double code = 0.;
+                        Q2_1N_TL_all_int->Fill(Q2);
 
                         if (qel)
                         {
-                            code = 1.;
+                            Q2_1N_TL_QE_only->Fill(Q2);
                         }
                         else if (mec)
                         {
-                            code = 2.;
+                            Q2_1N_TL_MEC_only->Fill(Q2);
                         }
                         else if (res)
                         {
-                            code = 3.;
+                            Q2_1N_TL_RES_only->Fill(Q2);
                         }
                         else if (dis)
                         {
-                            code = 4.;
+                            Q2_1N_TL_DIS_only->Fill(Q2);
                         }
 
-                        if (code < .01)
+                        if (nfp == 1)
                         {
-                            continue;
-                        }
+                            Q2_1p_TL_all_int->Fill(Q2);
 
-                        RES_ID = double(resid);
-
-                        int nf_mod = 1;
-                        for (int iPart = 0; iPart < nf; iPart++)
-                        {
-                            if (pdgf[iPart] == 2212)
-                                nf_mod++;
-                            else if (pdgf[iPart] == 2112)
-                                nf_mod++;
-                            else if (pdgf[iPart] == 211)
-                                nf_mod++;
-                            else if (pdgf[iPart] == -211)
-                                nf_mod++;
-                        }
-
-                        // LUND header for the event:
-                        formatstring = "%i \t %i \t %i \t %f \t %f \t %i \t %f \t %i \t %d \t %.2f \n";
-                        outstring = Form(formatstring, nf_mod, A, Z, RES_ID /*targP*/, beamP, beamType, beamE, interactN, j, code);
-                        outfile << outstring;
-
-                        auto vtx = randomVertex(target); // get vertex of event
-
-                        int part_num = 0;
-                        // electron
-                        outfile << addParticle(1, 1, 11, TVector3(pxl, pyl, pzl), mass_e, vtx);
-                        part_num++;
-
-                        for (int iPart = 0; iPart < nf; iPart++)
-                        {
-                            if (pdgf[iPart] == 2212)
-                            { // p
-                                part_num++;
-                                outfile << addParticle(part_num, 1, pdgf[iPart], TVector3(pxf[iPart], pyf[iPart], pzf[iPart]), mass_p, vtx);
+                            if (qel)
+                            {
+                                Q2_1p_TL_QE_only->Fill(Q2);
                             }
-                            else if (pdgf[iPart] == 2112)
-                            { // n
-                                part_num++;
-                                outfile << addParticle(part_num, 1, pdgf[iPart], TVector3(pxf[iPart], pyf[iPart], pzf[iPart]), mass_n, vtx);
+                            else if (mec)
+                            {
+                                Q2_1p_TL_MEC_only->Fill(Q2);
                             }
-                            else if (pdgf[iPart] == 211)
-                            { // pi+
-                                part_num++;
-                                outfile << addParticle(part_num, 1, pdgf[iPart], TVector3(pxf[iPart], pyf[iPart], pzf[iPart]), mass_pi, vtx);
+                            else if (res)
+                            {
+                                Q2_1p_TL_RES_only->Fill(Q2);
                             }
-                            else if (pdgf[iPart] == -211)
-                            { // pi-
-                                part_num++;
-                                outfile << addParticle(part_num, 1, pdgf[iPart], TVector3(pxf[iPart], pyf[iPart], pzf[iPart]), mass_pi, vtx);
+                            else if (dis)
+                            {
+                                Q2_1p_TL_DIS_only->Fill(Q2);
                             }
                         }
-
-                        ++FilledEvents;
-
-                        if (PrintOut)
+                        else if (nfn == 1)
                         {
-                            cout << "\niFiles = " << iFiles << "\n";
-                            cout << "Q2 = " << Q2 << "\n";
-                            cout << "FilledEvents = " << FilledEvents << "\n";
-                            cout << "j = " << j << "\n";
-                            cout << "start = " << start << "\n";
-                            cout << "\n";
+                            Q2_1n_TL_all_int->Fill(Q2);
+
+                            if (qel)
+                            {
+                                Q2_1n_TL_QE_only->Fill(Q2);
+                            }
+                            else if (mec)
+                            {
+                                Q2_1n_TL_MEC_only->Fill(Q2);
+                            }
+                            else if (res)
+                            {
+                                Q2_1n_TL_RES_only->Fill(Q2);
+                            }
+                            else if (dis)
+                            {
+                                Q2_1n_TL_DIS_only->Fill(Q2);
+                            }
                         }
                     }
-
-                    ++j;
-
-                    if ((j + start) > nEvents)
+                    else if (nf == 2)
                     {
-                        break;
+                        Q2_2N_TL_all_int->Fill(Q2);
+
+                        if (qel)
+                        {
+                            Q2_2N_TL_QE_only->Fill(Q2);
+                        }
+                        else if (mec)
+                        {
+                            Q2_2N_TL_MEC_only->Fill(Q2);
+                        }
+                        else if (res)
+                        {
+                            Q2_2N_TL_RES_only->Fill(Q2);
+                        }
+                        else if (dis)
+                        {
+                            Q2_2N_TL_DIS_only->Fill(Q2);
+                        }
+
+                        if (nfp == 2)
+                        {
+                            Q2_2p_TL_all_int->Fill(Q2);
+
+                            if (qel)
+                            {
+                                Q2_2p_TL_QE_only->Fill(Q2);
+                            }
+                            else if (mec)
+                            {
+                                Q2_2p_TL_MEC_only->Fill(Q2);
+                            }
+                            else if (res)
+                            {
+                                Q2_2p_TL_RES_only->Fill(Q2);
+                            }
+                            else if (dis)
+                            {
+                                Q2_2p_TL_DIS_only->Fill(Q2);
+                            }
+                        }
+                        else if (nfn == 1 && nfp == 1)
+                        {
+                            Q2_1n1p_TL_all_int->Fill(Q2);
+
+                            if (qel)
+                            {
+                                Q2_1n1p_TL_QE_only->Fill(Q2);
+                            }
+                            else if (mec)
+                            {
+                                Q2_1n1p_TL_MEC_only->Fill(Q2);
+                            }
+                            else if (res)
+                            {
+                                Q2_1n1p_TL_RES_only->Fill(Q2);
+                            }
+                            else if (dis)
+                            {
+                                Q2_1n1p_TL_DIS_only->Fill(Q2);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Q2_1e_cut_TL_all_int->Fill(Q2);
+
+                        if (qel)
+                        {
+                            Q2_1e_cut_TL_QE_only->Fill(Q2);
+                        }
+                        else if (mec)
+                        {
+                            Q2_1e_cut_TL_MEC_only->Fill(Q2);
+                        }
+                        else if (res)
+                        {
+                            Q2_1e_cut_TL_RES_only->Fill(Q2);
+                        }
+                        else if (dis)
+                        {
+                            Q2_1e_cut_TL_DIS_only->Fill(Q2);
+                        }
+                    }
+
+                    // Stores reaction mechanism qel = 1, mec = 2, rec = 3, dis=4
+                    double code = 0.;
+
+                    if (qel)
+                    {
+                        code = 1.;
+                    }
+                    else if (mec)
+                    {
+                        code = 2.;
+                    }
+                    else if (res)
+                    {
+                        code = 3.;
+                    }
+                    else if (dis)
+                    {
+                        code = 4.;
+                    }
+
+                    if (code < .01)
+                    {
+                        continue;
+                    }
+
+                    RES_ID = double(resid);
+
+                    int nf_mod = 1;
+                    for (int iPart = 0; iPart < nf; iPart++)
+                    {
+                        if (pdgf[iPart] == 2212)
+                            nf_mod++;
+                        else if (pdgf[iPart] == 2112)
+                            nf_mod++;
+                        else if (pdgf[iPart] == 211)
+                            nf_mod++;
+                        else if (pdgf[iPart] == -211)
+                            nf_mod++;
+                    }
+
+                    // LUND header for the event:
+                    formatstring = "%i \t %i \t %i \t %f \t %f \t %i \t %f \t %i \t %d \t %.2f \n";
+                    outstring = Form(formatstring, nf_mod, A, Z, RES_ID /*targP*/, beamP, beamType, beamE, interactN, j, code);
+                    outfile << outstring;
+
+                    auto vtx = randomVertex(target); // get vertex of event
+
+                    int part_num = 0;
+                    // electron
+                    outfile << addParticle(1, 1, 11, TVector3(pxl, pyl, pzl), mass_e, vtx);
+                    part_num++;
+
+                    for (int iPart = 0; iPart < nf; iPart++)
+                    {
+                        if (pdgf[iPart] == 2212)
+                        { // p
+                            part_num++;
+                            outfile << addParticle(part_num, 1, pdgf[iPart], TVector3(pxf[iPart], pyf[iPart], pzf[iPart]), mass_p, vtx);
+                        }
+                        else if (pdgf[iPart] == 2112)
+                        { // n
+                            part_num++;
+                            outfile << addParticle(part_num, 1, pdgf[iPart], TVector3(pxf[iPart], pyf[iPart], pzf[iPart]), mass_n, vtx);
+                        }
+                        else if (pdgf[iPart] == 211)
+                        { // pi+
+                            part_num++;
+                            outfile << addParticle(part_num, 1, pdgf[iPart], TVector3(pxf[iPart], pyf[iPart], pzf[iPart]), mass_pi, vtx);
+                        }
+                        else if (pdgf[iPart] == -211)
+                        { // pi-
+                            part_num++;
+                            outfile << addParticle(part_num, 1, pdgf[iPart], TVector3(pxf[iPart], pyf[iPart], pzf[iPart]), mass_pi, vtx);
+                        }
+                    }
+
+                    ++FilledEvents;
+
+                    if (PrintOut)
+                    {
+                        cout << "\niFiles = " << iFiles << "\n";
+                        cout << "Q2 = " << Q2 << "\n";
+                        cout << "FilledEvents = " << FilledEvents << "\n";
+                        cout << "j = " << j << "\n";
+                        cout << "start = " << start << "\n";
+                        cout << "\n";
                     }
                 }
 
-                outfile.close();
+                ++j;
 
-                start = j;
-
-                if (PrintOut)
+                if ((j + start) > nEvents)
                 {
-                    cout << "start = " << start << "\n";
+                    break;
                 }
-
-                ++iFiles;
             }
+
+            outfile.close();
+
+            start = j;
+
+            if (PrintOut)
+            {
+                cout << "start = " << start << "\n";
+            }
+
+            ++iFiles;
+
             // else
             // {
             //     cout << "Not enough events to fill " << nFiles << " files with Q2 >= " << doubleToString(Q2_master) << "\n";
