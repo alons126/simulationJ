@@ -94,6 +94,8 @@ void GENIE_to_LUND(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
         // TODO: apply the Q2 cut on the branch
         // TODO: fix the event fill proccess
 
+        gDirectory->Clear();
+
         // #region My Custom Fold
         std::vector<TH1D *> histList;
         std::vector<TString> pageTitles;
@@ -704,11 +706,9 @@ void GENIE_to_LUND(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
 
         delete canvas;
 
-
-        cout << "Q2_above_cut_counter = " << Q2_above_cut_counter << "\n";
-        cout << "Q2_above_cut_counter_debug = " << Q2_above_cut_counter_debug << "\n";
+        cout << "\nQ2_above_cut_counter = " << Q2_above_cut_counter << "\n";
+        cout << "Q2_above_cut_counter_debug = " << Q2_above_cut_counter_debug << "\n\n";
 
         Q2_master = Q2_master + dQ2;
-        gDirectory->Clear();
     }
 }
