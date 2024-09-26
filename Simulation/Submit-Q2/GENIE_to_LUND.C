@@ -638,7 +638,7 @@ void GENIE_to_LUND(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
             histList.at(i)->GetYaxis()->SetTitleSize(0.06);
             histList.at(i)->GetYaxis()->SetLabelSize(0.0425);
             histList.at(i)->GetYaxis()->CenterTitle(true);
-            histList.at(i)->SetLineWidth(LineWidth);
+            histList.at(i)->SetLineWidth(2);
             histList.at(i)->SetLineStyle(0);
             histList.at(i)->SetLineColor(kBlue);
             histList.at(i)->Draw(); // Draw the histogram on the canvas
