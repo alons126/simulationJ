@@ -54,7 +54,10 @@ void ConvertGENIE_Q2()
                   TARGET_TYPE,
                   TARGET_A,
                   TARGET_Z,
-                  0.2,
-                  0.4,
-                  0.1);
+                  0.05,
+                  0.15,
+                  0.05);
+                //   0.2,
+                //   0.4,
+                //   0.1);
 }
