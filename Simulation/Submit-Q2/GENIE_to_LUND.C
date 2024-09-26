@@ -636,6 +636,7 @@ void GENIE_to_LUND(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
                 TLatex text;
                 text.SetTextSize(0.05);
                 text.DrawLatex(0.2, 0.9, pageTitles.at(i));
+                canvas->Print(pdfFile); // Save the current canvas (histogram) to the PDF
             }
 
             canvas->Clear();
