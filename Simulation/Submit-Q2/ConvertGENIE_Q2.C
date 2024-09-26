@@ -16,7 +16,8 @@ void ConvertGENIE_Q2()
 {
     TString TARGET = "C12";
     TString GENIE_TUNE = "G18_10a_00_000";
-    TString Q2_CUT = "0_19";
+    TString Q2_CUT = "0_03";
+    // TString Q2_CUT = "0_19";
     TString BEAM_E = "2070MeV";
     // TString BEAM_E = "4029MeV";
 
