@@ -16,7 +16,7 @@ void GENIE_to_LUND(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
                    double Q2_min = 0, double Q2_max = 1., double dQ2 = 0.02)
 {
     bool PrintOut = true;
-    bool CountQ2AndExit = false;
+    bool CountQ2AndExit = true;
 
     std::string sample_target0 = TARGET.Data(), sample_genie_tune0 = GENIE_TUNE.Data(), sample_beamE0 = BEAM_E.Data();
     string sample_target1, sample_genie_tune1, sample_beamE1;
@@ -333,20 +333,23 @@ void GENIE_to_LUND(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
 
         cout << "\n";
 
-        int Q2_cut_counter = 0;
+        int Q2_above_cut_counter = 0;
+        vector <int> Q2_above_cut_ind;
+
+        for (int k = 0; k < nEvents; k++)
+        {
+            T->GetEntry(k);
+            if (Q2 >= Q2_master)
+            {
+                ++Q2_above_cut_counter;
+                Q2_above_cut_ind.push_back(k);
+            }
+        }
 
         if (PrintOut)
         {
-            for (int k = 0; k < nEvents; k++)
-            {
-                T->GetEntry(k);
-                if (Q2 >= Q2_master)
-                {
-                    ++Q2_cut_counter;
-                }
-            }
-
-            cout << "Q2_cut_counter = " << Q2_cut_counter << "\n";
+            cout << "Q2_above_cut_counter = " << Q2_above_cut_counter << "\n";
+            cout << "Q2_above_cut_ind.size() = " << Q2_above_cut_ind.size() << "\n";
 
             if (CountQ2AndExit)
             {
