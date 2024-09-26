@@ -614,12 +614,12 @@ void GENIE_to_LUND(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
 
                 ++iFiles;
             }
-            else
-            {
-                cout << "Not enough events to fill " << nFiles << " files with Q2 >= " << doubleToString(Q2_master) << "\n";
-                cout << "Saved " << iFiles << " instead.\n";
-                break;
-            }
+            // else
+            // {
+            //     cout << "Not enough events to fill " << nFiles << " files with Q2 >= " << doubleToString(Q2_master) << "\n";
+            //     cout << "Saved " << iFiles << " instead.\n";
+            //     break;
+            // }
         }
 
         std::string TempFilePath0 = TempLundPath.Data();
