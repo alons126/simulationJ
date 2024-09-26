@@ -631,6 +631,8 @@ void GENIE_to_LUND(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
             canvas->cd(); // Select the canvas
             std::string pageTitleTemp = pageTitles.at(i).Data();
 
+            cout << "pageTitleTemp = " << pageTitleTemp << "\n";
+
             if (pageTitleTemp != "")
             {
                 TLatex text;
