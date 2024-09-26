@@ -17,7 +17,8 @@ void ConvertGENIE_Q2()
     TString TARGET = "C12";
     TString GENIE_TUNE = "G18_10a_00_000";
     TString Q2_CUT = "0_19";
-    TString BEAM_E = "4029MeV";
+    TString BEAM_E = "2070MeV";
+    // TString BEAM_E = "4029MeV";
 
     int NUM_OF_FILES = 5;
     string TARGET_TYPE = "4-foil";
