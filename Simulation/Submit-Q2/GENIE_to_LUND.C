@@ -330,6 +330,23 @@ void GENIE_to_LUND(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
 
         cout << "\n";
 
+        int Q2_cut_counter = 0;
+
+        if (PrintOut)
+        {
+            for (int k = 0; k < nEvents; k++)
+            {
+                T->GetEntry(k);
+                if (Q2 >= Q2_master)
+                {
+                    ++Q2_cut_counter;
+                }
+            }
+
+            cout << "Q2_cut_counter = " << Q2_cut_counter << "\n";
+            exit(0);
+        }
+
         while (iFiles <= nFiles)
         {
             if (!((nEvents - (j + start)) < 0))
