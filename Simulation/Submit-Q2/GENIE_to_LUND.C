@@ -334,6 +334,7 @@ void GENIE_to_LUND(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
         cout << "\n";
 
         int Q2_above_cut_counter = 0;
+        int Q2_above_cut_counter_debug = 0;
         vector<int> Q2_above_cut_ind;
 
         for (int k = 0; k < nEvents; k++)
@@ -610,6 +611,7 @@ void GENIE_to_LUND(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
                     }
 
                     ++FilledEvents;
+                    ++Q2_above_cut_counter_debug;
 
                     if (PrintOut)
                     {
@@ -701,6 +703,10 @@ void GENIE_to_LUND(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
         canvas->Print(Form("%s]", pdfFile)); // Close the PDF file
 
         delete canvas;
+
+
+        cout << "Q2_above_cut_counter = " << Q2_above_cut_counter << "\n";
+        cout << "Q2_above_cut_counter_debug = " << Q2_above_cut_counter_debug << "\n";
 
         Q2_master = Q2_master + dQ2;
         gDirectory->Clear();
