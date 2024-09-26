@@ -44,7 +44,8 @@ void ConvertGENIE_Q2()
     //  gSystem->Exec("mkdir -p " + RECO_SAMPLE_OUTPUT_DIR + "/mchipo");
     //  gSystem->Exec("mkdir -p " + RECO_SAMPLE_OUTPUT_DIR + "/reconhipo");
 
-    GENIE_to_LUND((TRUTH_SAMPLE_INPUT_DIR + "/" + RECO_SAMPLES_SUBDIR + "/" + TRUTH_SAMPLE_ROOT_FILE),
+    GENIE_to_LUND(TARGET, GENIE_TUNE, BEAM_E,
+                  (TRUTH_SAMPLE_INPUT_DIR + "/" + RECO_SAMPLES_SUBDIR + "/" + TRUTH_SAMPLE_ROOT_FILE),
                   RECO_SAMPLE_OUTPUT_DIR,
                   //                (RECO_SAMPLE_OUTPUT_DIR + "/" + RECO_SAMPLES_LUNDDIR),
                   //                RECO_SAMPLE_OUTPUT_DIR,

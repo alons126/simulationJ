@@ -9,16 +9,6 @@
 					"label": ""
 				}
 			]
-		},
-		{
-			"path": "Simulation/Submit-Q2/ConvertGENIE_Q2.C",
-			"bookmarks": [
-				{
-					"line": 15,
-					"column": 24,
-					"label": "ConvertGENIE_Q2"
-				}
-			]
 		}
 	]
 }

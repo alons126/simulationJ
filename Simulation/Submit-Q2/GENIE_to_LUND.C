@@ -10,7 +10,8 @@
 
 using namespace std;
 
-void GENIE_to_LUND(TString inputFile = "", TString lundPath = "./lundfiles/", TString outputFile = "",
+void GENIE_to_LUND(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
+                   TString inputFile = "", TString lundPath = "./lundfiles/", TString outputFile = "",
                    int nFiles = 800, string target = "liquid", int A = 1, int Z = 1,
                    double Q2_min = 0, double Q2_max = 1., double dQ2 = 0.02)
 {
@@ -29,10 +30,21 @@ void GENIE_to_LUND(TString inputFile = "", TString lundPath = "./lundfiles/", TS
 
     while (Q2_master <= Q2_max)
     {
-
         // TODO: change Q2 in lund file name according to Q2_master
         // TODO: apply the Q2 cut on the branch
         // TODO: fix the event fill proccess
+
+        std::string genie_tune = GENIE_TUNE.Data();
+
+        if (genie_tune == "G18_10a_00_000")
+        {
+            cout << "genie_tune = " << genie_tune << "\n";
+        }
+
+        // if (GENIE_TUNE.Data())
+
+        // TString HistPrefix = "TL_Q2cut_" + doubleToString(Q2_master) + "_1e_cut_" + TARGET + GENIE_TUNE;
+        // TH1D *Q2_1e_cut_TL_all_int = new TH1D("Q2_1e_cut_TL_all_int" + "_" + TARGET, );
 
         cout << "\n";
 
