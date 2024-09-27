@@ -5,17 +5,10 @@
 #include "../targets.h"
 #include <fstream>
 #include <iostream>
-#include <algorithm> // for std::find
 
 #include "doubleToString.cpp"
 
 using namespace std;
-
-bool isInVector(int value, const std::vector<int> &vec)
-{
-    // Check if the value is in the vector using std::find
-    return std::find(vec.begin(), vec.end(), value) != vec.end();
-}
 
 void GENIE_to_LUND(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
                    TString inputFile = "", TString lundPath = "./lundfiles/", TString outputFile = "",
@@ -98,6 +91,7 @@ void GENIE_to_LUND(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
     while (Q2_master <= Q2_max)
     {
         // TODO: change Q2 in lund file name according to Q2_master
+        // TODO: apply the Q2 cut on the branch
         // TODO: fix the event fill proccess
 
         gDirectory->Clear();
@@ -267,24 +261,20 @@ void GENIE_to_LUND(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
         Bool_t res;
         Bool_t dis;
         // will be coded into 1,2,3,4
-
         Int_t resid;
-
-        // Final state particles
+        // final state particles
         Int_t nf;
         Int_t pdgf[125];   //[nf]
         Double_t Ef[125];  //[nf]
         Double_t pxf[125]; //[nf]
         Double_t pyf[125]; //[nf]
         Double_t pzf[125]; //[nf]
-
-        // Electron info
+        // electron info
         Double_t El;
         Double_t pxl;
         Double_t pyl;
         Double_t pzl;
 
-        // My additions:
         Double_t Q2;
         Int_t nfp;
         Int_t nfn;
@@ -332,9 +322,9 @@ void GENIE_to_LUND(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
 
         int iFiles = 1;
 
-        int MaxEventsPerFile = 100000;
-        int j = 0;
-        int offset = 0;
+        int MaxEventsPerFile = 10000;
+        // int j = 0;
+        int start = 0;
 
         // nFiles = 5;
 
@@ -350,9 +340,7 @@ void GENIE_to_LUND(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
         int Q2_above_cut_counter = 0;
         int Q2_above_cut_counter_debug = 0;
         int matched = 0;
-        int totalFilledEvents = 0;
         vector<int> Q2_above_cut_ind;
-        vector<int> Filled_events_ind;
 
         for (int k = 0; k < nEvents; k++)
         {
@@ -377,7 +365,7 @@ void GENIE_to_LUND(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
 
         while (iFiles <= nFiles)
         {
-            int FilledEvents = 0;
+            int j = 0;
 
             if (PrintOut)
             {
@@ -390,44 +378,23 @@ void GENIE_to_LUND(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
 
             ofstream outfile;
             outfile.open(outfilename);
+            // int start = (iFiles - 1) * 10000;
+            // int end = iFiles * 10000;
 
-            while ((FilledEvents < MaxEventsPerFile) && (totalFilledEvents < Q2_above_cut_ind.size()))
+            int FilledEvents = 0;
+
+            while (FilledEvents < MaxEventsPerFile)
             {
-                T->GetEntry(j + offset);
+                T->GetEntry(j + start);
 
-                if (Q2 >= Q2_master && isInVector((j + offset), Q2_above_cut_ind))
+                if (Q2 >= Q2_master)
                 {
-                    ++matched;
-
-                    if (isInVector((j + offset), Filled_events_ind))
+                    for (int q = 0; q < Q2_above_cut_ind.size(); q++)
                     {
-                        cout << "\nExited!!!!\n";
-                        cout << "\niFiles = " << iFiles << "\n";
-                        cout << "Q2 = " << Q2 << "\n";
-                        cout << "FilledEvents = " << FilledEvents << "\n";
-                        cout << "j = " << j << "\n";
-                        cout << "offset = " << offset << "\n";
-                        cout << "\n";
-                        exit(0);
-                    }
-
-                    Q2_1e_cut_TL_all_int->Fill(Q2);
-
-                    if (qel)
-                    {
-                        Q2_1e_cut_TL_QE_only->Fill(Q2);
-                    }
-                    else if (mec)
-                    {
-                        Q2_1e_cut_TL_MEC_only->Fill(Q2);
-                    }
-                    else if (res)
-                    {
-                        Q2_1e_cut_TL_RES_only->Fill(Q2);
-                    }
-                    else if (dis)
-                    {
-                        Q2_1e_cut_TL_DIS_only->Fill(Q2);
+                        if ((Q2 >= Q2_master) && ((j + start) == Q2_above_cut_ind.at(q)))
+                        {
+                            ++matched;
+                        }
                     }
 
                     if (nf == 1)
@@ -558,6 +525,27 @@ void GENIE_to_LUND(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
                             }
                         }
                     }
+                    else
+                    {
+                        Q2_1e_cut_TL_all_int->Fill(Q2);
+
+                        if (qel)
+                        {
+                            Q2_1e_cut_TL_QE_only->Fill(Q2);
+                        }
+                        else if (mec)
+                        {
+                            Q2_1e_cut_TL_MEC_only->Fill(Q2);
+                        }
+                        else if (res)
+                        {
+                            Q2_1e_cut_TL_RES_only->Fill(Q2);
+                        }
+                        else if (dis)
+                        {
+                            Q2_1e_cut_TL_DIS_only->Fill(Q2);
+                        }
+                    }
 
                     // Stores reaction mechanism qel = 1, mec = 2, rec = 3, dis=4
                     double code = 0.;
@@ -636,9 +624,7 @@ void GENIE_to_LUND(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
                     }
 
                     ++FilledEvents;
-                    ++totalFilledEvents;
                     ++Q2_above_cut_counter_debug;
-                    Filled_events_ind.push_back(j + offset);
 
                     if (PrintOut)
                     {
@@ -646,40 +632,29 @@ void GENIE_to_LUND(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
                         cout << "Q2 = " << Q2 << "\n";
                         cout << "FilledEvents = " << FilledEvents << "\n";
                         cout << "j = " << j << "\n";
-                        cout << "offset = " << offset << "\n";
+                        cout << "start = " << start << "\n";
                         cout << "\n";
-                    }
-
-                    if (((j + offset) >= nEvents))
-                    {
-                        break;
                     }
                 }
 
                 ++j;
 
-                // if ((j + offset) > nEvents)
-                // {
-                //     break;
-                // }
+                if ((j + start) > nEvents)
+                {
+                    break;
+                }
             }
 
             outfile.close();
 
-            if (totalFilledEvents >= Q2_above_cut_ind.size())
-            {
-                break;
-            }
-            else
-            {
-                offset = j + 1;
-                ++iFiles;
-            }
+            start = j;
 
             if (PrintOut)
             {
-                cout << "offset = " << offset << "\n";
+                cout << "start = " << start << "\n";
             }
+
+            ++iFiles;
 
             // else
             // {
@@ -699,7 +674,7 @@ void GENIE_to_LUND(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
         canvas->cd()->SetGrid();
         canvas->cd()->SetBottomMargin(0.14), canvas->cd()->SetLeftMargin(0.18), canvas->cd()->SetRightMargin(0.12);
 
-        // offset the multi-page PDF
+        // Start the multi-page PDF
         canvas->Print(Form("%s[", pdfFile)); // Open the PDF file
 
         // Loop through the list of histograms

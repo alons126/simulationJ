@@ -26,11 +26,15 @@ void ConvertGENIE_Q2()
     int TARGET_A = 12;
     int TARGET_Z = 6;
 
-    TString TRUTH_SAMPLE_INPUT_DIR = "/w/hallb-scshelf2102/clas12/asportes/2N_Analysis_Truth_Samples/" + TARGET + "/" + GENIE_TUNE + "/Q2_th_test_samples/" + BEAM_E;
+    TString TRUTH_SAMPLE_INPUT_DIR = "'/Users/alon/University/Ph.D. (TAU)/e4nu (PhD)/Assignments (PhD)/01 Sample production/New GENIE samples/Figuring Q2 thresholds'/" +
+                                     TARGET + "/" + GENIE_TUNE + "/" + BEAM_E + "_def_Q2_th";
+    // TString TRUTH_SAMPLE_INPUT_DIR = "/w/hallb-scshelf2102/clas12/asportes/2N_Analysis_Truth_Samples/" + TARGET + "/" + GENIE_TUNE + "/Q2_th_test_samples/" + BEAM_E;
     TString TRUTH_SAMPLE_ROOT_FILE_PREFIX = TARGET + "_" + GENIE_TUNE + "_Q2_" + Q2_CUT + "_" + BEAM_E;
-    TString TRUTH_SAMPLE_ROOT_FILE = TRUTH_SAMPLE_ROOT_FILE_PREFIX + "__1.root";
+    TString TRUTH_SAMPLE_ROOT_FILE = "e_on_1000060120_2070MeV_0.gst.root";
+    // TString TRUTH_SAMPLE_ROOT_FILE = TRUTH_SAMPLE_ROOT_FILE_PREFIX + ".root";
 
-    TString RECO_SAMPLES_TOPDIR = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/2N_Analysis_Reco_Samples";
+    TString RECO_SAMPLES_TOPDIR = "~/Downloads";
+    // TString RECO_SAMPLES_TOPDIR = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/2N_Analysis_Reco_Samples";
     TString RECO_SAMPLES_SUBDIR = "master-routine_validation_01-eScattering";
     TString RECO_SAMPLES_LUNDDIR = "lundfiles";
 
@@ -41,16 +45,11 @@ void ConvertGENIE_Q2()
     TString RECO_SAMPLE_OUTPUT_DIR = RECO_SAMPLES_TOPDIR + "/" + TARGET + "/" + GENIE_TUNE + "/Q2_th_test_samples/" + BEAM_E;
 
     gSystem->Exec("rm -rf " + RECO_SAMPLE_OUTPUT_DIR);
-    //  gSystem->Exec("mkdir -p " + RECO_SAMPLE_OUTPUT_DIR);
-    //  gSystem->Exec("mkdir -p " + RECO_SAMPLE_OUTPUT_DIR + "/lundfiles");
-    //  gSystem->Exec("mkdir -p " + RECO_SAMPLE_OUTPUT_DIR + "/mchipo");
-    //  gSystem->Exec("mkdir -p " + RECO_SAMPLE_OUTPUT_DIR + "/reconhipo");
 
     GENIE_to_LUND(TARGET, GENIE_TUNE, BEAM_E,
-                  (TRUTH_SAMPLE_INPUT_DIR + "/" + RECO_SAMPLES_SUBDIR + "/" + TRUTH_SAMPLE_ROOT_FILE),
+                  "~/Downloads/e_on_1000060120_2070MeV_0.gst.root",
+                //   (TRUTH_SAMPLE_INPUT_DIR + "/" + RECO_SAMPLES_SUBDIR + "/" + TRUTH_SAMPLE_ROOT_FILE),
                   RECO_SAMPLE_OUTPUT_DIR,
-                  //                (RECO_SAMPLE_OUTPUT_DIR + "/" + RECO_SAMPLES_LUNDDIR),
-                  //                RECO_SAMPLE_OUTPUT_DIR,
                   TRUTH_SAMPLE_ROOT_FILE_PREFIX,
                   NUM_OF_FILES,
                   TARGET_TYPE,
@@ -59,7 +58,7 @@ void ConvertGENIE_Q2()
                   0.05,
                   0.05,
                   0.05);
-                //   0.2,
-                //   0.4,
-                //   0.1);
+    //   0.2,
+    //   0.4,
+    //   0.1);
 }
