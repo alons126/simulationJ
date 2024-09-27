@@ -107,8 +107,8 @@ void GENIE_to_LUND_Q2(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
         std::vector<TString> pageTitles;
 
         TString HistNamePrefix_1e_cut = "TL_Q2cut_" + doubleToString(Q2_master) + "_1e_cut" + sample_target1 + sample_genie_tune1 + sample_beamE1;
-        TString HistTitlePrefix_1e_cut = "Q^{2} for (e,e') with Q^{2}_{TL cut} #geq " + doubleToString(Q2_master) + " GeV^{2}/c^{2} on " + sample_target2 + sample_genie_tune2 + sample_beamE2;
-        pageTitles.push_back("Q^{2} plots for (e,e')");
+        TString HistTitlePrefix_1e_cut = "Q^{2} for (e,e') with Q^{2}_{TL cut} #geq " + doubleToStringWithPercision(Q2_master) + " [GeV^{2}/c^{2}] on " + sample_target2 + sample_genie_tune2 + sample_beamE2;
+        pageTitles.push_back("Q^{2} plots for (e,e') with Q^{2}_{TL cut} #geq " + doubleToStringWithPercision(Q2_master) + " [GeV^{2}/c^{2}]");
         TH1D *Q2_1e_cut_TL_all_int = new TH1D(HistNamePrefix_1e_cut, HistTitlePrefix_1e_cut + " (All Int.);Q^{2} [GeV^{2}/c^{2}]", 100, Q2_llim, Q2_ulim);
         histList.push_back(Q2_1e_cut_TL_all_int);
         pageTitles.push_back("");
@@ -125,8 +125,8 @@ void GENIE_to_LUND_Q2(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
         histList.push_back(Q2_1e_cut_TL_DIS_only);
 
         TString HistNamePrefix_1p = "TL_Q2cut_" + doubleToString(Q2_master) + "_1p" + sample_target1 + sample_genie_tune1 + sample_beamE1;
-        TString HistTitlePrefix_1p = "Q^{2} for 1p with Q^{2}_{TL cut} #geq " + doubleToString(Q2_master) + " GeV^{2}/c^{2} on " + sample_target2 + sample_genie_tune2 + sample_beamE2;
-        pageTitles.push_back("Q^{2} plots for 1p");
+        TString HistTitlePrefix_1p = "Q^{2} for 1p with Q^{2}_{TL cut} #geq " + doubleToStringWithPercision(Q2_master) + " [GeV^{2}/c^{2}] on " + sample_target2 + sample_genie_tune2 + sample_beamE2;
+        pageTitles.push_back("Q^{2} plots for 1p with Q^{2}_{TL cut} #geq " + doubleToStringWithPercision(Q2_master) + " [GeV^{2}/c^{2}]");
         TH1D *Q2_1p_TL_all_int = new TH1D(HistNamePrefix_1p, HistTitlePrefix_1p + " (All Int.);Q^{2} [GeV^{2}/c^{2}]", 100, Q2_llim, Q2_ulim);
         histList.push_back(Q2_1p_TL_all_int);
         pageTitles.push_back("");
@@ -143,8 +143,8 @@ void GENIE_to_LUND_Q2(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
         histList.push_back(Q2_1p_TL_DIS_only);
 
         TString HistNamePrefix_1n = "TL_Q2cut_" + doubleToString(Q2_master) + "_1n" + sample_target1 + sample_genie_tune1 + sample_beamE1;
-        TString HistTitlePrefix_1n = "Q^{2} for 1n with Q^{2}_{TL cut} #geq " + doubleToString(Q2_master) + " GeV^{2}/c^{2} on " + sample_target2 + sample_genie_tune2 + sample_beamE2;
-        pageTitles.push_back("Q^{2} plots for 1n");
+        TString HistTitlePrefix_1n = "Q^{2} for 1n with Q^{2}_{TL cut} #geq " + doubleToStringWithPercision(Q2_master) + " [GeV^{2}/c^{2}] on " + sample_target2 + sample_genie_tune2 + sample_beamE2;
+        pageTitles.push_back("Q^{2} plots for 1n with Q^{2}_{TL cut} #geq " + doubleToStringWithPercision(Q2_master) + " [GeV^{2}/c^{2}]");
         TH1D *Q2_1n_TL_all_int = new TH1D(HistNamePrefix_1n, HistTitlePrefix_1n + " (All Int.);Q^{2} [GeV^{2}/c^{2}]", 100, Q2_llim, Q2_ulim);
         histList.push_back(Q2_1n_TL_all_int);
         pageTitles.push_back("");
@@ -161,8 +161,8 @@ void GENIE_to_LUND_Q2(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
         histList.push_back(Q2_1n_TL_DIS_only);
 
         TString HistNamePrefix_1N = "TL_Q2cut_" + doubleToString(Q2_master) + "_1N" + sample_target1 + sample_genie_tune1 + sample_beamE1;
-        TString HistTitlePrefix_1N = "Q^{2} for 1N with Q^{2}_{TL cut} #geq " + doubleToString(Q2_master) + " GeV^{2}/c^{2} on " + sample_target2 + sample_genie_tune2 + sample_beamE2;
-        pageTitles.push_back("Q^{2} plots for 1N");
+        TString HistTitlePrefix_1N = "Q^{2} for 1N with Q^{2}_{TL cut} #geq " + doubleToStringWithPercision(Q2_master) + " [GeV^{2}/c^{2}] on " + sample_target2 + sample_genie_tune2 + sample_beamE2;
+        pageTitles.push_back("Q^{2} plots for 1N with Q^{2}_{TL cut} #geq " + doubleToStringWithPercision(Q2_master) + " [GeV^{2}/c^{2}]");
         TH1D *Q2_1N_TL_all_int = new TH1D(HistNamePrefix_1N, HistTitlePrefix_1N + " (All Int.);Q^{2} [GeV^{2}/c^{2}]", 100, Q2_llim, Q2_ulim);
         histList.push_back(Q2_1N_TL_all_int);
         pageTitles.push_back("");
@@ -179,8 +179,8 @@ void GENIE_to_LUND_Q2(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
         histList.push_back(Q2_1N_TL_DIS_only);
 
         TString HistNamePrefix_2p = "TL_Q2cut_" + doubleToString(Q2_master) + "_2p" + sample_target1 + sample_genie_tune1 + sample_beamE1;
-        TString HistTitlePrefix_2p = "Q^{2} for 2p with Q^{2}_{TL cut} #geq " + doubleToString(Q2_master) + " GeV^{2}/c^{2} on " + sample_target2 + sample_genie_tune2 + sample_beamE2;
-        pageTitles.push_back("Q^{2} plots for 2p");
+        TString HistTitlePrefix_2p = "Q^{2} for 2p with Q^{2}_{TL cut} #geq " + doubleToStringWithPercision(Q2_master) + " [GeV^{2}/c^{2}] on " + sample_target2 + sample_genie_tune2 + sample_beamE2;
+        pageTitles.push_back("Q^{2} plots for 2p with Q^{2}_{TL cut} #geq " + doubleToStringWithPercision(Q2_master) + " [GeV^{2}/c^{2}]");
         TH1D *Q2_2p_TL_all_int = new TH1D(HistNamePrefix_2p, HistTitlePrefix_2p + " (All Int.);Q^{2} [GeV^{2}/c^{2}]", 100, Q2_llim, Q2_ulim);
         histList.push_back(Q2_2p_TL_all_int);
         pageTitles.push_back("");
@@ -197,8 +197,8 @@ void GENIE_to_LUND_Q2(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
         histList.push_back(Q2_2p_TL_DIS_only);
 
         TString HistNamePrefix_1n1p = "TL_Q2cut_" + doubleToString(Q2_master) + "_1n1p" + sample_target1 + sample_genie_tune1 + sample_beamE1;
-        TString HistTitlePrefix_1n1p = "Q^{2} for 1n1p with Q^{2}_{TL cut} #geq " + doubleToString(Q2_master) + " GeV^{2}/c^{2} on " + sample_target2 + sample_genie_tune2 + sample_beamE2;
-        pageTitles.push_back("Q^{2} plots for 1n1p");
+        TString HistTitlePrefix_1n1p = "Q^{2} for 1n1p with Q^{2}_{TL cut} #geq " + doubleToStringWithPercision(Q2_master) + " [GeV^{2}/c^{2}] on " + sample_target2 + sample_genie_tune2 + sample_beamE2;
+        pageTitles.push_back("Q^{2} plots for 1n1p with Q^{2}_{TL cut} #geq " + doubleToStringWithPercision(Q2_master) + " [GeV^{2}/c^{2}]");
         TH1D *Q2_1n1p_TL_all_int = new TH1D(HistNamePrefix_1n1p, HistTitlePrefix_1n1p + " (All Int.);Q^{2} [GeV^{2}/c^{2}]", 100, Q2_llim, Q2_ulim);
         histList.push_back(Q2_1n1p_TL_all_int);
         pageTitles.push_back("");
@@ -215,8 +215,8 @@ void GENIE_to_LUND_Q2(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
         histList.push_back(Q2_1n1p_TL_DIS_only);
 
         TString HistNamePrefix_2N = "TL_Q2cut_" + doubleToString(Q2_master) + "_2N" + sample_target1 + sample_genie_tune1 + sample_beamE1;
-        TString HistTitlePrefix_2N = "Q^{2} for 2N with Q^{2}_{TL cut} #geq " + doubleToString(Q2_master) + " GeV^{2}/c^{2} on " + sample_target2 + sample_genie_tune2 + sample_beamE2;
-        pageTitles.push_back("Q^{2} plots for 2N");
+        TString HistTitlePrefix_2N = "Q^{2} for 2N with Q^{2}_{TL cut} #geq " + doubleToStringWithPercision(Q2_master) + " [GeV^{2}/c^{2}] on " + sample_target2 + sample_genie_tune2 + sample_beamE2;
+        pageTitles.push_back("Q^{2} plots for 2N with Q^{2}_{TL cut} #geq " + doubleToStringWithPercision(Q2_master) + " [GeV^{2}/c^{2}]");
         TH1D *Q2_2N_TL_all_int = new TH1D(HistNamePrefix_2N, HistTitlePrefix_2N + " (All Int.);Q^{2} [GeV^{2}/c^{2}]", 100, Q2_llim, Q2_ulim);
         histList.push_back(Q2_2N_TL_all_int);
         pageTitles.push_back("");
@@ -728,7 +728,7 @@ void GENIE_to_LUND_Q2(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
         {
             canvas->cd(); // Select the canvas
             canvas->Clear();
-
+            
             std::string pageTitleTemp = pageTitles.at(i).Data();
 
             if (pageTitleTemp != "")
@@ -736,8 +736,10 @@ void GENIE_to_LUND_Q2(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
                 // cout << "\033[33mpageTitleTemp = " << pageTitleTemp << "\n\033[0m";
 
                 TLatex text;
+                text.SetTextAlign(22);
                 text.SetTextSize(0.05);
-                text.DrawLatex(0.2, 0.9, pageTitles.at(i));
+                text.DrawLatexNDC(0.5, 0.5, pageTitles.at(i));
+                canvas->Update();
                 canvas->Print(pdfFile); // Save the current canvas (histogram) to the PDF
             }
 
