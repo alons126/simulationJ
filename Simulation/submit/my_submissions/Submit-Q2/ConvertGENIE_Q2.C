@@ -6,7 +6,7 @@
 #include <fstream>
 #include <iostream>
 
-#include "GENIE_to_LUND.C"
+#include "GENIE_to_LUND_Q2.C"
 
 using namespace std;
 
@@ -33,7 +33,7 @@ void ConvertGENIE_Q2()
     TString TRUTH_SAMPLE_ROOT_FILE = "e_on_1000060120_2070MeV_0.gst.root";
     // TString TRUTH_SAMPLE_ROOT_FILE = TRUTH_SAMPLE_ROOT_FILE_PREFIX + ".root";
 
-    TString RECO_SAMPLES_TOPDIR = "~/Downloads";
+    TString RECO_SAMPLES_TOPDIR = "/Users/alon/Downloads";
     // TString RECO_SAMPLES_TOPDIR = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/2N_Analysis_Reco_Samples";
     TString RECO_SAMPLES_SUBDIR = "master-routine_validation_01-eScattering";
     TString RECO_SAMPLES_LUNDDIR = "lundfiles";
@@ -46,18 +46,18 @@ void ConvertGENIE_Q2()
 
     gSystem->Exec("rm -rf " + RECO_SAMPLE_OUTPUT_DIR);
 
-    GENIE_to_LUND(TARGET, GENIE_TUNE, BEAM_E,
-                  "~/Downloads/e_on_1000060120_2070MeV_0.gst.root",
-                //   (TRUTH_SAMPLE_INPUT_DIR + "/" + RECO_SAMPLES_SUBDIR + "/" + TRUTH_SAMPLE_ROOT_FILE),
-                  RECO_SAMPLE_OUTPUT_DIR,
-                  TRUTH_SAMPLE_ROOT_FILE_PREFIX,
-                  NUM_OF_FILES,
-                  TARGET_TYPE,
-                  TARGET_A,
-                  TARGET_Z,
-                  0.05,
-                  0.05,
-                  0.05);
+    GENIE_to_LUND_Q2(TARGET, GENIE_TUNE, BEAM_E,
+                     "/Users/alon/Downloads/e_on_1000060120_2070MeV_0.gst.root",
+                     //   (TRUTH_SAMPLE_INPUT_DIR + "/" + RECO_SAMPLES_SUBDIR + "/" + TRUTH_SAMPLE_ROOT_FILE),
+                     RECO_SAMPLE_OUTPUT_DIR,
+                     TRUTH_SAMPLE_ROOT_FILE_PREFIX,
+                     NUM_OF_FILES,
+                     TARGET_TYPE,
+                     TARGET_A,
+                     TARGET_Z,
+                     0.05,  // start
+                     0.15,  // finish
+                     0.05); // delta
     //   0.2,
     //   0.4,
     //   0.1);

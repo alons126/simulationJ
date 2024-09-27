@@ -2,7 +2,7 @@
 #include "TFile.h"
 #include "TTree.h"
 #include "TRandom3.h"
-#include "../targets.h"
+#include "../../../targets.h"
 #include <fstream>
 #include <iostream>
 #include <algorithm> // for std::find
@@ -17,12 +17,13 @@ bool isInVector(int value, const std::vector<int> &vec)
     return std::find(vec.begin(), vec.end(), value) != vec.end();
 }
 
-void GENIE_to_LUND(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
-                   TString inputFile = "", TString lundPath = "./lundfiles/", TString outputFile = "",
-                   int nFiles = 800, string target = "liquid", int A = 1, int Z = 1,
-                   double Q2_min = 0, double Q2_max = 1., double dQ2 = 0.02)
+void GENIE_to_LUND_Q2(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
+                      TString inputFile = "", TString lundPath = "./lundfiles/", TString outputFile = "",
+                      int nFiles = 800, string target = "liquid", int A = 1, int Z = 1,
+                      double Q2_min = 0, double Q2_max = 1., double dQ2 = 0.02)
 {
-    bool PrintOut = true;
+    bool PrintOut = false;
+    bool StepByStepPrintOut = false;
     bool CountQ2AndExit = false;
 
     std::string sample_target0 = TARGET.Data(), sample_genie_tune0 = GENIE_TUNE.Data(), sample_beamE0 = BEAM_E.Data();
@@ -86,21 +87,20 @@ void GENIE_to_LUND(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
 
     if (PrintOut)
     {
-        cout << "\n";
-        cout << "inputFile = " << inputFile << endl;
-        cout << "lundPath = " << lundPath << endl;
-        cout << "outputFile = " << outputFile << endl;
-        cout << "\n";
+        cout << "\033[33m\n\033[0m";
+        cout << "\033[33minputFile = " << inputFile << "\n\033[0m";
+        cout << "\033[33mlundPath = " << lundPath << "\n\033[0m";
+        cout << "\033[33moutputFile = " << outputFile << "\n\033[0m";
+        cout << "\033[33m\n\033[0m";
     }
 
     double Q2_master = Q2_min;
 
-    while (Q2_master <= Q2_max)
+    while (Q2_master < (Q2_max + dQ2))
     {
-        // TODO: change Q2 in lund file name according to Q2_master
-        // TODO: fix the event fill proccess
-
-        gDirectory->Clear();
+        cout << "\033[33m\n==============================================================\n\033[0m";
+        cout << "\033[33mGenerating files for Q2 = " << doubleToString(Q2_master) << " cut\n\033[0m";
+        cout << "\033[33m==============================================================\n\033[0m" << endl;
 
         // #region My Custom Fold
         std::vector<TH1D *> histList;
@@ -233,12 +233,15 @@ void GENIE_to_LUND(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
         histList.push_back(Q2_2N_TL_DIS_only);
         // #endregion
 
-        cout << "\n";
+        cout << "\033[33m\n\033[0m";
 
         TString TempOutPutPath = "/Q2_" + doubleToString(Q2_master);
 
-        cout << "TempOutPutPath = " << TempOutPutPath << endl;
-        cout << "lundPath = " << lundPath << endl;
+        if (PrintOut)
+        {
+            cout << "\033[33mTempOutPutPath = " << TempOutPutPath << "\n\033[0m";
+            cout << "\033[33mlundPath = " << lundPath << "\n\033[0m";
+        }
 
         gSystem->Exec("mkdir -p " + lundPath + TempOutPutPath);
         gSystem->Exec("mkdir -p " + lundPath + TempOutPutPath + "/lundfiles");
@@ -246,12 +249,21 @@ void GENIE_to_LUND(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
         gSystem->Exec("mkdir -p " + lundPath + TempOutPutPath + "/reconhipo");
 
         TString TempLundPath = lundPath + TempOutPutPath + "/lundfiles";
-        cout << "TempLundPath =  " << TempLundPath << endl;
+
+        cout << "\033[33mLund out path for Q2 = " << doubleToString(Q2_master) << " cut:\033[0m" << endl;
+        cout << TempLundPath << "\n\n";
 
         // Read in target parameter files
-        cout << "Converting file " << inputFile << endl;
+        cout << "\033[33mConverting file:\033[0m" << endl;
+        cout << inputFile << "\n\n";
+
         TFile *inFile = new TFile(inputFile);
-        cout << "Making LUND file " << outputFile << endl;
+
+        TString Q2_cut_TString = doubleToString(Q2_master);
+        outputFile = TARGET + "_" + GENIE_TUNE + "_Q2_" + Q2_cut_TString + "_" + BEAM_E;
+
+        cout << "\033[33mMaking LUND files with prefix:\033[0m" << endl;
+        cout << outputFile << "\n\n";
 
         TTree *T = (TTree *)inFile->Get("gst");
 
@@ -289,8 +301,6 @@ void GENIE_to_LUND(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
         Int_t nfp;
         Int_t nfn;
 
-        cout << "Making LUND file " << outputFile << endl;
-
         T->SetBranchAddress("qel", &qel);
         T->SetBranchAddress("mec", &mec);
         T->SetBranchAddress("res", &res);
@@ -316,10 +326,11 @@ void GENIE_to_LUND(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
         T->SetBranchAddress("nfn", &nfn);
 
         int nEvents = T->GetEntries();
+        cout << "\033[33mNumber of events (nEvents):\033[0m " << nEvents << "\n\n";
 
         if (PrintOut)
         {
-            cout << "\nQ2_master = " << Q2_master << endl;
+            cout << "\033[33m\nQ2_master = " << Q2_master << "\n\033[0m";
         }
 
         TString formatstring, outstring;
@@ -332,20 +343,20 @@ void GENIE_to_LUND(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
 
         int iFiles = 1;
 
-        int MaxEventsPerFile = 100000;
+        int MaxEventsPerFile = 10000;
         int j = 0;
-        int offset = 0;
 
-        // nFiles = 5;
+        cout << "\033[33mNumber of lund files (nFiles):\033[0m " << nFiles << "\n";
+        cout << "\033[33mMax number of Events/file:\033[0m " << MaxEventsPerFile << "\n";
 
         if (PrintOut)
         {
-            cout << "nFiles = " << nFiles << endl;
-            cout << "Number of events = " << nEvents << endl;
-            cout << "MaxEventsPerFile = " << MaxEventsPerFile << endl;
+            cout << "\033[33mnFiles = " << nFiles << "\n\033[0m";
+            cout << "\033[33mNumber of events = " << nEvents << "\n\033[0m";
+            cout << "\033[33mMaxEventsPerFile = " << MaxEventsPerFile << "\n\033[0m";
         }
 
-        cout << "\n";
+        cout << "\033[33m\n\033[0m";
 
         int Q2_above_cut_counter = 0;
         int Q2_above_cut_counter_debug = 0;
@@ -366,8 +377,8 @@ void GENIE_to_LUND(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
 
         if (PrintOut)
         {
-            cout << "Q2_above_cut_counter = " << Q2_above_cut_counter << "\n";
-            cout << "Q2_above_cut_ind.size() = " << Q2_above_cut_ind.size() << "\n";
+            cout << "\033[33mQ2_above_cut_counter = " << Q2_above_cut_counter << "\n\033[0m";
+            cout << "\033[33mQ2_above_cut_ind.size() = " << Q2_above_cut_ind.size() << "\n\033[0m";
 
             if (CountQ2AndExit)
             {
@@ -381,33 +392,43 @@ void GENIE_to_LUND(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
 
             if (PrintOut)
             {
-                cout << "-----------------------------------------------------------------\n";
-                cout << "iFiles = " << iFiles << "\n";
-                cout << "j = " << j << "\n";
+                cout << "\033[33m\n-----------------------------------------------------------------\n\033[0m";
+                cout << "\033[33miFiles = " << iFiles << "\n\033[0m";
+                cout << "\033[33mj = " << j << "\n\n\033[0m";
             }
 
             TString outfilename = Form("%s/%s_%d.txt", TempLundPath.Data(), outputFile.Data(), iFiles);
 
+            cout << "\033[33moutfilename:\033[0m " << outfilename << "\n";
+
             ofstream outfile;
             outfile.open(outfilename);
 
+            if (!outfile.is_open())
+            {
+                cout << "\033[33moutfile file cannot be created! Exiting...\033[0m", exit(0);
+            }
+
             while ((FilledEvents < MaxEventsPerFile) && (totalFilledEvents < Q2_above_cut_ind.size()))
             {
-                T->GetEntry(j + offset);
+                T->GetEntry(j);
 
-                if (Q2 >= Q2_master && isInVector((j + offset), Q2_above_cut_ind))
+                if (StepByStepPrintOut)
                 {
-                    ++matched;
+                    cout << "\033[33mLooping over events...\n\033[0m";
+                }
 
-                    if (isInVector((j + offset), Filled_events_ind))
+                if (Q2 >= Q2_master && isInVector((j), Q2_above_cut_ind))
+                {
+                    if (isInVector((j), Filled_events_ind))
                     {
-                        cout << "\nExited!!!!\n";
-                        cout << "\niFiles = " << iFiles << "\n";
-                        cout << "Q2 = " << Q2 << "\n";
-                        cout << "FilledEvents = " << FilledEvents << "\n";
-                        cout << "j = " << j << "\n";
-                        cout << "offset = " << offset << "\n";
-                        cout << "\n";
+                        cout << "\033[33m\nExited!!!!\n\033[0m";
+                        cout << "\033[33m\niFiles = " << iFiles << "\n\033[0m";
+                        cout << "\033[33mQ2 = " << Q2 << "\n\033[0m";
+                        cout << "\033[33mFilledEvents = " << FilledEvents << "\n\033[0m";
+                        cout << "\033[33mtotalFilledEvents = " << totalFilledEvents << "\n\033[0m";
+                        cout << "\033[33mj = " << j << "\n\033[0m";
+                        cout << "\033[33m\n\033[0m";
                         exit(0);
                     }
 
@@ -600,7 +621,7 @@ void GENIE_to_LUND(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
                     }
 
                     // LUND header for the event:
-                    formatstring = "%i \t %i \t %i \t %f \t %f \t %i \t %f \t %i \t %d \t %.2f \n";
+                    formatstring = "%i \t %i \t %i \t %f \t %f \t %i \t %f \t %i \t %d \t %.2f \n\033[0m";
                     outstring = Form(formatstring, nf_mod, A, Z, RES_ID /*targP*/, beamP, beamType, beamE, interactN, j, code);
                     outfile << outstring;
 
@@ -635,22 +656,23 @@ void GENIE_to_LUND(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
                         }
                     }
 
+                    ++matched;
                     ++FilledEvents;
                     ++totalFilledEvents;
                     ++Q2_above_cut_counter_debug;
-                    Filled_events_ind.push_back(j + offset);
+                    Filled_events_ind.push_back(j);
 
                     if (PrintOut)
                     {
-                        cout << "\niFiles = " << iFiles << "\n";
-                        cout << "Q2 = " << Q2 << "\n";
-                        cout << "FilledEvents = " << FilledEvents << "\n";
-                        cout << "j = " << j << "\n";
-                        cout << "offset = " << offset << "\n";
-                        cout << "\n";
+                        cout << "\033[33m\niFiles = " << iFiles << "\n\033[0m";
+                        cout << "\033[33mQ2 = " << Q2 << "\n\033[0m";
+                        cout << "\033[33mFilledEvents = " << FilledEvents << "\n\033[0m";
+                        cout << "\033[33mtotalFilledEvents = " << totalFilledEvents << "\n\033[0m";
+                        cout << "\033[33mj = " << j << "\n\033[0m";
+                        cout << "\033[33m\n\033[0m";
                     }
 
-                    if (((j + offset) >= nEvents))
+                    if ((j >= nEvents))
                     {
                         break;
                     }
@@ -658,10 +680,16 @@ void GENIE_to_LUND(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
 
                 ++j;
 
-                // if ((j + offset) > nEvents)
-                // {
-                //     break;
-                // }
+                if (j > nEvents)
+                {
+                    cout << "\033[33mj is larger than nEvents! Breaking...\n\033[0m";
+                    break;
+                }
+            }
+
+            if (StepByStepPrintOut)
+            {
+                cout << "\033[33mLeft event loop!\n\033[0m";
             }
 
             outfile.close();
@@ -672,27 +700,20 @@ void GENIE_to_LUND(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
             }
             else
             {
-                offset = j + 1;
                 ++iFiles;
             }
-
-            if (PrintOut)
-            {
-                cout << "offset = " << offset << "\n";
-            }
-
-            // else
-            // {
-            //     cout << "Not enough events to fill " << nFiles << " files with Q2 >= " << doubleToString(Q2_master) << "\n";
-            //     cout << "Saved " << iFiles << " instead.\n";
-            //     break;
-            // }
         }
 
-        std::string TempFilePath0 = TempLundPath.Data();
+        cout << "\033[33m\n\nSaving debugging histograms...\n\n\033[0m\033[0m";
+
+        std::string TempFilePath0 = (lundPath + TempOutPutPath).Data();
         std::string TempFilePath = TempFilePath0 + "/";
-        std::string pdfFileName = TempFilePath + "Q2_" + doubleToString(Q2_master) + ".pdf";
+        std::string pdfFileName = TempFilePath + sample_target0 + "_" + sample_genie_tune0 + "_Q2_" + doubleToString(Q2_master) + "_" + sample_beamE0 + "_plots.pdf";
         const char *pdfFile = pdfFileName.c_str();
+
+        TList *plotsList = new TList();
+        string listName = TempFilePath + sample_target0 + "_" + sample_genie_tune0 + "_Q2_" + doubleToString(Q2_master) + "_" + sample_beamE0 + "_plots.root";
+        const char *TListName = listName.c_str();
 
         // Create a canvas
         TCanvas *canvas = new TCanvas("canvas", "Canvas for saving histograms", 800, 600);
@@ -712,7 +733,7 @@ void GENIE_to_LUND(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
 
             if (pageTitleTemp != "")
             {
-                cout << "pageTitleTemp = " << pageTitleTemp << "\n";
+                // cout << "\033[33mpageTitleTemp = " << pageTitleTemp << "\n\033[0m";
 
                 TLatex text;
                 text.SetTextSize(0.05);
@@ -735,16 +756,32 @@ void GENIE_to_LUND(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
             histList.at(i)->SetLineColor(kBlue);
             histList.at(i)->Draw(); // Draw the histogram on the canvas
             canvas->Print(pdfFile); // Save the current canvas (histogram) to the PDF
+            plotsList->Add(histList.at(i));
         }
 
         // End the multi-page PDF
         canvas->Print(Form("%s]", pdfFile)); // Close the PDF file
 
-        delete canvas;
+        TFile *plotsOutRootFile = new TFile(TListName, "recreate");
+        plotsOutRootFile->cd();
+        plotsList->Write();
+        plotsOutRootFile->Write();
+        plotsOutRootFile->Close();
 
-        cout << "\nQ2_above_cut_counter = " << Q2_above_cut_counter << "\n";
-        cout << "Q2_above_cut_counter_debug = " << Q2_above_cut_counter_debug << "\n\n";
-        cout << "matched = " << matched << "\n\n";
+        delete canvas;
+        delete plotsList;
+        delete plotsOutRootFile;
+
+        for (auto &h : histList)
+        {
+            delete h;
+        }
+
+        histList.clear();
+
+        cout << "\033[33m\n- Summary for Q2 = " << doubleToString(Q2_master) << " cut ----------------------------------\n\033[0m";
+        cout << "\033[33mCounted #(events) above cut:\033[0m " << Q2_above_cut_counter << "\n\033[0m";
+        cout << "\033[33m#(filled events) above cut:\033[0m " << Q2_above_cut_counter_debug << "\n\n\033[0m";
 
         Q2_master = Q2_master + dQ2;
     }
