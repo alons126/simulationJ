@@ -17,18 +17,21 @@ void ConvertGENIE_Q2()
     TString TARGET = "C12";
     TString GENIE_TUNE = "G18_10a_00_000";
     // TString Q2_CUT = "0_03";
-    TString Q2_CUT = "0_19";
+    // TString Q2_CUT = "0_19";
+    TString Q2_CUT = "def_Q2_th";
     // TString BEAM_E = "2070MeV";
     TString BEAM_E = "4029MeV";
 
-    int NUM_OF_FILES = 5;
-    string TARGET_TYPE = "4-foil";
+    int NUM_OF_FILES = 10;
+    string TARGET_TYPE = "1-foil";
     int TARGET_A = 12;
     int TARGET_Z = 6;
 
     // TString TRUTH_SAMPLE_INPUT_DIR = "'/Users/alon/University/Ph.D. (TAU)/e4nu (PhD)/Assignments (PhD)/01 Sample production/New GENIE samples/Figuring Q2 thresholds'/" +
     //                                  TARGET + "/" + GENIE_TUNE + "/" + BEAM_E + "_def_Q2_th";
-    TString TRUTH_SAMPLE_INPUT_DIR = "/w/hallb-scshelf2102/clas12/asportes/2N_Analysis_Truth_Samples/" + TARGET + "/" + GENIE_TUNE + "/Q2_th_test_samples/" + BEAM_E;
+    // TString TRUTH_SAMPLE_INPUT_DIR = "/w/hallb-scshelf2102/clas12/asportes/2N_Analysis_Truth_Samples/" + TARGET + "/" + GENIE_TUNE + "/Q2_th_test_samples/" + BEAM_E;
+    TString TRUTH_SAMPLE_INPUT_DIR = "/w/hallb-scshelf2102/clas12/asportes/2N_Analysis_Truth_Samples/" + TARGET + "/" + GENIE_TUNE +
+                                     "/Q2_th_test_samples/small_Q2_test_samples/4029MeV_def_Q2_th/402962MeV_def_Q2_th/";
     TString TRUTH_SAMPLE_ROOT_FILE_PREFIX = TARGET + "_" + GENIE_TUNE + "_Q2_" + Q2_CUT + "_" + BEAM_E;
     // TString TRUTH_SAMPLE_ROOT_FILE = "e_on_1000060120_2070MeV_0.gst.root";
     TString TRUTH_SAMPLE_ROOT_FILE = TRUTH_SAMPLE_ROOT_FILE_PREFIX + ".root";
@@ -58,7 +61,10 @@ void ConvertGENIE_Q2()
                      //  0.05,  // start
                      //  0.15,  // finish
                      //  0.05); // delta
-                     0.2,
+                     0.02,
                      0.4,
-                     0.1);
+                     0.01);
+                    //  0.2,
+                    //  0.4,
+                    //  0.1);
 }
