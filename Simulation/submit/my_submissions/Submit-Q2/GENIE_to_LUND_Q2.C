@@ -22,7 +22,7 @@ void GENIE_to_LUND_Q2(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
                       int nFiles = 800, string target = "liquid", int A = 1, int Z = 1,
                       double Q2_min = 0, double Q2_max = 1., double dQ2 = 0.02)
 {
-    bool PrintOut = true;
+    bool PrintOut = false;
     bool StepByStepPrintOut = false;
     bool CountQ2AndExit = false;
 
