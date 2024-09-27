@@ -240,7 +240,7 @@ void GENIE_to_LUND_Q2(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
         if (PrintOut)
         {
             cout << "\033[33mTempOutPutPath = " << TempOutPutPath << "\n\033[0m";
-            cout << "\033[33mlundPath = " << lundPath << "\n\033[0m";
+            cout << "\033[33mlundPath = " << lundPath << "\n\n\033[0m";
         }
 
         gSystem->Exec("mkdir -p " + lundPath + TempOutPutPath);
@@ -365,6 +365,7 @@ void GENIE_to_LUND_Q2(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
         vector<int> Q2_above_cut_ind;
         vector<int> Filled_events_ind;
 
+        cout << "\033[33mCounting events with Q2 >= " << doubleToStringWithPercision(Q2_master) << "...\n\n\033[0m";
         for (int k = 0; k < nEvents; k++)
         {
             T->GetEntry(k);
@@ -386,6 +387,7 @@ void GENIE_to_LUND_Q2(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
             }
         }
 
+        cout << "\033[33mGenerating lund files...\n\n\033[0m";
         while (iFiles <= nFiles)
         {
             int FilledEvents = 0;
@@ -728,7 +730,7 @@ void GENIE_to_LUND_Q2(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
         {
             canvas->cd(); // Select the canvas
             canvas->Clear();
-            
+
             std::string pageTitleTemp = pageTitles.at(i).Data();
 
             if (pageTitleTemp != "")
