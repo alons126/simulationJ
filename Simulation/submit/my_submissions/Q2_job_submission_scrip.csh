@@ -8,15 +8,22 @@ setenv BEAM_E 4029MeV
 echo "BEAM_E:\t${BEAM_E}"
 setenv CLEAR_FARM_OUT "false"
 echo "CLEAR_FARM_OUT:\t${CLEAR_FARM_OUT}"
+echo
 
-# # Set a base path for JOB_OUT_PATH before using it
-# setenv BASE_PATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/2N_Analysis_Reco_Samples
+# Set a base path for JOB_OUT_PATH before using it
+setenv BASE_PATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/2N_Analysis_Reco_Samples
+echo "BASE_PATH:\t${BASE_PATH}"
+echo
 
 # # Construct the full JOB_OUT_PATH
 # setenv JOB_OUT_PATH ${BASE_PATH}/${GENIE_TUNE}/Q2_th_test_samples/${BEAM_E}/${Q2_CUT}
+echo "JOB_OUT_PATH:\t${JOB_OUT_PATH}"
+echo
 
 # # Determine the correct submit script path based on BEAM_E
 # setenv SUBMIT_SCRIPT_PATH ./${TARGET}_Q2_sample_${BEAM_E}/
+echo "JOB_OUT_PATH:\t${SUBMIT_SCRIPT_PATH}"
+echo
 
 # echo
 # echo "Pulling updates..."
