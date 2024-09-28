@@ -33,7 +33,7 @@ void ConvertGENIE_Q2()
     //                                  TARGET + "/" + GENIE_TUNE + "/" + BEAM_E + "_def_Q2_th";
     // TString TRUTH_SAMPLE_INPUT_DIR = "/w/hallb-scshelf2102/clas12/asportes/2N_Analysis_Truth_Samples/" + TARGET + "/" + GENIE_TUNE + "/Q2_th_test_samples/" + BEAM_E;
     TString TRUTH_SAMPLE_INPUT_DIR = "/w/hallb-scshelf2102/clas12/asportes/2N_Analysis_Truth_Samples/" + TARGET + "/" + GENIE_TUNE +
-                                     "/Q2_th_test_samples/598636MeV_Q2_0_4_th";
+                                     "/Q2_th_test_samples/small_Q2_test_samples/598636MeV_Q2_0_4_th";
     // TString TRUTH_SAMPLE_INPUT_DIR = "/w/hallb-scshelf2102/clas12/asportes/2N_Analysis_Truth_Samples/" + TARGET + "/" + GENIE_TUNE +
     //                                  "/small_Q2_test_samples/402962MeV_def_Q2_th__2";
     // TString TRUTH_SAMPLE_ROOT_FILE_PREFIX = TARGET + "_" + GENIE_TUNE + "_Q2_" + Q2_CUT + "_" + BEAM_E;
