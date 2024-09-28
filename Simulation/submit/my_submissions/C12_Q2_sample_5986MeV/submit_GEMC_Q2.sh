@@ -12,7 +12,7 @@
 
 JOB_TARGET=${TARGET}
 JOB_GENIE_TUNE=${GENIE_TUNE}
-JOB_Q2_CUT=${Q2_CUT}
+JOB_Q2_CUT=Q2_${Q2_CUT}
 JOB_BEAM_E=${BEAM_E}
 
 NEVENTS=10000
@@ -20,6 +20,7 @@ NEVENTS=10000
 TORUS=-1.0 
 #Change file prefix for your simulation                                                                                                                          
 FILE_PREFIX=${JOB_TARGET}_${JOB_GENIE_TUNE}_${JOB_Q2_CUT}_${JOB_BEAM_E}
+echo FILE_PREFIX
 
 #set output file path location, don't forget to set up dir using setupdir.sh
 OUTPATH=${JOB_OUT_PATH}
