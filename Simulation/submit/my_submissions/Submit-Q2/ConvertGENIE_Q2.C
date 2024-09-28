@@ -15,7 +15,8 @@ using namespace std;
 void ConvertGENIE_Q2()
 {
     TString TARGET = "C12";
-    TString GENIE_TUNE = "G18_10a_00_000";
+    TString GENIE_TUNE = "GEM21_11a_00_000";
+    // TString GENIE_TUNE = "G18_10a_00_000";
     // TString Q2_CUT = "0_03";
     // TString Q2_CUT = "0_19";
     TString Q2_CUT = "def_Q2_th";
@@ -31,7 +32,7 @@ void ConvertGENIE_Q2()
     //                                  TARGET + "/" + GENIE_TUNE + "/" + BEAM_E + "_def_Q2_th";
     // TString TRUTH_SAMPLE_INPUT_DIR = "/w/hallb-scshelf2102/clas12/asportes/2N_Analysis_Truth_Samples/" + TARGET + "/" + GENIE_TUNE + "/Q2_th_test_samples/" + BEAM_E;
     TString TRUTH_SAMPLE_INPUT_DIR = "/w/hallb-scshelf2102/clas12/asportes/2N_Analysis_Truth_Samples/" + TARGET + "/" + GENIE_TUNE +
-                                     "/Q2_th_test_samples/small_Q2_test_samples/4029MeV_def_Q2_th/402962MeV_def_Q2_th";
+                                     "/small_Q2_test_samples/402962MeV_def_Q2_th__2";
     // TString TRUTH_SAMPLE_ROOT_FILE_PREFIX = TARGET + "_" + GENIE_TUNE + "_Q2_" + Q2_CUT + "_" + BEAM_E;
     TString TRUTH_SAMPLE_ROOT_FILE_PREFIX = TARGET + "_" + GENIE_TUNE + "_" + Q2_CUT + "_" + BEAM_E;
     // TString TRUTH_SAMPLE_ROOT_FILE = "e_on_1000060120_2070MeV_0.gst.root";
