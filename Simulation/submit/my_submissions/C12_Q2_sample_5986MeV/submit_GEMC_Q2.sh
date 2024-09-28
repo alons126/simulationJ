@@ -14,6 +14,8 @@ JOB_TARGET=${TARGET}
 JOB_GENIE_TUNE=${GENIE_TUNE}
 JOB_Q2_CUT=Q2_${Q2_CUT}
 JOB_BEAM_E=${BEAM_E}
+echo ${JOB_Q2_CUT}
+echo "${JOB_Q2_CUT}"
 
 NEVENTS=10000
 #-1.0 for inbending(6,4 GeV) 0.5 for outbending (2 Gev)
