@@ -1,9 +1,13 @@
 #!/bin/csh
 
 setenv TARGET C12
+echo "TARGET:\t${TARGET}"
 setenv GENIE_TUNE G18_10a_00_000
+echo "GENIE_TUNE:\t${GENIE_TUNE}"
 setenv BEAM_E 4029MeV
+echo "BEAM_E:\t${BEAM_E}"
 setenv CLEAR_FARM_OUT "false"
+echo "CLEAR_FARM_OUT:\t${CLEAR_FARM_OUT}"
 
 # Set a base path for JOB_OUT_PATH before using it
 setenv BASE_PATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/2N_Analysis_Reco_Samples
@@ -61,11 +65,6 @@ foreach Q2_CUT ( \
 
     # Determine the correct submit script path based on BEAM_E
     setenv SUBMIT_SCRIPT_PATH ./${TARGET}_Q2_sample_${BEAM_E}/
-
-    echo
-    echo "Pulling updates..."
-    git pull
-    echo
 
     # Optionally clear the farm_out directory
     if ("${CLEAR_FARM_OUT}" == "true") then
