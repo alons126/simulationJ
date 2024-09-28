@@ -260,7 +260,7 @@ void GENIE_to_LUND_Q2(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
         TFile *inFile = new TFile(inputFile);
 
         TString Q2_cut_TString = doubleToString(Q2_master);
-        outputFile = TARGET + "_" + GENIE_TUNE + "_Q2_" + Q2_cut_TString + "_" + BEAM_E;
+        outputFile = TARGET + "_" + GENIE_TUNE + "_" + BEAM_E;
 
         cout << "\033[33mMaking LUND files with prefix:\033[0m" << endl;
         cout << outputFile << "\n\n";

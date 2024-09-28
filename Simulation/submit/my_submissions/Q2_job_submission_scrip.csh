@@ -10,8 +10,6 @@ setenv CLEAR_FARM_OUT "true"
 echo "CLEAR_FARM_OUT:\t\t${CLEAR_FARM_OUT}"
 echo
 
-setenv Q2_CUT
-
 # # Set a base path for JOB_OUT_PATH before using it
 # setenv BASE_PATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/2N_Analysis_Reco_Samples
 # echo "BASE_PATH:\t\t${BASE_PATH}"
@@ -52,10 +50,8 @@ foreach TEMP_Q2_CUT ( \
 #     Q2_0_26 Q2_0_27 Q2_0_28 Q2_0_29 \
 #     Q2_0_30 Q2_0_31 Q2_0_32 Q2_0_33 \
 #     Q2_0_34 Q2_0_35 Q2_0_36 Q2_0_37 \
-#     Q2_0_38 Q2_0_39 Q2_0_40 )
-    Q2_CUT ${TEMP_Q2_CUT}
-    
-    echo "- Submitting ${TARGET}_${GENIE_TUNE}_${Q2_CUT}_${BEAM_E} jobs ------------"
+#     Q2_0_38 Q2_0_39 Q2_0_40 )    
+    echo "- Submitting ${TARGET}_${GENIE_TUNE}_${BEAM_E} jobs ------------"
     echo
 
     # Construct the full JOB_OUT_PATH
@@ -76,7 +72,7 @@ foreach TEMP_Q2_CUT ( \
     echo
 
     echo
-    echo "Submitting sbatch jobs for ${TARGET} at BeamE = ${BEAM_E} with a ${Q2_CUT} cut..."
+    echo "Submitting sbatch jobs for ${TARGET} at BeamE = ${BEAM_E} with a ${TEMP_Q2_CUT} cut..."
     sbatch ${SUBMIT_SCRIPT_PATH}/submit_GEMC_Q2.sh
     echo
 end
