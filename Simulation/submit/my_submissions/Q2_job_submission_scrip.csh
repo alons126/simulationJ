@@ -52,7 +52,7 @@ foreach Q2_CUT ( \
     echo
 
     # Construct the full JOB_OUT_PATH
-    setenv JOB_OUT_PATH ${BASE_PATH}/${GENIE_TUNE}/Q2_th_test_samples/${BEAM_E}/${Q2_CUT}
+    setenv JOB_OUT_PATH ${BASE_PATH}/${TARGET}/${GENIE_TUNE}/Q2_th_test_samples/${BEAM_E}/${Q2_CUT}
     echo "JOB_OUT_PATH:\t\t${JOB_OUT_PATH}"
     echo
 
