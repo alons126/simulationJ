@@ -3,16 +3,17 @@
 # Function for setting up and submitting jobs
 # Accepts: TARGET, GENIE_TUNE, Q2_CUT, BEAM_E, clear_farm_out (optional)
 
-# Use positional parameters: $1 = TARGET, $2 = GENIE_TUNE, $3 = Q2_CUT, $4 = BEAM_E, $5 (optional) = clear_farm_out
-
 set TARGET = $1
 set GENIE_TUNE = $2
 set Q2_CUT = $3
 set BEAM_E = $4
 set clear_farm_out = $5
 
-# Set paths based on BEAM_E
-setenv JOB_OUT_PATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/2N_Analysis_Reco_Samples/${JOB_OUT_PATH}/${GENIE_TUNE}/Q2_th_test_samples/${BEAM_E}/${Q2_CUT}
+# Set a base path for JOB_OUT_PATH before using it
+setenv BASE_PATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/2N_Analysis_Reco_Samples
+
+# Construct the full JOB_OUT_PATH
+setenv JOB_OUT_PATH ${BASE_PATH}/${GENIE_TUNE}/Q2_th_test_samples/${BEAM_E}/${Q2_CUT}
 
 # Determine the correct submit script path based on BEAM_E
 if ("${BEAM_E}" == "5986MeV") then
