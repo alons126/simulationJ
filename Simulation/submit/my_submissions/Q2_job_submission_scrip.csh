@@ -10,10 +10,10 @@ setenv CLEAR_FARM_OUT "true"
 echo "CLEAR_FARM_OUT:\t\t${CLEAR_FARM_OUT}"
 echo
 
-# Set a base path for JOB_OUT_PATH before using it
-setenv BASE_PATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/2N_Analysis_Reco_Samples
-echo "BASE_PATH:\t\t${BASE_PATH}"
-echo
+# # Set a base path for JOB_OUT_PATH before using it
+# setenv BASE_PATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/2N_Analysis_Reco_Samples
+# echo "BASE_PATH:\t\t${BASE_PATH}"
+# echo
 
 # Determine the correct submit script path based on BEAM_E
 setenv SUBMIT_SCRIPT_PATH ./${TARGET}_Q2_sample_${BEAM_E}/
@@ -52,7 +52,7 @@ foreach Q2_CUT ( \
     echo
 
     # Construct the full JOB_OUT_PATH
-    setenv JOB_OUT_PATH ${BASE_PATH}/${TARGET}/${GENIE_TUNE}/Q2_th_test_samples/${BEAM_E}/${Q2_CUT}
+    setenv JOB_OUT_PATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/2N_Analysis_Reco_Samples/${TARGET}/${GENIE_TUNE}/Q2_th_test_samples/${BEAM_E}/${Q2_CUT}
     echo "JOB_OUT_PATH:\t\t${JOB_OUT_PATH}"
     echo
 

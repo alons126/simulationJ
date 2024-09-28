@@ -10,15 +10,20 @@
 #SBATCH --error=//farm_out/%u/%x-%j-%N.err                                                                           
 #SBATCH --array=1-10 #Number of files 1-N                                                                                                
 
+JOB_TARGET=${TARGET}
+JOB_GENIE_TUNE=${GENIE_TUNE}
+JOB_Q2_CUT=${Q2_CUT}
+JOB_BEAM_E=${BEAM_E}
+
 NEVENTS=10000
 #-1.0 for inbending(6,4 GeV) 0.5 for outbending (2 Gev)
 TORUS=-1.0 
 #Change file prefix for your simulation                                                                                                                          
-FILE_PREFIX=${TARGET}_${GENIE_TUNE}_${Q2_CUT}_${BEAM_E}
+FILE_PREFIX=${JOB_TARGET}_${JOB_GENIE_TUNE}_${JOB_Q2_CUT}_${JOB_BEAM_E}
 
 #set output file path location, don't forget to set up dir using setupdir.sh
 OUTPATH=${JOB_OUT_PATH}
-SUBMIT_SCRIPT_DIR=/u/home/asportes/clas12simulations/simulationJ/Simulation/submit/my_submissions/${TARGET}_Q2_sample_${BEAM_E}
+SUBMIT_SCRIPT_DIR=/u/home/asportes/clas12simulations/simulationJ/Simulation/submit/my_submissions/${JOB_TARGET}_Q2_sample_${JOB_BEAM_E}
 
 #choose the Gcard for your target type
 GCARD=${SUBMIT_SCRIPT_DIR}/rgm_fall2021_C.gcard
