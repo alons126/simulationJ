@@ -2,7 +2,6 @@
 
 ## Submit Q2 jobs
 source Q2_job_submission_scrip.csh
-Submit_jobs
 
 ## Submit uniform jobs
 # setenv BEAM_E 5986MeV
