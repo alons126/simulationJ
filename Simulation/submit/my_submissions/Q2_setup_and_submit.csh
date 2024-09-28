@@ -16,13 +16,7 @@ setenv BASE_PATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/2N_A
 setenv JOB_OUT_PATH ${BASE_PATH}/${GENIE_TUNE}/Q2_th_test_samples/${BEAM_E}/${Q2_CUT}
 
 # Determine the correct submit script path based on BEAM_E
-if ("${BEAM_E}" == "5986MeV") then
-    setenv SUBMIT_SCRIPT_PATH ./${TARGET}_Q2_sample_6GeV/
-else if ("${BEAM_E}" == "4029MeV") then
-    setenv SUBMIT_SCRIPT_PATH ./${TARGET}_Q2_sample_4GeV/
-else if ("${BEAM_E}" == "2070MeV") then
-    setenv SUBMIT_SCRIPT_PATH ./${TARGET}_Q2_sample_2GeV/
-endif
+setenv SUBMIT_SCRIPT_PATH ./${TARGET}_Q2_sample_${BEAM_E}/
 
 echo
 echo "Pulling updates..."

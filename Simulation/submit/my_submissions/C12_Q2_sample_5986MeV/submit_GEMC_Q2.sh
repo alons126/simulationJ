@@ -8,22 +8,22 @@
 #SBATCH --time=20:00:00                                                                                               
 #SBATCH --output=/farm_out/%u/%x-%j-%N.out                                                                           
 #SBATCH --error=//farm_out/%u/%x-%j-%N.err                                                                           
-#SBATCH --array=1-10 #Number of files 1-N                                                                                                
+#SBATCH --array=1-10 #Number of files 1-N                                                                                                 
 
 NEVENTS=10000
 #-1.0 for inbending(6,4 GeV) 0.5 for outbending (2 Gev)
-TORUS=0.5
+TORUS=-1.0 
 #Change file prefix for your simulation                                                                                                                          
 FILE_PREFIX=${TARGET}_${GENIE_TUNE}_${Q2_CUT}_${BEAM_E}
 
 #set output file path location, don't forget to set up dir using setupdir.sh
 OUTPATH=${JOB_OUT_PATH}
-SUBMIT_SCRIPT_DIR=/u/home/asportes/clas12simulations/simulationJ/Simulation/submit/my_submissions/${TARGET}_Q2_sample_2GeV
+SUBMIT_SCRIPT_DIR=/u/home/asportes/clas12simulations/simulationJ/Simulation/submit/my_submissions/${TARGET}_Q2_sample_${BEAM_E}
 
 #choose the Gcard for your target type
 GCARD=${SUBMIT_SCRIPT_DIR}/rgm_fall2021_C.gcard
 #Reconstruction yaml file
-YAML=${SUBMIT_SCRIPT_DIR}/rgm_fall2021-cv.yaml
+YAML=${SUBMIT_SCRIPT_DIR}/rgm_fall2021-ai_6Gev.yaml
 
 #------DONT NEED TO TOUCH UNDER HERE UNLESS YOU NEED TOO------
 LUNDOUT=${OUTPATH}/lundfiles
