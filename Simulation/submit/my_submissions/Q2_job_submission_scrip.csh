@@ -6,7 +6,7 @@ setenv GENIE_TUNE G18_10a_00_000
 echo "GENIE_TUNE:\t\t${GENIE_TUNE}"
 setenv BEAM_E 4029MeV
 echo "BEAM_E:\t\t\t${BEAM_E}"
-setenv CLEAR_FARM_OUT "false"
+setenv CLEAR_FARM_OUT "true"
 echo "CLEAR_FARM_OUT:\t\t${CLEAR_FARM_OUT}"
 echo
 
@@ -14,11 +14,6 @@ echo
 setenv BASE_PATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/2N_Analysis_Reco_Samples
 echo "BASE_PATH:\t\t${BASE_PATH}"
 echo
-
-# # Construct the full JOB_OUT_PATH
-# setenv JOB_OUT_PATH ${BASE_PATH}/${GENIE_TUNE}/Q2_th_test_samples/${BEAM_E}/${Q2_CUT}
-# echo "JOB_OUT_PATH:\t\t${JOB_OUT_PATH}"
-# echo
 
 # Determine the correct submit script path based on BEAM_E
 setenv SUBMIT_SCRIPT_PATH ./${TARGET}_Q2_sample_${BEAM_E}/
