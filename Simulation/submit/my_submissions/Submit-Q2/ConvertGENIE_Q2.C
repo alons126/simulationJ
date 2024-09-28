@@ -30,9 +30,6 @@ void ConvertGENIE_Q2()
     int TARGET_A = 12;
     int TARGET_Z = 6;
 
-    C12_G18_10a_00_000_0_40_5986MeV.root
-    C12_G18_10a_00_000_Q2_0_40_5986MeV.root
-
     // TString TRUTH_SAMPLE_INPUT_DIR = "'/Users/alon/University/Ph.D. (TAU)/e4nu (PhD)/Assignments (PhD)/01 Sample production/New GENIE samples/Figuring Q2 thresholds'/" +
     //                                  TARGET + "/" + GENIE_TUNE + "/" + BEAM_E + "_def_Q2_th";
     // TString TRUTH_SAMPLE_INPUT_DIR = "/w/hallb-scshelf2102/clas12/asportes/2N_Analysis_Truth_Samples/" + TARGET + "/" + GENIE_TUNE + "/Q2_th_test_samples/" + BEAM_E;
