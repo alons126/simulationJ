@@ -10,6 +10,8 @@ setenv CLEAR_FARM_OUT "true"
 echo "CLEAR_FARM_OUT:\t\t${CLEAR_FARM_OUT}"
 echo
 
+setenv Q2_CUT
+
 # # Set a base path for JOB_OUT_PATH before using it
 # setenv BASE_PATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/2N_Analysis_Reco_Samples
 # echo "BASE_PATH:\t\t${BASE_PATH}"
@@ -37,10 +39,10 @@ if ("${CLEAR_FARM_OUT}" == "true") then
 endif
 
 # Loop over directories and submit jobs
-foreach Q2_CUT ( \
+foreach TEMP_Q2_CUT ( \
     Q2_0_40 Q2_0_50 Q2_0_60 Q2_0_70 \
     Q2_0_80 Q2_0_90 )
-# foreach Q2_CUT ( \
+# foreach TEMP_Q2_CUT ( \
 #     Q2_0_02 Q2_0_03 Q2_0_04 Q2_0_05 \
 #     Q2_0_06 Q2_0_07 Q2_0_08 Q2_0_09 \
 #     Q2_0_10 Q2_0_11 Q2_0_12 Q2_0_13 \
@@ -51,6 +53,8 @@ foreach Q2_CUT ( \
 #     Q2_0_30 Q2_0_31 Q2_0_32 Q2_0_33 \
 #     Q2_0_34 Q2_0_35 Q2_0_36 Q2_0_37 \
 #     Q2_0_38 Q2_0_39 Q2_0_40 )
+    Q2_CUT = TEMP_Q2_CUT
+    
     echo "- Submitting ${TARGET}_${GENIE_TUNE}_${Q2_CUT}_${BEAM_E} jobs ------------"
     echo
 
@@ -58,14 +62,6 @@ foreach Q2_CUT ( \
     setenv JOB_OUT_PATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/2N_Analysis_Reco_Samples/${TARGET}/${GENIE_TUNE}/Q2_th_test_samples/${BEAM_E}/${Q2_CUT}
     echo "JOB_OUT_PATH:\t\t${JOB_OUT_PATH}"
     echo
-
-    # Optionally clear the farm_out directory
-    if ("${CLEAR_FARM_OUT}" == "true") then
-        echo
-        echo "Clearing farm_out directory..."
-        rm /u/scifarm/farm_out/asportes/*
-        echo
-    endif
 
     echo
     echo "Removing old directory structure for MC simulation..."
