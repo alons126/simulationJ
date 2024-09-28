@@ -37,16 +37,16 @@ void ConvertGENIE_Q2()
     //                                  "/Q2_th_test_samples/small_Q2_test_samples/4029MeV_def_Q2_th";
 
     // 5986MeV_Q2_0_4_th (G18):
-    // TString TRUTH_SAMPLE_INPUT_DIR = "/w/hallb-scshelf2102/clas12/asportes/2N_Analysis_Truth_Samples/" + TARGET + "/" + GENIE_TUNE +
-    //                                  "/Q2_th_test_samples/small_Q2_test_samples/5986MeV_Q2_0_4_th";
+    TString TRUTH_SAMPLE_INPUT_DIR = "/w/hallb-scshelf2102/clas12/asportes/2N_Analysis_Truth_Samples/" + TARGET + "/" + GENIE_TUNE +
+                                     "/Q2_th_test_samples/small_Q2_test_samples/5986MeV_Q2_0_4_th";
 
     // 4029MeV_def_Q2_th (SuSa):
     // TString TRUTH_SAMPLE_INPUT_DIR = "/w/hallb-scshelf2102/clas12/asportes/2N_Analysis_Truth_Samples/" + TARGET + "/" + GENIE_TUNE +
     //                                  "/Q2_th_test_samples/small_Q2_test_samples/4029MeV_def_Q2_th";
 
     // 5986MeV_Q2_0_4_th (SuSa):
-    TString TRUTH_SAMPLE_INPUT_DIR = "/w/hallb-scshelf2102/clas12/asportes/2N_Analysis_Truth_Samples/" + TARGET + "/" + GENIE_TUNE +
-                                     "/Q2_th_test_samples/small_Q2_test_samples/5986MeV_Q2_0_4_th";
+    // TString TRUTH_SAMPLE_INPUT_DIR = "/w/hallb-scshelf2102/clas12/asportes/2N_Analysis_Truth_Samples/" + TARGET + "/" + GENIE_TUNE +
+    //                                  "/Q2_th_test_samples/small_Q2_test_samples/5986MeV_Q2_0_4_th";
 
     // TString TRUTH_SAMPLE_ROOT_FILE_PREFIX = TARGET + "_" + GENIE_TUNE + "_Q2_" + Q2_CUT + "_" + BEAM_E;
     TString TRUTH_SAMPLE_ROOT_FILE_PREFIX = TARGET + "_" + GENIE_TUNE + "_" + Q2_CUT + "_" + BEAM_E;
