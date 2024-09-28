@@ -53,7 +53,7 @@ foreach TEMP_Q2_CUT ( \
 #     Q2_0_30 Q2_0_31 Q2_0_32 Q2_0_33 \
 #     Q2_0_34 Q2_0_35 Q2_0_36 Q2_0_37 \
 #     Q2_0_38 Q2_0_39 Q2_0_40 )
-    Q2_CUT Q2_${TEMP_Q2_CUT}
+    Q2_CUT ${TEMP_Q2_CUT}
     
     echo "- Submitting ${TARGET}_${GENIE_TUNE}_${Q2_CUT}_${BEAM_E} jobs ------------"
     echo
