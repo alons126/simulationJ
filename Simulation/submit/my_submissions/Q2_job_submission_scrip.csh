@@ -3,6 +3,7 @@
 setenv TARGET C12
 setenv GENIE_TUNE G18_10a_00_000
 setenv BEAM_E 4029MeV
+setenv CLEAR_FARM_OUT "false"
 
 # Set a base path for JOB_OUT_PATH before using it
 setenv BASE_PATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/2N_Analysis_Reco_Samples
