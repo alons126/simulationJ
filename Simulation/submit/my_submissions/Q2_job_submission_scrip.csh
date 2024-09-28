@@ -1,11 +1,11 @@
 #!/bin/csh
 
 setenv TARGET C12
-echo "TARGET:\t${TARGET}"
+echo "TARGET:\t\t\t${TARGET}"
 setenv GENIE_TUNE G18_10a_00_000
 echo "GENIE_TUNE:\t${GENIE_TUNE}"
 setenv BEAM_E 4029MeV
-echo "BEAM_E:\t${BEAM_E}"
+echo "BEAM_E:\t\t\t${BEAM_E}"
 setenv CLEAR_FARM_OUT "false"
 echo "CLEAR_FARM_OUT:\t${CLEAR_FARM_OUT}"
 echo
