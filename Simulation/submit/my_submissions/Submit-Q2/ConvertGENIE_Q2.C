@@ -15,16 +15,20 @@ using namespace std;
 void ConvertGENIE_Q2()
 {
     TString TARGET = "C12";
-    // TString GENIE_TUNE = "GEM21_11a_00_000";
-    TString GENIE_TUNE = "G18_10a_00_000";
+
+    TString GENIE_TUNE = "GEM21_11a_00_000";
+    // TString GENIE_TUNE = "G18_10a_00_000";
+
     // TString Q2_CUT = "def_Q2_th"; // 4029MeV_def_Q2_th
     TString Q2_CUT = "Q2_0_40"; // 5986MeV_Q2_0_4_th
     // TString BEAM_E = "4029MeV"; // 4029MeV_def_Q2_th
     TString BEAM_E = "5986MeV"; // 5986MeV_Q2_0_4_th
 
     int NUM_OF_FILES = 10;
+
     // string TARGET_TYPE = "1-foil"; // 4029MeV_def_Q2_th
     string TARGET_TYPE = "4-foil"; // 5986MeV_Q2_0_4_th (C12)
+    
     int TARGET_A = 12;
     int TARGET_Z = 6;
 
@@ -37,16 +41,16 @@ void ConvertGENIE_Q2()
     //                                  "/Q2_th_test_samples/small_Q2_test_samples/4029MeV_def_Q2_th";
 
     // 5986MeV_Q2_0_4_th (G18):
-    TString TRUTH_SAMPLE_INPUT_DIR = "/w/hallb-scshelf2102/clas12/asportes/2N_Analysis_Truth_Samples/" + TARGET + "/" + GENIE_TUNE +
-                                     "/Q2_th_test_samples/small_Q2_test_samples/5986MeV_Q2_0_4_th";
+    // TString TRUTH_SAMPLE_INPUT_DIR = "/w/hallb-scshelf2102/clas12/asportes/2N_Analysis_Truth_Samples/" + TARGET + "/" + GENIE_TUNE +
+    //                                  "/Q2_th_test_samples/small_Q2_test_samples/5986MeV_Q2_0_4_th";
 
     // 4029MeV_def_Q2_th (SuSa):
     // TString TRUTH_SAMPLE_INPUT_DIR = "/w/hallb-scshelf2102/clas12/asportes/2N_Analysis_Truth_Samples/" + TARGET + "/" + GENIE_TUNE +
     //                                  "/Q2_th_test_samples/small_Q2_test_samples/4029MeV_def_Q2_th";
 
     // 5986MeV_Q2_0_4_th (SuSa):
-    // TString TRUTH_SAMPLE_INPUT_DIR = "/w/hallb-scshelf2102/clas12/asportes/2N_Analysis_Truth_Samples/" + TARGET + "/" + GENIE_TUNE +
-    //                                  "/Q2_th_test_samples/small_Q2_test_samples/5986MeV_Q2_0_4_th";
+    TString TRUTH_SAMPLE_INPUT_DIR = "/w/hallb-scshelf2102/clas12/asportes/2N_Analysis_Truth_Samples/" + TARGET + "/" + GENIE_TUNE +
+                                     "/Q2_th_test_samples/small_Q2_test_samples/5986MeV_Q2_0_4_th";
 
     // TString TRUTH_SAMPLE_ROOT_FILE_PREFIX = TARGET + "_" + GENIE_TUNE + "_Q2_" + Q2_CUT + "_" + BEAM_E;
     TString TRUTH_SAMPLE_ROOT_FILE_PREFIX = TARGET + "_" + GENIE_TUNE + "_" + Q2_CUT + "_" + BEAM_E;
