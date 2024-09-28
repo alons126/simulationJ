@@ -22,7 +22,8 @@ void ConvertGENIE_Q2()
     TString Q2_CUT = "0_40";
     // TString Q2_CUT = "def_Q2_th";
     // TString BEAM_E = "2070MeV";
-    TString BEAM_E = "4029MeV";
+    // TString BEAM_E = "4029MeV";
+    TString BEAM_E = "5986MeV";
 
     int NUM_OF_FILES = 10;
     string TARGET_TYPE = "1-foil";
