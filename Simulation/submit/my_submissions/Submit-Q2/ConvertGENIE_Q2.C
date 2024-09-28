@@ -27,15 +27,15 @@ void ConvertGENIE_Q2()
     int TARGET_A = 12;
     int TARGET_Z = 6;
 
-    // Local:    
+    // Local:
     // TString TRUTH_SAMPLE_INPUT_DIR = "'/Users/alon/University/Ph.D. (TAU)/e4nu (PhD)/Assignments (PhD)/01 Sample production/New GENIE samples/Figuring Q2 thresholds'/" +
     //                                  TARGET + "/" + GENIE_TUNE + "/" + BEAM_E + "_def_Q2_th";
 
-    // 4029MeV_def_Q2_th:    
+    // 4029MeV_def_Q2_th:
     TString TRUTH_SAMPLE_INPUT_DIR = "/w/hallb-scshelf2102/clas12/asportes/2N_Analysis_Truth_Samples/" + TARGET + "/" + GENIE_TUNE +
                                      "/Q2_th_test_samples/small_Q2_test_samples/4029MeV_def_Q2_th";
 
-    // 598636MeV_Q2_0_4_th:    
+    // 598636MeV_Q2_0_4_th:
     // TString TRUTH_SAMPLE_INPUT_DIR = "/w/hallb-scshelf2102/clas12/asportes/2N_Analysis_Truth_Samples/" + TARGET + "/" + GENIE_TUNE +
     //                                  "/Q2_th_test_samples/small_Q2_test_samples/598636MeV_Q2_0_4_th";
 
@@ -69,10 +69,10 @@ void ConvertGENIE_Q2()
                      //  0.05,  // start
                      //  0.15,  // finish
                      //  0.05); // delta
-                     //  0.02,  // start
-                     //  0.4,   // finish
-                     //  0.01); // delta
-                     0.4,  // start
-                     0.8,  // finish
-                     0.1); // delta
+                     0.02,  // start (4029MeV_def_Q2_th)
+                     0.4,   // finish (4029MeV_def_Q2_th)
+                     0.01); // delta (4029MeV_def_Q2_th)
+                            //  0.4,  // start (598636MeV_Q2_0_4_th)
+                            //  0.8,  // finish (598636MeV_Q2_0_4_th)
+                            //  0.1); // delta (598636MeV_Q2_0_4_th)
 }
