@@ -53,7 +53,7 @@ foreach TEMP_Q2_CUT ( \
 #     Q2_0_30 Q2_0_31 Q2_0_32 Q2_0_33 \
 #     Q2_0_34 Q2_0_35 Q2_0_36 Q2_0_37 \
 #     Q2_0_38 Q2_0_39 Q2_0_40 )
-    Q2_CUT = Q2_${TEMP_Q2_CUT}
+    Q2_CUT Q2_${TEMP_Q2_CUT}
     
     echo "- Submitting ${TARGET}_${GENIE_TUNE}_${Q2_CUT}_${BEAM_E} jobs ------------"
     echo
@@ -61,6 +61,8 @@ foreach TEMP_Q2_CUT ( \
     # Construct the full JOB_OUT_PATH
     setenv JOB_OUT_PATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/2N_Analysis_Reco_Samples/${TARGET}/${GENIE_TUNE}/Q2_th_test_samples/${BEAM_E}/${Q2_CUT}
     echo "JOB_OUT_PATH:\t\t${JOB_OUT_PATH}"
+    echo "TEMP_Q2_CUT:\t\t${TEMP_Q2_CUT}"
+    echo "Q2_CUT:\t\t${Q2_CUT}"
     echo
 
     echo
