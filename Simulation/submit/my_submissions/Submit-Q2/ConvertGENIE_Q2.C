@@ -19,7 +19,7 @@ void ConvertGENIE_Q2()
     TString GENIE_TUNE = "G18_10a_00_000";
     // TString Q2_CUT = "0_03";
     // TString Q2_CUT = "0_19";
-    TString Q2_CUT = "0_40";
+    TString Q2_CUT = "Q2_0_40";
     // TString Q2_CUT = "def_Q2_th";
     // TString BEAM_E = "2070MeV";
     // TString BEAM_E = "4029MeV";
@@ -29,6 +29,9 @@ void ConvertGENIE_Q2()
     string TARGET_TYPE = "1-foil";
     int TARGET_A = 12;
     int TARGET_Z = 6;
+
+    C12_G18_10a_00_000_0_40_5986MeV.root
+    C12_G18_10a_00_000_Q2_0_40_5986MeV.root
 
     // TString TRUTH_SAMPLE_INPUT_DIR = "'/Users/alon/University/Ph.D. (TAU)/e4nu (PhD)/Assignments (PhD)/01 Sample production/New GENIE samples/Figuring Q2 thresholds'/" +
     //                                  TARGET + "/" + GENIE_TUNE + "/" + BEAM_E + "_def_Q2_th";
