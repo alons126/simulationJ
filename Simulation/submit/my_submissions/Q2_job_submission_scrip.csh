@@ -25,20 +25,3 @@ function Submit_jobs {
         echo
     end
 }
-
-
-
-
-echo "- Submmiting 2070MeV jobs ---------------------------------------------"
-
-Q2_setup_and_submit 2070MeV
-
-echo "- Submmiting 4029MeV jobs ---------------------------------------------"
-
-Q2_setup_and_submit 4029MeV
-
-echo "- Submmiting 5986MeV jobs ---------------------------------------------"
-
-Q2_setup_and_submit 5986MeV
-
-echo "- Submission finished -------------------------------------------------"
