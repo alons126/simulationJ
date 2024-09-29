@@ -25,7 +25,7 @@ if ("${CLEAR_FARM_OUT}" == "true") then
     echo
 endif
 
-if ("${BEAM_E}" == "true") then
+if ("${BEAM_E}" == "4029MeV") then
 # Loop over directories and submit jobs
 foreach TEMP_Q2_CUT ( \
             Q2_0_02 Q2_0_03 Q2_0_04 Q2_0_05 Q2_0_06 Q2_0_07 Q2_0_08 Q2_0_09 Q2_0_10 Q2_0_11 \
@@ -56,7 +56,7 @@ foreach TEMP_Q2_CUT ( \
     sbatch ${SUBMIT_SCRIPT_PATH}/submit_GEMC_Q2.sh
     echo
 end
-else if ("${BEAM_E}" == "4029MeV") then
+else if ("${BEAM_E}" == "5986MeV") then
 foreach TEMP_Q2_CUT ( \
             Q2_0_40 Q2_0_41 Q2_0_42 Q2_0_43 Q2_0_44 Q2_0_45 Q2_0_46 Q2_0_47 Q2_0_48 Q2_0_49 \
             Q2_0_50 Q2_0_51 Q2_0_52 Q2_0_53 Q2_0_54 Q2_0_55 Q2_0_56 Q2_0_57 Q2_0_58 Q2_0_59 \
