@@ -420,9 +420,9 @@ void GENIE_to_LUND_Q2(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
                     cout << "\033[33mLooping over events...\n\033[0m";
                 }
 
-                if (Q2 >= Q2_master && isInVector((j), Q2_above_cut_ind))
+                if (Q2 >= Q2_master && isInVector(j, Q2_above_cut_ind))
                 {
-                    if (isInVector((j), Filled_events_ind))
+                    if (isInVector(j, Filled_events_ind))
                     {
                         cout << "\033[33m\nExited!!!!\n\033[0m";
                         cout << "\033[33m\niFiles = " << iFiles << "\n\033[0m";
@@ -623,7 +623,7 @@ void GENIE_to_LUND_Q2(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
                     }
 
                     // LUND header for the event:
-                    formatstring = "%i \t %i \t %i \t %f \t %f \t %i \t %f \t %i \t %d \t %.2f \n\033[0m";
+                    formatstring = "%i \t %i \t %i \t %f \t %f \t %i \t %f \t %i \t %d \t %.2f \n";
                     outstring = Form(formatstring, nf_mod, A, Z, RES_ID /*targP*/, beamP, beamType, beamE, interactN, FilledEvents, code);
                     // outstring = Form(formatstring, nf_mod, A, Z, RES_ID /*targP*/, beamP, beamType, beamE, interactN, j, code);
                     outfile << outstring;
