@@ -33,16 +33,19 @@ void ConvertGENIE_Q2()
 
     TString TRUTH_SAMPLE_INPUT_DIR;
 
-    if (GENIE_TUNE.Data() == "G18_10a_00_000")
+    std::string genie_tune = GENIE_TUNE.Data();
+    std::string beam_e = BEAM_E.Data();
+
+    if (genie_tune == "G18_10a_00_000")
     {
-        if (BEAM_E.Data() == "4029MeV")
+        if (beam_e == "4029MeV")
         {
             TRUTH_SAMPLE_INPUT_DIR = "/w/hallb-scshelf2102/clas12/asportes/2N_Analysis_Truth_Samples/" + TARGET + "/" + GENIE_TUNE +
                                      "/Q2_th_test_samples/small_Q2_test_samples/4029MeV_def_Q2_th";
             TARGET_TYPE = "1-foil";
             Q2_CUT = "def_Q2_th";
         }
-        else if (BEAM_E.Data() == "5986MeV")
+        else if (beam_e == "5986MeV")
         {
             TRUTH_SAMPLE_INPUT_DIR = "/w/hallb-scshelf2102/clas12/asportes/2N_Analysis_Truth_Samples/" + TARGET + "/" + GENIE_TUNE +
                                      "/Q2_th_test_samples/small_Q2_test_samples/5986MeV_Q2_0_4_th";
@@ -50,16 +53,16 @@ void ConvertGENIE_Q2()
             Q2_CUT = "Q2_0_40";
         }
     }
-    else if (GENIE_TUNE.Data() == "GEM21_11a_00_000")
+    else if (genie_tune == "GEM21_11a_00_000")
     {
-        if (BEAM_E.Data() == "4029MeV")
+        if (beam_e == "4029MeV")
         {
             TRUTH_SAMPLE_INPUT_DIR = "/w/hallb-scshelf2102/clas12/asportes/2N_Analysis_Truth_Samples/" + TARGET + "/" + GENIE_TUNE +
                                      "/Q2_th_test_samples/small_Q2_test_samples/4029MeV_def_Q2_th";
             TARGET_TYPE = "1-foil";
             Q2_CUT = "def_Q2_th";
         }
-        else if (BEAM_E.Data() == "5986MeV")
+        else if (beam_e == "5986MeV")
         {
             TRUTH_SAMPLE_INPUT_DIR = "/w/hallb-scshelf2102/clas12/asportes/2N_Analysis_Truth_Samples/" + TARGET + "/" + GENIE_TUNE +
                                      "/Q2_th_test_samples/small_Q2_test_samples/5986MeV_Q2_0_4_th";
@@ -85,8 +88,6 @@ void ConvertGENIE_Q2()
     TString RECO_SAMPLE_OUTPUT_DIR = RECO_SAMPLES_TOPDIR + "/" + TARGET + "/" + GENIE_TUNE + "/Q2_th_test_samples/" + BEAM_E;
 
     gSystem->Exec("rm -rf " + RECO_SAMPLE_OUTPUT_DIR);
-
-    std::string beam_e = BEAM_E.Data();
 
     if (beam_e == "4029MeV")
     {

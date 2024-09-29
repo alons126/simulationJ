@@ -11,6 +11,8 @@
 
 using namespace std;
 
+/* root -l -q ConvertGENIE_Q2.C */
+
 bool isInVector(int value, const std::vector<int> &vec)
 {
     // Check if the value is in the vector using std::find
