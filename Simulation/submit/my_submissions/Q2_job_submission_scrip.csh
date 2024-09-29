@@ -11,7 +11,7 @@ setenv BEAM_E 4029MeV
 # setenv BEAM_E 5986MeV
 echo "BEAM_E:\t\t\t${BEAM_E}"
 
-setenv CLEAR_FARM_OUT "true"
+setenv CLEAR_FARM_OUT "false"
 echo "CLEAR_FARM_OUT:\t\t${CLEAR_FARM_OUT}"
 echo
 
