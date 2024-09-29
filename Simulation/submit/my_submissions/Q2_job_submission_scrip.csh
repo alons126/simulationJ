@@ -3,12 +3,12 @@
 setenv TARGET C12
 echo "TARGET:\t\t\t${TARGET}"
 
-setenv GENIE_TUNE G18_10a_00_000
-# setenv GENIE_TUNE GEM21_11a_00_000
+# setenv GENIE_TUNE G18_10a_00_000
+setenv GENIE_TUNE GEM21_11a_00_000
 echo "GENIE_TUNE:\t\t${GENIE_TUNE}"
 
-# setenv BEAM_E 4029MeV
-setenv BEAM_E 5986MeV
+setenv BEAM_E 4029MeV
+# setenv BEAM_E 5986MeV
 echo "BEAM_E:\t\t\t${BEAM_E}"
 
 setenv CLEAR_FARM_OUT "false"
