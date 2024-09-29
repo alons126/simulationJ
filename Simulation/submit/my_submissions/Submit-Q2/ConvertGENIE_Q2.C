@@ -21,8 +21,8 @@ void ConvertGENIE_Q2()
 
     TString Q2_CUT;
 
-    TString BEAM_E = "4029MeV"; // 4029MeV_def_Q2_th
-    // TString BEAM_E = "5986MeV"; // 5986MeV_Q2_0_4_th
+    // TString BEAM_E = "4029MeV"; // 4029MeV_def_Q2_th
+    TString BEAM_E = "5986MeV"; // 5986MeV_Q2_0_4_th
 
     int NUM_OF_FILES = 10;
 
@@ -100,8 +100,8 @@ void ConvertGENIE_Q2()
                          TARGET_A,
                          TARGET_Z,
                          0.02,  // start (4029MeV_def_Q2_th)
-                         0.02,  // finish (4029MeV_def_Q2_th)
-                                //  0.4,   // finish (4029MeV_def_Q2_th)
+                                //  0.02,  // finish (4029MeV_def_Q2_th)
+                         0.4,   // finish (4029MeV_def_Q2_th)
                          0.01); // delta (4029MeV_def_Q2_th)
     }
     else if (beam_e == "5986MeV")
