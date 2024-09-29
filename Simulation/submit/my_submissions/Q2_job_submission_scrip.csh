@@ -8,7 +8,7 @@ echo "GENIE_TUNE:\t\t${GENIE_TUNE}"
 setenv BEAM_E 4029MeV
 # setenv BEAM_E 5986MeV
 echo "BEAM_E:\t\t\t${BEAM_E}"
-setenv CLEAR_FARM_OUT "true"
+setenv CLEAR_FARM_OUT "false"
 echo "CLEAR_FARM_OUT:\t\t${CLEAR_FARM_OUT}"
 echo
 
@@ -41,17 +41,14 @@ foreach TEMP_Q2_CUT ( \
     echo "TEMP_Q2_CUT:\t\t${TEMP_Q2_CUT}"
     echo
 
-    echo
     echo "Removing old directory structure for MC simulation..."
     rm -rf ${JOB_OUT_PATH}/mchipo ${JOB_OUT_PATH}/reconhipo ${JOB_OUT_PATH}/rootfiles
     echo
 
-    echo
     echo "Setting up directory structure for MC simulation..."
     mkdir -p ${JOB_OUT_PATH}/mchipo ${JOB_OUT_PATH}/reconhipo ${JOB_OUT_PATH}/rootfiles
     echo
 
-    echo
     echo "Submitting sbatch jobs for ${TARGET} at BeamE = ${BEAM_E} with a ${TEMP_Q2_CUT} cut..."
     sbatch ${SUBMIT_SCRIPT_PATH}/submit_GEMC_Q2.sh
     echo
@@ -72,17 +69,14 @@ foreach TEMP_Q2_CUT ( \
     echo "TEMP_Q2_CUT:\t\t${TEMP_Q2_CUT}"
     echo
 
-    echo
     echo "Removing old directory structure for MC simulation..."
     rm -rf ${JOB_OUT_PATH}/mchipo ${JOB_OUT_PATH}/reconhipo ${JOB_OUT_PATH}/rootfiles
     echo
 
-    echo
     echo "Setting up directory structure for MC simulation..."
     mkdir -p ${JOB_OUT_PATH}/mchipo ${JOB_OUT_PATH}/reconhipo ${JOB_OUT_PATH}/rootfiles
     echo
 
-    echo
     echo "Submitting sbatch jobs for ${TARGET} at BeamE = ${BEAM_E} with a ${TEMP_Q2_CUT} cut..."
     sbatch ${SUBMIT_SCRIPT_PATH}/submit_GEMC_Q2.sh
     echo

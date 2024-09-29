@@ -624,7 +624,8 @@ void GENIE_to_LUND_Q2(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
 
                     // LUND header for the event:
                     formatstring = "%i \t %i \t %i \t %f \t %f \t %i \t %f \t %i \t %d \t %.2f \n\033[0m";
-                    outstring = Form(formatstring, nf_mod, A, Z, RES_ID /*targP*/, beamP, beamType, beamE, interactN, j, code);
+                    outstring = Form(formatstring, nf_mod, A, Z, RES_ID /*targP*/, beamP, beamType, beamE, interactN, FilledEvents, code);
+                    // outstring = Form(formatstring, nf_mod, A, Z, RES_ID /*targP*/, beamP, beamType, beamE, interactN, j, code);
                     outfile << outstring;
 
                     auto vtx = randomVertex(target); // get vertex of event
