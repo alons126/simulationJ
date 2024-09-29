@@ -7,8 +7,8 @@ echo "TARGET:\t\t\t${TARGET}"
 setenv GENIE_TUNE GEM21_11a_00_000
 echo "GENIE_TUNE:\t\t${GENIE_TUNE}"
 
-setenv BEAM_E 4029MeV
-# setenv BEAM_E 5986MeV
+# setenv BEAM_E 4029MeV
+setenv BEAM_E 5986MeV
 echo "BEAM_E:\t\t\t${BEAM_E}"
 
 setenv CLEAR_FARM_OUT "false"
@@ -31,7 +31,6 @@ endif
 if ("${BEAM_E}" == "4029MeV") then
 # Loop over directories and submit jobs
 foreach TEMP_Q2_CUT ( \
-            # Q2_0_02  )
             Q2_0_02 Q2_0_03 Q2_0_04 Q2_0_05 Q2_0_06 Q2_0_07 Q2_0_08 Q2_0_09 Q2_0_10 Q2_0_11 \
             Q2_0_12 Q2_0_13 Q2_0_14 Q2_0_15 Q2_0_16 Q2_0_17 Q2_0_18 Q2_0_19 Q2_0_20 Q2_0_21 \
             Q2_0_22 Q2_0_23 Q2_0_24 Q2_0_25 Q2_0_26 Q2_0_27 Q2_0_28 Q2_0_29 Q2_0_30 Q2_0_31 \
