@@ -16,13 +16,13 @@ void ConvertGENIE_Q2()
 {
     TString TARGET = "C12";
 
-    // TString GENIE_TUNE = "GEM21_11a_00_000";
-    TString GENIE_TUNE = "G18_10a_00_000";
+    TString GENIE_TUNE = "GEM21_11a_00_000";
+    // TString GENIE_TUNE = "G18_10a_00_000";
 
     TString Q2_CUT;
 
-    // TString BEAM_E = "4029MeV"; // 4029MeV_def_Q2_th
-    TString BEAM_E = "5986MeV"; // 5986MeV_Q2_0_4_th
+    TString BEAM_E = "4029MeV"; // 4029MeV_def_Q2_th
+    // TString BEAM_E = "5986MeV"; // 5986MeV_Q2_0_4_th
 
     int NUM_OF_FILES = 10;
 
