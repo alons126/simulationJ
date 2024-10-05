@@ -2,7 +2,7 @@
 
 # setenv BEAM_E 5986MeV
 # setenv BEAM_E 4029MeV
-setenv BEAM_E 2070MeV
+setenv BEAM_E "2070MeV"
 echo ${BEAM_E}
 setenv JOB_OUT_PATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/${BEAM_E}
 setenv JOB_OUT_PATH_1E ${JOB_OUT_PATH}/OutPut_1e_torus-1_test
