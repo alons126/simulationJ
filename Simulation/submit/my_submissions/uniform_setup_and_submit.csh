@@ -4,8 +4,13 @@
 # uniform_setup_and_submit "5986MeV" true # Won’t clear farm_out.
 # uniform_setup_and_submit "5986MeV"      # Will clear farm_out.
 
+#!/bin/csh
+
+# Function implementation without parentheses
+alias uniform_setup_and_submit 'uniform_setup_and_submit_impl \!*'
+
 # Function implementation
-uniform_setup_and_submit_impl () {
+uniform_setup_and_submit_impl:
     set BEAM_E = $1
     set clear_farm_out = $2
 
@@ -71,7 +76,6 @@ uniform_setup_and_submit_impl () {
     echo "Submitting en sbatch job for BeamE = ${BEAM_E}..."
     sbatch ${SUBMIT_SCRIPT_PATH}/submit_GEMC_uniform_en.sh
     echo
-}
 
 
 ###!/bin/csh
