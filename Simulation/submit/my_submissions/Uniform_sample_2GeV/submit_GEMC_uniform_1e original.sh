@@ -3,7 +3,7 @@
 #SBATCH --ntasks=1                                                                                                   
 #SBATCH --mem-per-cpu=2000                                                                                            
 #SBATCH --account=clas12                                                                                             
-#SBATCH --job-name=Uniform_ep_sample_2GeV_torus-1_test                                                                                              
+#SBATCH --job-name=Uniform_1e_sample_2GeV                                                                                              
 #SBATCH --partition=production                                                               
 #SBATCH --time=20:00:00                                                                                               
 #SBATCH --output=/farm_out/%u/%x-%j-%N.out                                                                           
@@ -12,12 +12,12 @@
 
 NEVENTS=10000
 #-1.0 for inbending(6,4 GeV) 0.5 for outbending (2 Gev)
-TORUS=-1
+TORUS=0.5
 #Change file prefix for your simulation                                                                                                                          
-FILE_PREFIX=Uniform_ep_sample_${BEAM_E}
+FILE_PREFIX=Uniform_1e_sample_${BEAM_E}
 
 #set output file path location, don't forget to set up dir using setupdir.sh
-OUTPATH=${JOB_OUT_PATH_EP}
+OUTPATH=${JOB_OUT_PATH_1E}
 SUBMIT_SCRIPT_DIR=/u/home/asportes/clas12simulations/simulationJ/Simulation/submit/my_submissions/Uniform_sample_2GeV
 
 #choose the Gcard for your target type

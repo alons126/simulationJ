@@ -3,7 +3,7 @@
 #SBATCH --ntasks=1                                                                                                   
 #SBATCH --mem-per-cpu=2000                                                                                            
 #SBATCH --account=clas12                                                                                             
-#SBATCH --job-name=Uniform_1e_sample_2GeV                                                                                              
+#SBATCH --job-name=Uniform_1e_sample_2GeV_torus-1_test                                                                                              
 #SBATCH --partition=production                                                               
 #SBATCH --time=20:00:00                                                                                               
 #SBATCH --output=/farm_out/%u/%x-%j-%N.out                                                                           
@@ -12,7 +12,7 @@
 
 NEVENTS=10000
 #-1.0 for inbending(6,4 GeV) 0.5 for outbending (2 Gev)
-TORUS=0.5
+TORUS=-1
 #Change file prefix for your simulation                                                                                                                          
 FILE_PREFIX=Uniform_1e_sample_${BEAM_E}
 

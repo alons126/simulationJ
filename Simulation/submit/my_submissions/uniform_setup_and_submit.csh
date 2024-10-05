@@ -7,9 +7,12 @@
 function uniform_setup_and_submit (BEAM_E, clear_farm_out = false) {
     # Set paths based on BEAM_E
     setenv JOB_OUT_PATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/${BEAM_E}
-    setenv JOB_OUT_PATH_1E ${JOB_OUT_PATH}/OutPut_1e
-    setenv JOB_OUT_PATH_EP ${JOB_OUT_PATH}/OutPut_ep
-    setenv JOB_OUT_PATH_EN ${JOB_OUT_PATH}/OutPut_en
+    setenv JOB_OUT_PATH_1E ${JOB_OUT_PATH}/OutPut_1e_torus-1_test
+    setenv JOB_OUT_PATH_EP ${JOB_OUT_PATH}/OutPut_ep_torus-1_test
+    setenv JOB_OUT_PATH_EN ${JOB_OUT_PATH}/OutPut_en_torus-1_test
+    # setenv JOB_OUT_PATH_1E ${JOB_OUT_PATH}/OutPut_1e
+    # setenv JOB_OUT_PATH_EP ${JOB_OUT_PATH}/OutPut_ep
+    # setenv JOB_OUT_PATH_EN ${JOB_OUT_PATH}/OutPut_en
 
     # Determine the correct submit script path based on BEAM_E
     if (${BEAM_E} == "5986MeV") then
