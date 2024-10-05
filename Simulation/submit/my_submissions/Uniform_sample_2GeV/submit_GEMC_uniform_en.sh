@@ -15,15 +15,23 @@ NEVENTS=10000
 TORUS=-1
 #Change file prefix for your simulation                                                                                                                          
 FILE_PREFIX=Uniform_en_sample_${BEAM_E}
+echo "FILE_PREFIX = ${FILE_PREFIX}"
+echo
 
 #set output file path location, don't forget to set up dir using setupdir.sh
 OUTPATH=${JOB_OUT_PATH_EN}
+echo "OUTPATH = ${OUTPATH}"
 SUBMIT_SCRIPT_DIR=/u/home/asportes/clas12simulations/simulationJ/Simulation/submit/my_submissions/Uniform_sample_2GeV
+echo "SUBMIT_SCRIPT_DIR = ${SUBMIT_SCRIPT_DIR}"
+echo
 
 #choose the Gcard for your target type
 GCARD=${SUBMIT_SCRIPT_DIR}/rgm_fall2021_C.gcard
+echo "GCARD = ${GCARD}"
 #Reconstruction yaml file
 YAML=${SUBMIT_SCRIPT_DIR}/rgm_fall2021-cv.yaml
+echo "YAML = ${YAML}"
+echo
 
 #------DONT NEED TO TOUCH UNDER HERE UNLESS YOU NEED TOO------
 LUNDOUT=${OUTPATH}/lundfiles
