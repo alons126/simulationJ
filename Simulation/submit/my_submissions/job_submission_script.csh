@@ -1,25 +1,25 @@
 #!/bin/csh
 
-setenv BEAM_E 5986MeV
+# setenv BEAM_E 5986MeV
 # setenv BEAM_E 4029MeV
-# setenv BEAM_E 2070MeV
+setenv BEAM_E 2070MeV
 setenv JOB_OUT_PATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/${BEAM_E}
-setenv JOB_OUT_PATH_1E ${JOB_OUT_PATH}/OutPut_1e
-setenv JOB_OUT_PATH_EP ${JOB_OUT_PATH}/OutPut_ep
-setenv JOB_OUT_PATH_EN ${JOB_OUT_PATH}/OutPut_en
-setenv SUBMIT_SCRIPT_PATH ./Uniform_sample_6GeV/
+setenv JOB_OUT_PATH_1E ${JOB_OUT_PATH}/OutPut_1e_torus-1_test
+setenv JOB_OUT_PATH_EP ${JOB_OUT_PATH}/OutPut_ep_torus-1_test
+setenv JOB_OUT_PATH_EN ${JOB_OUT_PATH}/OutPut_en_torus-1_test
+# setenv SUBMIT_SCRIPT_PATH ./Uniform_sample_6GeV/
 # setenv SUBMIT_SCRIPT_PATH ./Uniform_sample_4GeV/
-# setenv SUBMIT_SCRIPT_PATH ./Uniform_sample_2GeV/
+setenv SUBMIT_SCRIPT_PATH ./Uniform_sample_2GeV/
 
 echo
 echo "Pulling updates..."
 git pull
 echo
 
-# echo
-# echo "Clearing farm_out directory..."
-# rm /u/scifarm/farm_out/asportes/*
-# echo
+echo
+echo "Clearing farm_out directory..."
+rm /u/scifarm/farm_out/asportes/*
+echo
 
 echo
 echo "Removing old directory structure for MC simulation here..."
