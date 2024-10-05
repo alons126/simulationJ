@@ -4,7 +4,8 @@ source uniform_setup_and_submit.csh
 
 echo "- Submmiting 2070MeV jobs ---------------------------------------------"
 
-uniform_setup_and_submit 2070MeV true
+uniform_setup_and_submit_impl 2070MeV true
+# uniform_setup_and_submit 2070MeV true
 
 # echo "- Submmiting 4029MeV jobs ---------------------------------------------"
 
