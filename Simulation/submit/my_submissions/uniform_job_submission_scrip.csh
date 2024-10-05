@@ -4,15 +4,14 @@ source uniform_setup_and_submit.csh
 
 echo "- Submmiting 2070MeV jobs ---------------------------------------------"
 
-uniform_setup_and_submit_impl 2070MeV true
-# uniform_setup_and_submit 2070MeV true
+uniform_setup_and_submit 2070MeV true
 
-# echo "- Submmiting 4029MeV jobs ---------------------------------------------"
+echo "- Submmiting 4029MeV jobs ---------------------------------------------"
 
-# uniform_setup_and_submit 4029MeV
+uniform_setup_and_submit 4029MeV
 
-# echo "- Submmiting 5986MeV jobs ---------------------------------------------"
+echo "- Submmiting 5986MeV jobs ---------------------------------------------"
 
-# uniform_setup_and_submit 5986MeV
+uniform_setup_and_submit 5986MeV
 
-# echo "- Submission finished -------------------------------------------------"
+echo "- Submission finished -------------------------------------------------"
