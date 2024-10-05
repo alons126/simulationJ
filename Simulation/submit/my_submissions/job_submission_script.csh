@@ -44,15 +44,15 @@ mkdir ${JOB_OUT_PATH_EP}/mchipo ${JOB_OUT_PATH_EP}/reconhipo ${JOB_OUT_PATH_EP}/
 mkdir ${JOB_OUT_PATH_EN}/mchipo ${JOB_OUT_PATH_EN}/reconhipo ${JOB_OUT_PATH_EN}/rootfiles
 echo
 
-# echo
-# echo "Submitting 1e sbatch job..."
-# sbatch ${SUBMIT_SCRIPT_PATH}/submit_GEMC_uniform_1e.sh
-# echo
+echo
+echo "Submitting 1e sbatch job..."
+sbatch ${SUBMIT_SCRIPT_PATH}/submit_GEMC_uniform_1e.sh
+echo
 
-# echo "Submitting ep sbatch job..."
-# sbatch ${SUBMIT_SCRIPT_PATH}/submit_GEMC_uniform_ep.sh
-# echo
+echo "Submitting ep sbatch job..."
+sbatch ${SUBMIT_SCRIPT_PATH}/submit_GEMC_uniform_ep.sh
+echo
 
-# echo "Submitting en sbatch job..."
-# sbatch ${SUBMIT_SCRIPT_PATH}/submit_GEMC_uniform_en.sh
-# echo
+echo "Submitting en sbatch job..."
+sbatch ${SUBMIT_SCRIPT_PATH}/submit_GEMC_uniform_en.sh
+echo
