@@ -13,9 +13,9 @@ setenv BEAM_E 5986MeV
 echo "BEAM_E = ${BEAM_E}"
 echo
 
-setenv CLEAR_FARM_OUT true
+set CLEAR_FARM_OUT 1 
 echo "CLEAR_FARM_OUT = ${CLEAR_FARM_OUT}"
-setenv CANCEL_PREVIOUS_JOBS true
+set CANCEL_PREVIOUS_JOBS 1
 echo "CANCEL_PREVIOUS_JOBS = ${CANCEL_PREVIOUS_JOBS}"
 echo
 
@@ -66,7 +66,7 @@ echo
 # ============================================================================
 
 # Optionally clear the farm_out directory
-if ($CLEAR_FARM_OUT == true) then
+if ($CLEAR_FARM_OUT) then
     echo
     echo "- Clearing farm_out directory -----------------------------------------"
     rm /u/scifarm/farm_out/asportes/*
@@ -77,7 +77,7 @@ endif
 # ============================================================================
 
 # Optionally cancel previous jobs
-if ($CANCEL_PREVIOUS_JOBS == true) then
+if ($CANCEL_PREVIOUS_JOBSe) then
     echo
     echo "- Canceling previous jobs ---------------------------------------------"
     scancel --account=asportes
