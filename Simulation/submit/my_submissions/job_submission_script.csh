@@ -71,7 +71,9 @@ echo
 if ("${CLEAR_FARM_OUT}" == "1") then
     echo
     echo "- Clearing farm_out directory -----------------------------------------"
-    rm /u/scifarm/farm_out/asportes/*
+    cd /u/scifarm/farm_out/asportes/
+    rm *
+    cd -
     echo
 endif
 
@@ -79,7 +81,7 @@ endif
 # ============================================================================
 
 # Optionally cancel previous jobs
-if ("${CANCEL_PREVIOUS_JOBSe}" == "1") then
+if ("${CANCEL_PREVIOUS_JOBS}" == "1") then
     echo
     echo "- Canceling previous jobs ---------------------------------------------"
     scancel --account=asportes
