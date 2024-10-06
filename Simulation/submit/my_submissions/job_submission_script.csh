@@ -1,26 +1,35 @@
 #!/bin/csh
 
 unset BEAM_E
-# setenv BEAM_E 5986MeV
+setenv BEAM_E 5986MeV
 # setenv BEAM_E 4029MeV
-setenv BEAM_E 2070MeV
+# setenv BEAM_E 2070MeV
 echo "BEAM_E = ${BEAM_E}"
+set CLEAR_FARM_OUT true
 
-setenv JOB_OUT_PATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/${BEAM_E}
+setenv JOB_OUT_PATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/${BEAM_E}-BeamE-test
+# setenv JOB_OUT_PATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/${BEAM_E}
 echo "JOB_OUT_PATH = ${JOB_OUT_PATH}"
-# setenv JOB_OUT_PATH_1E ${JOB_OUT_PATH}/OutPut_1e
-# setenv JOB_OUT_PATH_EP ${JOB_OUT_PATH}/OutPut_ep
-# setenv JOB_OUT_PATH_EN ${JOB_OUT_PATH}/OutPut_en
-setenv JOB_OUT_PATH_1E ${JOB_OUT_PATH}/OutPut_1e_torus-1_test
-setenv JOB_OUT_PATH_EP ${JOB_OUT_PATH}/OutPut_ep_torus-1_test
-setenv JOB_OUT_PATH_EN ${JOB_OUT_PATH}/OutPut_en_torus-1_test
+setenv JOB_OUT_PATH_1E ${JOB_OUT_PATH}/OutPut_1e
+setenv JOB_OUT_PATH_EP ${JOB_OUT_PATH}/OutPut_ep
+setenv JOB_OUT_PATH_EN ${JOB_OUT_PATH}/OutPut_en
 echo "JOB_OUT_PATH_1E = ${JOB_OUT_PATH_1E}"
 echo "JOB_OUT_PATH_EP = ${JOB_OUT_PATH_EP}"
 echo "JOB_OUT_PATH_EN = ${JOB_OUT_PATH_EN}"
 
-# setenv SUBMIT_SCRIPT_PATH ./Uniform_sample_6GeV/
-# setenv SUBMIT_SCRIPT_PATH ./Uniform_sample_4GeV/
-setenv SUBMIT_SCRIPT_PATH ./Uniform_sample_2GeV/
+# # setenv SUBMIT_SCRIPT_PATH ./Uniform_sample_6GeV/
+# # setenv SUBMIT_SCRIPT_PATH ./Uniform_sample_4GeV/
+# setenv SUBMIT_SCRIPT_PATH ./Uniform_sample_2GeV/
+# echo "SUBMIT_SCRIPT_PATH = ${SUBMIT_SCRIPT_PATH}"
+
+if ("${BEAM_E}" == "2070MeV") then
+    setenv SUBMIT_SCRIPT_PATH ./Uniform_sample_2GeV/
+else if ("${BEAM_E}" == "4029MeV") then
+    setenv SUBMIT_SCRIPT_PATH ./Uniform_sample_4GeV/
+else if ("${BEAM_E}" == "5986MeV") then
+    setenv SUBMIT_SCRIPT_PATH ./Uniform_sample_6GeV/
+endif
+
 echo "SUBMIT_SCRIPT_PATH = ${SUBMIT_SCRIPT_PATH}"
 
 echo
@@ -28,10 +37,18 @@ echo "Pulling updates..."
 git pull
 echo
 
-echo
-echo "Clearing farm_out directory..."
-rm /u/scifarm/farm_out/asportes/*
-echo
+# echo
+# echo "Clearing farm_out directory..."
+# rm /u/scifarm/farm_out/asportes/*
+# echo
+
+# Optionally clear the farm_out directory
+if ("${CLEAR_FARM_OUT}" == "true") then
+    echo
+    echo "Clearing farm_out directory..."
+    rm /u/scifarm/farm_out/asportes/*
+    echo
+endif
 
 echo
 echo "Removing old directory structure for MC simulation here..."
