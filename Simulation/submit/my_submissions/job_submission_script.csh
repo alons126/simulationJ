@@ -6,6 +6,7 @@ setenv BEAM_E 5986MeV
 # setenv BEAM_E 2070MeV
 echo "BEAM_E = ${BEAM_E}"
 set CLEAR_FARM_OUT true
+set CANCEL_PREVIOUS_JOBS true
 
 setenv JOB_OUT_PATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/${BEAM_E}-BeamE-test
 # setenv JOB_OUT_PATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/${BEAM_E}
@@ -48,6 +49,14 @@ if ("${CLEAR_FARM_OUT}" == "true") then
     echo
     echo "- Clearing farm_out directory -----------------------------------------"
     rm /u/scifarm/farm_out/asportes/*
+    echo
+endif
+
+# Optionally cancel previous jobs
+if ("${CANCEL_PREVIOUS_JOBS}" == "true") then
+    echo
+    echo "- Canceling previous jobs ---------------------------------------------"
+    scancel --account=asportes
     echo
 endif
 
