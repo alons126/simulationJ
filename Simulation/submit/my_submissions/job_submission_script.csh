@@ -32,6 +32,7 @@ endif
 
 echo "SUBMIT_SCRIPT_PATH = ${SUBMIT_SCRIPT_PATH}"
 
+echo "- Re-pulling repository -----------------------------------------------"
 echo
 echo "Pulling updates..."
 git pull
@@ -45,13 +46,13 @@ echo
 # Optionally clear the farm_out directory
 if ("${CLEAR_FARM_OUT}" == "true") then
     echo
-    echo "Clearing farm_out directory..."
+    echo "- Clearing farm_out directory -----------------------------------------"
     rm /u/scifarm/farm_out/asportes/*
     echo
 endif
 
 echo
-echo "Removing old directory structure for MC simulation here..."
+echo "- Removing old directory structure for MC simulation here -------------"
 rm -rf ${JOB_OUT_PATH_1E}/mchipo
 rm -rf ${JOB_OUT_PATH_1E}/reconhipo
 rm -rf ${JOB_OUT_PATH_1E}/rootfiles
@@ -66,12 +67,14 @@ rm -rf ${JOB_OUT_PATH_EN}/rootfiles
 echo
 
 echo
-echo "Setting up directory structure for MC simulation here..."
+echo "- Setting up directory structure for MC simulation here ---------------"
 mkdir ${JOB_OUT_PATH_1E}/mchipo ${JOB_OUT_PATH_1E}/reconhipo ${JOB_OUT_PATH_1E}/rootfiles
 mkdir ${JOB_OUT_PATH_EP}/mchipo ${JOB_OUT_PATH_EP}/reconhipo ${JOB_OUT_PATH_EP}/rootfiles
 mkdir ${JOB_OUT_PATH_EN}/mchipo ${JOB_OUT_PATH_EN}/reconhipo ${JOB_OUT_PATH_EN}/rootfiles
 echo
 
+echo
+echo "- Submitting jobs -----------------------------------------------------"
 echo
 echo "Submitting 1e sbatch job..."
 sbatch ${SUBMIT_SCRIPT_PATH}/submit_GEMC_uniform_1e.sh
