@@ -116,18 +116,18 @@ echo
 # Submitting jobs
 # ============================================================================
 
-# echo
-# echo "- Submitting jobs -----------------------------------------------------"
-# echo
+echo
+echo "- Submitting jobs -----------------------------------------------------"
+echo
 
-# echo "Submitting 1e sbatch job..."
-# sbatch ${SUBMIT_SCRIPT_PATH}/submit_GEMC_uniform_1e.sh
-# echo
+echo "Submitting 1e sbatch job..."
+sbatch ${SUBMIT_SCRIPT_PATH}/submit_GEMC_uniform_1e.sh
+echo
 
-# echo "Submitting ep sbatch job..."
-# sbatch ${SUBMIT_SCRIPT_PATH}/submit_GEMC_uniform_ep.sh
-# echo
+echo "Submitting ep sbatch job..."
+sbatch ${SUBMIT_SCRIPT_PATH}/submit_GEMC_uniform_ep.sh
+echo
 
-# echo "Submitting en sbatch job..."
-# sbatch ${SUBMIT_SCRIPT_PATH}/submit_GEMC_uniform_en.sh
-# echo
+echo "Submitting en sbatch job..."
+sbatch ${SUBMIT_SCRIPT_PATH}/submit_GEMC_uniform_en.sh
+echo
