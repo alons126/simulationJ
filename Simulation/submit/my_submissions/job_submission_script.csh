@@ -66,7 +66,7 @@ echo
 # ============================================================================
 
 # Optionally clear the farm_out directory
-if (CLEAR_FARM_OUT == true) then
+if ($CLEAR_FARM_OUT == true) then
     echo
     echo "- Clearing farm_out directory -----------------------------------------"
     rm /u/scifarm/farm_out/asportes/*
@@ -77,7 +77,7 @@ endif
 # ============================================================================
 
 # Optionally cancel previous jobs
-if (CANCEL_PREVIOUS_JOBS == true) then
+if ($CANCEL_PREVIOUS_JOBS == true) then
     echo
     echo "- Canceling previous jobs ---------------------------------------------"
     scancel --account=asportes
@@ -112,17 +112,18 @@ echo
 # Submitting jobs
 # ============================================================================
 
-echo
-echo "- Submitting jobs -----------------------------------------------------"
-echo
-echo "Submitting 1e sbatch job..."
-sbatch ${SUBMIT_SCRIPT_PATH}/submit_GEMC_uniform_1e.sh
-echo
+# echo
+# echo "- Submitting jobs -----------------------------------------------------"
+# echo
 
-echo "Submitting ep sbatch job..."
-sbatch ${SUBMIT_SCRIPT_PATH}/submit_GEMC_uniform_ep.sh
-echo
+# echo "Submitting 1e sbatch job..."
+# sbatch ${SUBMIT_SCRIPT_PATH}/submit_GEMC_uniform_1e.sh
+# echo
 
-echo "Submitting en sbatch job..."
-sbatch ${SUBMIT_SCRIPT_PATH}/submit_GEMC_uniform_en.sh
-echo
+# echo "Submitting ep sbatch job..."
+# sbatch ${SUBMIT_SCRIPT_PATH}/submit_GEMC_uniform_ep.sh
+# echo
+
+# echo "Submitting en sbatch job..."
+# sbatch ${SUBMIT_SCRIPT_PATH}/submit_GEMC_uniform_en.sh
+# echo
