@@ -41,7 +41,7 @@ echo
 # ============================================================================
 
 unset RUNNING_DIR
-set RUNNING_DIR `pwd`
+setenv RUNNING_DIR `pwd`
 echo "RUNNING_DIR = ${RUNNING_DIR}"
 
 if ("${BEAM_E}" == "2070MeV") then
