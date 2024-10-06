@@ -39,17 +39,25 @@ echo
 
 # Setting SUBMIT_SCRIPT_PATH for 2 GeV
 # ============================================================================
+
+unset RUNNING_DIR
+set RUNNING_DIR `pwd`
+echo "RUNNING_DIR = ${RUNNING_DIR}"
+
 if ("${BEAM_E}" == "2070MeV") then
     echo "- Setting SUBMIT_SCRIPT_PATH for 2 GeV --------------------------------"
-    setenv SUBMIT_SCRIPT_PATH ./Uniform_sample_2GeV/
+    setenv SUBMIT_SCRIPT_PATH ${RUNNING_DIR}/Uniform_sample_2GeV/
+    # setenv SUBMIT_SCRIPT_PATH ./Uniform_sample_2GeV/
     echo
 else if ("${BEAM_E}" == "4029MeV") then
     echo "- Setting SUBMIT_SCRIPT_PATH for 4 GeV --------------------------------"
-    setenv SUBMIT_SCRIPT_PATH ./Uniform_sample_4GeV/
+    setenv SUBMIT_SCRIPT_PATH ${RUNNING_DIR}/Uniform_sample_4GeV/
+    # setenv SUBMIT_SCRIPT_PATH ./Uniform_sample_4GeV/
     echo
 else if ("${BEAM_E}" == "5986MeV") then
     echo "- Setting SUBMIT_SCRIPT_PATH for 6 GeV --------------------------------"
-    setenv SUBMIT_SCRIPT_PATH ./Uniform_sample_6GeV/
+    setenv SUBMIT_SCRIPT_PATH ${RUNNING_DIR}/Uniform_sample_6GeV/
+    # setenv SUBMIT_SCRIPT_PATH ./Uniform_sample_6GeV/
     echo
 endif
 
