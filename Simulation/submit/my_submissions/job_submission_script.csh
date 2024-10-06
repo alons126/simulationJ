@@ -13,7 +13,7 @@ setenv BEAM_E 5986MeV
 echo "BEAM_E = ${BEAM_E}"
 echo
 
-setenv CLEAR_FARM_OUT 1 #
+setenv CLEAR_FARM_OUT true
 echo "CLEAR_FARM_OUT = ${CLEAR_FARM_OUT}"
 setenv CANCEL_PREVIOUS_JOBS 1
 echo "CANCEL_PREVIOUS_JOBS = ${CANCEL_PREVIOUS_JOBS}"
@@ -66,7 +66,7 @@ echo
 # ============================================================================
 
 # Optionally clear the farm_out directory
-if ($CLEAR_FARM_OUT) then
+if ("${CLEAR_FARM_OUT}" == "true") then
     echo
     echo "- Clearing farm_out directory -----------------------------------------"
     rm /u/scifarm/farm_out/asportes/*
