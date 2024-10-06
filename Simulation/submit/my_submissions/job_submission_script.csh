@@ -1,12 +1,15 @@
 #!/bin/csh
 
-unset BEAM_E
+# unset BEAM_E
 setenv BEAM_E 5986MeV
 # setenv BEAM_E 4029MeV
 # setenv BEAM_E 2070MeV
 echo "BEAM_E = ${BEAM_E}"
+
 set CLEAR_FARM_OUT true
+echo "CLEAR_FARM_OUT = ${CLEAR_FARM_OUT}"
 set CANCEL_PREVIOUS_JOBS true
+echo "CANCEL_PREVIOUS_JOBS = ${CANCEL_PREVIOUS_JOBS}"
 
 setenv JOB_OUT_PATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/${BEAM_E}-BeamE-test
 # setenv JOB_OUT_PATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/${BEAM_E}
