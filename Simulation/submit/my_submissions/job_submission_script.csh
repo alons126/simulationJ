@@ -92,7 +92,8 @@ endif
 if ("${CANCEL_PREVIOUS_JOBS}" == "1") then
     echo
     echo "- Canceling previous jobs ---------------------------------------------"
-    scancel --account=asportes
+    scancel --user=asportes
+    # scancel --account=asportes
     echo
 endif
 
