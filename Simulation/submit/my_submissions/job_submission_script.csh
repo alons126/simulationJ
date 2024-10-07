@@ -17,7 +17,7 @@ unset CLEAR_FARM_OUT
 setenv CLEAR_FARM_OUT 1 ## 1 for true
 echo "CLEAR_FARM_OUT = ${CLEAR_FARM_OUT}"
 unset CANCEL_PREVIOUS_JOBS
-setenv CANCEL_PREVIOUS_JOBS 1 ## 1 for true
+setenv CANCEL_PREVIOUS_JOBS 0 ## 1 for true
 echo "CANCEL_PREVIOUS_JOBS = ${CANCEL_PREVIOUS_JOBS}"
 echo
 
