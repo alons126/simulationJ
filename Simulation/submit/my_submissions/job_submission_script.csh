@@ -74,6 +74,7 @@ echo
 echo "- Re-pulling repository -----------------------------------------------"
 echo
 echo "Pulling updates..."
+git reset --hard
 git pull
 echo
 
