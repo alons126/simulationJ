@@ -3,12 +3,12 @@
 #SBATCH --ntasks=1                                                                                                   
 #SBATCH --mem-per-cpu=2000                                                                                            
 #SBATCH --account=clas12                                                                                             
-#SBATCH --job-name=Uniform_1e_sample_4GeV_Tester_e_1M                                                                                              
+#SBATCH --job-name=Uniform_1e_sample_4GeV                                                                                           
 #SBATCH --partition=production                                                               
 #SBATCH --time=20:00:00                                                                                               
 #SBATCH --output=/farm_out/%u/%x-%j-%N.out                                                                           
 #SBATCH --error=//farm_out/%u/%x-%j-%N.err                                                                           
-#SBATCH --array=1-100 #Number of files 1-N                                                                                                
+#SBATCH --array=1-2500 #Number of files 1-N                                                                                                
 
 NEVENTS=10000
 #-1.0 for inbending(6,4 GeV) 0.5 for outbending (2 Gev)
