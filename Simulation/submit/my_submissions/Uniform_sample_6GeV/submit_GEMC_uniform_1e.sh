@@ -12,7 +12,8 @@
 
 NEVENTS=10000
 #-1.0 for inbending(6,4 GeV) 0.5 for outbending (2 Gev)
-TORUS=-1.0 
+TORUS=1.0 
+################### TORUS=-1.0 
 #Change file prefix for your simulation                                                                                                                          
 FILE_PREFIX=Uniform_1e_sample_${BEAM_E}
 

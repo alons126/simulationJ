@@ -14,7 +14,7 @@ echo "BEAM_E = ${BEAM_E}"
 echo
 
 unset CLEAR_FARM_OUT
-setenv CLEAR_FARM_OUT 1 ## 1 for true
+setenv CLEAR_FARM_OUT 0 ## 1 for true
 echo "CLEAR_FARM_OUT = ${CLEAR_FARM_OUT}"
 unset CANCEL_PREVIOUS_JOBS
 setenv CANCEL_PREVIOUS_JOBS 0 ## 1 for true
@@ -22,7 +22,8 @@ echo "CANCEL_PREVIOUS_JOBS = ${CANCEL_PREVIOUS_JOBS}"
 echo
 
 unset JOB_OUT_PATH
-setenv JOB_OUT_PATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/${BEAM_E}-vtx-test-1
+setenv JOB_OUT_PATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/${BEAM_E}-torus_plus1-test
+# setenv JOB_OUT_PATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/${BEAM_E}-vtx-test-1
 # setenv JOB_OUT_PATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/${BEAM_E}-BeamE-test
 # setenv JOB_OUT_PATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/${BEAM_E}
 echo "JOB_OUT_PATH = ${JOB_OUT_PATH}"
