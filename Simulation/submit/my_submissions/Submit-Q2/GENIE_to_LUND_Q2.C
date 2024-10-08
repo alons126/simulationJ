@@ -31,7 +31,7 @@ void GENIE_to_LUND_Q2(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
     std::string sample_target0 = TARGET.Data(), sample_genie_tune0 = GENIE_TUNE.Data(), sample_beamE0 = BEAM_E.Data();
     string sample_target1, sample_genie_tune1, sample_beamE1;
     string sample_target2, sample_genie_tune2, sample_beamE2;
-    double Q2_ulim, Q2_llim;
+    double Q2_ulim, Q2_llim, beam_e;
 
     if (sample_target0 == "H1")
     {
@@ -71,6 +71,7 @@ void GENIE_to_LUND_Q2(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
         sample_beamE2 = " @2GeV";
         Q2_ulim = 0.5;
         Q2_llim = 0.;
+        beam_e = 2.07052;
     }
     else if (sample_beamE0 == "4029MeV")
     {
@@ -78,6 +79,7 @@ void GENIE_to_LUND_Q2(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
         sample_beamE2 = " @4GeV";
         Q2_ulim = 1.;
         Q2_llim = 0.;
+        beam_e = 4.02962;
     }
     else if (sample_beamE0 == "5986MeV")
     {
@@ -85,6 +87,7 @@ void GENIE_to_LUND_Q2(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
         sample_beamE2 = " @6GeV";
         Q2_ulim = 2.;
         Q2_llim = 0.;
+        beam_e = 5.98636;
     }
 
     if (PrintOut)
@@ -274,7 +277,7 @@ void GENIE_to_LUND_Q2(TString TARGET, TString GENIE_TUNE, TString BEAM_E,
         Int_t interactN = 1;
         int beamType = 11;
 
-        double beamE = -99; // GeV
+        double beamE = beam_e; // GeV
 
         Bool_t qel;
         Bool_t mec;
