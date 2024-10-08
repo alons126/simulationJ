@@ -65,6 +65,7 @@
         "__tree": "cpp",
         "charconv": "cpp",
         "forward_list": "cpp",
-        "map": "cpp"
+        "map": "cpp",
+        "submit_isotropic.C": "cpp"
     }
 }

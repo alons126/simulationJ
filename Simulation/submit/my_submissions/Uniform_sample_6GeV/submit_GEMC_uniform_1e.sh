@@ -13,17 +13,26 @@
 NEVENTS=10000
 #-1.0 for inbending(6,4 GeV) 0.5 for outbending (2 Gev)
 TORUS=-1.0 
+echo "TORUS = ${TORUS}"
 #Change file prefix for your simulation                                                                                                                          
 FILE_PREFIX=Uniform_1e_sample_${BEAM_E}
+echo "FILE_PREFIX = ${FILE_PREFIX}"
+echo
 
 #set output file path location, don't forget to set up dir using setupdir.sh
 OUTPATH=${JOB_OUT_PATH_1E}
+echo "OUTPATH = ${OUTPATH}"
 SUBMIT_SCRIPT_DIR=/u/home/asportes/clas12simulations/simulationJ/Simulation/submit/my_submissions/Uniform_sample_6GeV
+echo "SUBMIT_SCRIPT_DIR = ${SUBMIT_SCRIPT_DIR}"
+echo
 
 #choose the Gcard for your target type
 GCARD=${SUBMIT_SCRIPT_DIR}/rgm_fall2021_C.gcard
+echo "GCARD = ${GCARD}"
 #Reconstruction yaml file
 YAML=${SUBMIT_SCRIPT_DIR}/rgm_fall2021-ai_6Gev.yaml
+echo "YAML = ${YAML}"
+echo
 
 #------DONT NEED TO TOUCH UNDER HERE UNLESS YOU NEED TOO------
 LUNDOUT=${OUTPATH}/lundfiles

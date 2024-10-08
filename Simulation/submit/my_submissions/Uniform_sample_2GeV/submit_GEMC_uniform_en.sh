@@ -13,6 +13,7 @@
 NEVENTS=10000
 #-1.0 for inbending(6,4 GeV) 0.5 for outbending (2 Gev)
 TORUS=0.5
+echo "TORUS = ${TORUS}"
 #Change file prefix for your simulation                                                                                                                          
 FILE_PREFIX=Uniform_en_sample_${BEAM_E}
 echo "FILE_PREFIX = ${FILE_PREFIX}"
