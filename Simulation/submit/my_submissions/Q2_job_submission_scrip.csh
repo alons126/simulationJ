@@ -14,7 +14,7 @@ if ("${BEAM_E}" == "4029MeV") then
 else if ("${BEAM_E}" == "5986MeV") then
     setenv TARGET Ar40
     echo "TARGET:\t\t\t${TARGET}"
-end
+endif
 
 setenv CLEAR_FARM_OUT "false"
 echo "CLEAR_FARM_OUT:\t\t${CLEAR_FARM_OUT}"
