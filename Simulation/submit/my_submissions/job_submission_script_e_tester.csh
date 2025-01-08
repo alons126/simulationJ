@@ -4,14 +4,25 @@ unset BEAM_E
 # setenv BEAM_E 5986MeV
 setenv BEAM_E 4029MeV
 # setenv BEAM_E 2070MeV
+echo "BEAM_E: ${BEAM_E}"
+echo
+
 unset JOB_OUT_PATH
 setenv JOB_OUT_PATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/${BEAM_E}
+echo "JOB_OUT_PATH: ${JOB_OUT_PATH}"
+echo
+
 unset JOB_OUT_PATH_1E
 setenv JOB_OUT_PATH_1E ${JOB_OUT_PATH}/OutPut_Tester_e_1e
+echo "JOB_OUT_PATH_1E: ${JOB_OUT_PATH_1E}"
+echo
+
 unset SUBMIT_SCRIPT_PATH
 # setenv SUBMIT_SCRIPT_PATH ./Uniform_sample_6GeV/
 setenv SUBMIT_SCRIPT_PATH ./Uniform_sample_4GeV/
 # setenv SUBMIT_SCRIPT_PATH ./Uniform_sample_2GeV/
+echo "SUBMIT_SCRIPT_PATH: ${SUBMIT_SCRIPT_PATH}"
+echo
 
 # echo
 # echo "Pulling updates..."
@@ -36,6 +47,6 @@ mkdir ${JOB_OUT_PATH_1E}/mchipo ${JOB_OUT_PATH_1E}/reconhipo ${JOB_OUT_PATH_1E}/
 echo
 
 echo
-echo "Submitting 1e sbatch job..."
-sbatch ${SUBMIT_SCRIPT_PATH}/submit_GEMC_uniform_1e.sh
+echo "Submitting Tester_e_1e sbatch job at ${BEAM_E}..."
+# sbatch ${SUBMIT_SCRIPT_PATH}/submit_GEMC_uniform_1e.sh
 echo
