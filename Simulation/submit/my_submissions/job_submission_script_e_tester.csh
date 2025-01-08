@@ -24,13 +24,13 @@ echo
 unset SUBMIT_SCRIPT_PATH
 
 if ("${BEAM_E}" == "2070MeV") then
-    echo "- Setting SUBMIT_SCRIPT_PATH for 2 GeV --------------------------------"
+    # echo "- Setting SUBMIT_SCRIPT_PATH for 2 GeV --------------------------------"
     setenv SUBMIT_SCRIPT_PATH ./Uniform_sample_2GeV/
 else if ("${BEAM_E}" == "4029MeV") then
-    echo "- Setting SUBMIT_SCRIPT_PATH for 4 GeV --------------------------------"
+    # echo "- Setting SUBMIT_SCRIPT_PATH for 4 GeV --------------------------------"
     setenv SUBMIT_SCRIPT_PATH ./Uniform_sample_4GeV/
 else if ("${BEAM_E}" == "5986MeV") then
-    echo "- Setting SUBMIT_SCRIPT_PATH for 6 GeV --------------------------------"
+    # echo "- Setting SUBMIT_SCRIPT_PATH for 6 GeV --------------------------------"
     setenv SUBMIT_SCRIPT_PATH ./Uniform_sample_6GeV/
 endif
 
@@ -61,5 +61,5 @@ echo
 
 echo
 echo "Submitting Tester_e_1e sbatch job at ${BEAM_E}..."
-# sbatch ${SUBMIT_SCRIPT_PATH}/submit_GEMC_uniform_1e.sh
+sbatch ${SUBMIT_SCRIPT_PATH}/submit_GEMC_uniform_1e.sh
 echo
