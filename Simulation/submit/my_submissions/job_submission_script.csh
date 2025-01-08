@@ -7,45 +7,49 @@ echo "- Job parameters ------------------------------------------------------"
 echo
 
 unset BEAM_E
-# setenv BEAM_E 5986MeV
-# setenv BEAM_E 4029MeV
 setenv BEAM_E 2070MeV
-echo "BEAM_E = ${BEAM_E}"
+# setenv BEAM_E 4029MeV
+# setenv BEAM_E 5986MeV
+echo "BEAM_E: ${BEAM_E}"
 echo
 
 unset CLEAR_FARM_OUT
 setenv CLEAR_FARM_OUT 0 ## 1 for true
-echo "CLEAR_FARM_OUT = ${CLEAR_FARM_OUT}"
+echo "CLEAR_FARM_OUT: ${CLEAR_FARM_OUT}"
+
 unset CANCEL_PREVIOUS_JOBS
 setenv CANCEL_PREVIOUS_JOBS 0 ## 1 for true
-echo "CANCEL_PREVIOUS_JOBS = ${CANCEL_PREVIOUS_JOBS}"
+echo "CANCEL_PREVIOUS_JOBS: ${CANCEL_PREVIOUS_JOBS}"
 echo
 
 unset JOB_OUT_PATH
 setenv JOB_OUT_PATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/${BEAM_E}
-echo "JOB_OUT_PATH = ${JOB_OUT_PATH}"
+echo "JOB_OUT_PATH: ${JOB_OUT_PATH}"
+
 unset JOB_OUT_PATH_1E
 setenv JOB_OUT_PATH_1E ${JOB_OUT_PATH}/OutPut_1e
+echo "JOB_OUT_PATH_1E: ${JOB_OUT_PATH_1E}"
+
 unset JOB_OUT_PATH_EP
 setenv JOB_OUT_PATH_EP ${JOB_OUT_PATH}/OutPut_ep
+echo "JOB_OUT_PATH_EP: ${JOB_OUT_PATH_EP}"
+
 unset JOB_OUT_PATH_EN
 setenv JOB_OUT_PATH_EN ${JOB_OUT_PATH}/OutPut_en
-echo "JOB_OUT_PATH_1E = ${JOB_OUT_PATH_1E}"
-echo "JOB_OUT_PATH_EP = ${JOB_OUT_PATH_EP}"
-echo "JOB_OUT_PATH_EN = ${JOB_OUT_PATH_EN}"
+echo "JOB_OUT_PATH_EN: ${JOB_OUT_PATH_EN}"
 echo
 
 # # setenv SUBMIT_SCRIPT_PATH ./Uniform_sample_6GeV/
 # # setenv SUBMIT_SCRIPT_PATH ./Uniform_sample_4GeV/
 # setenv SUBMIT_SCRIPT_PATH ./Uniform_sample_2GeV/
-# echo "SUBMIT_SCRIPT_PATH = ${SUBMIT_SCRIPT_PATH}"
+# echo "SUBMIT_SCRIPT_PATH: ${SUBMIT_SCRIPT_PATH}"
 
 # Setting SUBMIT_SCRIPT_PATH for 2 GeV
 # ============================================================================
 
 unset RUNNING_DIR
 setenv RUNNING_DIR `pwd`
-echo "RUNNING_DIR = ${RUNNING_DIR}"
+echo "RUNNING_DIR: ${RUNNING_DIR}"
 
 if ("${BEAM_E}" == "2070MeV") then
     echo "- Setting SUBMIT_SCRIPT_PATH for 2 GeV --------------------------------"
@@ -64,7 +68,7 @@ else if ("${BEAM_E}" == "5986MeV") then
     echo
 endif
 
-echo "SUBMIT_SCRIPT_PATH = ${SUBMIT_SCRIPT_PATH}"
+echo "SUBMIT_SCRIPT_PATH: ${SUBMIT_SCRIPT_PATH}"
 echo
 
 # Re-pulling repository
