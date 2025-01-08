@@ -1,9 +1,12 @@
 #!/bin/csh
 
+echo
+echo
+
 unset BEAM_E
+setenv BEAM_E 2070MeV
+# setenv BEAM_E 4029MeV
 # setenv BEAM_E 5986MeV
-setenv BEAM_E 4029MeV
-# setenv BEAM_E 2070MeV
 echo "BEAM_E: ${BEAM_E}"
 echo
 
@@ -19,9 +22,18 @@ echo "JOB_OUT_PATH_1E: ${JOB_OUT_PATH_1E}"
 echo
 
 unset SUBMIT_SCRIPT_PATH
-# setenv SUBMIT_SCRIPT_PATH ./Uniform_sample_6GeV/
-setenv SUBMIT_SCRIPT_PATH ./Uniform_sample_4GeV/
-# setenv SUBMIT_SCRIPT_PATH ./Uniform_sample_2GeV/
+
+if ("${BEAM_E}" == "2070MeV") then
+    echo "- Setting SUBMIT_SCRIPT_PATH for 2 GeV --------------------------------"
+    setenv SUBMIT_SCRIPT_PATH ./Uniform_sample_2GeV/
+else if ("${BEAM_E}" == "4029MeV") then
+    echo "- Setting SUBMIT_SCRIPT_PATH for 4 GeV --------------------------------"
+    setenv SUBMIT_SCRIPT_PATH ./Uniform_sample_4GeV/
+else if ("${BEAM_E}" == "5986MeV") then
+    echo "- Setting SUBMIT_SCRIPT_PATH for 6 GeV --------------------------------"
+    setenv SUBMIT_SCRIPT_PATH ./Uniform_sample_6GeV/
+endif
+
 echo "SUBMIT_SCRIPT_PATH: ${SUBMIT_SCRIPT_PATH}"
 echo
 
