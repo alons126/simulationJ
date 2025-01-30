@@ -3,7 +3,7 @@
 #SBATCH --ntasks=1                                                                                                   
 #SBATCH --mem-per-cpu=2000                                                                                            
 #SBATCH --account=clas12                                                                                             
-#SBATCH --job-name=Ar40_Q2_sample_6GeV                                                                                             
+#SBATCH --job-name=lAr_imp_test_sample                                                                                             
 #SBATCH --partition=production                                                               
 #SBATCH --time=20:00:00                                                                                               
 #SBATCH --output=/farm_out/%u/%x-%j-%N.out                                                                           
@@ -34,7 +34,7 @@ echo "SUBMIT_SCRIPT_DIR = ${SUBMIT_SCRIPT_DIR}"
 echo
 
 #choose the Gcard for your target type
-GCARD=${SUBMIT_SCRIPT_DIR}/rgm_fall2021_C.gcard
+GCARD=${SUBMIT_SCRIPT_DIR}/rgm_fall2021_lAr.gcard
 echo "GCARD = ${GCARD}"
 #Reconstruction yaml file
 YAML=${SUBMIT_SCRIPT_DIR}/rgm_fall2021-ai_6Gev.yaml

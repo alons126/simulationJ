@@ -1,5 +1,6 @@
 {
     "files.associations": {
+        "*.gcard": "xml",
         "ConvertGENIE_Q2.C": "cpp",
         "GENIE_to_LUND.C": "cpp",
         "GENIE_to_LUND copy.C": "cpp",
@@ -66,6 +67,7 @@
         "charconv": "cpp",
         "forward_list": "cpp",
         "map": "cpp",
-        "submit_isotropic.C": "cpp"
+        "submit_isotropic.C": "cpp",
+        "ConvertGENIE.C": "cpp"
     }
 }

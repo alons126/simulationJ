@@ -18,7 +18,7 @@
 CMAKE_ADDR2LINE:FILEPATH=CMAKE_ADDR2LINE-NOTFOUND
 
 //Path to a program.
-CMAKE_AR:FILEPATH=/Library/Developer/CommandLineTools/usr/bin/ar
+CMAKE_AR:FILEPATH=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ar
 
 //Choose the type of build, options are: None Debug Release RelWithDebInfo
 // MinSizeRel ...
@@ -28,7 +28,7 @@ CMAKE_BUILD_TYPE:STRING=Debug
 CMAKE_COLOR_DIAGNOSTICS:BOOL=ON
 
 //CXX compiler
-CMAKE_CXX_COMPILER:FILEPATH=/Library/Developer/CommandLineTools/usr/bin/c++
+CMAKE_CXX_COMPILER:FILEPATH=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++
 
 //Flags used by the CXX compiler during all build types.
 CMAKE_CXX_FLAGS:STRING=
@@ -46,7 +46,7 @@ CMAKE_CXX_FLAGS_RELEASE:STRING=-O3 -DNDEBUG
 CMAKE_CXX_FLAGS_RELWITHDEBINFO:STRING=-O2 -g -DNDEBUG
 
 //C compiler
-CMAKE_C_COMPILER:FILEPATH=/Library/Developer/CommandLineTools/usr/bin/cc
+CMAKE_C_COMPILER:FILEPATH=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc
 
 //Flags used by the C compiler during all build types.
 CMAKE_C_FLAGS:STRING=
@@ -94,7 +94,7 @@ CMAKE_INSTALL_NAME_TOOL:FILEPATH=/usr/bin/install_name_tool
 CMAKE_INSTALL_PREFIX:PATH=/usr/local
 
 //Path to a program.
-CMAKE_LINKER:FILEPATH=/Library/Developer/CommandLineTools/usr/bin/ld
+CMAKE_LINKER:FILEPATH=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld
 
 //Path to a program.
 CMAKE_MAKE_PROGRAM:FILEPATH=/usr/bin/make
@@ -120,13 +120,13 @@ CMAKE_MODULE_LINKER_FLAGS_RELEASE:STRING=
 CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO:STRING=
 
 //Path to a program.
-CMAKE_NM:FILEPATH=/Library/Developer/CommandLineTools/usr/bin/nm
+CMAKE_NM:FILEPATH=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/nm
 
 //Path to a program.
 CMAKE_OBJCOPY:FILEPATH=CMAKE_OBJCOPY-NOTFOUND
 
 //Path to a program.
-CMAKE_OBJDUMP:FILEPATH=/Library/Developer/CommandLineTools/usr/bin/objdump
+CMAKE_OBJDUMP:FILEPATH=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/objdump
 
 //Build architectures for OSX
 CMAKE_OSX_ARCHITECTURES:STRING=
@@ -137,7 +137,7 @@ CMAKE_OSX_DEPLOYMENT_TARGET:STRING=
 
 //The product will be built against the headers and libraries located
 // inside the indicated SDK.
-CMAKE_OSX_SYSROOT:PATH=/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk
+CMAKE_OSX_SYSROOT:PATH=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk
 
 //Value Computed by CMake
 CMAKE_PROJECT_DESCRIPTION:STATIC=
@@ -149,7 +149,7 @@ CMAKE_PROJECT_HOMEPAGE_URL:STATIC=
 CMAKE_PROJECT_NAME:STATIC=RGM
 
 //Path to a program.
-CMAKE_RANLIB:FILEPATH=/Library/Developer/CommandLineTools/usr/bin/ranlib
+CMAKE_RANLIB:FILEPATH=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ranlib
 
 //Path to a program.
 CMAKE_READELF:FILEPATH=CMAKE_READELF-NOTFOUND
@@ -202,10 +202,10 @@ CMAKE_STATIC_LINKER_FLAGS_RELEASE:STRING=
 CMAKE_STATIC_LINKER_FLAGS_RELWITHDEBINFO:STRING=
 
 //Path to a program.
-CMAKE_STRIP:FILEPATH=/Library/Developer/CommandLineTools/usr/bin/strip
+CMAKE_STRIP:FILEPATH=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip
 
 //Path to a program.
-CMAKE_TAPI:FILEPATH=/Library/Developer/CommandLineTools/usr/bin/tapi
+CMAKE_TAPI:FILEPATH=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/tapi
 
 //If this value is on, makefiles will be generated without the
 // .SILENT directive, and all commands will be echoed to the console
@@ -229,109 +229,112 @@ RGM_IS_TOP_LEVEL:STATIC=ON
 RGM_SOURCE_DIR:STATIC=/Users/alon/Projects/simulationJ
 
 //Path to a library.
-ROOT_Core_LIBRARY:FILEPATH=/Users/alon/Software/root_cern/root_install/lib/libCore.so
+ROOT_Core_LIBRARY:FILEPATH=/opt/homebrew/Cellar/root/6.32.08/lib/root/libCore.so
 
 //The directory containing a CMake configuration file for ROOT.
-ROOT_DIR:PATH=/Users/alon/Software/root_cern/root_install/cmake
+ROOT_DIR:PATH=/opt/homebrew/share/root/cmake
 
 //Path to a library.
-ROOT_Gpad_LIBRARY:FILEPATH=/Users/alon/Software/root_cern/root_install/lib/libGpad.so
+ROOT_Gpad_LIBRARY:FILEPATH=/opt/homebrew/Cellar/root/6.32.08/lib/root/libGpad.so
 
 //Path to a library.
-ROOT_Graf3d_LIBRARY:FILEPATH=/Users/alon/Software/root_cern/root_install/lib/libGraf3d.so
+ROOT_Graf3d_LIBRARY:FILEPATH=/opt/homebrew/Cellar/root/6.32.08/lib/root/libGraf3d.so
 
 //Path to a library.
-ROOT_Graf_LIBRARY:FILEPATH=/Users/alon/Software/root_cern/root_install/lib/libGraf.so
+ROOT_Graf_LIBRARY:FILEPATH=/opt/homebrew/Cellar/root/6.32.08/lib/root/libGraf.so
 
 //Path to a library.
-ROOT_Hist_LIBRARY:FILEPATH=/Users/alon/Software/root_cern/root_install/lib/libHist.so
+ROOT_Hist_LIBRARY:FILEPATH=/opt/homebrew/Cellar/root/6.32.08/lib/root/libHist.so
 
 //Path to a library.
-ROOT_Imt_LIBRARY:FILEPATH=/Users/alon/Software/root_cern/root_install/lib/libImt.so
+ROOT_Imt_LIBRARY:FILEPATH=/opt/homebrew/Cellar/root/6.32.08/lib/root/libImt.so
 
 //Path to a library.
-ROOT_MathCore_LIBRARY:FILEPATH=/Users/alon/Software/root_cern/root_install/lib/libMathCore.so
+ROOT_MathCore_LIBRARY:FILEPATH=/opt/homebrew/Cellar/root/6.32.08/lib/root/libMathCore.so
 
 //Path to a library.
-ROOT_Matrix_LIBRARY:FILEPATH=/Users/alon/Software/root_cern/root_install/lib/libMatrix.so
+ROOT_Matrix_LIBRARY:FILEPATH=/opt/homebrew/Cellar/root/6.32.08/lib/root/libMatrix.so
 
 //Path to a library.
-ROOT_MultiProc_LIBRARY:FILEPATH=/Users/alon/Software/root_cern/root_install/lib/libMultiProc.so
+ROOT_MultiProc_LIBRARY:FILEPATH=/opt/homebrew/Cellar/root/6.32.08/lib/root/libMultiProc.so
 
 //Path to a library.
-ROOT_Net_LIBRARY:FILEPATH=/Users/alon/Software/root_cern/root_install/lib/libNet.so
+ROOT_Net_LIBRARY:FILEPATH=/opt/homebrew/Cellar/root/6.32.08/lib/root/libNet.so
 
 //Path to a library.
-ROOT_Physics_LIBRARY:FILEPATH=/Users/alon/Software/root_cern/root_install/lib/libPhysics.so
+ROOT_Physics_LIBRARY:FILEPATH=/opt/homebrew/Cellar/root/6.32.08/lib/root/libPhysics.so
 
 //Path to a library.
-ROOT_Postscript_LIBRARY:FILEPATH=/Users/alon/Software/root_cern/root_install/lib/libPostscript.so
+ROOT_Postscript_LIBRARY:FILEPATH=/opt/homebrew/Cellar/root/6.32.08/lib/root/libPostscript.so
 
 //Path to a library.
-ROOT_RIO_LIBRARY:FILEPATH=/Users/alon/Software/root_cern/root_install/lib/libRIO.so
+ROOT_RIO_LIBRARY:FILEPATH=/opt/homebrew/Cellar/root/6.32.08/lib/root/libRIO.so
 
 //Path to a library.
-ROOT_ROOTDataFrame_LIBRARY:FILEPATH=/Users/alon/Software/root_cern/root_install/lib/libROOTDataFrame.so
+ROOT_ROOTDataFrame_LIBRARY:FILEPATH=/opt/homebrew/Cellar/root/6.32.08/lib/root/libROOTDataFrame.so
 
 //Path to a library.
-ROOT_ROOTVecOps_LIBRARY:FILEPATH=/Users/alon/Software/root_cern/root_install/lib/libROOTVecOps.so
+ROOT_ROOTVecOps_LIBRARY:FILEPATH=/opt/homebrew/Cellar/root/6.32.08/lib/root/libROOTVecOps.so
 
 //Path to a library.
-ROOT_Rint_LIBRARY:FILEPATH=/Users/alon/Software/root_cern/root_install/lib/libRint.so
+ROOT_Rint_LIBRARY:FILEPATH=/opt/homebrew/Cellar/root/6.32.08/lib/root/libRint.so
 
 //Path to a library.
-ROOT_Thread_LIBRARY:FILEPATH=/Users/alon/Software/root_cern/root_install/lib/libThread.so
+ROOT_Thread_LIBRARY:FILEPATH=/opt/homebrew/Cellar/root/6.32.08/lib/root/libThread.so
 
 //Path to a library.
-ROOT_TreePlayer_LIBRARY:FILEPATH=/Users/alon/Software/root_cern/root_install/lib/libTreePlayer.so
+ROOT_TreePlayer_LIBRARY:FILEPATH=/opt/homebrew/Cellar/root/6.32.08/lib/root/libTreePlayer.so
 
 //Path to a library.
-ROOT_Tree_LIBRARY:FILEPATH=/Users/alon/Software/root_cern/root_install/lib/libTree.so
+ROOT_Tree_LIBRARY:FILEPATH=/opt/homebrew/Cellar/root/6.32.08/lib/root/libTree.so
 
 //Path to a program.
 ROOT_genmap_CMD:FILEPATH=ROOT_genmap_CMD-NOTFOUND
 
 //Path to a program.
-ROOT_genreflex_CMD:FILEPATH=/Users/alon/Software/root_cern/root_install/bin/genreflex
+ROOT_genreflex_CMD:FILEPATH=/opt/homebrew/bin/genreflex
 
 //Path to a program.
-ROOT_hadd_CMD:FILEPATH=/Users/alon/Software/root_cern/root_install/bin/hadd
+ROOT_hadd_CMD:FILEPATH=/opt/homebrew/bin/hadd
 
 //Path to a program.
-ROOT_root_CMD:FILEPATH=/Users/alon/Software/root_cern/root_install/bin/root
+ROOT_root_CMD:FILEPATH=/opt/homebrew/bin/root
 
 //Path to a program.
-ROOT_rootbrowse_CMD:FILEPATH=/Users/alon/Software/root_cern/root_install/bin/rootbrowse
+ROOT_rootbrowse_CMD:FILEPATH=/opt/homebrew/bin/rootbrowse
 
 //Path to a program.
-ROOT_rootcint_CMD:FILEPATH=/Users/alon/Software/root_cern/root_install/bin/rootcint
+ROOT_rootcint_CMD:FILEPATH=/opt/homebrew/bin/rootcint
 
 //Path to a program.
-ROOT_rootcling_CMD:FILEPATH=/Users/alon/Software/root_cern/root_install/bin/rootcling
+ROOT_rootcling_CMD:FILEPATH=/opt/homebrew/bin/rootcling
 
 //Path to a program.
-ROOT_rootcp_CMD:FILEPATH=/Users/alon/Software/root_cern/root_install/bin/rootcp
+ROOT_rootcp_CMD:FILEPATH=/opt/homebrew/bin/rootcp
 
 //Path to a program.
 ROOT_rootdraw_CMD:FILEPATH=ROOT_rootdraw_CMD-NOTFOUND
 
 //Path to a program.
-ROOT_rootls_CMD:FILEPATH=/Users/alon/Software/root_cern/root_install/bin/rootls
+ROOT_rootls_CMD:FILEPATH=/opt/homebrew/bin/rootls
 
 //Path to a program.
-ROOT_rootmkdir_CMD:FILEPATH=/Users/alon/Software/root_cern/root_install/bin/rootmkdir
+ROOT_rootmkdir_CMD:FILEPATH=/opt/homebrew/bin/rootmkdir
 
 //Path to a program.
-ROOT_rootmv_CMD:FILEPATH=/Users/alon/Software/root_cern/root_install/bin/rootmv
+ROOT_rootmv_CMD:FILEPATH=/opt/homebrew/bin/rootmv
 
 //Path to a program.
-ROOT_rootrm_CMD:FILEPATH=/Users/alon/Software/root_cern/root_install/bin/rootrm
+ROOT_rootrm_CMD:FILEPATH=/opt/homebrew/bin/rootrm
 
 //Path to a file.
-VDT_INCLUDE_DIR:PATH=/Users/alon/Software/root_cern/root_install/include
+VDT_INCLUDE_DIR:PATH=/opt/homebrew/Cellar/root/6.32.08/include/root
 
 //Path to a library.
-VDT_LIBRARY:FILEPATH=/Users/alon/Software/root_cern/root_install/lib/libvdt.dylib
+VDT_LIBRARY:FILEPATH=/opt/homebrew/Cellar/root/6.32.08/lib/root/libvdt.dylib
+
+//The directory containing a CMake configuration file for nlohmann_json.
+nlohmann_json_DIR:PATH=/opt/homebrew/share/cmake/nlohmann_json
 
 
 ########################
@@ -347,9 +350,9 @@ CMAKE_CACHEFILE_DIR:INTERNAL=/Users/alon/Projects/simulationJ/cmake-build-debug
 //Major version of cmake used to create the current loaded cache
 CMAKE_CACHE_MAJOR_VERSION:INTERNAL=3
 //Minor version of cmake used to create the current loaded cache
-CMAKE_CACHE_MINOR_VERSION:INTERNAL=29
+CMAKE_CACHE_MINOR_VERSION:INTERNAL=30
 //Patch version of cmake used to create the current loaded cache
-CMAKE_CACHE_PATCH_VERSION:INTERNAL=6
+CMAKE_CACHE_PATCH_VERSION:INTERNAL=5
 //Path to CMake executable.
 CMAKE_COMMAND:INTERNAL=/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/bin/cmake
 //Path to cpack program executable.
@@ -440,7 +443,7 @@ CMAKE_RANLIB-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_READELF
 CMAKE_READELF-ADVANCED:INTERNAL=1
 //Path to CMake installation.
-CMAKE_ROOT:INTERNAL=/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29
+CMAKE_ROOT:INTERNAL=/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.30
 //ADVANCED property for variable: CMAKE_SHARED_LINKER_FLAGS
 CMAKE_SHARED_LINKER_FLAGS-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_SHARED_LINKER_FLAGS_DEBUG
@@ -474,9 +477,11 @@ CMAKE_UNAME:INTERNAL=/usr/bin/uname
 //ADVANCED property for variable: CMAKE_VERBOSE_MAKEFILE
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
 //Details about finding PkgConfig
-FIND_PACKAGE_MESSAGE_DETAILS_PkgConfig:INTERNAL=[/opt/homebrew/bin/pkg-config][v0.29.2()]
+FIND_PACKAGE_MESSAGE_DETAILS_PkgConfig:INTERNAL=[/opt/homebrew/bin/pkg-config][v2.3.0()]
 //Details about finding Vdt
-FIND_PACKAGE_MESSAGE_DETAILS_Vdt:INTERNAL=[/Users/alon/Software/root_cern/root_install/include][/Users/alon/Software/root_cern/root_install/lib/libvdt.dylib][v0.4()]
+FIND_PACKAGE_MESSAGE_DETAILS_Vdt:INTERNAL=[/opt/homebrew/Cellar/root/6.32.08/include/root][/opt/homebrew/Cellar/root/6.32.08/lib/root/libvdt.dylib][v0.4()]
+//Details about finding nlohmann_json
+FIND_PACKAGE_MESSAGE_DETAILS_nlohmann_json:INTERNAL=[/opt/homebrew/share/cmake/nlohmann_json/nlohmann_jsonConfig.cmake][v3.11.3(3.11.3)]
 //ADVANCED property for variable: PKG_CONFIG_ARGN
 PKG_CONFIG_ARGN-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: PKG_CONFIG_EXECUTABLE
