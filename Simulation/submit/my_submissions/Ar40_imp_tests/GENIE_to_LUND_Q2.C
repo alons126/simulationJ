@@ -18,8 +18,8 @@ bool isInVector(int value, const std::vector<int> &vec) {
     return std::find(vec.begin(), vec.end(), value) != vec.end();
 }
 
-void GENIE_to_LUND(TString TARGET, TString GENIE_TUNE, TString BEAM_E, TString inputFile = "", TString lundPath = "./lundfiles/", TString outputFile = "", int nFiles = 800,
-                   string target = "liquid", int A = 1, int Z = 1, double Q2_min = 0, double Q2_max = 1., double dQ2 = 0.02) {
+void GENIE_to_LUND_Q2(TString TARGET, TString GENIE_TUNE, TString BEAM_E, TString inputFile = "", TString lundPath = "./lundfiles/", TString outputFile = "", int nFiles = 800,
+                      string target = "liquid", int A = 1, int Z = 1, double Q2_min = 0, double Q2_max = 1., double dQ2 = 0.02) {
     bool PrintOut = false;
     bool StepByStepPrintOut = false;
     bool CountQ2AndExit = false;
