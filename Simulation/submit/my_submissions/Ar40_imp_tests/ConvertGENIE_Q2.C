@@ -17,8 +17,8 @@ void ConvertGENIE_Q2() {
     TString TARGET = "Ar40";
     std::string target = TARGET.Data();
 
-    // TString GENIE_TUNE = "G18_10a_00_000";
-    TString GENIE_TUNE = "GEM21_11a_00_000";
+    TString GENIE_TUNE = "G18_10a_00_000";
+    // TString GENIE_TUNE = "GEM21_11a_00_000";
     std::string genie_tune = GENIE_TUNE.Data();
 
     TString Q2_CUT;
