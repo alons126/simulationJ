@@ -1,0 +1,7 @@
+cd /u/home/asportes/Ar40_imp_GEMC
+
+cp /lustre24/expphy/volatile/clas12/asportes/Ar40_imp_GEMC/detectors/clas12/targets/*.txt /lustre24/expphy/volatile/clas12/asportes/Ar40_imp_GEMC/clas12Tags/experiments/clas12/targets
+
+unsetenv GEMC_DATA_DIR
+setenv GEMC_DATA_DIR /lustre24/expphy/volatile/clas12/asportes/Ar40_imp_GEMC/clas12Tags
+echo $GEMC_DATA_DIR
