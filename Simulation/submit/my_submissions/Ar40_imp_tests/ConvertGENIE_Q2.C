@@ -55,7 +55,7 @@ void ConvertGENIE_Q2() {
                 TARGET_TYPE = "Ar";
             }
 
-            TRUTH_SAMPLE_INPUT_DIR = "/w/hallb-scshelf2102/clas12/asportes/2N_Analysis_Truth_Samples/" + TARGET + "/" + GENIE_TUNE + "/Q2_th_test_samples/" + BEAM_E;
+            TRUTH_SAMPLE_INPUT_DIR = "/w/hallb-scshelf2102/clas12/asportes/2N_Analysis_Truth_Samples/" + TARGET + "/" + GENIE_TUNE + "/Q2_th_test_samples/" + BEAM_E + "/master-routine_validation_01-eScattering";
             Q2_CUT = "def_Q2_th";
         } else if (beam_e == "5986MeV") {
             if (target == "C12") {
@@ -64,7 +64,7 @@ void ConvertGENIE_Q2() {
                 TARGET_TYPE = "Ar";
             }
 
-            TRUTH_SAMPLE_INPUT_DIR = "/w/hallb-scshelf2102/clas12/asportes/2N_Analysis_Truth_Samples/" + TARGET + "/" + GENIE_TUNE + "/Q2_th_test_samples/" + BEAM_E;
+            TRUTH_SAMPLE_INPUT_DIR = "/w/hallb-scshelf2102/clas12/asportes/2N_Analysis_Truth_Samples/" + TARGET + "/" + GENIE_TUNE + "/Q2_th_test_samples/" + BEAM_E + "/master-routine_validation_01-eScattering";
             Q2_CUT = "Q2_0_40";
         }
     } else if (genie_tune == "GEM21_11a_00_000") {
@@ -75,7 +75,7 @@ void ConvertGENIE_Q2() {
                 TARGET_TYPE = "Ar";
             }
 
-            TRUTH_SAMPLE_INPUT_DIR = "/w/hallb-scshelf2102/clas12/asportes/2N_Analysis_Truth_Samples/" + TARGET + "/" + GENIE_TUNE + "/Q2_th_test_samples/" + BEAM_E;
+            TRUTH_SAMPLE_INPUT_DIR = "/w/hallb-scshelf2102/clas12/asportes/2N_Analysis_Truth_Samples/" + TARGET + "/" + GENIE_TUNE + "/Q2_th_test_samples/" + BEAM_E + "/master-routine_validation_01-eScattering";
             Q2_CUT = "def_Q2_th";
         } else if (beam_e == "5986MeV") {
             if (target == "C12") {
@@ -84,7 +84,7 @@ void ConvertGENIE_Q2() {
                 TARGET_TYPE = "Ar";
             }
 
-            TRUTH_SAMPLE_INPUT_DIR = "/w/hallb-scshelf2102/clas12/asportes/2N_Analysis_Truth_Samples/" + TARGET + "/" + GENIE_TUNE + "/Q2_th_test_samples/" + BEAM_E;
+            TRUTH_SAMPLE_INPUT_DIR = "/w/hallb-scshelf2102/clas12/asportes/2N_Analysis_Truth_Samples/" + TARGET + "/" + GENIE_TUNE + "/Q2_th_test_samples/" + BEAM_E + "/master-routine_validation_01-eScattering";
             Q2_CUT = "Q2_0_40";
         }
     }
