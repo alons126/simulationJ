@@ -104,6 +104,7 @@ void ConvertGENIE_Q2() {
     // TString RECO_SAMPLE_OUTPUT_DIR = RECO_SAMPLES_TOPDIR + "/" + TARGET + "/" + GENIE_TUNE + "/Q2_th_test_samples/" + BEAM_E;
 
     gSystem->Exec("rm -rf " + RECO_SAMPLE_OUTPUT_DIR);
+    gSystem->Exec("mkdir -p " + RECO_SAMPLE_OUTPUT_DIR);
 
     cout << "\n\nTRUTH_SAMPLE_INPUT_DIR = " << TRUTH_SAMPLE_INPUT_DIR << "\n";
     cout << "TRUTH_SAMPLE_ROOT_FILE = " << TRUTH_SAMPLE_ROOT_FILE << "\n";
