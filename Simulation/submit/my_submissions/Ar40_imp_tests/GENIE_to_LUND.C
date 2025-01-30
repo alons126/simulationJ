@@ -5,7 +5,7 @@
 #include "TRandom3.h"
 #include "TString.h"
 #include "TTree.h"
-#include "targets.h"
+#include "../../../targets.h"
 
 using namespace std;
 
