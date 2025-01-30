@@ -10,26 +10,18 @@
 #SBATCH --error=//farm_out/%u/%x-%j-%N.err                                                                           
 #SBATCH --array=1-10 #Number of files 1-N                                                                                                 
 
-JOB_TARGET=${TARGET}
-echo "JOB_TARGET = ${JOB_TARGET}"
-JOB_GENIE_TUNE=${GENIE_TUNE}
-echo "JOB_GENIE_TUNE = ${JOB_GENIE_TUNE}"
-JOB_BEAM_E=${BEAM_E}
-echo "JOB_BEAM_E = ${JOB_BEAM_E}"
-echo
-
 NEVENTS=10000
 #-1.0 for inbending(6,4 GeV) 0.5 for outbending (2 Gev)
 TORUS=-1.0 
 #Change file prefix for your simulation                                                                                                                          
-FILE_PREFIX=${JOB_TARGET}_${JOB_GENIE_TUNE}_${JOB_BEAM_E}
+FILE_PREFIX=Ar40_G18_10a_00_000_Q2_0_19_4029MeV_lundfile
 echo "FILE_PREFIX = ${FILE_PREFIX}"
 echo
 
 #set output file path location, don't forget to set up dir using setupdir.sh
-OUTPATH=${JOB_OUT_PATH}
+OUTPATH=/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/2N_Analysis_Reco_Samples/Ar40/G18_10a_00_000/4029MeV/Q2_0_19
 echo "OUTPATH = ${OUTPATH}"
-SUBMIT_SCRIPT_DIR=/u/home/asportes/clas12simulations/simulationJ/Simulation/submit/my_submissions/${JOB_TARGET}_Q2_sample_${JOB_BEAM_E}
+SUBMIT_SCRIPT_DIR=/u/home/asportes/clas12simulations/simulationJ/Simulation/submit/my_submissions/Ar40_imp_tests
 echo "SUBMIT_SCRIPT_DIR = ${SUBMIT_SCRIPT_DIR}"
 echo
 
@@ -37,7 +29,7 @@ echo
 GCARD=${SUBMIT_SCRIPT_DIR}/rgm_fall2021_lAr.gcard
 echo "GCARD = ${GCARD}"
 #Reconstruction yaml file
-YAML=${SUBMIT_SCRIPT_DIR}/rgm_fall2021-ai_6Gev.yaml
+YAML=${SUBMIT_SCRIPT_DIR}/rgm_fall2021-ai_4Gev.yaml
 echo "YAML = ${YAML}"
 echo
 
