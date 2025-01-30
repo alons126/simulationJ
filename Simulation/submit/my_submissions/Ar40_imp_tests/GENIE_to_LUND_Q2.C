@@ -354,14 +354,14 @@ void GENIE_to_LUND_Q2(TString TARGET, TString GENIE_TUNE, TString BEAM_E, TStrin
     vector<int> Q2_above_cut_ind;
     vector<int> Filled_events_ind;
 
-    cout << "\033[33mCounting events with Q2 >= " << doubleToStringWithPercision(Q2_master) << "...\n\n\033[0m";
-    for (int k = 0; k < nEvents; k++) {
-        T->GetEntry(k);
-        if (Q2 >= Q2_master) {
-            ++Q2_above_cut_counter;
-            Q2_above_cut_ind.push_back(k);
-        }
-    }
+    // cout << "\033[33mCounting events with Q2 >= " << doubleToStringWithPercision(Q2_master) << "...\n\n\033[0m";
+    // for (int k = 0; k < nEvents; k++) {
+    //     T->GetEntry(k);
+    //     if (Q2 >= Q2_master) {
+    //         ++Q2_above_cut_counter;
+    //         Q2_above_cut_ind.push_back(k);
+    //     }
+    // }
 
     if (PrintOut) {
         cout << "\033[33mQ2_above_cut_counter = " << Q2_above_cut_counter << "\n\033[0m";
