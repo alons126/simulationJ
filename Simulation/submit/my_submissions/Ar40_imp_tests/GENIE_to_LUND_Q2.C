@@ -588,11 +588,12 @@ void GENIE_to_LUND_Q2(TString TARGET, TString GENIE_TUNE, TString BEAM_E, TStrin
 
         outfile.close();
 
-        if (totalFilledEvents >= Q2_above_cut_ind.size()) {
-            break;
-        } else {
-            ++iFiles;
-        }
+        ++iFiles;
+        // if (totalFilledEvents >= Q2_above_cut_ind.size()) {
+        //     break;
+        // } else {
+        //     ++iFiles;
+        // }
     }
 
     cout << "\033[33m\n\nSaving debugging histograms...\n\n\033[0m\033[0m";
