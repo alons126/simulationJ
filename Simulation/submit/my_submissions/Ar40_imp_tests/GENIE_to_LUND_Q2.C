@@ -406,7 +406,7 @@ void GENIE_to_LUND_Q2(TString TARGET, TString GENIE_TUNE, TString BEAM_E, TStrin
                 exit(0);
             }
 
-            Q2_1e_cut_TL_all_int->Fill(Q2);
+            /* Q2_1e_cut_TL_all_int->Fill(Q2);
 
             if (qel) {
                 Q2_1e_cut_TL_QE_only->Fill(Q2);
@@ -494,7 +494,7 @@ void GENIE_to_LUND_Q2(TString TARGET, TString GENIE_TUNE, TString BEAM_E, TStrin
                         Q2_1n1p_TL_DIS_only->Fill(Q2);
                     }
                 }
-            }
+            } */
 
             // Stores reaction mechanism qel = 1, mec = 2, rec = 3, dis=4
             double code = 0.;
@@ -594,83 +594,83 @@ void GENIE_to_LUND_Q2(TString TARGET, TString GENIE_TUNE, TString BEAM_E, TStrin
         // }
     }
 
-    cout << "\033[33m\n\nSaving debugging histograms...\n\n\033[0m\033[0m";
+    // cout << "\033[33m\n\nSaving debugging histograms...\n\n\033[0m\033[0m";
 
-    std::string TempFilePath0 = (lundPath + TempOutPutPath).Data();
-    std::string TempFilePath = TempFilePath0 + "/";
-    std::string pdfFileName = TempFilePath + sample_target0 + "_" + sample_genie_tune0 + "_Q2_" + doubleToString(Q2_master) + "_" + sample_beamE0 + "_plots.pdf";
-    const char *pdfFile = pdfFileName.c_str();
+    // std::string TempFilePath0 = (lundPath + TempOutPutPath).Data();
+    // std::string TempFilePath = TempFilePath0 + "/";
+    // std::string pdfFileName = TempFilePath + sample_target0 + "_" + sample_genie_tune0 + "_Q2_" + doubleToString(Q2_master) + "_" + sample_beamE0 + "_plots.pdf";
+    // const char *pdfFile = pdfFileName.c_str();
 
-    TList *plotsList = new TList();
-    string listName = TempFilePath + sample_target0 + "_" + sample_genie_tune0 + "_Q2_" + doubleToString(Q2_master) + "_" + sample_beamE0 + "_plots.root";
-    const char *TListName = listName.c_str();
+    // TList *plotsList = new TList();
+    // string listName = TempFilePath + sample_target0 + "_" + sample_genie_tune0 + "_Q2_" + doubleToString(Q2_master) + "_" + sample_beamE0 + "_plots.root";
+    // const char *TListName = listName.c_str();
 
-    // Create a canvas
-    TCanvas *canvas = new TCanvas("canvas", "Canvas for saving histograms", 800, 600);
-    canvas->cd()->SetGrid();
-    canvas->cd()->SetBottomMargin(0.14), canvas->cd()->SetLeftMargin(0.18), canvas->cd()->SetRightMargin(0.12);
+    // // Create a canvas
+    // TCanvas *canvas = new TCanvas("canvas", "Canvas for saving histograms", 800, 600);
+    // canvas->cd()->SetGrid();
+    // canvas->cd()->SetBottomMargin(0.14), canvas->cd()->SetLeftMargin(0.18), canvas->cd()->SetRightMargin(0.12);
 
-    // offset the multi-page PDF
-    canvas->Print(Form("%s[", pdfFile));  // Open the PDF file
+    // // offset the multi-page PDF
+    // canvas->Print(Form("%s[", pdfFile));  // Open the PDF file
 
-    // Loop through the list of histograms
-    for (int i = 0; i < histList.size(); i++) {
-        canvas->cd();  // Select the canvas
-        canvas->Clear();
+    // // Loop through the list of histograms
+    // for (int i = 0; i < histList.size(); i++) {
+    //     canvas->cd();  // Select the canvas
+    //     canvas->Clear();
 
-        std::string pageTitleTemp = pageTitles.at(i).Data();
+    //     std::string pageTitleTemp = pageTitles.at(i).Data();
 
-        if (pageTitleTemp != "") {
-            // cout << "\033[33mpageTitleTemp = " << pageTitleTemp << "\n\033[0m";
+    //     if (pageTitleTemp != "") {
+    //         // cout << "\033[33mpageTitleTemp = " << pageTitleTemp << "\n\033[0m";
 
-            TLatex text;
-            text.SetTextAlign(22);
-            text.SetTextSize(0.05);
-            text.DrawLatexNDC(0.5, 0.5, pageTitles.at(i));
-            canvas->Update();
-            canvas->Print(pdfFile);  // Save the current canvas (histogram) to the PDF
-        }
+    //         TLatex text;
+    //         text.SetTextAlign(22);
+    //         text.SetTextSize(0.05);
+    //         text.DrawLatexNDC(0.5, 0.5, pageTitles.at(i));
+    //         canvas->Update();
+    //         canvas->Print(pdfFile);  // Save the current canvas (histogram) to the PDF
+    //     }
 
-        canvas->Clear();
+    //     canvas->Clear();
 
-        canvas->cd();
-        histList.at(i)->GetXaxis()->SetTitleSize(0.06);
-        histList.at(i)->GetXaxis()->SetLabelSize(0.0425);
-        histList.at(i)->GetXaxis()->CenterTitle(true);
-        histList.at(i)->GetYaxis()->SetTitle("Number of events");
-        histList.at(i)->GetYaxis()->SetTitleSize(0.06);
-        histList.at(i)->GetYaxis()->SetLabelSize(0.0425);
-        histList.at(i)->GetYaxis()->CenterTitle(true);
-        histList.at(i)->SetLineWidth(2);
-        histList.at(i)->SetLineStyle(0);
-        histList.at(i)->SetLineColor(kBlue);
-        histList.at(i)->Draw();  // Draw the histogram on the canvas
-        canvas->Print(pdfFile);  // Save the current canvas (histogram) to the PDF
-        plotsList->Add(histList.at(i));
-    }
+    //     canvas->cd();
+    //     histList.at(i)->GetXaxis()->SetTitleSize(0.06);
+    //     histList.at(i)->GetXaxis()->SetLabelSize(0.0425);
+    //     histList.at(i)->GetXaxis()->CenterTitle(true);
+    //     histList.at(i)->GetYaxis()->SetTitle("Number of events");
+    //     histList.at(i)->GetYaxis()->SetTitleSize(0.06);
+    //     histList.at(i)->GetYaxis()->SetLabelSize(0.0425);
+    //     histList.at(i)->GetYaxis()->CenterTitle(true);
+    //     histList.at(i)->SetLineWidth(2);
+    //     histList.at(i)->SetLineStyle(0);
+    //     histList.at(i)->SetLineColor(kBlue);
+    //     histList.at(i)->Draw();  // Draw the histogram on the canvas
+    //     canvas->Print(pdfFile);  // Save the current canvas (histogram) to the PDF
+    //     plotsList->Add(histList.at(i));
+    // }
 
-    // End the multi-page PDF
-    canvas->Print(Form("%s]", pdfFile));  // Close the PDF file
+    // // End the multi-page PDF
+    // canvas->Print(Form("%s]", pdfFile));  // Close the PDF file
 
-    TFile *plotsOutRootFile = new TFile(TListName, "recreate");
-    plotsOutRootFile->cd();
-    plotsList->Write();
-    plotsOutRootFile->Write();
-    plotsOutRootFile->Close();
+    // TFile *plotsOutRootFile = new TFile(TListName, "recreate");
+    // plotsOutRootFile->cd();
+    // plotsList->Write();
+    // plotsOutRootFile->Write();
+    // plotsOutRootFile->Close();
 
-    delete canvas;
-    delete plotsList;
-    delete plotsOutRootFile;
+    // delete canvas;
+    // delete plotsList;
+    // delete plotsOutRootFile;
 
-    for (auto &h : histList) { delete h; }
+    // for (auto &h : histList) { delete h; }
 
-    histList.clear();
+    // histList.clear();
 
-    cout << "\033[33m\n- Summary for Q2 = " << doubleToString(Q2_master) << " cut ----------------------------------\n\033[0m";
-    cout << "\033[33mCounted #(events) above cut:\033[0m " << Q2_above_cut_counter << "\n\033[0m";
-    cout << "\033[33m#(filled events) above cut:\033[0m " << Q2_above_cut_counter_debug << "\n\n\033[0m";
+    // cout << "\033[33m\n- Summary for Q2 = " << doubleToString(Q2_master) << " cut ----------------------------------\n\033[0m";
+    // cout << "\033[33mCounted #(events) above cut:\033[0m " << Q2_above_cut_counter << "\n\033[0m";
+    // cout << "\033[33m#(filled events) above cut:\033[0m " << Q2_above_cut_counter_debug << "\n\n\033[0m";
 
-    Q2_master = Q2_master + dQ2;
+    // Q2_master = Q2_master + dQ2;
 
     // while (Q2_master < (Q2_max + dQ2)) {
     //     cout << "\033[33m\n========================================================"
