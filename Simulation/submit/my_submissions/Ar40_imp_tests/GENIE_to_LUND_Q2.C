@@ -24,6 +24,8 @@ void GENIE_to_LUND_Q2(TString TARGET, TString GENIE_TUNE, TString BEAM_E, TStrin
     bool StepByStepPrintOut = false;
     bool CountQ2AndExit = false;
 
+    bool ShiftedVertex = false;
+
     std::string sample_target0 = TARGET.Data(), sample_genie_tune0 = GENIE_TUNE.Data(), sample_beamE0 = BEAM_E.Data();
     string sample_target1, sample_genie_tune1, sample_beamE1;
     string sample_target2, sample_genie_tune2, sample_beamE2;
@@ -81,7 +83,7 @@ void GENIE_to_LUND_Q2(TString TARGET, TString GENIE_TUNE, TString BEAM_E, TStrin
 
     double Q2_master = Q2_min;
 
-    exit(0);
+    // exit(0);
 
     while (Q2_master < (Q2_max + dQ2)) {
         cout << "\033[33m\n========================================================"
@@ -533,6 +535,8 @@ void GENIE_to_LUND_Q2(TString TARGET, TString GENIE_TUNE, TString BEAM_E, TStrin
                     outfile << outstring;
 
                     auto vtx = randomVertex(target);  // get vertex of event
+
+                    if (!ShiftedVertex) { vtx.SetZ(0.); }
 
                     int part_num = 0;
                     // electron
