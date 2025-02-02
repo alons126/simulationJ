@@ -5,3 +5,7 @@ cp /lustre24/expphy/volatile/clas12/asportes/Ar40_imp_GEMC/detectors/clas12/targ
 unsetenv GEMC_DATA_DIR
 setenv GEMC_DATA_DIR /lustre24/expphy/volatile/clas12/asportes/Ar40_imp_GEMC/clas12Tags
 echo $GEMC_DATA_DIR
+
+cd /u/home/asportes/clas12simulations/simulationJ/Simulation/submit/my_submissions/Ar40_imp_tests
+
+sbatch submit_GEMC_lAr.sh
