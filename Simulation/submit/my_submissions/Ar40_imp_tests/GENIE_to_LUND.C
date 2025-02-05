@@ -20,6 +20,7 @@ void GENIE_to_LUND(TString inputFile = "", TString outputFileDir = "", TString o
 
     TString lundPath = outputFileDir + "/lundfiles/";
     cout << "\nSaving lundfiles into " << lundPath << endl;
+    cout << "\n";
     system(("mkdir -p " + std::string(lundPath.Data())).c_str());
 
     //  int nFiles =  800;
