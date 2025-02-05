@@ -1,11 +1,11 @@
 #include <fstream>
 #include <iostream>
 
+#include "../../../targets.h"
 #include "TFile.h"
 #include "TRandom3.h"
 #include "TString.h"
 #include "TTree.h"
-#include "../../../targets.h"
 
 using namespace std;
 
@@ -20,6 +20,7 @@ void GENIE_to_LUND(TString inputFile = "", TString outputFileDir = "", TString o
 
     TString lundPath = outputFileDir + "/lundfiles/";
     cout << "\nSaving lundfiles into " << lundPath << endl;
+    system(("mkdir -p " + std::string(lundPath.Data())).c_str());
 
     //  int nFiles =  800;
 
