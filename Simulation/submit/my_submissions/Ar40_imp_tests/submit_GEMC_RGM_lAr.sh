@@ -3,12 +3,14 @@
 #SBATCH --ntasks=1                                                                                                   
 #SBATCH --mem-per-cpu=2000                                                                                            
 #SBATCH --account=clas12                                                                                             
-#SBATCH --job-name=RGM_lAr_test_sample_4GeV_4                                                                                             
+#SBATCH --job-name=RGM_lAr_test_sample_4GeV_5                                                                                             
 #SBATCH --partition=production                                                               
 #SBATCH --time=20:00:00                                                                                               
 #SBATCH --output=/farm_out/%u/%x-%j-%N.out                                                                           
 #SBATCH --error=//farm_out/%u/%x-%j-%N.err                                                                           
 #SBATCH --array=1-10 #Number of files 1-N                                                                                                 
+
+echo "$GEMC_DATA_DIR"
 
 NEVENTS=10000
 #-1.0 for inbending(6,4 GeV) 0.5 for outbending (2 Gev)
