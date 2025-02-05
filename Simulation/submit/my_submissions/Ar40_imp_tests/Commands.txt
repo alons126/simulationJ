@@ -28,4 +28,4 @@ cp /lustre24/expphy/volatile/clas12/asportes/Ar40_imp_GEMC/detectors/clas12/targ
 
 cd /u/home/asportes/clas12simulations/simulationJ/Simulation/submit/my_submissions/Ar40_imp_tests
 
-sbatch submit_GEMC_lAr.sh
+sbatch submit_GEMC_RGM_lAr.sh
