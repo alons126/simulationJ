@@ -13,11 +13,13 @@ void GENIE_to_LUND(TString inputFile = "", TString outputFileDir = "", TString o
     bool ShiftedVertex = false;
 
     // Read in target parameter files
-    cout << "Converting file " << inputFile << endl;
+    cout << "\nConverting file " << inputFile << endl;
     TFile* inFile = new TFile(inputFile);
-    cout << "Making LUND file " << outputFile << endl;
+
+    cout << "\nMaking LUND file " << outputFile << endl;
 
     TString lundPath = outputFileDir + "/lundfiles/";
+    cout << "\nSaving lundfiles into " << lundPath << endl;
 
     //  int nFiles =  800;
 
