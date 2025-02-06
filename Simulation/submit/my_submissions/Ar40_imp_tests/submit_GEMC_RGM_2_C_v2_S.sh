@@ -3,7 +3,7 @@
 #SBATCH --ntasks=1                                                                                                   
 #SBATCH --mem-per-cpu=2000                                                                                            
 #SBATCH --account=clas12                                                                                             
-#SBATCH --job-name=RGM_2_C_v2_S_test_sample_4GeV_6                                                                                             
+#SBATCH --job-name=RGM_2_C_v2_S_test_sample_4GeV_7                                                                                             
 #SBATCH --partition=production                                                               
 #SBATCH --time=20:00:00                                                                                               
 #SBATCH --output=/farm_out/%u/%x-%j-%N.out                                                                           
@@ -22,7 +22,7 @@ echo "FILE_PREFIX = ${FILE_PREFIX}"
 echo
 
 #set output file path location, don't forget to set up dir using setupdir.sh
-OUTPATH=/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/2N_Analysis_Reco_Samples/C12/G18_10a_00_000/4029MeV/def_Q2_th_NoShift
+OUTPATH=/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/2N_Analysis_Reco_Samples/C12/G18_10a_00_000/4029MeV/def_Q2_th_S_NoShift
 # OUTPATH=/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/2N_Analysis_Reco_Samples/C12/G18_10a_00_000/5986MeV/Q2_0_4_th_NoShift
 echo "OUTPATH = ${OUTPATH}"
 SUBMIT_SCRIPT_DIR=/u/home/asportes/clas12simulations/simulationJ/Simulation/submit/my_submissions/Ar40_imp_tests
