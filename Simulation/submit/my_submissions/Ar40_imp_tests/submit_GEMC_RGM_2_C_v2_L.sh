@@ -3,12 +3,12 @@
 #SBATCH --ntasks=1                                                                                                   
 #SBATCH --mem-per-cpu=2000                                                                                            
 #SBATCH --account=clas12                                                                                             
-#SBATCH --job-name=RGM_2_C_v2_L_test_sample_4GeV_8                                                                                             
+#SBATCH --job-name=RGM_2_C_v2_L_sample_4GeV_test_9                                                                                             
 #SBATCH --partition=production                                                               
 #SBATCH --time=20:00:00                                                                                               
 #SBATCH --output=/farm_out/%u/%x-%j-%N.out                                                                           
 #SBATCH --error=//farm_out/%u/%x-%j-%N.err                                                                           
-#SBATCH --array=1-10 #Number of files 1-N                                                                                                 
+#SBATCH --array=0-9 #Number of files 1-N                                                                                                 
 
 echo "GEMC_DATA_DIR = $GEMC_DATA_DIR"
 echo
