@@ -3,7 +3,7 @@
 #SBATCH --ntasks=1                                                                                                   
 #SBATCH --mem-per-cpu=2000                                                                                            
 #SBATCH --account=clas12                                                                                             
-#SBATCH --job-name=RGM_2_C_v2_L_test_sample_4GeV_7                                                                                             
+#SBATCH --job-name=RGM_2_C_v2_L_test_sample_4GeV_8                                                                                             
 #SBATCH --partition=production                                                               
 #SBATCH --time=20:00:00                                                                                               
 #SBATCH --output=/farm_out/%u/%x-%j-%N.out                                                                           
@@ -17,7 +17,7 @@ NEVENTS=10000
 #-1.0 for inbending(6,4 GeV) 0.5 for outbending (2 Gev)
 TORUS=-1.0 
 #Change file prefix for your simulation                                                                                                                          
-FILE_PREFIX=Ar40_G18_10a_00_000_Q2_0_19_4029MeV_lundfile
+FILE_PREFIX=C12_G18_10a_00_000_def_Q2_th_4029MeV_lundfile
 echo "FILE_PREFIX = ${FILE_PREFIX}"
 echo
 
