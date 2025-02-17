@@ -10,7 +10,7 @@
 using namespace std;
 
 void GENIE_to_LUND(TString inputFile = "", TString outputFileDir = "", TString outputFile = "", int nFiles = 800, string target = "liquid", int A = 1, int Z = 1) {
-    bool ShiftedVertex = false;
+    bool ShiftedVertex = true;
 
     // Read in target parameter files
     cout << "\nConverting file " << inputFile << endl;

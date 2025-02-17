@@ -28,9 +28,12 @@ cp /lustre24/expphy/volatile/clas12/asportes/Ar40_imp_GEMC/detectors/clas12/targ
 
 cd /u/home/asportes/clas12simulations/simulationJ/Simulation/submit/my_submissions/Ar40_imp_tests
 
+rm -rf /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/2N_Analysis_Reco_Samples/Ar40/G18_10a_00_000/4029MeV/Q2_0_19_NoShift/mchipo/*
 rm -rf /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/2N_Analysis_Reco_Samples/Ar40/G18_10a_00_000/4029MeV/Q2_0_19_NoShift/reconhipo/*
 sbatch submit_GEMC_RGM_lAr.sh
+rm -rf /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/2N_Analysis_Reco_Samples/C12/G18_10a_00_000/4029MeV/def_Q2_th_S_NoShift/mchipo/*
 rm -rf /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/2N_Analysis_Reco_Samples/C12/G18_10a_00_000/4029MeV/def_Q2_th_S_NoShift/reconhipo/*
 sbatch submit_GEMC_RGM_2_C_v2_S.sh
+rm -rf /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/2N_Analysis_Reco_Samples/C12/G18_10a_00_000/4029MeV/def_Q2_th_L_NoShift/mchipo/*
 rm -rf /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/2N_Analysis_Reco_Samples/C12/G18_10a_00_000/4029MeV/def_Q2_th_L_NoShift/reconhipo/*
 sbatch submit_GEMC_RGM_2_C_v2_L.sh
