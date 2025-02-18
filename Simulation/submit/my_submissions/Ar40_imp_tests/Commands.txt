@@ -17,7 +17,7 @@ git pull ; root 'GENIE_to_LUND.C("/w/hallb-scshelf2102/clas12/asportes/2N_Analys
 ------------------------------------------------------------------------------------------------------------------
 
 unsetenv GEMC_DATA_DIR
-setenv GEMC_DATA_DIR /lustre24/expphy/volatile/clas12/asportes/Ar40_imp_GEMC/clas12Tags
+setenv GEMC_DATA_DIR /lustre24/expphy/volatile/clas12/asportes/Ar40_imp_GEMC/clas12Tags/GEMC_5_10
 echo $GEMC_DATA_DIR
 echo
 
