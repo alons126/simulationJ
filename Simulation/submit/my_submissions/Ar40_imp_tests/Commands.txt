@@ -21,7 +21,7 @@ setenv GEMC_DATA_DIR /lustre24/expphy/volatile/clas12/asportes/Ar40_imp_GEMC/cla
 echo $GEMC_DATA_DIR
 echo
 
-cd /lustre24/expphy/volatile/clas12/asportes/Ar40_imp_GEMC/clas12Tags/experiments/clas12/targets
+cd /lustre24/expphy/volatile/clas12/asportes/Ar40_imp_GEMC/clas12Tags/GEMC_5_10/experiments/clas12/targets
 cp /lustre24/expphy/volatile/clas12/asportes/Ar40_imp_GEMC/detectors/clas12/targets/target__geometry_RGM_lAr.txt ./
 cp /lustre24/expphy/volatile/clas12/asportes/Ar40_imp_GEMC/detectors/clas12/targets/target__geometry_RGM_2_C_v2_S.txt ./
 cp /lustre24/expphy/volatile/clas12/asportes/Ar40_imp_GEMC/detectors/clas12/targets/target__geometry_RGM_2_C_v2_L.txt ./
