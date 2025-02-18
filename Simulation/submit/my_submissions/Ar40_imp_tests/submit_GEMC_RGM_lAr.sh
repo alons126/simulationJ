@@ -9,6 +9,7 @@
 #SBATCH --output=/farm_out/%u/%x-%j-%N.out                                                                           
 #SBATCH --error=//farm_out/%u/%x-%j-%N.err                                                                           
 #SBATCH --array=1-9 #Number of files 1-N                                                                                                 
+######SBATCH --array=1-10 #Number of files 1-N                                                                                                 
 
 echo "GEMC_DATA_DIR = $GEMC_DATA_DIR"
 echo
