@@ -4,16 +4,27 @@ foreach TEMP_BEAM_E ( 2070MeV 4029MeV 5986MeV )
 
 # Job parameters
 # ============================================================================
-echo
-echo "- Job parameters ------------------------------------------------------"
-echo
-
 unset BEAM_E
 # setenv BEAM_E 2070MeV
 # setenv BEAM_E 4029MeV
 # setenv BEAM_E 5986MeV
 setenv BEAM_E ${TEMP_BEAM_E}
-echo "BEAM_E: ${BEAM_E}"
+
+unset PRINT_OUT_COLOR
+
+if ("${BEAM_E}" == "2070MeV") then
+    PRINT_OUT_COLOR '\033[31m'
+else if ("${BEAM_E}" == "4029MeV") then
+    PRINT_OUT_COLOR '\033[32m'
+else if ("${BEAM_E}" == "5986MeV") then
+    PRINT_OUT_COLOR '\033[33m'
+endif
+
+echo
+echo "- Job parameters ------------------------------------------------------"
+echo
+
+echo "${PRINT_OUT_COLOR}BEAM_E: ${BEAM_E}\033[0m"
 echo
 
 unset CLEAR_FARM_OUT
@@ -23,6 +34,10 @@ echo "CLEAR_FARM_OUT: ${CLEAR_FARM_OUT}"
 unset CANCEL_PREVIOUS_JOBS
 setenv CANCEL_PREVIOUS_JOBS 0 ## 1 for true
 echo "CANCEL_PREVIOUS_JOBS: ${CANCEL_PREVIOUS_JOBS}"
+
+unset USE_GEMC_5_10
+setenv USE_GEMC_5_10 1 ## 1 for true
+echo "USE_GEMC_5_10: ${USE_GEMC_5_10}"
 echo
 
 unset JOB_OUT_PATH
@@ -112,6 +127,18 @@ if ("${BEAM_E}" == "2070MeV") then
     endif
 endif
 
+# Use GEMC 5.10
+# ============================================================================
+
+# Optionally use GEMC 5.10
+if ("${USE_GEMC_5_10}" == "1") then
+    echo
+    echo "- Reverting to GEMC 5.10 ----------------------------------------------"
+    module unload gemc
+    module load gemc/5.10
+    echo
+endif
+
 # Removing old directory structure for MC simulation here
 # ============================================================================
 
@@ -153,7 +180,7 @@ echo
 # echo
 
 echo "Submitting en sbatch job..."
-sbatch ${SUBMIT_SCRIPT_PATH}/submit_GEMC_uniform_en.sh
+# sbatch ${SUBMIT_SCRIPT_PATH}/submit_GEMC_uniform_en.sh
 echo
 end
 
