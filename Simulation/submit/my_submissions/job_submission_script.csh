@@ -22,6 +22,11 @@ setenv CANCEL_PREVIOUS_JOBS 0 ## 1 for true
 echo "CANCEL_PREVIOUS_JOBS: ${CANCEL_PREVIOUS_JOBS}"
 echo
 
+unset USE_GEMC_5_10
+setenv USE_GEMC_5_10 1 ## 1 for true
+echo "USE_GEMC_5_10: ${USE_GEMC_5_10}"
+echo
+
 unset JOB_OUT_PATH
 setenv JOB_OUT_PATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/${BEAM_E}_ConstPn
 # setenv JOB_OUT_PATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/${BEAM_E}
@@ -105,6 +110,18 @@ if ("${CANCEL_PREVIOUS_JOBS}" == "1") then
     echo
 endif
 
+# Use GEMC 5.10
+# ============================================================================
+
+# Optionally use GEMC 5.10
+if ("${USE_GEMC_5_10}" == "1") then
+    echo
+    echo "- Reverting to GEMC 5.10 ----------------------------------------------"
+    module unload gemc
+    module load gemc/5.10
+    echo
+endif
+
 # Removing old directory structure for MC simulation here
 # ============================================================================
 
@@ -146,5 +163,5 @@ echo
 # echo
 
 echo "Submitting en sbatch job..."
-sbatch ${SUBMIT_SCRIPT_PATH}/submit_GEMC_uniform_en.sh
+# sbatch ${SUBMIT_SCRIPT_PATH}/submit_GEMC_uniform_en.sh
 echo

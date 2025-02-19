@@ -16,6 +16,9 @@ git pull ; root 'GENIE_to_LUND.C("/w/hallb-scshelf2102/clas12/asportes/2N_Analys
 
 ------------------------------------------------------------------------------------------------------------------
 
+module unload gemc
+module load gemc/5.10
+
 unsetenv GEMC_DATA_DIR
 setenv GEMC_DATA_DIR /lustre24/expphy/volatile/clas12/asportes/Ar40_imp_GEMC/clas12Tags/GEMC_5_10
 echo $GEMC_DATA_DIR
