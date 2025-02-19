@@ -185,7 +185,3 @@ echo "${PRINT_OUT_COLOR}Submitting en sbatch job...\033[0m"
 # sbatch ${SUBMIT_SCRIPT_PATH}/submit_GEMC_uniform_en.sh
 echo
 end
-
-echo
-echo "${PRINT_OUT_COLOR}- FINISHED ------------------------------------------------------------\033[0m"
-echo
