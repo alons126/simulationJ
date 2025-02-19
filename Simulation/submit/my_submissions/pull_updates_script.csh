@@ -1,5 +1,8 @@
 #!/bin/csh
 
+echo "\033[35m- Running update and submission script -------------------------------\033[0m"
+echo
+
 # Re-pulling repository
 # ============================================================================
 echo
@@ -19,6 +22,7 @@ echo
 # Sourcing submission scripts
 # ============================================================================
 echo "\033[35m- Sourcing submission scripts -----------------------------------------\033[0m"
+echo
 source submission_script.csh
 echo
 
