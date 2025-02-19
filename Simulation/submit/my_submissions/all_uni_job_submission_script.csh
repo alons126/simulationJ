@@ -139,10 +139,11 @@ if ("${BEAM_E}" == "2070MeV") then
         module unload gemc
         module load gemc/5.10
         echo
-        echo "${PRINT_OUT_COLOR}GEMC_DATA_DIR:\033[0m ${GEMC_DATA_DIR}"
-        echo
     endif
 endif
+
+echo "${PRINT_OUT_COLOR}GEMC_DATA_DIR:\033[0m ${GEMC_DATA_DIR}"
+echo
 
 # Removing old directory structure for MC simulation here
 # ============================================================================
