@@ -40,7 +40,7 @@ ls /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/2N_Analysis_Reco_S
 rm -rf /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/2N_Analysis_Reco_Samples/Ar40/G18_10a_00_000/4029MeV/Q2_0_19/mchipo/*
 ls /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/2N_Analysis_Reco_Samples/Ar40/G18_10a_00_000/4029MeV/Q2_0_19/reconhipo
 rm -rf /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/2N_Analysis_Reco_Samples/Ar40/G18_10a_00_000/4029MeV/Q2_0_19/reconhipo/*
-# sbatch submit_GEMC_RGM_lAr.sh
+sbatch submit_GEMC_RGM_lAr.sh
 echo
 
 echo "\033[36mClearing old RGM_2_C_v2_S run files and submitting scripts...\033[0m"
@@ -48,7 +48,7 @@ ls /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/2N_Analysis_Reco_S
 rm -rf /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/2N_Analysis_Reco_Samples/C12/G18_10a_00_000/4029MeV/def_Q2_th_S/mchipo/*
 ls /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/2N_Analysis_Reco_Samples/C12/G18_10a_00_000/4029MeV/def_Q2_th_S/reconhipo
 rm -rf /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/2N_Analysis_Reco_Samples/C12/G18_10a_00_000/4029MeV/def_Q2_th_S/reconhipo/*
-# sbatch submit_GEMC_RGM_2_C_v2_S.sh
+sbatch submit_GEMC_RGM_2_C_v2_S.sh
 echo
 
 echo "\033[36mClearing old RGM_2_C_v2_L run files and submitting scripts...\033[0m"
@@ -56,5 +56,5 @@ ls /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/2N_Analysis_Reco_S
 rm -rf /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/2N_Analysis_Reco_Samples/C12/G18_10a_00_000/4029MeV/def_Q2_th_L/mchipo/*
 ls /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/2N_Analysis_Reco_Samples/C12/G18_10a_00_000/4029MeV/def_Q2_th_L/reconhipo
 rm -rf /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/2N_Analysis_Reco_Samples/C12/G18_10a_00_000/4029MeV/def_Q2_th_L/reconhipo/*
-# sbatch submit_GEMC_RGM_2_C_v2_L.sh
+sbatch submit_GEMC_RGM_2_C_v2_L.sh
 echo
