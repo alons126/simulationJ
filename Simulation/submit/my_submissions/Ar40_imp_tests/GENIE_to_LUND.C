@@ -20,17 +20,17 @@ void GENIE_to_LUND(TString inputFile = "", TString outputFileDir = "", TString o
     cout << "\nMaking LUND file: \t" << outputFile << endl;
 
     // Make lundfiles directory:
-    TString lundfiles_Path = outputFileDir + "/lundfiles/";
+    TString lundfiles_Path = outputFileDir + "/lundfiles";
     cout << "\nGenerating lundfiles directory: \t" << lundfiles_Path << endl;
     system(("mkdir -p " + std::string(lundfiles_Path.Data())).c_str());
 
     // Make mchipo directory:
-    TString mchipo_Path = outputFileDir + "/mchipo/";
+    TString mchipo_Path = outputFileDir + "/mchipo";
     cout << "\nGenerating mchipo directory: \t" << mchipo_Path << endl;
     system(("mkdir -p " + std::string(mchipo_Path.Data())).c_str());
 
     // Make reconhipo directory:
-    TString reconhipo_Path = outputFileDir + "/reconhipo/";
+    TString reconhipo_Path = outputFileDir + "/reconhipo";
     cout << "\nGenerating reconhipo directory: \t" << reconhipo_Path << endl;
     system(("mkdir -p " + std::string(reconhipo_Path.Data())).c_str());
 
