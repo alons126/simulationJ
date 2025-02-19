@@ -131,12 +131,14 @@ endif
 # ============================================================================
 
 # Optionally use GEMC 5.10
-if ("${USE_GEMC_5_10}" == "1") then
-    echo
-    echo "${PRINT_OUT_COLOR}- Reverting to GEMC 5.10 ----------------------------------------------\033[0m"
-    module unload gemc
-    module load gemc/5.10
-    echo
+if ("${BEAM_E}" == "2070MeV") then
+    if ("${USE_GEMC_5_10}" == "1") then
+        echo
+        echo "${PRINT_OUT_COLOR}- Reverting to GEMC 5.10 ----------------------------------------------\033[0m"
+        module unload gemc
+        module load gemc/5.10
+        echo
+    endif
 endif
 
 # Removing old directory structure for MC simulation here
