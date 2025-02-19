@@ -3,6 +3,10 @@
 echo "\033[35m- Running update and submission script -------------------------------\033[0m"
 echo
 
+unset MY_SUBMISSION_DIR
+setenv MY_SUBMISSION_DIR `pwd`
+echo "\033[35mMY_SUBMISSION_DIR: ${MY_SUBMISSION_DIR}\033[0m"
+
 # Re-pulling repository
 # ============================================================================
 echo
@@ -27,5 +31,6 @@ source submission_script.csh
 echo
 
 echo
+cd $SUBMISSION_DIR
 echo "\033[35m- FINISHED ------------------------------------------------------------\033[0m"
 echo
