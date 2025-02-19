@@ -32,7 +32,7 @@ setenv CLEAR_FARM_OUT 0 ## 1 for true
 echo "${PRINT_OUT_COLOR}CLEAR_FARM_OUT:\033[0m ${CLEAR_FARM_OUT}"
 
 unset CANCEL_PREVIOUS_JOBS
-setenv CANCEL_PREVIOUS_JOBS 0 ## 1 for true
+setenv CANCEL_PREVIOUS_JOBS 1 ## 1 for true
 echo "${PRINT_OUT_COLOR}CANCEL_PREVIOUS_JOBS:\033[0m ${CANCEL_PREVIOUS_JOBS}"
 
 unset USE_GEMC_5_10
@@ -69,6 +69,7 @@ echo
 unset RUNNING_DIR
 setenv RUNNING_DIR `pwd`
 echo "${PRINT_OUT_COLOR}RUNNING_DIR::\033[0m ${RUNNING_DIR}"
+echo
 
 if ("${BEAM_E}" == "2070MeV") then
     echo "${PRINT_OUT_COLOR}- Setting SUBMIT_SCRIPT_PATH for 2 GeV --------------------------------\033[0m"
@@ -137,6 +138,8 @@ if ("${BEAM_E}" == "2070MeV") then
         echo "${PRINT_OUT_COLOR}- Reverting to GEMC 5.10 ----------------------------------------------\033[0m"
         module unload gemc
         module load gemc/5.10
+        echo
+        echo "${PRINT_OUT_COLOR}GEMC_DATA_DIR:\033[0m ${GEMC_DATA_DIR}"
         echo
     endif
 endif
