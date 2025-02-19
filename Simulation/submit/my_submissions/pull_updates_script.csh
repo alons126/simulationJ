@@ -5,7 +5,7 @@ echo
 
 unset MY_SUBMISSION_DIR
 setenv MY_SUBMISSION_DIR `pwd`
-echo "\033[35mMY_SUBMISSION_DIR: ${MY_SUBMISSION_DIR}\033[0m"
+echo "\033[35mMY_SUBMISSION_DIR:\033[0m ${MY_SUBMISSION_DIR}"
 
 # Re-pulling repository
 # ============================================================================
@@ -21,11 +21,11 @@ echo
 echo "\033[35mPulling updates...\033[0m"
 git pull
 echo
-echo
 
 # Sourcing submission scripts
 # ============================================================================
 echo "\033[35m- Sourcing submission scripts -----------------------------------------\033[0m"
+echo
 echo
 source submission_script.csh
 echo
