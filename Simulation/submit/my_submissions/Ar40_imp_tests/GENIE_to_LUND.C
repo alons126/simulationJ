@@ -9,21 +9,33 @@
 
 using namespace std;
 
-void GENIE_to_LUND(TString inputFile = "", TString outputFileDir = "", TString outputFile = "", int nFiles = 800, string target = "liquid", int A = 1, int Z = 1) {
+void GENIE_to_LUND(TString inputFile = "", TString outputFileDir = "", TString outputFile = "", int nFiles = 800, string target = "liquid", int A = 1, int Z = 1,
+                   double beamE_in_lundfiles = -99) {
     bool ShiftedVertex = true;
 
     // Read in target parameter files
-    cout << "\nConverting file " << inputFile << endl;
+    cout << "\nConverting file:\t" << inputFile << endl;
     TFile* inFile = new TFile(inputFile);
 
-    cout << "\nMaking LUND file " << outputFile << endl;
+    cout << "\nMaking LUND file: \t" << outputFile << endl;
 
-    TString lundPath = outputFileDir + "/lundfiles/";
-    cout << "\nSaving lundfiles into " << lundPath << endl;
+    // Make lundfiles directory:
+    TString lundfiles_Path = outputFileDir + "/lundfiles/";
+    cout << "\nGenerating lundfiles directory: \t" << lundfiles_Path << endl;
+    system(("mkdir -p " + std::string(lundfiles_Path.Data())).c_str());
+
+    // Make mchipo directory:
+    TString mchipo_Path = outputFileDir + "/mchipo/";
+    cout << "\nGenerating mchipo directory: \t" << mchipo_Path << endl;
+    system(("mkdir -p " + std::string(mchipo_Path.Data())).c_str());
+
+    // Make reconhipo directory:
+    TString reconhipo_Path = outputFileDir + "/reconhipo/";
+    cout << "\nGenerating reconhipo directory: \t" << reconhipo_Path << endl;
+    system(("mkdir -p " + std::string(reconhipo_Path.Data())).c_str());
+
+    cout << "\nSaving lundfiles into " << lundfiles_Path << endl;
     cout << "\n";
-    system(("mkdir -p " + std::string(lundPath.Data())).c_str());
-
-    //  int nFiles =  800;
 
     TTree* T = (TTree*)inFile->Get("gst");
 
@@ -32,7 +44,7 @@ void GENIE_to_LUND(TString inputFile = "", TString outputFileDir = "", TString o
     Int_t interactN = 1;
     int beamType = 11;
 
-    double beamE = -99;  // GeV
+    double beamE = beamE_in_lundfiles;  // GeV
 
     Bool_t qel;
     Bool_t mec;
@@ -81,8 +93,8 @@ void GENIE_to_LUND(TString inputFile = "", TString outputFileDir = "", TString o
     if (nFiles > nEvents / 10000) nFiles = nEvents / 10000;
 
     // Split large GENIE output into 10000 lund files
-    for (int iFiles = 1; iFiles < nFiles; iFiles++) {
-        TString outfilename = Form("%s/%s_%d.txt", lundPath.Data(), outputFile.Data(), iFiles);
+    for (int iFiles = 1; iFiles < nFiles + 1; iFiles++) {
+        TString outfilename = Form("%s/%s_%d.txt", lundfiles_Path.Data(), outputFile.Data(), iFiles);
         ofstream outfile;
         outfile.open(outfilename);
         int start = (iFiles - 1) * 10000;

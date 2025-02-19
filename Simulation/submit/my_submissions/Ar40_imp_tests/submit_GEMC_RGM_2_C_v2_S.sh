@@ -1,23 +1,22 @@
-#!/bin/bash                                                                                                          
-#SBATCH --nodes=1                                                                                                    
-#SBATCH --ntasks=1                                                                                                   
-#SBATCH --mem-per-cpu=2000                                                                                            
-#SBATCH --account=clas12                                                                                             
-#SBATCH --job-name=RGM_2_C_v2_S_sample_4GeV_test_12                                                                                             
-#SBATCH --partition=production                                                               
-#SBATCH --time=20:00:00                                                                                               
-#SBATCH --output=/farm_out/%u/%x-%j-%N.out                                                                           
-#SBATCH --error=//farm_out/%u/%x-%j-%N.err                                                                           
-#SBATCH --array=1-9 #Number of files 1-N                                                                                                 
-######SBATCH --array=1-10 #Number of files 1-N                                                                                                 
+#!/bin/bash
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --mem-per-cpu=2000
+#SBATCH --account=clas12
+#SBATCH --job-name=RGM_2_C_v2_S_sample_4GeV_test_12
+#SBATCH --partition=production
+#SBATCH --time=20:00:00
+#SBATCH --output=/farm_out/%u/%x-%j-%N.out
+#SBATCH --error=//farm_out/%u/%x-%j-%N.err
+#SBATCH --array=1-9 #Number of files 1-N
 
 echo "GEMC_DATA_DIR = $GEMC_DATA_DIR"
 echo
 
 NEVENTS=10000
 #-1.0 for inbending(6,4 GeV) 0.5 for outbending (2 Gev)
-TORUS=-1.0 
-#Change file prefix for your simulation                                                                                                                          
+TORUS=-1.0
+#Change file prefix for your simulation
 FILE_PREFIX=C12_G18_10a_00_000_def_Q2_th_4029MeV_lundfile
 echo "FILE_PREFIX = ${FILE_PREFIX}"
 echo
@@ -53,7 +52,7 @@ echo "RUNNING GEMC"
 echo "============================================================================================="
 echo
 echo
-gemc -USE_GUI=0  -SCALE_FIELD="binary_torus, $TORUS" -SCALE_FIELD="binary_solenoid, -1.0" -N=$NEVENTS -INPUT_GEN_FILE="lund, ${LUNDOUT}/${FILE_PREFIX}_${SLURM_ARRAY_TASK_ID}.txt" -OUTPUT="hipo, ${MCOUT}/mc_${FILE_PREFIX}_${SLURM_ARRAY_TASK_ID}_torus$TORUS.hipo" $GCARD
+gemc -USE_GUI=0 -SCALE_FIELD="binary_torus, $TORUS" -SCALE_FIELD="binary_solenoid, -1.0" -N=$NEVENTS -INPUT_GEN_FILE="lund, ${LUNDOUT}/${FILE_PREFIX}_${SLURM_ARRAY_TASK_ID}.txt" -OUTPUT="hipo, ${MCOUT}/mc_${FILE_PREFIX}_${SLURM_ARRAY_TASK_ID}_torus$TORUS.hipo" $GCARD
 # gemc -USE_GUI=0  -SCALE_FIELD="TorusSymmetric, $TORUS" -SCALE_FIELD="clas12-newSolenoid, -1.0" -N=$NEVENTS -INPUT_GEN_FILE="lund, ${LUNDOUT}/${FILE_PREFIX}_${SLURM_ARRAY_TASK_ID}.txt" -OUTPUT="hipo, ${MCOUT}/mc_${FILE_PREFIX}_${SLURM_ARRAY_TASK_ID}_torus$TORUS.hipo" $GCARD
 
 #RECONSTRUCTION
