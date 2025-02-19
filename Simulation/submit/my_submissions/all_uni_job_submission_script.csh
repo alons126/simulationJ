@@ -13,11 +13,11 @@ setenv BEAM_E ${TEMP_BEAM_E}
 unset PRINT_OUT_COLOR
 
 if ("${BEAM_E}" == "2070MeV") then
-    PRINT_OUT_COLOR '\033[31m'
+    setenv PRINT_OUT_COLOR '\033[31m'
 else if ("${BEAM_E}" == "4029MeV") then
-    PRINT_OUT_COLOR '\033[32m'
+    etenv PRINT_OUT_COLOR '\033[32m'
 else if ("${BEAM_E}" == "5986MeV") then
-    PRINT_OUT_COLOR '\033[33m'
+    etenv PRINT_OUT_COLOR '\033[33m'
 endif
 
 echo
