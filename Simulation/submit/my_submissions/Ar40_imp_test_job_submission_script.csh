@@ -11,7 +11,7 @@ echo
 echo "\033[36m- Changing GEMC directory ---------------------------------------------\033[0m"
 unsetenv GEMC_DATA_DIR
 setenv GEMC_DATA_DIR /lustre24/expphy/volatile/clas12/asportes/Ar40_imp_GEMC/clas12Tags/GEMC_5_10
-echo $GEMC_DATA_DIR
+echo "\033[36mGEMC_DATA_DIR: $GEMC_DATA_DIR\033[0m"
 echo
 
 echo "\033[36m- Updating target files -----------------------------------------------\033[0m"

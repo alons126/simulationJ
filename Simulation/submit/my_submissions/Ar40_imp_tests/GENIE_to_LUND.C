@@ -163,6 +163,9 @@ void GENIE_to_LUND(TString inputFile = "", TString outputFileDir = "", TString o
             }
         }
 
+        cout << "\nSaving file: " << outfilename << endl;
         outfile.close();
     }
+
+    cout << "\nFINISHED!\n" << endl;
 }
