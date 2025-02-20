@@ -6,9 +6,6 @@ foreach TEMP_BEAM_E ( 2070MeV )
 # Job parameters
 # ============================================================================
 unset BEAM_E
-# setenv BEAM_E 2070MeV
-# setenv BEAM_E 4029MeV
-# setenv BEAM_E 5986MeV
 setenv BEAM_E ${TEMP_BEAM_E}
 
 unset PRINT_OUT_COLOR
