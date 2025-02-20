@@ -1,6 +1,7 @@
 #!/bin/csh
 
-foreach TEMP_BEAM_E ( 2070MeV 4029MeV 5986MeV )
+foreach TEMP_BEAM_E ( 2070MeV )
+# foreach TEMP_BEAM_E ( 2070MeV 4029MeV 5986MeV )
 
 # Job parameters
 # ============================================================================
