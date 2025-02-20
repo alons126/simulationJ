@@ -31,6 +31,6 @@ source submission_script.csh
 echo
 
 echo
-cd $SUBMISSION_DIR
+cd $MY_SUBMISSION_DIR
 echo "\033[35m- FINISHED ------------------------------------------------------------\033[0m"
 echo

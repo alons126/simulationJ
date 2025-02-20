@@ -22,7 +22,7 @@ echo "\033[36mUpdating detectors repository...\033[0m"
 cd /lustre24/expphy/volatile/clas12/asportes/Ar40_imp_GEMC/detectors
 git pull
 git clean -f
-./targets.pl config.dat
+# ./targets.pl config.dat
 echo
 
 echo "\033[36mCopying new target files to GEMC_DATA_DIR...\033[0m"
