@@ -58,7 +58,7 @@ gemc -USE_GUI=0 -SCALE_FIELD="binary_torus, $TORUS" -SCALE_FIELD="binary_solenoi
 echo
 echo
 echo "============================================================================================="
-echo "RUNNING COTJAVA"
+echo "RUNNING COATJAVA"
 echo "============================================================================================="
 echo
 echo
