@@ -1,7 +1,7 @@
 #!/bin/csh
 
-foreach TEMP_BEAM_E ( 2070MeV )
-# foreach TEMP_BEAM_E ( 2070MeV 4029MeV 5986MeV )
+# foreach TEMP_BEAM_E ( 2070MeV )
+foreach TEMP_BEAM_E ( 2070MeV 4029MeV 5986MeV )
 
 # Job parameters
 # ============================================================================
@@ -130,15 +130,22 @@ endif
 # ============================================================================
 
 # Optionally use GEMC 5.10
-if ("${BEAM_E}" == "2070MeV") then
-    if ("${USE_GEMC_5_10}" == "1") then
-        echo
-        echo "${PRINT_OUT_COLOR}- Reverting to GEMC 5.10 ----------------------------------------------\033[0m"
-        module unload gemc
-        module load gemc/5.10
-        echo
-    endif
+if ("${USE_GEMC_5_10}" == "1") then
+    echo
+    echo "${PRINT_OUT_COLOR}- Reverting to GEMC 5.10 ----------------------------------------------\033[0m"
+    module unload gemc
+    module load gemc/5.10
+    echo
 endif
+# if ("${BEAM_E}" == "2070MeV") then
+#     if ("${USE_GEMC_5_10}" == "1") then
+#         echo
+#         echo "${PRINT_OUT_COLOR}- Reverting to GEMC 5.10 ----------------------------------------------\033[0m"
+#         module unload gemc
+#         module load gemc/5.10
+#         echo
+#     endif
+# endif
 
 echo "${PRINT_OUT_COLOR}GEMC_DATA_DIR:\033[0m ${GEMC_DATA_DIR}"
 echo
