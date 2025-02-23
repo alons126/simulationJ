@@ -4,9 +4,9 @@ echo
 echo
 
 unset BEAM_E
-# setenv BEAM_E 2070MeV
+setenv BEAM_E 2070MeV
 # setenv BEAM_E 4029MeV
-setenv BEAM_E 5986MeV
+# setenv BEAM_E 5986MeV
 echo "BEAM_E: ${BEAM_E}"
 echo
 
