@@ -42,7 +42,9 @@ echo
 
 module unload gemc
 module load gemc/5.10
+echo
 echo "GEMC_DATA_DIR: ${GEMC_DATA_DIR}"
+echo
 
 # echo
 # echo "Pulling updates..."
