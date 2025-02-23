@@ -3,10 +3,13 @@
 echo
 echo
 
+foreach TEMP_BEAM_E ( 2070MeV 4029MeV 5986MeV )
+
 unset BEAM_E
+setenv BEAM_E ${TEMP_BEAM_E}
 # setenv BEAM_E 2070MeV
 # setenv BEAM_E 4029MeV
-setenv BEAM_E 5986MeV
+# setenv BEAM_E 5986MeV
 echo "BEAM_E: ${BEAM_E}"
 echo
 
@@ -37,6 +40,10 @@ endif
 echo "SUBMIT_SCRIPT_PATH: ${SUBMIT_SCRIPT_PATH}"
 echo
 
+module unload gemc
+module load gemc/5.10
+echo "GEMC_DATA_DIR: ${GEMC_DATA_DIR}"
+
 # echo
 # echo "Pulling updates..."
 # git pull
@@ -63,3 +70,4 @@ echo
 echo "Submitting Tester_e_1e sbatch job at ${BEAM_E}..."
 sbatch ${SUBMIT_SCRIPT_PATH}/submit_GEMC_uniform_1e.sh
 echo
+end
