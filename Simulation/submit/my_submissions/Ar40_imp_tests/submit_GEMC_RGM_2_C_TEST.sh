@@ -3,8 +3,7 @@
 #SBATCH --ntasks=1
 #SBATCH --mem-per-cpu=2000
 #SBATCH --account=clas12
-#SBATCH --job-name=RGM_2_C_v2_S_sample_4GeV_test_14_5_11
-#### #SBATCH --job-name=RGM_2_C_v2_S_sample_4GeV_test_13
+#SBATCH --job-name=RGM_2_C_sample_4GeV_TEST
 #SBATCH --partition=production
 #SBATCH --time=20:00:00
 #SBATCH --output=/farm_out/%u/%x-%j-%N.out
@@ -24,17 +23,14 @@ echo "FILE_PREFIX = ${FILE_PREFIX}"
 echo
 
 #set output file path location, don't forget to set up dir using setupdir.sh
-OUTPATH=/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/2N_Analysis_Reco_Samples/C12/G18_10a_00_000/4029MeV/def_Q2_th_S_5_11
-# OUTPATH=/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/2N_Analysis_Reco_Samples/C12/G18_10a_00_000/4029MeV/def_Q2_th_S
-# OUTPATH=/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/2N_Analysis_Reco_Samples/C12/G18_10a_00_000/4029MeV/def_Q2_th_S_NoShift
-# OUTPATH=/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/2N_Analysis_Reco_Samples/C12/G18_10a_00_000/5986MeV/Q2_0_4_th_NoShift
+OUTPATH=/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/2N_Analysis_Reco_Samples/C12/G18_10a_00_000/4029MeV/def_Q2_th_RGM_2_C_test
 echo "OUTPATH = ${OUTPATH}"
 SUBMIT_SCRIPT_DIR=/u/home/asportes/clas12simulations/simulationJ/Simulation/submit/my_submissions/Ar40_imp_tests
 echo "SUBMIT_SCRIPT_DIR = ${SUBMIT_SCRIPT_DIR}"
 echo
 
 #choose the Gcard for your target type
-GCARD=${SUBMIT_SCRIPT_DIR}/rgm_fall2021_RGM_2_C_v2_S.gcard
+GCARD=${SUBMIT_SCRIPT_DIR}/rgm_fall2021_C.gcard
 echo "GCARD = ${GCARD}"
 #Reconstruction yaml file
 YAML=${SUBMIT_SCRIPT_DIR}/rgm_fall2021-ai_4Gev.yaml
