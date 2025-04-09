@@ -1,7 +1,8 @@
 #!/bin/csh
 
 # foreach TEMP_BEAM_E ( 2070MeV )
-foreach TEMP_BEAM_E ( 2070MeV 4029MeV 5986MeV )
+foreach TEMP_BEAM_E ( 4029MeV )
+# foreach TEMP_BEAM_E ( 2070MeV 4029MeV 5986MeV )
 
 # Job parameters
 # ============================================================================
@@ -39,22 +40,23 @@ echo "${PRINT_OUT_COLOR}USE_GEMC_5_10:\033[0m ${USE_GEMC_5_10}"
 echo
 
 unset JOB_OUT_PATH
-setenv JOB_OUT_PATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/${BEAM_E}_ConstPn_lH2
+# setenv JOB_OUT_PATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/${BEAM_E}_ConstPn_lH2
 # setenv JOB_OUT_PATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/${BEAM_E}_ConstPn
+setenv JOB_OUT_PATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/${BEAM_E}_2
 # setenv JOB_OUT_PATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/${BEAM_E}
 echo "${PRINT_OUT_COLOR}JOB_OUT_PATH:\033[0m ${JOB_OUT_PATH}"
 
-# unset JOB_OUT_PATH_1E
-# setenv JOB_OUT_PATH_1E ${JOB_OUT_PATH}/OutPut_1e
-# echo "${PRINT_OUT_COLOR}JOB_OUT_PATH_1E:\033[0m ${JOB_OUT_PATH_1E}"
+unset JOB_OUT_PATH_1E
+setenv JOB_OUT_PATH_1E ${JOB_OUT_PATH}/OutPut_1e
+echo "${PRINT_OUT_COLOR}JOB_OUT_PATH_1E:\033[0m ${JOB_OUT_PATH_1E}"
 
 # unset JOB_OUT_PATH_EP
 # setenv JOB_OUT_PATH_EP ${JOB_OUT_PATH}/OutPut_ep
 # echo "${PRINT_OUT_COLOR}JOB_OUT_PATH_EP:\033[0m ${JOB_OUT_PATH_EP}"
 
-unset JOB_OUT_PATH_EN
-setenv JOB_OUT_PATH_EN ${JOB_OUT_PATH}/OutPut_en
-echo "${PRINT_OUT_COLOR}JOB_OUT_PATH_EN:\033[0m ${JOB_OUT_PATH_EN}"
+# unset JOB_OUT_PATH_EN
+# setenv JOB_OUT_PATH_EN ${JOB_OUT_PATH}/OutPut_en
+# echo "${PRINT_OUT_COLOR}JOB_OUT_PATH_EN:\033[0m ${JOB_OUT_PATH_EN}"
 echo
 
 # Setting SUBMIT_SCRIPT_PATH for 2 GeV
@@ -151,24 +153,24 @@ echo
 
 echo
 echo "${PRINT_OUT_COLOR}- Removing old directory structure for MC simulation here -------------\033[0m"
-# rm -rf ${JOB_OUT_PATH_1E}/mchipo
-# rm -rf ${JOB_OUT_PATH_1E}/reconhipo
-# rm -rf ${JOB_OUT_PATH_1E}/rootfiles
+rm -rf ${JOB_OUT_PATH_1E}/mchipo
+rm -rf ${JOB_OUT_PATH_1E}/reconhipo
+rm -rf ${JOB_OUT_PATH_1E}/rootfiles
 
 # rm -rf ${JOB_OUT_PATH_EP}/mchipo
 # rm -rf ${JOB_OUT_PATH_EP}/reconhipo
 # rm -rf ${JOB_OUT_PATH_EP}/rootfiles
 
-rm -rf ${JOB_OUT_PATH_EN}/mchipo
-rm -rf ${JOB_OUT_PATH_EN}/reconhipo
-rm -rf ${JOB_OUT_PATH_EN}/rootfiles
+# rm -rf ${JOB_OUT_PATH_EN}/mchipo
+# rm -rf ${JOB_OUT_PATH_EN}/reconhipo
+# rm -rf ${JOB_OUT_PATH_EN}/rootfiles
 echo
 
 echo
 echo "${PRINT_OUT_COLOR}- Setting up directory structure for MC simulation here ---------------\033[0m"
-# mkdir ${JOB_OUT_PATH_1E}/mchipo ${JOB_OUT_PATH_1E}/reconhipo ${JOB_OUT_PATH_1E}/rootfiles
+mkdir ${JOB_OUT_PATH_1E}/mchipo ${JOB_OUT_PATH_1E}/reconhipo ${JOB_OUT_PATH_1E}/rootfiles
 # mkdir ${JOB_OUT_PATH_EP}/mchipo ${JOB_OUT_PATH_EP}/reconhipo ${JOB_OUT_PATH_EP}/rootfiles
-mkdir ${JOB_OUT_PATH_EN}/mchipo ${JOB_OUT_PATH_EN}/reconhipo ${JOB_OUT_PATH_EN}/rootfiles
+# mkdir ${JOB_OUT_PATH_EN}/mchipo ${JOB_OUT_PATH_EN}/reconhipo ${JOB_OUT_PATH_EN}/rootfiles
 echo
 
 # Submitting jobs
@@ -178,16 +180,16 @@ echo
 echo "${PRINT_OUT_COLOR}- Submitting jobs -----------------------------------------------------\033[0m"
 echo
 
-# echo "${PRINT_OUT_COLOR}Submitting 1e sbatch job...\033[0m"
-# sbatch ${SUBMIT_SCRIPT_PATH}/submit_GEMC_uniform_1e.sh
-# echo
+echo "${PRINT_OUT_COLOR}Submitting 1e sbatch job...\033[0m"
+sbatch ${SUBMIT_SCRIPT_PATH}/submit_GEMC_uniform_1e.sh
+echo
 
 # echo "${PRINT_OUT_COLOR}Submitting ep sbatch job...\033[0m"
 # sbatch ${SUBMIT_SCRIPT_PATH}/submit_GEMC_uniform_ep.sh
 # echo
 
-echo "${PRINT_OUT_COLOR}Submitting en sbatch job...\033[0m"
-sbatch ${SUBMIT_SCRIPT_PATH}/submit_GEMC_uniform_en.sh
-echo
+# echo "${PRINT_OUT_COLOR}Submitting en sbatch job...\033[0m"
+# sbatch ${SUBMIT_SCRIPT_PATH}/submit_GEMC_uniform_en.sh
+# echo
 
 end

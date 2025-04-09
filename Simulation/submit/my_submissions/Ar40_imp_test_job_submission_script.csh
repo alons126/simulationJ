@@ -39,7 +39,7 @@ echo
 echo "\033[36m- Clearing old run files and submitting scripts -----------------------\033[0m"
 echo
 
-echo "\033[36mClearing old RGM_lAr run files and submitting scripts...\033[0m"
+echo "\033[36mClearing old RGM_2_C run files and submitting scripts...\033[0m"
 ls /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/2N_Analysis_Reco_Samples/C12/G18_10a_00_000/4029MeV/def_Q2_th_RGM_2_C_test/mchipo
 rm -rf /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/2N_Analysis_Reco_Samples/C12/G18_10a_00_000/4029MeV/def_Q2_th_RGM_2_C_test/mchipo/*
 ls /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/2N_Analysis_Reco_Samples/C12/G18_10a_00_000/4029MeV/def_Q2_th_RGM_2_C_test/reconhipo
