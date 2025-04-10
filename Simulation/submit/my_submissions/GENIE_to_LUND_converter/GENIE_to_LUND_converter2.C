@@ -109,11 +109,16 @@ void GENIE_to_LUND(TString inputFile = "", TString outputFileDir = "", TString o
     // Check the number of files is not more than what is in the file
     if (nFiles > nEvents / 10000) { nFiles = nEvents / 10000; }
 
+    cout << "Maximum number of output files allowed: " << nFiles << endl;
+
     // Split large GENIE output into 10000 lund files
     Long64_t total_entries = T->GetEntries();
     int passed_events = 0;
     int current_file_index = 1;
     int events_in_current_file = 0;
+
+    TString outfilename = Form("%s/%s_%d.txt", lundfiles_Path.Data(), outputFile.Data(), current_file_index);
+    ofstream outfile(outfilename);
 
     for (Long64_t ev = 0; ev < total_entries; ev++) {
         T->GetEntry(ev);
@@ -127,18 +132,8 @@ void GENIE_to_LUND(TString inputFile = "", TString outputFileDir = "", TString o
         // Apply electron acceptance cuts:
         if (!e_inFD) continue;
 
-        TString outfilename = Form("%s/%s_%d.txt", lundfiles_Path.Data(), outputFile.Data(), current_file_index);
-        ofstream outfile(outfilename);
+        double code = (qel) ? 1. : (mec) ? 2. : (res) ? 3. : (dis) ? 4. : 0.;
 
-        double code = 0.;
-        if (qel)
-            code = 1.;
-        else if (mec)
-            code = 2.;
-        else if (res)
-            code = 3.;
-        else if (dis)
-            code = 4.;
         if (code < .01) continue;
 
         RES_ID = double(resid);
@@ -175,15 +170,34 @@ void GENIE_to_LUND(TString inputFile = "", TString outputFileDir = "", TString o
         passed_events++;
         events_in_current_file++;
 
+        // If not enough events left to fill a complete file, stop early
+        if ((total_entries - ev) < 10000 && events_in_current_file > 0) {
+            cout << "Fewer than 10,000 events left (" << (total_entries - ev) << "). Ending early." << endl;
+            break;
+        }
+
         if (events_in_current_file == 10000) {
             outfile.close();
+            cout << "\nSaved file #" << current_file_index << ": " << outfilename << endl;
+
             ++current_file_index;
             events_in_current_file = 0;
-            cout << "\nSaving file: " << outputFile << endl;
+
+            if (current_file_index > nFiles) {
+                cout << "Reached file limit (" << nFiles << "). Stopping event writing." << endl;
+                break;
+            }
+
             outfilename = Form("%s/%s_%d.txt", lundfiles_Path.Data(), outputFile.Data(), current_file_index);
             outfile.open(outfilename);
         }
     }
 
+    outfile.close();  // Close the last file if it was opened
     cout << "\nFINISHED!\n" << endl;
+
+    cout << "\nSummary:\n";
+    cout << "  Total entries scanned: " << total_entries << endl;
+    cout << "  Events passing cuts: " << passed_events << endl;
+    cout << "  Output files written: " << current_file_index << endl;
 }

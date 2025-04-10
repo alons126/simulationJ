@@ -71,7 +71,8 @@
     "submit_isotropic.C": "cpp",
     "ConvertGENIE.C": "cpp",
     "GENIE_to_LUND_converter.C": "cpp",
-    "GENIE_to_LUND_final.C": "cpp"
+    "GENIE_to_LUND_final.C": "cpp",
+    "GENIE_to_LUND_converter2.C": "cpp"
 },
   "[shellscript]": {
     "editor.defaultFormatter": "foxundermoon.shell-format"
