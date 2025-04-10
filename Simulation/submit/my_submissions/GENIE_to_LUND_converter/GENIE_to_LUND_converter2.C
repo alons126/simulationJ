@@ -17,27 +17,27 @@ using namespace utilities;
 void GENIE_to_LUND(TString inputFile = "", TString outputFileDir = "", TString outputFile = "", int nFiles = 800, string target = "liquid", int A = 1, int Z = 1,
                    double beamE_in_lundfiles = -99) {
     // Read in target parameter files
-    cout << "\nConverting file:\t" << inputFile << endl;
+    cout << "\033[33m\nConverting file:\t\033[0m" << inputFile << endl;
     TFile* inFile = new TFile(inputFile);
 
-    cout << "\nMaking LUND file: \t" << outputFile << endl;
+    cout << "\033[33m\nMaking LUND file: \t\033[0m" << outputFile << endl;
 
     // Make lundfiles directory:
     TString lundfiles_Path = outputFileDir + "/lundfiles";
-    cout << "\nGenerating lundfiles directory: \t" << lundfiles_Path << endl;
+    cout << "\033[33m\nGenerating lundfiles directory: \t\033[0m" << lundfiles_Path << endl;
     system(("mkdir -p " + std::string(lundfiles_Path.Data())).c_str());
 
     // Make mchipo directory:
     TString mchipo_Path = outputFileDir + "/mchipo";
-    cout << "\nGenerating mchipo directory: \t" << mchipo_Path << endl;
+    cout << "\033[33m\nGenerating mchipo directory: \t\033[0m" << mchipo_Path << endl;
     system(("mkdir -p " + std::string(mchipo_Path.Data())).c_str());
 
     // Make reconhipo directory:
     TString reconhipo_Path = outputFileDir + "/reconhipo";
-    cout << "\nGenerating reconhipo directory: \t" << reconhipo_Path << endl;
+    cout << "\033[33m\nGenerating reconhipo directory: \t\033[0m" << reconhipo_Path << endl;
     system(("mkdir -p " + std::string(reconhipo_Path.Data())).c_str());
 
-    cout << "\nSaving lundfiles into " << lundfiles_Path << endl;
+    cout << "\033[33m\nSaving lundfiles into \033[0m" << lundfiles_Path << endl;
     cout << "\n";
 
     // Acceptance maps ----------------------------------------------------
@@ -102,14 +102,14 @@ void GENIE_to_LUND(TString inputFile = "", TString outputFileDir = "", TString o
     T->SetBranchAddress("pzl", &pzl);
 
     int nEvents = T->GetEntries();
-    cout << "Number of events " << nEvents << endl;
+    cout << "\033[33mNumber of events \033[0m" << nEvents << endl;
 
     TString formatstring, outstring;
 
     // Check the number of files is not more than what is in the file
     if (nFiles > nEvents / 10000) { nFiles = nEvents / 10000; }
 
-    cout << "Maximum number of output files allowed: " << nFiles << endl;
+    cout << "\033[33mMaximum number of output files allowed: \033[0m" << nFiles << endl;
 
     // Split large GENIE output into 10000 lund files
     Long64_t total_entries = T->GetEntries();
@@ -172,19 +172,19 @@ void GENIE_to_LUND(TString inputFile = "", TString outputFileDir = "", TString o
 
         // If not enough events left to fill a complete file, stop early
         if ((total_entries - ev) < 10000 && events_in_current_file > 0) {
-            cout << "Fewer than 10,000 events left (" << (total_entries - ev) << "). Ending early." << endl;
+            cout << "\033[33mFewer than 10,000 events left (\033[0m" << (total_entries - ev) << "\033[33m). Ending early.\033[0m" << endl;
             break;
         }
 
         if (events_in_current_file == 10000) {
             outfile.close();
-            cout << "\nSaved file #" << current_file_index << ": " << outfilename << endl;
+            cout << "\033[33m\nSaved file #\033[0m" << current_file_index << ": " << outfilename << endl;
 
             ++current_file_index;
             events_in_current_file = 0;
 
             if (current_file_index > nFiles) {
-                cout << "Reached file limit (" << nFiles << "). Stopping event writing." << endl;
+                cout << "\033[33mReached file limit (\033[0m" << nFiles << "\033[33m). Stopping event writing.\033[0m" << endl;
                 break;
             }
 
@@ -194,10 +194,10 @@ void GENIE_to_LUND(TString inputFile = "", TString outputFileDir = "", TString o
     }
 
     outfile.close();  // Close the last file if it was opened
-    cout << "\nFINISHED!\n" << endl;
+    cout << "\033[33m\nFINISHED!\n\033[0m" << endl;
 
-    cout << "\nSummary:\n";
-    cout << "  Total entries scanned: " << total_entries << endl;
-    cout << "  Events passing cuts: " << passed_events << endl;
-    cout << "  Output files written: " << current_file_index << endl;
+    cout << "\033[33m\nSummary:\n\033[0m";
+    cout << "\t\033[33mTotal entries scanned:\033[0m " << total_entries << endl;
+    cout << "\t\033[33mEvents passing cuts:\033[0m " << passed_events << endl;
+    cout << "\t\033[33mOutput files written:\033[0m " << current_file_index << endl;
 }
