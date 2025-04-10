@@ -3,6 +3,7 @@ double mass_e = 0.511e-3;
 double mass_p = 0.938272;
 double mass_n = 0.93957;
 double mass_pi = 0.13957;
+double mass_pi0 = 0.134977;
 
 int rand_seed = 12345;
 TRandom3 ran(rand_seed);

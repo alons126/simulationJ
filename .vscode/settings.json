@@ -1,6 +1,7 @@
 {
   "files.associations": {
     "*.gcard": "xml",
+    "*.cpp": "cpp",
     "ConvertGENIE_Q2.C": "cpp",
     "GENIE_to_LUND.C": "cpp",
     "GENIE_to_LUND copy.C": "cpp",
@@ -68,8 +69,10 @@
     "forward_list": "cpp",
     "map": "cpp",
     "submit_isotropic.C": "cpp",
-    "ConvertGENIE.C": "cpp"
-  },
+    "ConvertGENIE.C": "cpp",
+    "GENIE_to_LUND_converter.C": "cpp",
+    "GENIE_to_LUND_final.C": "cpp"
+},
   "[shellscript]": {
     "editor.defaultFormatter": "foxundermoon.shell-format"
   },
