@@ -82,8 +82,8 @@ void GENIE_to_LUND_converter(TString InputFiles = "", /* TString OutputFileDir =
     TString OutputFileDir = OutputFileBase + "/" + target_element + "/" + genie_tune + "/" + beam_e + "_" + Q2_cut;
     system(("mkdir -p " + std::string(OutputFileDir.Data())).c_str());
 
-    std::string pdfFileName = OutputFileDir + "/" + "_" + lundfile_prefix + "_plots.pdf";
-    const char* pdfFile = pdfFileName.c_str();
+    TString pdfFileName = OutputFileDir + "/" + "_" + lundfile_prefix + "_plots.pdf";
+    const char* pdfFile = pdfFileName.Data();
 
     // Make lundfiles directory:
     TString lundfiles_Path = OutputFileDir + "/lundfiles";
@@ -123,11 +123,11 @@ void GENIE_to_LUND_converter(TString InputFiles = "", /* TString OutputFileDir =
 
     // Monitoring histograms variables ----------------------------------------------------------------------------------------------------------------------------------
 
-    std::vector<TObject*> histList;
+    std::vector<TObject*> HistoList;
 
     TH2D* theta_e_VS_phi_e = new TH2D("theta_e_VS_phi_e;#theta_{e} vs. #phi_{e};#phi_{e} [#circ];#theta_{e}", HistElectronSliceNumOfXBins, -180., 180., HistElectronSliceNumOfYBins,
                                       ThetaFD.GetLowerCut(), ThetaFD.GetUpperCut());
-    histList->push_back(theta_e_VS_phi_e);
+    HistoList.push_back(theta_e_VS_phi_e);
 
     hsPlots theta_e_VS_phi_e_BySliceOfPe(ElectronMomSliceLimits, hsPlots::TH2D_TYPE, HistoList, "theta_e_VS_phi_e", "#theta_{e} vs. #phi_{e}", HistElectronSliceNumOfXBins, -180., 180.,
                                          HistElectronSliceNumOfYBins, ThetaFD.GetLowerCut(), ThetaFD.GetUpperCut());
@@ -288,22 +288,22 @@ void GENIE_to_LUND_converter(TString InputFiles = "", /* TString OutputFileDir =
     MainCanvas->Print(Form("%s[", pdfFile));  // Open the PDF file
 
     // Loop through the list of histograms
-    for (int i = 0; i < histList.size(); i++) {
+    for (int i = 0; i < HistoList.size(); i++) {
         MainCanvas->cd();  // Select the canvas
         MainCanvas->Clear();
 
         // MainCanvas->cd();
-        histList.at(i)->GetXaxis()->SetTitleSize(0.06);
-        histList.at(i)->GetXaxis()->SetLabelSize(0.0425);
-        histList.at(i)->GetXaxis()->CenterTitle(true);
-        // histList.at(i)->GetYaxis()->SetTitle("Number of events");
-        histList.at(i)->GetYaxis()->SetTitleSize(0.06);
-        histList.at(i)->GetYaxis()->SetLabelSize(0.0425);
-        histList.at(i)->GetYaxis()->CenterTitle(true);
-        // histList.at(i)->SetLineWidth(2);
-        // histList.at(i)->SetLineStyle(0);
-        // histList.at(i)->SetLineColor(kBlue);
-        histList.at(i)->Draw("colz");  // Draw the histogram on the canvas
+        HistoList.at(i)->GetXaxis()->SetTitleSize(0.06);
+        HistoList.at(i)->GetXaxis()->SetLabelSize(0.0425);
+        HistoList.at(i)->GetXaxis()->CenterTitle(true);
+        // HistoList.at(i)->GetYaxis()->SetTitle("Number of events");
+        HistoList.at(i)->GetYaxis()->SetTitleSize(0.06);
+        HistoList.at(i)->GetYaxis()->SetLabelSize(0.0425);
+        HistoList.at(i)->GetYaxis()->CenterTitle(true);
+        // HistoList.at(i)->SetLineWidth(2);
+        // HistoList.at(i)->SetLineStyle(0);
+        // HistoList.at(i)->SetLineColor(kBlue);
+        HistoList.at(i)->Draw("colz");  // Draw the histogram on the canvas
         MainCanvas->Print(pdfFile);    // Save the current canvas (histogram) to the PDF
     }
 
