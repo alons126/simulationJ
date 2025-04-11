@@ -1,11 +1,12 @@
 #!/bin/csh
 
 # Loop over target nuclei
-foreach FC_STATUSES ( 0 1  )
+# Loop over fiducial cuts statuses
+foreach FC_STATUSES ( 0 1 )
 # foreach SAMPLE_TARGET_NUCLEI ( H1 D2 C12 Ar40 )
 
 # Loop over target nuclei
-foreach SAMPLE_TARGET_NUCLEI ( C12  )
+foreach SAMPLE_TARGET_NUCLEI ( C12 )
 # foreach SAMPLE_TARGET_NUCLEI ( H1 D2 C12 Ar40 )
 
 # Loop over GENIE tunes
@@ -20,19 +21,19 @@ foreach BEAM_ENERGIES ( 2070MeV )
 # ============================================================================
 
 # Set target nucleus
-unset SAMPLE_TARGET_NUCLEUS
+unsetenv SAMPLE_TARGET_NUCLEUS
 setenv SAMPLE_TARGET_NUCLEUS ${SAMPLE_TARGET_NUCLEI}
 echo "SAMPLE_TARGET_NUCLEUS = ${SAMPLE_TARGET_NUCLEUS}"
 echo ""
 
 # Set GENIE tune
-unset GENIE_TUNE
+unsetenv GENIE_TUNE
 setenv GENIE_TUNE ${GENIE_TUNES}
 echo "GENIE_TUNE:\t\t${GENIE_TUNE}"
 echo ""
 
 # Set beam energy
-unset BEAM_E
+unsetenv BEAM_E
 setenv BEAM_E ${BEAM_ENERGIES}
 echo "BEAM_E:\t\t\t${BEAM_E}"
 echo ""
@@ -51,7 +52,7 @@ else
 endif
 
 # Set Q² cut based on energy
-unset Q2_CUT
+unsetenv Q2_CUT
 if ("${BEAM_E}" == "2070MeV") then
     setenv Q2_CUT Q2_0_02
 else if ("${BEAM_E}" == "4029MeV") then
@@ -75,7 +76,7 @@ unset FC_STATUS
 if ("${FC_STATUS_ENABLED}" == "1") then
     setenv FC_STATUS _wFC
 else
-setenv FC_STATUS ""
+    setenv FC_STATUS ""
 endif
 
 echo "FC_STATUS = ${FC_STATUS}"
@@ -154,6 +155,10 @@ echo "${PRINT_OUT_COLOR}Pulling updates...\033[0m"
 # This command is used to reset the current branch to the latest commit in the remote repository. The
 # --hard option is used to discard any local changes, and the git pull command is used to fetch and merge
 # the latest changes from the remote repository.
+
+git reset --hard
+git pull
+echo ""
 
 # Display the latest commit in the current branch. The -1 option limits the output to one commit, and the
 # --oneline option formats the output to show only the commit hash and the commit message in a single line.
@@ -245,7 +250,7 @@ echo "${PRINT_OUT_COLOR}Submitting GENIE sbatch job...\033[0m"
 sbatch ${SUBMIT_SCRIPT_PATH}/submit_GENIE_sample.sh
 echo
 
-end # End of loop over beam energies
-end # End of loop over GENIE tunes
 end # End of loop over target nuclei
 end # End of loop over fiducial cuts status
+end # End of loop over GENIE tunes
+end # End of loop over beam energies
