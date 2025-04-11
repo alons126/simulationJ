@@ -106,7 +106,7 @@ void GENIE_to_LUND_converter(TString InputFiles = "", /* TString OutputFileDir =
 
     // Acceptance maps --------------------------------------------------------------------------------------------------------------------------------------------------
 
-    std::string AcceptanceMapsDirectory = "/w/hallb-scshelf2102/clas12/asportes/2N-Analyzer/data/AcceptanceMaps";
+    std::string AcceptanceMapsDirectory = "/w/hallb-scshelf2102/clas12/asportes/2N-Analyzer/data/AcceptanceMaps/";
 
     AMaps aMaps_master = AMaps(AcceptanceMapsDirectory, "Uniform_1e_sample_" + GetBeamEnergyFromDouble(beamE), beamE, "AMaps", false, false, {1, 1, 1});
 
@@ -132,7 +132,7 @@ void GENIE_to_LUND_converter(TString InputFiles = "", /* TString OutputFileDir =
                                          HistElectronSliceNumOfYBins, ThetaFD.GetLowerCut(), ThetaFD.GetUpperCut());
 
     exit(0);
-    
+
     // TTree variables --------------------------------------------------------------------------------------------------------------------------------------------------
 
     TTree* T = InChain;
