@@ -114,7 +114,7 @@ void GENIE_to_LUND_converter(TString InputFiles = "", /* TString OutputFileDir =
 
     int HistElectronSliceNumOfYBins = aMaps_master.GetHistElectronSliceNumOfYBins();
 
-    vector<vector<double>> ElectronMomSliceLimits = aMaps_master.GetElectronMomSliceLimits();
+    vector<vector<double>> ElectronMomSliceLimits = aMaps_master.GetLoadedElectronMomSliceLimits();
     
     cout << "\033[33m\nElectronMomSliceLimits.size() = \033[0m" << ElectronMomSliceLimits.size() << endl;
 
