@@ -83,8 +83,8 @@ void GENIE_to_LUND_converter(TString InputFiles = "", /* TString OutputFileDir =
 
     TString OutputFileBase = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples";
     TString OutputFileDir = OutputFileBase + "/" + target_element + "/" + genie_tune + "/" + beam_e + "_" + Q2_cut;
-    system(("rm -rf " + std::string(OutputFileDir.Data())).c_str()); // Remove the directory if it exists
-    system(("mkdir -p " + std::string(OutputFileDir.Data())).c_str()); // Create the directory
+    system(("rm -rf " + std::string(OutputFileDir.Data())).c_str());    // Remove the directory if it exists
+    system(("mkdir -p " + std::string(OutputFileDir.Data())).c_str());  // Create the directory
 
     // Make lundfiles directory:
     TString lundfiles_Path = OutputFileDir + "/lundfiles";
@@ -234,7 +234,7 @@ void GENIE_to_LUND_converter(TString InputFiles = "", /* TString OutputFileDir =
         bool e_inFD = aMaps_master.IsInFDQuery((!apply_fiducial_cuts), ThetaFD, "Electron", P_e, theta_e, phi_e, false, true);
 
         // Apply electron acceptance cuts:
-        if (!e_inFD) continue;
+        // if (!(!apply_fiducial_cuts || e_inFD)) { continue; }
 
         theta_e_VS_phi_e->Fill(phi_e, theta_e);
         theta_e_VS_phi_e_BySliceOfPe.Fill(P_e, phi_e, theta_e);
@@ -292,6 +292,7 @@ void GENIE_to_LUND_converter(TString InputFiles = "", /* TString OutputFileDir =
 
             if (current_file_index > nFiles) {
                 cout << "\033[33m\nReached file limit (\033[0m" << nFiles << "\033[33m). Stopping event writing.\033[0m" << endl;
+                --current_file_index;
                 break;
             }
 
@@ -312,7 +313,6 @@ void GENIE_to_LUND_converter(TString InputFiles = "", /* TString OutputFileDir =
     for (int i = 0; i < HistoList.size(); i++) {
         MainCanvas->cd();  // Select the canvas
         MainCanvas->Clear();
-
 
         if (HistoList[i]->InheritsFrom("TH2")) {
             TH2D* h2 = dynamic_cast<TH2D*>(HistoList[i]);
@@ -338,7 +338,7 @@ void GENIE_to_LUND_converter(TString InputFiles = "", /* TString OutputFileDir =
             h1->GetYaxis()->SetTitleSize(0.06);
             h1->GetYaxis()->SetLabelSize(0.0425);
             h1->GetYaxis()->CenterTitle(true);
-    
+
             h1->Draw();  // Draw the histogram on the canvas
         }
 
