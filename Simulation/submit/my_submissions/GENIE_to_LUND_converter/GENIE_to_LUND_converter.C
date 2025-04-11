@@ -234,7 +234,7 @@ void GENIE_to_LUND_converter(TString InputFiles = "", /* TString OutputFileDir =
         bool e_inFD = aMaps_master.IsInFDQuery((!apply_fiducial_cuts), ThetaFD, "Electron", P_e, theta_e, phi_e, false, true);
 
         // Apply electron acceptance cuts:
-        // if (!(!apply_fiducial_cuts || e_inFD)) { continue; }
+        if (!(!apply_fiducial_cuts || e_inFD)) { continue; }
 
         theta_e_VS_phi_e->Fill(phi_e, theta_e);
         theta_e_VS_phi_e_BySliceOfPe.Fill(P_e, phi_e, theta_e);
