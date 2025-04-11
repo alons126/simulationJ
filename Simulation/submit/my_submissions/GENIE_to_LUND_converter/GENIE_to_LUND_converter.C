@@ -44,21 +44,21 @@ void GENIE_to_LUND_converter(TString InputFiles = "", /* TString OutputFileDir =
 
     // Proceeding input arguments ---------------------------------------------------------------------------------------------------------------------------------------
 
-    TString target_element = (basic_tools::FindInString(InputFiles, "H1"))     ? "H1"
-                             : (basic_tools::FindInString(InputFiles, "D2"))   ? "D2"
-                             : (basic_tools::FindInString(InputFiles, "C12"))  ? "C12"
-                             : (basic_tools::FindInString(InputFiles, "Ar40")) ? "Ar40"
+    TString target_element = (utilities::FindSubstring(InputFiles, "H1"))     ? "H1"
+                             : (utilities::FindSubstring(InputFiles, "D2"))   ? "D2"
+                             : (utilities::FindSubstring(InputFiles, "C12"))  ? "C12"
+                             : (utilities::FindSubstring(InputFiles, "Ar40")) ? "Ar40"
                                                                              : "UNKNOWN";
     if (target_element == "UNKNOWN") { std::cerr << "\033[31m\nTarget element not recognized. Please use H1, D2, C12, or Ar40. Aborting...\n\033[0m", exit(0); }
 
-    TString genie_tune = (basic_tools::FindInString(InputFiles, "G18_10a_00_000"))     ? "G18_10a_00_000"
-                         : (basic_tools::FindInString(InputFiles, "GEM21_11a_00_000")) ? "GEM21_11a_00_000"
+    TString genie_tune = (utilities::FindSubstring(InputFiles, "G18_10a_00_000"))     ? "G18_10a_00_000"
+                         : (utilities::FindSubstring(InputFiles, "GEM21_11a_00_000")) ? "GEM21_11a_00_000"
                                                                                      : "UNKNOWN";
     if (genie_tune == "UNKNOWN") { std::cerr << "\033[31m\nGENIE tune not recognized. Please use G18_10a_00_000 or GEM21_11a_00_000. Aborting...\n\033[0m", exit(0); }
 
     TString beam_e = (utilities::GetBeam(InputFiles, "2070MeV"))        ? "2070MeV"
-                     : (basic_tools::FindInString(InputFiles, "4029MeV")) ? "4029MeV"
-                     : (basic_tools::FindInString(InputFiles, "5986MeV")) ? "5986MeV"
+                     : (utilities::FindSubstring(InputFiles, "4029MeV")) ? "4029MeV"
+                     : (utilities::FindSubstring(InputFiles, "5986MeV")) ? "5986MeV"
                                                                         : "UNKNOWN";
     if (beam_e == "UNKNOWN") { std::cerr << "\033[31m\nBeam energy not recognized. Please use 2070MeV, 4029MeV, or 5986MeV. Aborting...\n\033[0m", exit(0); }
 
