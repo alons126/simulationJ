@@ -8,7 +8,8 @@ echo
 
 # Set number of files
 unsetenv NUM_OF_FILES
-setenv NUM_OF_FILES 10
+setenv NUM_OF_FILES 50
+# setenv NUM_OF_FILES 10
 echo "NUM_OF_FILES = ${NUM_OF_FILES}"
 echo ""
 
