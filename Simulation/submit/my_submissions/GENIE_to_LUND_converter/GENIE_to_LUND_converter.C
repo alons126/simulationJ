@@ -43,7 +43,7 @@ void GENIE_to_LUND_converter(TString InputFiles = "", /* TString OutputFileDir =
 
     bool PrintOutElectronSliceLimits = false;
 
-    bool apply_fiducial_cuts = false;
+    bool apply_fiducial_cuts = true;
 
     // Proceeding input arguments ---------------------------------------------------------------------------------------------------------------------------------------
 
