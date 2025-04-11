@@ -105,11 +105,12 @@ echo ""
 
 # Expand root files using shell globbing
 set INPUT_FILES_DIR = ( $BASE_TL_SAMPLE_DIR/$TL_SAMPLE_TARGET_NUCLEUS/$TL_GENIE_TUNE/${TL_SAMPLE_ENERGY}_${TL_SAMPLE_Q2_CUT}/master-routine_validation_01-eScattering/*.root )
+set INPUT_FILES_STRING = "`echo $INPUT_FILES_DIR`"
 echo "INPUT_FILES_DIR = ${INPUT_FILES_DIR}"
 echo ""
 
 # Execute ROOT macro
-root -q -b './GENIE_to_LUND_converter/GENIE_to_LUND_converter.C("'$INPUT_FILES_DIR'", '$NUM_OF_FILES', "'$TL_SAMPLE_TARGET_TYPE'", '$TL_SAMPLE_TARGET_NUCLEUS_A', '$TL_SAMPLE_TARGET_NUCLEUS_Z')'
+root -q -b "./GENIE_to_LUND_converter/GENIE_to_LUND_converter.C(\"${INPUT_FILES_STRING}\", ${NUM_OF_FILES}, \"${TL_SAMPLE_TARGET_TYPE}\", ${TL_SAMPLE_TARGET_NUCLEUS_A}, ${TL_SAMPLE_TARGET_NUCLEUS_Z})"
 
 echo
 echo "----------------------- End of job --------------------------"
