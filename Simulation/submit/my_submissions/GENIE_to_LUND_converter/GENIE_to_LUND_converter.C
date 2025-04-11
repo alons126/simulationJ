@@ -75,7 +75,7 @@ void GENIE_to_LUND_converter(TString InputFiles = "", /* TString OutputFileDir =
 
     cout << "\033[33m\nLUND file prefix: \t\033[0m" << lundfile_prefix << endl;
 
-    TString OutputFileBase = "/w/hallb-scshelf2102/clas12/asportes/2N_Analysis_Truth_Samples";
+    TString OutputFileBase = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples";
     TString OutputFileDir = OutputFileBase + "/" + target_element + "/" + genie_tune + "/" + beam_e + "_" + Q2_cut;
     system(("mkdir -p " + std::string(OutputFileDir.Data())).c_str());
 
