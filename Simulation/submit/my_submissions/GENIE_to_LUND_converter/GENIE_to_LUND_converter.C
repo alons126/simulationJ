@@ -131,8 +131,6 @@ void GENIE_to_LUND_converter(TString InputFiles = "", /* TString OutputFileDir =
     hsPlots theta_e_VS_phi_e_BySliceOfPe(ElectronMomSliceLimits, hsPlots::TH2D_TYPE, HistoList, "theta_e_VS_phi_e", "#theta_{e} vs. #phi_{e}", HistElectronSliceNumOfXBins, -180., 180.,
                                          HistElectronSliceNumOfYBins, ThetaFD.GetLowerCut(), ThetaFD.GetUpperCut());
 
-    exit(0);
-
     // TTree variables --------------------------------------------------------------------------------------------------------------------------------------------------
 
     TTree* T = InChain;
