@@ -18,28 +18,49 @@ foreach BEAM_ENERGIES ( 2070MeV )
 # Set target nucleus
 unsetenv SAMPLE_TARGET_NUCLEUS
 setenv SAMPLE_TARGET_NUCLEUS ${SAMPLE_TARGET_NUCLEI}
-echo "SAMPLE_TARGET_NUCLEUS = ${SAMPLE_TARGET_NUCLEUS}"
+echo "SAMPLE_TARGET_NUCLEUS: ${SAMPLE_TARGET_NUCLEUS}"
 echo ""
 
 # Set GENIE tune
 unsetenv GENIE_TUNE
 setenv GENIE_TUNE ${GENIE_TUNES}
-echo "GENIE_TUNE:\t\t${GENIE_TUNE}"
+echo "GENIE_TUNE: ${GENIE_TUNE}"
 echo ""
 
 # Set beam energy
 unsetenv BEAM_E
 setenv BEAM_E ${BEAM_ENERGIES}
-echo "BEAM_E:\t\t\t${BEAM_E}"
+echo "BEAM_E: ${BEAM_E}"
+echo ""
+
+
+# Set fiducial cuts status
+setenv FC_STATUS_ENABLED ${FC_STATUSES}
+echo "FC_STATUS_ENABLED: ${FC_STATUS_ENABLED}"
+echo ""
+
+unsetenv FC_STATUS
+if ("${FC_STATUS_ENABLED}" == "1") then
+    setenv FC_STATUS _wFC
+else
+    setenv FC_STATUS ""
+endif
+echo "FC_STATUS: ${FC_STATUS}"
 echo ""
 
 unsetenv PRINT_OUT_COLOR
-if ("${BEAM_E}" == "2070MeV") then
+if ("${BEAM_E}" == "2070MeV" && "${FC_STATUS_ENABLED}" == "0") then
     setenv PRINT_OUT_COLOR '\033[31m'
-else if ("${BEAM_E}" == "4029MeV") then
+else if ("${BEAM_E}" == "2070MeV" && "${FC_STATUS_ENABLED}" == "1") then
     setenv PRINT_OUT_COLOR '\033[32m'
-else if ("${BEAM_E}" == "5986MeV") then
+else if ("${BEAM_E}" == "4029MeV" && "${FC_STATUS_ENABLED}" == "0") then
     setenv PRINT_OUT_COLOR '\033[33m'
+else if ("${BEAM_E}" == "4029MeV" && "${FC_STATUS_ENABLED}" == "1") then
+    setenv PRINT_OUT_COLOR '\033[34m'
+else if ("${BEAM_E}" == "5986MeV" && "${FC_STATUS_ENABLED}" == "0") then
+    setenv PRINT_OUT_COLOR '\033[35m'
+else if ("${BEAM_E}" == "5986MeV" && "${FC_STATUS_ENABLED}" == "1") then
+    setenv PRINT_OUT_COLOR '\033[36m'
 else
     echo "Unknown beam energy: ${BEAM_E}"
     exit 1
@@ -57,21 +78,7 @@ else
     echo "Unknown beam energy: ${BEAM_E}"
     exit 1
 endif
-echo "Q2_CUT = ${Q2_CUT}"
-echo ""
-
-# Set fiducial cuts status
-setenv FC_STATUS_ENABLED ${FC_STATUSES}
-echo "FC_STATUS_ENABLED = ${FC_STATUS_ENABLED}"
-echo ""
-
-unsetenv FC_STATUS
-if ("${FC_STATUS_ENABLED}" == "1") then
-    setenv FC_STATUS _wFC
-else
-    setenv FC_STATUS ""
-endif
-echo "FC_STATUS = ${FC_STATUS}"
+echo "Q2_CUT: ${Q2_CUT}"
 echo ""
 
 echo
