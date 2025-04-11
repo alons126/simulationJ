@@ -41,6 +41,8 @@ void GENIE_to_LUND_converter(TString InputFiles = "", /* TString OutputFileDir =
 
     bool PrintOut = false;
 
+    bool PrintOutElectronSliceLimits = false;
+
     bool apply_fiducial_cuts = true;
 
     // Proceeding input arguments ---------------------------------------------------------------------------------------------------------------------------------------
@@ -110,19 +112,19 @@ void GENIE_to_LUND_converter(TString InputFiles = "", /* TString OutputFileDir =
 
     AMaps aMaps_master = AMaps(AcceptanceMapsDirectory, "Uniform_1e_sample_" + GetBeamEnergyFromDouble(beamE), beamE, "AMaps", false, false, {1, 1, 1});
 
-    int HistElectronSliceNumOfXBins = aMaps_master.GetHistElectronSliceNumOfXBins();
-
-    int HistElectronSliceNumOfYBins = aMaps_master.GetHistElectronSliceNumOfYBins();
+    int HistElectronSliceNumOfXBins = aMaps_master.GetHistElectronSliceNumOfXBins(), HistElectronSliceNumOfYBins = aMaps_master.GetHistElectronSliceNumOfYBins();
 
     vector<vector<double>> ElectronMomSliceLimits = aMaps_master.GetLoadedElectronMomSliceLimits();
-    
-    cout << "\033[33m\nElectronMomSliceLimits.size() = \033[0m" << ElectronMomSliceLimits.size() << endl;
 
-    cout << "\033[33m\nElectron momentum slice limits:\033[0m" << endl;
-    for (int i = 0; i < ElectronMomSliceLimits.size(); i++) {
-        cout << "\t\033[33mSlice " << i + 1 << ":\033[0m " << ElectronMomSliceLimits[i][0] << " - " << ElectronMomSliceLimits[i][1] << endl;
+    if (PrintOutElectronSliceLimits) {
+        cout << "\033[33m\nElectronMomSliceLimits.size() = \033[0m" << ElectronMomSliceLimits.size() << endl;
+
+        cout << "\033[33m\nElectron momentum slice limits:\033[0m" << endl;
+        for (int i = 0; i < ElectronMomSliceLimits.size(); i++) {
+            cout << "\t\033[33mSlice " << i + 1 << ":\033[0m " << ElectronMomSliceLimits[i][0] << " - " << ElectronMomSliceLimits[i][1] << endl;
+        }
+        cout << "\n";
     }
-    cout << "\n";
 
     // FD theta acceptance limits ---------------------------------------------------------------------------------------------------------------------------------------
 
@@ -136,8 +138,8 @@ void GENIE_to_LUND_converter(TString InputFiles = "", /* TString OutputFileDir =
                                       ThetaFD.GetLowerCut(), ThetaFD.GetUpperCut());
     HistoList.push_back(theta_e_VS_phi_e);
 
-    hsPlots theta_e_VS_phi_e_BySliceOfPe = hsPlots(ElectronMomSliceLimits, hsPlots::TH2D_TYPE, HistoList, "theta_e_VS_phi_e", "#theta_{e} vs. #phi_{e}", HistElectronSliceNumOfXBins, -180., 180.,
-                                         HistElectronSliceNumOfYBins, ThetaFD.GetLowerCut(), ThetaFD.GetUpperCut());
+    hsPlots theta_e_VS_phi_e_BySliceOfPe = hsPlots(ElectronMomSliceLimits, hsPlots::TH2D_TYPE, HistoList, "theta_e_VS_phi_e", "#theta_{e} vs. #phi_{e}", HistElectronSliceNumOfXBins, -180.,
+                                                   180., HistElectronSliceNumOfYBins, ThetaFD.GetLowerCut(), ThetaFD.GetUpperCut());
 
     // TTree variables --------------------------------------------------------------------------------------------------------------------------------------------------
 
