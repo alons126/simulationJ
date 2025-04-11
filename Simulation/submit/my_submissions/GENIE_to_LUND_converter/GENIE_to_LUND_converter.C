@@ -8,6 +8,7 @@
 #include <TLatex.h>
 #include <TLegend.h>
 #include <TMath.h>
+#include <TObject.h>
 #include <TROOT.h>
 #include <TRandom3.h>
 #include <TString.h>
@@ -26,6 +27,7 @@
 // Include classes:
 #include "/w/hallb-scshelf2102/clas12/asportes/2N-Analyzer/framework/classes/AMaps/AMap.cpp"
 #include "/w/hallb-scshelf2102/clas12/asportes/2N-Analyzer/framework/classes/DSCuts/DSCuts.h"
+#include "/w/hallb-scshelf2102/clas12/asportes/2N-Analyzer/framework/classes/hPlots/hsPlots.cpp"
 
 using namespace std;
 using namespace utilities;
@@ -39,12 +41,12 @@ void GENIE_to_LUND_converter(TString InputFiles = "", /* TString OutputFileDir =
 
     // Proceeding input arguments ---------------------------------------------------------------------------------------------------------------------------------------
 
-    TString target = (utilities::FindInString(InputFiles, "H1"))     ? "H1"
-                     : (utilities::FindInString(InputFiles, "D2"))   ? "D2"
-                     : (utilities::FindInString(InputFiles, "C12"))  ? "C12"
-                     : (utilities::FindInString(InputFiles, "Ar40")) ? "Ar40"
-                                                                     : "UNKNOWN";
-    if (target == "UNKNOWN") { std::cerr << "\033[31m\nTarget not recognized. Please use H1, D2, C12, or Ar40. Aborting...\n\033[0m", exit(0); }
+    TString target_element = (utilities::FindInString(InputFiles, "H1"))     ? "H1"
+                             : (utilities::FindInString(InputFiles, "D2"))   ? "D2"
+                             : (utilities::FindInString(InputFiles, "C12"))  ? "C12"
+                             : (utilities::FindInString(InputFiles, "Ar40")) ? "Ar40"
+                                                                             : "UNKNOWN";
+    if (target_element == "UNKNOWN") { std::cerr << "\033[31m\nTarget element not recognized. Please use H1, D2, C12, or Ar40. Aborting...\n\033[0m", exit(0); }
 
     TString genie_tune = (utilities::FindInString(InputFiles, "G18_10a_00_000"))     ? "G18_10a_00_000"
                          : (utilities::FindInString(InputFiles, "GEM21_11a_00_000")) ? "GEM21_11a_00_000"
@@ -63,7 +65,7 @@ void GENIE_to_LUND_converter(TString InputFiles = "", /* TString OutputFileDir =
     TString Q2_cut = (beam_e == "2070MeV") ? "Q2_0_02" : (beam_e == "4029MeV") ? "Q2_0_25" : (beam_e == "5986MeV") ? "Q2_0_40" : "UNKNOWN";
     if (Q2_cut == "UNKNOWN") { std::cerr << "\033[31m\nQ2 cut not recognized. Aborting...\n\033[0m", exit(0); }
 
-    TString lundfile_prefix = target + "_" + genie_tune + "_" + Q2_cut + "_" + beam_e;
+    TString lundfile_prefix = target_element + "_" + genie_tune + "_" + Q2_cut + "_" + beam_e;
 
     // Read in target parameter files -----------------------------------------------------------------------------------------------------------------------------------
 
@@ -74,7 +76,8 @@ void GENIE_to_LUND_converter(TString InputFiles = "", /* TString OutputFileDir =
     cout << "\033[33m\nLUND file prefix: \t\033[0m" << lundfile_prefix << endl;
 
     TString OutputFileBase = "/w/hallb-scshelf2102/clas12/asportes/2N_Analysis_Truth_Samples";
-    TString OutputFileDir = OutputFileBase + "/" + target + "/" + genie_tune + "/" + beam_e + "_" + Q2_cut;
+    TString OutputFileDir = OutputFileBase + "/" + target_element + "/" + genie_tune + "/" + beam_e + "_" + Q2_cut;
+    system(("mkdir -p " + std::string(OutputFileDir.Data())).c_str());
 
     std::string pdfFileName = OutputFileDir + "/" + "_" + lundfile_prefix + "_plots.pdf";
     const char* pdfFile = pdfFileName.c_str();
@@ -97,6 +100,8 @@ void GENIE_to_LUND_converter(TString InputFiles = "", /* TString OutputFileDir =
     cout << "\033[33m\nSaving lundfiles into \033[0m" << lundfiles_Path << endl;
     cout << "\n";
 
+    exit(0);
+
     // Acceptance maps --------------------------------------------------------------------------------------------------------------------------------------------------
 
     std::string AcceptanceMapsDirectory = "/w/hallb-scshelf2102/clas12/asportes/2N-Analyzer/data/AcceptanceMaps";
@@ -115,11 +120,14 @@ void GENIE_to_LUND_converter(TString InputFiles = "", /* TString OutputFileDir =
 
     // Monitoring histograms variables ----------------------------------------------------------------------------------------------------------------------------------
 
-    std::vector<TH1*> histList;
+    std::vector<TObject*> histList;
 
     TH2D* theta_e_VS_phi_e = new TH2D("theta_e_VS_phi_e;#theta_{e} vs. #phi_{e};#phi_{e} [#circ];#theta_{e}", HistElectronSliceNumOfXBins, -180., 180., HistElectronSliceNumOfYBins,
                                       ThetaFD.GetLowerCut(), ThetaFD.GetUpperCut());
     histList->push_back(theta_e_VS_phi_e);
+
+    hsPlots theta_e_VS_phi_e_BySliceOfPe(ElectronMomSliceLimits, hsPlots::TH2D_TYPE, HistoList, "theta_e_VS_phi_e", "#theta_{e} vs. #phi_{e}", HistElectronSliceNumOfXBins, -180., 180.,
+                                         HistElectronSliceNumOfYBins, ThetaFD.GetLowerCut(), ThetaFD.GetUpperCut());
 
     // TTree variables --------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -205,6 +213,7 @@ void GENIE_to_LUND_converter(TString InputFiles = "", /* TString OutputFileDir =
         if (!e_inFD) continue;
 
         theta_e_VS_phi_e->Fill(phi_e, theta_e);
+        theta_e_VS_phi_e_BySliceOfPe->Fill(P_e, phi_e, theta_e);
 
         double code = (qel) ? 1. : (mec) ? 2. : (res) ? 3. : (dis) ? 4. : 0.;
 
@@ -268,19 +277,19 @@ void GENIE_to_LUND_converter(TString InputFiles = "", /* TString OutputFileDir =
     }
 
     // Create a canvas
-    TCanvas* canvas = new TCanvas("canvas", "Canvas for saving histograms", 800, 600);
-    canvas->cd()->SetGrid();
-    canvas->cd()->SetBottomMargin(0.14), canvas->cd()->SetLeftMargin(0.18), canvas->cd()->SetRightMargin(0.12);
+    TCanvas* MainCanvas = new TCanvas("MainCanvas", "Canvas for saving histograms", 800, 600);
+    MainCanvas->cd()->SetGrid();
+    MainCanvas->cd()->SetBottomMargin(0.14), MainCanvas->cd()->SetLeftMargin(0.18), MainCanvas->cd()->SetRightMargin(0.12);
 
     // offset the multi-page PDF
-    canvas->Print(Form("%s[", pdfFile));  // Open the PDF file
+    MainCanvas->Print(Form("%s[", pdfFile));  // Open the PDF file
 
     // Loop through the list of histograms
     for (int i = 0; i < histList.size(); i++) {
-        canvas->cd();  // Select the canvas
-        canvas->Clear();
+        MainCanvas->cd();  // Select the canvas
+        MainCanvas->Clear();
 
-        canvas->cd();
+        // MainCanvas->cd();
         histList.at(i)->GetXaxis()->SetTitleSize(0.06);
         histList.at(i)->GetXaxis()->SetLabelSize(0.0425);
         histList.at(i)->GetXaxis()->CenterTitle(true);
@@ -292,11 +301,11 @@ void GENIE_to_LUND_converter(TString InputFiles = "", /* TString OutputFileDir =
         // histList.at(i)->SetLineStyle(0);
         // histList.at(i)->SetLineColor(kBlue);
         histList.at(i)->Draw("colz");  // Draw the histogram on the canvas
-        canvas->Print(pdfFile);        // Save the current canvas (histogram) to the PDF
+        MainCanvas->Print(pdfFile);    // Save the current canvas (histogram) to the PDF
     }
 
     // End the multi-page PDF
-    canvas->Print(Form("%s]", pdfFile));  // Close the PDF file
+    MainCanvas->Print(Form("%s]", pdfFile));  // Close the PDF file
 
     outfile.close();  // Close the last file if it was opened
     cout << "\033[33m\nFINISHED!\n\033[0m" << endl;
