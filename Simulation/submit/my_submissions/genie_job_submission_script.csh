@@ -43,6 +43,7 @@ endif
 echo "FC_STATUS: ${FC_STATUS}"
 echo ""
 
+# Set printing color based on beam energy and fiducial cuts status
 unsetenv PRINT_OUT_COLOR
 if ("${BEAM_E}" == "2070MeV" && "${FC_STATUS_ENABLED}" == "0") then
     setenv PRINT_OUT_COLOR '\033[31m'
@@ -97,6 +98,7 @@ echo ""
 echo "${PRINT_OUT_COLOR}- Job parameters ------------------------------------------------------\033[0m"
 echo ""
 
+# Set torus field based on beam energy
 unsetenv TORUS_FIELD
 
 if ("${BEAM_E}" == "2070MeV") then
@@ -126,6 +128,7 @@ setenv USE_GEMC_5_10 1 ## 1 for true
 echo "${PRINT_OUT_COLOR}USE_GEMC_5_10:\033[0m ${USE_GEMC_5_10}"
 echo ""
 
+# Set GEMC data directory
 unsetenv OUTPATH
 setenv OUTPATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/${SAMPLE_TARGET_NUCLEUS}/${GENIE_TUNE}/${BEAM_E}_${Q2_CUT}${FC_STATUS}
 echo "${PRINT_OUT_COLOR}OUTPATH:\033[0m ${OUTPATH}"
@@ -143,11 +146,13 @@ setenv RUNNING_DIR `pwd`
 echo "${PRINT_OUT_COLOR}RUNNING_DIR::\033[0m ${RUNNING_DIR}"
 echo ""
 
+# Check if RUNNING_DIR is a directory
 if (! -d "${RUNNING_DIR}") then
     echo "Error: Directory specified by RUNNING_DIR does not exist: ${RUNNING_DIR}"
     exit 1
 endif
 
+# Setting submission script path
 unsetenv SUBMIT_SCRIPT_PATH
 if ("${BEAM_E}" == "2070MeV") then
     echo "${PRINT_OUT_COLOR}- Setting SUBMIT_SCRIPT_PATH for 2 GeV --------------------------------\033[0m"
@@ -166,21 +171,25 @@ endif
 echo "${PRINT_OUT_COLOR}SUBMIT_SCRIPT_PATH:\033[0m ${SUBMIT_SCRIPT_PATH}"
 echo ""
 
+# Check if SUBMIT_SCRIPT_PATH is a directory
 if (! -d "${SUBMIT_SCRIPT_PATH}") then
     echo "Error: Directory specified by SUBMIT_SCRIPT_PATH does not exist: ${SUBMIT_SCRIPT_PATH}"
     exit 1
 endif
 
+# Setting GCARD_FILE
 unsetenv GCARD_FILE
 setenv GCARD_FILE ${SUBMIT_SCRIPT_PATH}/rgm_fall2021_C.gcard
 echo "${PRINT_OUT_COLOR}GCARD_FILE:\033[0m ${GCARD_FILE}"
 echo
 
+# Check if GCARD_FILE is a file
 if (! -f "${GCARD_FILE}") then
     echo "Error: File specified by GCARD_FILE does not exist: ${GCARD_FILE}"
     exit 1
 endif
 
+# Setting YAML_FILE
 unsetenv YAML_FILE
 if ("${BEAM_E}" == "2070MeV") then
     setenv YAML_FILE ${SUBMIT_SCRIPT_PATH}/rgm_fall2021-cv.yaml
@@ -192,6 +201,7 @@ endif
 echo "${PRINT_OUT_COLOR}YAML_FILE:\033[0m ${YAML_FILE}"
 echo
 
+# Check if YAML_FILE is a file
 if (! -f "${YAML_FILE}") then
     echo "Error: File specified by YAML_FILE does not exist: ${YAML_FILE}"
     exit 1
@@ -201,13 +211,13 @@ endif
 echo "${PRINT_OUT_COLOR}- Re-pulling repository -----------------------------------------------\033[0m"
 echo ""
 echo "${PRINT_OUT_COLOR}Pulling updates...\033[0m"
-git reset --hard
-git clean -fxd
+git reset --hard # resets the current branch to the latest commit in the remote repository
+git clean -fxd # removes untracked files and directories
 echo ""
 echo "${PRINT_OUT_COLOR}Pulling updates...\033[0m"
 git pull
 echo "HEAD:"
-git log -1 --oneline
+git log -1 --oneline # displays the latest commit in the current branch
 echo ""
 
 # Optionally clear the farm_out directory
@@ -226,7 +236,7 @@ if ("${CANCEL_PREVIOUS_JOBS}" == "1") then
     echo
 endif
 
-# Use GEMC 5.10
+# Optionally use GEMC 5.10
 if ("${USE_GEMC_5_10}" == "1") then
     echo "${PRINT_OUT_COLOR}- Reverting to GEMC 5.10 ----------------------------------------------\033[0m"
     module unload gemc
@@ -237,12 +247,18 @@ endif
 echo "${PRINT_OUT_COLOR}GEMC_DATA_DIR:\033[0m ${GEMC_DATA_DIR}"
 echo
 
-# Remove old output dirs
+# Check if GEMC_DATA_DIR is a directory
+if (! -f "${GEMC_DATA_DIR}") then
+    echo "Error: File specified by GEMC_DATA_DIR does not exist: ${GEMC_DATA_DIR}"
+    exit 1
+endif
+
+# Remove old output directories
 echo "${PRINT_OUT_COLOR}- Removing old directory structure for MC simulation -------------------\033[0m"
 rm -rf ${OUTPATH}/mchipo ${OUTPATH}/reconhipo
 echo
 
-# Create new output dirs
+# Create new output directories
 echo "${PRINT_OUT_COLOR}- Setting up directory structure for MC simulation ---------------------\033[0m"
 mkdir -p ${OUTPATH}/mchipo ${OUTPATH}/reconhipo
 echo
