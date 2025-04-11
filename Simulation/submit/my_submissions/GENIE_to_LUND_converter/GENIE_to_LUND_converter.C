@@ -134,12 +134,12 @@ void GENIE_to_LUND_converter(TString InputFiles = "", /* TString OutputFileDir =
 
     std::vector<TObject*> HistoList;
 
-    TH2D* theta_e_VS_phi_e = new TH2D("theta_e_VS_phi_e", "#theta_{e} vs. #phi_{e};#phi_{e} [#circ];#theta_{e}", HistElectronSliceNumOfXBins, -180., 180., HistElectronSliceNumOfYBins,
-                                      ThetaFD.GetLowerCut(), ThetaFD.GetUpperCut());
+    TH2D* theta_e_VS_phi_e =
+        new TH2D("theta_e_VS_phi_e", "#theta_{e} vs. #phi_{e};#phi_{e} [#circ];#theta_{e}", HistElectronSliceNumOfXBins, -180., 180., HistElectronSliceNumOfYBins, 0., 50.);
     HistoList.push_back(theta_e_VS_phi_e);
 
     hsPlots theta_e_VS_phi_e_BySliceOfPe = hsPlots(ElectronMomSliceLimits, hsPlots::TH2D_TYPE, HistoList, "theta_e_VS_phi_e", "#theta_{e} vs. #phi_{e}", HistElectronSliceNumOfXBins, -180.,
-                                                   180., HistElectronSliceNumOfYBins, ThetaFD.GetLowerCut(), ThetaFD.GetUpperCut());
+                                                   180., HistElectronSliceNumOfYBins, 0., 50.);
 
     // TTree variables --------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -302,23 +302,21 @@ void GENIE_to_LUND_converter(TString InputFiles = "", /* TString OutputFileDir =
         MainCanvas->cd();  // Select the canvas
         MainCanvas->Clear();
 
-        // if (HistoList[i]->InheritsFrom(TH2D::Class())) {
-        //     TH2D* h2 = (TH2D*)HistoList[i];  // ROOT-style cast (safe after InheritsFrom check)
+        h2->GetXaxis()->SetTitleSize(0.06);
+        h2->GetXaxis()->SetLabelSize(0.0425);
+        h2->GetXaxis()->CenterTitle(true);
+        h2->GetYaxis()->SetTitleSize(0.06);
+        h2->GetYaxis()->SetLabelSize(0.0425);
+        h2->GetYaxis()->CenterTitle(true);
+
         if (HistoList[i]->InheritsFrom("TH2")) {
             TH2D* h2 = dynamic_cast<TH2D*>(HistoList[i]);
             if (!h2) continue;
-            // MainCanvas->cd();
-            h2->GetXaxis()->SetTitleSize(0.06);
-            h2->GetXaxis()->SetLabelSize(0.0425);
-            h2->GetXaxis()->CenterTitle(true);
-            // h2->GetYaxis()->SetTitle("Number of events");
-            h2->GetYaxis()->SetTitleSize(0.06);
-            h2->GetYaxis()->SetLabelSize(0.0425);
-            h2->GetYaxis()->CenterTitle(true);
-            // h2->SetLineWidth(2);
-            // h2->SetLineStyle(0);
-            // h2->SetLineColor(kBlue);
             h2->Draw("colz");  // Draw the histogram on the canvas
+        } else if (HistoList[i]->InheritsFrom("TH1")) {
+            TH1D* h1 = dynamic_cast<TH1D*>(HistoList[i]);
+            if (!h1) continue;
+            h1->Draw();  // Draw the histogram on the canvas
         }
 
         MainCanvas->Print(pdfFile);  // Save the current canvas (histogram) to the PDF
