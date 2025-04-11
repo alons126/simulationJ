@@ -31,8 +31,8 @@ echo "FILE_PREFIX = ${FILE_PREFIX}"
 echo
 
 #set output file path location, don't forget to set up dir using setupdir.sh
-OUTPATH=${JOB_OUT_PATH}
-echo "OUTPATH = ${OUTPATH}"
+JOB_OUT_PATH=${OUTPATH}
+echo "JOB_OUT_PATH = ${JOB_OUT_PATH}"
 echo
 
 #choose the Gcard for your target type
@@ -44,9 +44,9 @@ echo "YAML = ${YAML}"
 echo
 
 #------DONT NEED TO TOUCH UNDER HERE UNLESS YOU NEED TOO------
-LUNDOUT=${OUTPATH}/lundfiles
-MCOUT=${OUTPATH}/mchipo
-RECONOUT=${OUTPATH}/reconhipo
+LUNDOUT=${JOB_OUT_PATH}/lundfiles
+MCOUT=${JOB_OUT_PATH}/mchipo
+RECONOUT=${JOB_OUT_PATH}/reconhipo
 
 #SUBMIT GEMC MC
 gemc -USE_GUI=0  -SCALE_FIELD="binary_torus, $TORUS" -SCALE_FIELD="binary_solenoid, -1.0" -N=$NEVENTS -INPUT_GEN_FILE="lund, ${LUNDOUT}/${FILE_PREFIX}_${SLURM_ARRAY_TASK_ID}.txt" -OUTPUT="hipo, ${MCOUT}/mc_${FILE_PREFIX}_${SLURM_ARRAY_TASK_ID}_torus$TORUS.hipo" $GCARD

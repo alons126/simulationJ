@@ -79,6 +79,19 @@ echo "${PRINT_OUT_COLOR}- Job parameters ---------------------------------------
 echo "${PRINT_OUT_COLOR}BEAM_E:\033[0m ${BEAM_E}"
 echo ""
 
+unsetenv TORUS_FIELD
+
+if ("${BEAM_E}" == "2070MeV") then
+    setenv TORUS_FIELD 0.5
+else if ("${BEAM_E}" == "4029MeV" || "${BEAM_E}" == "5986MeV") then
+    setenv TORUS_FIELD -1.0
+else
+    echo "Unknown torus field configuration: ${BEAM_E}"
+    exit 1
+endif
+
+echo "${PRINT_OUT_COLOR}TORUS_FIELD:\033[0m ${TORUS_FIELD}"
+
 unsetenv CLEAR_FARM_OUT
 setenv CLEAR_FARM_OUT 0 ## 1 for true
 echo "${PRINT_OUT_COLOR}CLEAR_FARM_OUT:\033[0m ${CLEAR_FARM_OUT}"
@@ -92,13 +105,13 @@ setenv USE_GEMC_5_10 1 ## 1 for true
 echo "${PRINT_OUT_COLOR}USE_GEMC_5_10:\033[0m ${USE_GEMC_5_10}"
 echo ""
 
-unsetenv JOB_OUT_PATH
-setenv JOB_OUT_PATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/${SAMPLE_TARGET_NUCLEUS}/${GENIE_TUNE}/${BEAM_E}_${Q2_CUT}${FC_STATUS}
-echo "${PRINT_OUT_COLOR}JOB_OUT_PATH:\033[0m ${JOB_OUT_PATH}"
+unsetenv OUTPATH
+setenv OUTPATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/${SAMPLE_TARGET_NUCLEUS}/${GENIE_TUNE}/${BEAM_E}_${Q2_CUT}${FC_STATUS}
+echo "${PRINT_OUT_COLOR}OUTPATH:\033[0m ${OUTPATH}"
 
-# Check if JOB_OUT_PATH is a directory
-if (! -d "${JOB_OUT_PATH}") then
-    echo "Error: Directory specified by JOB_OUT_PATH does not exist: ${JOB_OUT_PATH}"
+# Check if OUTPATH is a directory
+if (! -d "${OUTPATH}") then
+    echo "Error: Directory specified by OUTPATH does not exist: ${OUTPATH}"
     exit 1
 endif
 
@@ -130,6 +143,32 @@ echo ""
 
 if (! -d "${SUBMIT_SCRIPT_PATH}") then
     echo "Error: Directory specified by SUBMIT_SCRIPT_PATH does not exist: ${SUBMIT_SCRIPT_PATH}"
+    exit 1
+endif
+
+unsetenv GCARD_FILE
+setenv GCARD_FILE ${SUBMIT_SCRIPT_PATH}/rgm_fall2021_C.gcard
+echo "${PRINT_OUT_COLOR}GCARD_FILE:\033[0m ${GCARD_FILE}"
+echo
+
+if (! -f "${GCARD_FILE}") then
+    echo "Error: File specified by GCARD_FILE does not exist: ${GCARD_FILE}"
+    exit 1
+endif
+
+unsetenv YAML_FILE
+if ("${BEAM_E}" == "2070MeV") then
+    setenv YAML_FILE ${SUBMIT_SCRIPT_PATH}/rgm_fall2021-cv.yaml
+else if ("${BEAM_E}" == "4029MeV") then
+    setenv YAML_FILE ${SUBMIT_SCRIPT_PATH}/rgm_fall2021-ai_4Gev.yaml
+else if ("${BEAM_E}" == "5986MeV") then
+    setenv YAML_FILE ${SUBMIT_SCRIPT_PATH}/rgm_fall2021-ai_6Gev.yaml
+endif
+echo "${PRINT_OUT_COLOR}YAML_FILE:\033[0m ${YAML_FILE}"
+echo
+
+if (! -f "${YAML_FILE}") then
+    echo "Error: File specified by YAML_FILE does not exist: ${YAML_FILE}"
     exit 1
 endif
 
@@ -173,12 +212,12 @@ echo
 
 # Remove old output dirs
 echo "${PRINT_OUT_COLOR}- Removing old directory structure for MC simulation -------------------\033[0m"
-rm -rf ${JOB_OUT_PATH}/mchipo ${JOB_OUT_PATH}/reconhipo
+rm -rf ${OUTPATH}/mchipo ${OUTPATH}/reconhipo
 echo
 
 # Create new output dirs
 echo "${PRINT_OUT_COLOR}- Setting up directory structure for MC simulation ---------------------\033[0m"
-mkdir -p ${JOB_OUT_PATH}/mchipo ${JOB_OUT_PATH}/reconhipo
+mkdir -p ${OUTPATH}/mchipo ${OUTPATH}/reconhipo
 echo
 
 # Submitting job
