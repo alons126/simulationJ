@@ -248,7 +248,7 @@ echo "${PRINT_OUT_COLOR}GEMC_DATA_DIR:\033[0m ${GEMC_DATA_DIR}"
 echo
 
 # Check if GEMC_DATA_DIR is a directory
-if (! -f "${GEMC_DATA_DIR}") then
+if (! -d "${GEMC_DATA_DIR}") then
     echo "Error: File specified by GEMC_DATA_DIR does not exist: ${GEMC_DATA_DIR}"
     exit 1
 endif
