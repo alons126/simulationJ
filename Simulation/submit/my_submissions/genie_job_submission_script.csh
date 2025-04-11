@@ -94,9 +94,7 @@ echo ""
 echo "${PRINT_OUT_COLOR}FC_STATUS_ENABLED:\033[0m ${FC_STATUS_ENABLED}"
 echo ""
 
-echo
 echo "${PRINT_OUT_COLOR}- Job parameters ------------------------------------------------------\033[0m"
-echo "${PRINT_OUT_COLOR}BEAM_E:\033[0m ${BEAM_E}"
 echo ""
 
 unsetenv TORUS_FIELD
@@ -111,14 +109,17 @@ else
 endif
 
 echo "${PRINT_OUT_COLOR}TORUS_FIELD:\033[0m ${TORUS_FIELD}"
+echo ""
 
 unsetenv CLEAR_FARM_OUT
 setenv CLEAR_FARM_OUT 0 ## 1 for true
 echo "${PRINT_OUT_COLOR}CLEAR_FARM_OUT:\033[0m ${CLEAR_FARM_OUT}"
+echo ""
 
 unsetenv CANCEL_PREVIOUS_JOBS
 setenv CANCEL_PREVIOUS_JOBS 0 ## 1 for true
 echo "${PRINT_OUT_COLOR}CANCEL_PREVIOUS_JOBS:\033[0m ${CANCEL_PREVIOUS_JOBS}"
+echo ""
 
 unsetenv USE_GEMC_5_10
 setenv USE_GEMC_5_10 1 ## 1 for true
@@ -128,6 +129,7 @@ echo ""
 unsetenv OUTPATH
 setenv OUTPATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/${SAMPLE_TARGET_NUCLEUS}/${GENIE_TUNE}/${BEAM_E}_${Q2_CUT}${FC_STATUS}
 echo "${PRINT_OUT_COLOR}OUTPATH:\033[0m ${OUTPATH}"
+echo ""
 
 # Check if OUTPATH is a directory
 if (! -d "${OUTPATH}") then
@@ -150,12 +152,15 @@ unsetenv SUBMIT_SCRIPT_PATH
 if ("${BEAM_E}" == "2070MeV") then
     echo "${PRINT_OUT_COLOR}- Setting SUBMIT_SCRIPT_PATH for 2 GeV --------------------------------\033[0m"
     setenv SUBMIT_SCRIPT_PATH ${RUNNING_DIR}/Uniform_sample_2GeV
+    echo ""
 else if ("${BEAM_E}" == "4029MeV") then
     echo "${PRINT_OUT_COLOR}- Setting SUBMIT_SCRIPT_PATH for 4 GeV --------------------------------\033[0m"
     setenv SUBMIT_SCRIPT_PATH ${RUNNING_DIR}/Uniform_sample_4GeV
+    echo ""
 else if ("${BEAM_E}" == "5986MeV") then
     echo "${PRINT_OUT_COLOR}- Setting SUBMIT_SCRIPT_PATH for 6 GeV --------------------------------\033[0m"
     setenv SUBMIT_SCRIPT_PATH ${RUNNING_DIR}/Uniform_sample_6GeV
+    echo ""
 endif
 
 echo "${PRINT_OUT_COLOR}SUBMIT_SCRIPT_PATH:\033[0m ${SUBMIT_SCRIPT_PATH}"
@@ -194,9 +199,11 @@ endif
 
 # Re-pulling repository
 echo "${PRINT_OUT_COLOR}- Re-pulling repository -----------------------------------------------\033[0m"
+echo ""
 echo "${PRINT_OUT_COLOR}Pulling updates...\033[0m"
 git reset --hard
 git clean -fxd
+echo ""
 echo "${PRINT_OUT_COLOR}Pulling updates...\033[0m"
 git pull
 echo "HEAD:"
@@ -242,13 +249,15 @@ echo
 
 # Submitting job
 echo "${PRINT_OUT_COLOR}- Submitting jobs ------------------------------------------------------\033[0m"
+echo ""
 echo "${PRINT_OUT_COLOR}Submitting GENIE sbatch job...\033[0m"
 
 unsetenv SLURM_JOB_NAME
 setenv SLURM_JOB_NAME ${SAMPLE_TARGET_NUCLEUS}_${GENIE_TUNE}_${BEAM_E}_${Q2_CUT}${FC_STATUS}
 echo "${PRINT_OUT_COLOR}SLURM_JOB_NAME:\033[0m ${SLURM_JOB_NAME}"
 # sbatch --job-name="${SLURM_JOB_NAME}" ${SUBMIT_SCRIPT_PATH}/submit_GENIE_sample.sh || exit 1
-echo
+echo ""
+echo ""
 
 end  # End of loop over beam energies
 end  # End of loop over GENIE tunes
