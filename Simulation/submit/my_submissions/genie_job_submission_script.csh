@@ -22,26 +22,17 @@ foreach BEAM_ENERGIES ( 2070MeV )
 # Set target nucleus
 unsetenv SAMPLE_TARGET_NUCLEUS
 setenv SAMPLE_TARGET_NUCLEUS ${SAMPLE_TARGET_NUCLEI}
-echo "SAMPLE_TARGET_NUCLEUS: ${SAMPLE_TARGET_NUCLEUS}"
-echo ""
 
 # Set GENIE tune
 unsetenv GENIE_TUNE
 setenv GENIE_TUNE ${GENIE_TUNES}
-echo "GENIE_TUNE: ${GENIE_TUNE}"
-echo ""
 
 # Set beam energy
 unsetenv BEAM_E
 setenv BEAM_E ${BEAM_ENERGIES}
-echo "BEAM_E: ${BEAM_E}"
-echo ""
-
 
 # Set fiducial cuts status
 setenv FC_STATUS_ENABLED ${FC_STATUSES}
-echo "FC_STATUS_ENABLED: ${FC_STATUS_ENABLED}"
-echo ""
 
 unsetenv FC_STATUS
 if ("${FC_STATUS_ENABLED}" == "1") then
@@ -70,6 +61,10 @@ else
     exit 1
 endif
 
+echo "${PRINT_OUT_COLOR}//////////////////////////////////////////////////////////////////////\033[0m"
+echo "${PRINT_OUT_COLOR}// Setting GENIE slurm job submission                               //\033[0m"
+echo "${PRINT_OUT_COLOR}//////////////////////////////////////////////////////////////////////\033[0m"
+
 # Set Q² cut based on energy
 unsetenv Q2_CUT
 if ("${BEAM_E}" == "2070MeV") then
@@ -82,7 +77,20 @@ else
     echo "Unknown beam energy: ${BEAM_E}"
     exit 1
 endif
-echo "Q2_CUT: ${Q2_CUT}"
+
+echo "${PRINT_OUT_COLOR}SAMPLE_TARGET_NUCLEUS:\033[0m ${SAMPLE_TARGET_NUCLEUS}"
+echo ""
+
+echo "${PRINT_OUT_COLOR}GENIE_TUNE:\033[0m ${GENIE_TUNE}"
+echo ""
+
+echo "${PRINT_OUT_COLOR}Q2_CUT:\033[0m ${Q2_CUT}"
+echo ""
+
+echo "${PRINT_OUT_COLOR}BEAM_E:\033[0m ${BEAM_E}"
+echo ""
+
+echo "${PRINT_OUT_COLOR}FC_STATUS_ENABLED:\033[0m ${FC_STATUS_ENABLED}"
 echo ""
 
 echo

@@ -1,6 +1,8 @@
 #!/bin/csh
 
-echo "\033[1;35m- Running update and submission script -------------------------------\033[0m"
+echo "\033[1;35m//////////////////////////////////////////////////////////////////////\033[0m"
+echo "\033[1;35m// Running update and submission script                              //\033[0m"
+echo "\033[1;35m//////////////////////////////////////////////////////////////////////\033[0m"
 echo
 
 unset MY_SUBMISSION_DIR
