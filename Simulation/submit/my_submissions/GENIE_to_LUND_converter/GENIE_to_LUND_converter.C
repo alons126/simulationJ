@@ -34,6 +34,7 @@
 
 using namespace std;
 using namespace utilities;
+using namespace targets;
 
 void GENIE_to_LUND_converter(TString InputFiles = "", /* TString OutputFileDir = "", */ /* TString outputFile = "", */ int nFiles = 1000, string target = "liquid", int A = 1, int Z = 1) {
     // Converter settings -----------------------------------------------------------------------------------------------------------------------------------------------
@@ -125,7 +126,7 @@ void GENIE_to_LUND_converter(TString InputFiles = "", /* TString OutputFileDir =
 
     std::vector<TObject*> HistoList;
 
-    TH2D* theta_e_VS_phi_e = new TH2D("theta_e_VS_phi_e","#theta_{e} vs. #phi_{e};#phi_{e} [#circ];#theta_{e}", HistElectronSliceNumOfXBins, -180., 180., HistElectronSliceNumOfYBins,
+    TH2D* theta_e_VS_phi_e = new TH2D("theta_e_VS_phi_e", "#theta_{e} vs. #phi_{e};#phi_{e} [#circ];#theta_{e}", HistElectronSliceNumOfXBins, -180., 180., HistElectronSliceNumOfYBins,
                                       ThetaFD.GetLowerCut(), ThetaFD.GetUpperCut());
     HistoList.push_back(theta_e_VS_phi_e);
 
@@ -134,7 +135,8 @@ void GENIE_to_LUND_converter(TString InputFiles = "", /* TString OutputFileDir =
 
     // TTree variables --------------------------------------------------------------------------------------------------------------------------------------------------
 
-    TTree* T = (TTree*)InChain->Get("gst");
+    TTree* T = InChain;
+    // TTree* T = (TTree*)InChain->Get("gst");
 
     double RES_ID = 0.;  // WAS targP = 0.; // polarization
     double beamP = 0.;   // polarization
@@ -216,7 +218,7 @@ void GENIE_to_LUND_converter(TString InputFiles = "", /* TString OutputFileDir =
         if (!e_inFD) continue;
 
         theta_e_VS_phi_e->Fill(phi_e, theta_e);
-        theta_e_VS_phi_e_BySliceOfPe->Fill(P_e, phi_e, theta_e);
+        theta_e_VS_phi_e_BySliceOfPe.Fill(P_e, phi_e, theta_e);
 
         double code = (qel) ? 1. : (mec) ? 2. : (res) ? 3. : (dis) ? 4. : 0.;
 
@@ -236,7 +238,7 @@ void GENIE_to_LUND_converter(TString InputFiles = "", /* TString OutputFileDir =
         auto vtx = randomVertex(target);
 
         int part_num = 1;
-        outfile << addParticle(part_num, 1, 11, TVector3(pxl, pyl, pzl), mass_e, vtx);
+        outfile << addParticle(part_num, 1, 11, TVector3(pxl, pyl, pzl), m_e, vtx);
 
         for (int iPart = 0; iPart < nf; iPart++) {
             if (pdgf[iPart] == 2212)
@@ -292,19 +294,24 @@ void GENIE_to_LUND_converter(TString InputFiles = "", /* TString OutputFileDir =
         MainCanvas->cd();  // Select the canvas
         MainCanvas->Clear();
 
-        // MainCanvas->cd();
-        HistoList.at(i)->GetXaxis()->SetTitleSize(0.06);
-        HistoList.at(i)->GetXaxis()->SetLabelSize(0.0425);
-        HistoList.at(i)->GetXaxis()->CenterTitle(true);
-        // HistoList.at(i)->GetYaxis()->SetTitle("Number of events");
-        HistoList.at(i)->GetYaxis()->SetTitleSize(0.06);
-        HistoList.at(i)->GetYaxis()->SetLabelSize(0.0425);
-        HistoList.at(i)->GetYaxis()->CenterTitle(true);
-        // HistoList.at(i)->SetLineWidth(2);
-        // HistoList.at(i)->SetLineStyle(0);
-        // HistoList.at(i)->SetLineColor(kBlue);
-        HistoList.at(i)->Draw("colz");  // Draw the histogram on the canvas
-        MainCanvas->Print(pdfFile);     // Save the current canvas (histogram) to the PDF
+        if (HistoList[i]->InheritsFrom("TH2D")) {
+            TH2D* h2 = dynamic_cast<TH2D*>(HistoList[i]);
+            if (!h2) continue;
+            // MainCanvas->cd();
+            h2->GetXaxis()->SetTitleSize(0.06);
+            h2->GetXaxis()->SetLabelSize(0.0425);
+            h2->GetXaxis()->CenterTitle(true);
+            // h2->GetYaxis()->SetTitle("Number of events");
+            h2->GetYaxis()->SetTitleSize(0.06);
+            h2->GetYaxis()->SetLabelSize(0.0425);
+            h2->GetYaxis()->CenterTitle(true);
+            // h2->SetLineWidth(2);
+            // h2->SetLineStyle(0);
+            // h2->SetLineColor(kBlue);
+            h2->Draw("colz");  // Draw the histogram on the canvas
+        }
+
+        MainCanvas->Print(pdfFile);  // Save the current canvas (histogram) to the PDF
     }
 
     // End the multi-page PDF
