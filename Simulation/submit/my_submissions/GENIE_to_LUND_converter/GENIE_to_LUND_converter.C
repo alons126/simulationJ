@@ -20,6 +20,9 @@
 #include <fstream>
 #include <iostream>
 
+// Include CLAS12 libraries:
+#include "/w/hallb-scshelf2102/clas12/asportes/2N-Analyzer/framework/includes/clas12_include.h"
+
 // Include libraries:
 #include "/w/hallb-scshelf2102/clas12/asportes/2N-Analyzer/framework/namespaces/gemc/targets.h"
 #include "/w/hallb-scshelf2102/clas12/asportes/2N-Analyzer/framework/namespaces/general_utilities/utilities.h"
