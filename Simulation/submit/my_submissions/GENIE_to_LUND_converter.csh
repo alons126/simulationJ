@@ -55,8 +55,8 @@ echo ""
 
 # Set GENIE tune
 unsetenv TL_GENIE_TUNE
-setenv TL_GENIE_TUNE G18_10a_00_000
-# setenv TL_GENIE_TUNE GEM21_11a_00_000
+# setenv TL_GENIE_TUNE G18_10a_00_000
+setenv TL_GENIE_TUNE GEM21_11a_00_000
 echo "TL_GENIE_TUNE = ${TL_GENIE_TUNE}"
 echo ""
 
