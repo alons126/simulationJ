@@ -115,6 +115,14 @@ void GENIE_to_LUND_converter(TString InputFiles = "", /* TString OutputFileDir =
     int HistElectronSliceNumOfYBins = aMaps_master.GetHistElectronSliceNumOfYBins();
 
     vector<vector<double>> ElectronMomSliceLimits = aMaps_master.GetElectronMomSliceLimits();
+    
+    cout << "\033[33m\nElectronMomSliceLimits.size() = \033[0m" << ElectronMomSliceLimits.size() << endl;
+
+    cout << "\033[33m\nElectron momentum slice limits:\033[0m" << endl;
+    for (int i = 0; i < ElectronMomSliceLimits.size(); i++) {
+        cout << "\t\033[33mSlice " << i + 1 << ":\033[0m " << ElectronMomSliceLimits[i][0] << " - " << ElectronMomSliceLimits[i][1] << endl;
+    }
+    cout << "\n";
 
     // FD theta acceptance limits ---------------------------------------------------------------------------------------------------------------------------------------
 
