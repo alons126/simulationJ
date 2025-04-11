@@ -26,7 +26,7 @@ echo ""
 # This command is useful for quickly checking the latest commit in the current branch without displaying
 # the full commit history.
 
-echo "${COLOR_START}HEAD:${COLOR_END}"
+echo "HEAD:"
 git log -1 --oneline
 echo ""
 
