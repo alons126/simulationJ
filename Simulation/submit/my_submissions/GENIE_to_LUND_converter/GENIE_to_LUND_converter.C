@@ -292,10 +292,10 @@ void GENIE_to_LUND_converter(TString InputFiles = "", /* TString OutputFileDir =
         MainCanvas->cd();  // Select the canvas
         MainCanvas->Clear();
 
-        if (HistoList[i]->InheritsFrom(TH2D::Class())) {
-            TH2D* h2 = (TH2D*)HistoList[i];  // ROOT-style cast (safe after InheritsFrom check)
-                                             // if (HistoList[i]->InheritsFrom("TH2D")) {
-            //     TH2D* h2 = dynamic_cast<TH2D*>(HistoList[i]);
+        // if (HistoList[i]->InheritsFrom(TH2D::Class())) {
+        //     TH2D* h2 = (TH2D*)HistoList[i];  // ROOT-style cast (safe after InheritsFrom check)
+        if (HistoList[i]->InheritsFrom("TH2")) {
+            TH2D* h2 = dynamic_cast<TH2D*>(HistoList[i]);
             if (!h2) continue;
             // MainCanvas->cd();
             h2->GetXaxis()->SetTitleSize(0.06);
