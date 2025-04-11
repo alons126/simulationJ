@@ -85,9 +85,6 @@ void GENIE_to_LUND_converter(TString InputFiles = "", /* TString OutputFileDir =
     TString OutputFileDir = OutputFileBase + "/" + target_element + "/" + genie_tune + "/" + beam_e + "_" + Q2_cut;
     system(("mkdir -p " + std::string(OutputFileDir.Data())).c_str());
 
-    TString pdfFileName = OutputFileDir + "/" + lundfile_prefix + "_plots.pdf";
-    const char* pdfFile = pdfFileName.Data();
-
     // Make lundfiles directory:
     TString lundfiles_Path = OutputFileDir + "/lundfiles";
     cout << "\033[33m\nGenerating lundfiles directory: \t\033[0m" << lundfiles_Path << endl;
@@ -103,8 +100,21 @@ void GENIE_to_LUND_converter(TString InputFiles = "", /* TString OutputFileDir =
     cout << "\033[33m\nGenerating reconhipo directory: \t\033[0m" << reconhipo_Path << endl;
     system(("mkdir -p " + std::string(reconhipo_Path.Data())).c_str());
 
+    // Make monitoring directory:
+    TString monitoring_Path = OutputFileDir + "/monitoring_plots";
+    cout << "\033[33m\nGenerating monitoring plots directory: \t\033[0m" << monitoring_Path << endl;
+    system(("mkdir -p " + std::string(monitoring_Path.Data())).c_str());
+
+    // Make monitoring png directory:
+    TString monitoring_png_Path = OutputFileDir + "/monitoring_plots";
+    cout << "\033[33m\nGenerating monitoring png plots directory: \t\033[0m" << monitoring_png_Path << endl;
+    system(("mkdir -p " + std::string(monitoring_png_Path.Data())).c_str());
+
     cout << "\033[33m\nSaving lundfiles into \033[0m" << lundfiles_Path << endl;
     cout << "\n";
+
+    TString pdfFileName = monitoring_Path + "/" + lundfile_prefix + "_plots.pdf";
+    const char* pdfFile = pdfFileName.Data();
 
     // Acceptance maps --------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -334,7 +344,7 @@ void GENIE_to_LUND_converter(TString InputFiles = "", /* TString OutputFileDir =
         MainCanvas->Print(pdfFile);  // Save the current canvas (histogram) to the PDF
     }
 
-    theta_e_VS_phi_e_BySliceOfPe.SaveHistograms(std::string(OutputFileDir.Data()), std::string(lundfile_prefix.Data()));
+    theta_e_VS_phi_e_BySliceOfPe.SaveHistograms(std::string(monitoring_png_Path.Data()), std::string(lundfile_prefix.Data()));
 
     // End the multi-page PDF
     MainCanvas->Print(Form("%s]", pdfFile));  // Close the PDF file
