@@ -1,13 +1,29 @@
 #!/bin/csh
 
+setenv GENIE_TUNE
+# setenv GENIE_TUNE G18_10a_00_000
+setenv GENIE_TUNE GEM21_11a_00_000
+echo "GENIE_TUNE:\t\t${GENIE_TUNE}"
+
+# Set target nucleus
+unset TL_SAMPLE_TARGET_NUCLEUS
+# setenv TL_SAMPLE_TARGET_NUCLEUS H1
+# setenv TL_SAMPLE_TARGET_NUCLEUS D2
+setenv TL_SAMPLE_TARGET_NUCLEUS C12
+# setenv TL_SAMPLE_TARGET_NUCLEUS Ar40
+echo "TL_SAMPLE_TARGET_NUCLEUS = ${TL_SAMPLE_TARGET_NUCLEUS}"
+echo ""
+
 foreach TEMP_BEAM_E ( 2070MeV )
 # foreach TEMP_BEAM_E ( 4029MeV )
 # foreach TEMP_BEAM_E ( 2070MeV 4029MeV 5986MeV )
 
 # Job parameters
 # ============================================================================
+
 unset BEAM_E
 setenv BEAM_E ${TEMP_BEAM_E}
+echo "BEAM_E:\t\t\t${BEAM_E}"
 
 unset PRINT_OUT_COLOR
 
@@ -18,6 +34,22 @@ else if ("${BEAM_E}" == "4029MeV") then
 else if ("${BEAM_E}" == "5986MeV") then
     setenv PRINT_OUT_COLOR '\033[33m'
 endif
+
+# Set Q² cut based on energy
+unsetenv TL_SAMPLE_Q2_CUT
+if ("${TL_SAMPLE_ENERGY}" == "2070MeV") then
+    setenv TL_SAMPLE_Q2_CUT Q2_0_02
+else if ("${TL_SAMPLE_ENERGY}" == "4029MeV") then
+    setenv TL_SAMPLE_Q2_CUT Q2_0_25
+else if ("${TL_SAMPLE_ENERGY}" == "5986MeV") then
+    setenv TL_SAMPLE_Q2_CUT Q2_0_40
+else
+    echo "Unknown beam energy: ${TL_SAMPLE_ENERGY}"
+    exit 1
+endif
+
+echo "TL_SAMPLE_Q2_CUT = ${TL_SAMPLE_Q2_CUT}"
+echo ""
 
 echo
 echo "${PRINT_OUT_COLOR}- Job parameters ------------------------------------------------------\033[0m"
@@ -39,25 +71,28 @@ setenv USE_GEMC_5_10 1 ## 1 for true
 echo "${PRINT_OUT_COLOR}USE_GEMC_5_10:\033[0m ${USE_GEMC_5_10}"
 echo
 
+# Set Q² cut based on energy
+unsetenv TL_SAMPLE_Q2_CUT
+if ("${TL_SAMPLE_ENERGY}" == "2070MeV") then
+    setenv TL_SAMPLE_Q2_CUT Q2_0_02
+else if ("${TL_SAMPLE_ENERGY}" == "4029MeV") then
+    setenv TL_SAMPLE_Q2_CUT Q2_0_25
+else if ("${TL_SAMPLE_ENERGY}" == "5986MeV") then
+    setenv TL_SAMPLE_Q2_CUT Q2_0_40
+else
+    echo "Unknown beam energy: ${TL_SAMPLE_ENERGY}"
+    exit 1
+endif
+
+echo "TL_SAMPLE_Q2_CUT = ${TL_SAMPLE_Q2_CUT}"
+echo ""
+
 unset JOB_OUT_PATH
-# setenv JOB_OUT_PATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/${BEAM_E}_ConstPn_lH2
-# setenv JOB_OUT_PATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/${BEAM_E}_ConstPn
-setenv JOB_OUT_PATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/${BEAM_E}_2
-# setenv JOB_OUT_PATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/${BEAM_E}
+setenv JOB_OUT_PATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/C12/G18_10a_00_000/${BEAM_E}_${TL_SAMPLE_Q2_CUT}
+# setenv JOB_OUT_PATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/C12/G18_10a_00_000/${BEAM_E}_${TL_SAMPLE_Q2_CUT}_wFC
+# setenv JOB_OUT_PATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/C12/GEM21_11a_00_000/${BEAM_E}_${TL_SAMPLE_Q2_CUT}
+# setenv JOB_OUT_PATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/C12/GEM21_11a_00_000/${BEAM_E}_${TL_SAMPLE_Q2_CUT}_wFC
 echo "${PRINT_OUT_COLOR}JOB_OUT_PATH:\033[0m ${JOB_OUT_PATH}"
-
-unset JOB_OUT_PATH_1E
-setenv JOB_OUT_PATH_1E ${JOB_OUT_PATH}/OutPut_1e
-echo "${PRINT_OUT_COLOR}JOB_OUT_PATH_1E:\033[0m ${JOB_OUT_PATH_1E}"
-
-# unset JOB_OUT_PATH_EP
-# setenv JOB_OUT_PATH_EP ${JOB_OUT_PATH}/OutPut_ep
-# echo "${PRINT_OUT_COLOR}JOB_OUT_PATH_EP:\033[0m ${JOB_OUT_PATH_EP}"
-
-# unset JOB_OUT_PATH_EN
-# setenv JOB_OUT_PATH_EN ${JOB_OUT_PATH}/OutPut_en
-# echo "${PRINT_OUT_COLOR}JOB_OUT_PATH_EN:\033[0m ${JOB_OUT_PATH_EN}"
-echo
 
 # Setting SUBMIT_SCRIPT_PATH for 2 GeV
 # ============================================================================
@@ -135,15 +170,6 @@ if ("${USE_GEMC_5_10}" == "1") then
     module load gemc/5.10
     echo
 endif
-# if ("${BEAM_E}" == "2070MeV") then
-#     if ("${USE_GEMC_5_10}" == "1") then
-#         echo
-#         echo "${PRINT_OUT_COLOR}- Reverting to GEMC 5.10 ----------------------------------------------\033[0m"
-#         module unload gemc
-#         module load gemc/5.10
-#         echo
-#     endif
-# endif
 
 echo "${PRINT_OUT_COLOR}GEMC_DATA_DIR:\033[0m ${GEMC_DATA_DIR}"
 echo
@@ -153,24 +179,14 @@ echo
 
 echo
 echo "${PRINT_OUT_COLOR}- Removing old directory structure for MC simulation here -------------\033[0m"
-rm -rf ${JOB_OUT_PATH_1E}/mchipo
-rm -rf ${JOB_OUT_PATH_1E}/reconhipo
-rm -rf ${JOB_OUT_PATH_1E}/rootfiles
-
-# rm -rf ${JOB_OUT_PATH_EP}/mchipo
-# rm -rf ${JOB_OUT_PATH_EP}/reconhipo
-# rm -rf ${JOB_OUT_PATH_EP}/rootfiles
-
-# rm -rf ${JOB_OUT_PATH_EN}/mchipo
-# rm -rf ${JOB_OUT_PATH_EN}/reconhipo
-# rm -rf ${JOB_OUT_PATH_EN}/rootfiles
+rm -rf ${JOB_OUT_PATH}/mchipo
+rm -rf ${JOB_OUT_PATH}/reconhipo
+rm -rf ${JOB_OUT_PATH}/rootfiles
 echo
 
 echo
 echo "${PRINT_OUT_COLOR}- Setting up directory structure for MC simulation here ---------------\033[0m"
-mkdir ${JOB_OUT_PATH_1E}/mchipo ${JOB_OUT_PATH_1E}/reconhipo ${JOB_OUT_PATH_1E}/rootfiles
-# mkdir ${JOB_OUT_PATH_EP}/mchipo ${JOB_OUT_PATH_EP}/reconhipo ${JOB_OUT_PATH_EP}/rootfiles
-# mkdir ${JOB_OUT_PATH_EN}/mchipo ${JOB_OUT_PATH_EN}/reconhipo ${JOB_OUT_PATH_EN}/rootfiles
+mkdir ${JOB_OUT_PATH}/mchipo ${JOB_OUT_PATH}/reconhipo ${JOB_OUT_PATH}/rootfiles
 echo
 
 # Submitting jobs
@@ -180,16 +196,8 @@ echo
 echo "${PRINT_OUT_COLOR}- Submitting jobs -----------------------------------------------------\033[0m"
 echo
 
-echo "${PRINT_OUT_COLOR}Submitting 1e sbatch job...\033[0m"
-sbatch ${SUBMIT_SCRIPT_PATH}/submit_GEMC_uniform_1e.sh
+echo "${PRINT_OUT_COLOR}Submitting GENIE sbatch job...\033[0m"
+sbatch ${SUBMIT_SCRIPT_PATH}/submit_GENIE_sample.sh
 echo
-
-# echo "${PRINT_OUT_COLOR}Submitting ep sbatch job...\033[0m"
-# sbatch ${SUBMIT_SCRIPT_PATH}/submit_GEMC_uniform_ep.sh
-# echo
-
-# echo "${PRINT_OUT_COLOR}Submitting en sbatch job...\033[0m"
-# sbatch ${SUBMIT_SCRIPT_PATH}/submit_GEMC_uniform_en.sh
-# echo
 
 end
