@@ -314,7 +314,7 @@ void GENIE_to_LUND_converter(TString InputFiles = "", /* TString OutputFileDir =
         MainCanvas->Print(pdfFile);  // Save the current canvas (histogram) to the PDF
     }
 
-    SaveHistograms(std::string(OutputFileDir.Data()), std::string(lundfile_prefix.Data()));
+    theta_e_VS_phi_e_BySliceOfPe.SaveHistograms(std::string(OutputFileDir.Data()), std::string(lundfile_prefix.Data()));
 
     // End the multi-page PDF
     MainCanvas->Print(Form("%s]", pdfFile));  // Close the PDF file
