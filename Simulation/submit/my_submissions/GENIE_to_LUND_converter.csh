@@ -110,7 +110,7 @@ set INPUT_FILES_STRING = "`echo $INPUT_FILES_DIR`"
 echo ""
 
 # Execute ROOT macro
-root -q -b "./GENIE_to_LUND_converter/GENIE_to_LUND_converter.C(\"${INPUT_FILES_STRING}\", ${NUM_OF_FILES}, \"${TL_SAMPLE_TARGET_TYPE}\", ${TL_SAMPLE_TARGET_NUCLEUS_A}, ${TL_SAMPLE_TARGET_NUCLEUS_Z})"
+root -q -b './GENIE_to_LUND_converter/GENIE_to_LUND_converter.C("'"${INPUT_FILES_STRING}"'", '"${NUM_OF_FILES}"', "'"${TL_SAMPLE_TARGET_TYPE}"'", '"${TL_SAMPLE_TARGET_NUCLEUS_A}"', '"${TL_SAMPLE_TARGET_NUCLEUS_Z}"')'
 
 echo
 echo "----------------------- End of job --------------------------"
