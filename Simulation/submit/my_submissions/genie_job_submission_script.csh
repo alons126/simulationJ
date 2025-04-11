@@ -187,7 +187,7 @@ echo "${PRINT_OUT_COLOR}- Re-pulling repository --------------------------------
 echo "${PRINT_OUT_COLOR}Pulling updates...\033[0m"
 git reset --hard
 git clean -fxd
-echo "\033[35mPulling updates...\033[0m"
+echo "${PRINT_OUT_COLOR}Pulling updates...\033[0m"
 git pull
 echo "HEAD:"
 git log -1 --oneline
