@@ -12,12 +12,34 @@ echo "\033[35mMY_SUBMISSION_DIR:\033[0m ${MY_SUBMISSION_DIR}"
 echo
 echo "\033[35m- Re-pulling repository -----------------------------------------------\033[0m"
 echo
-echo "\033[35mResetting git...\033[0m"
+
+# This command is used to reset the current branch to the latest commit in the remote repository. The
+# --hard option is used to discard any local changes, and the git pull command is used to fetch and merge
+# the latest changes from the remote repository.
+
 git reset --hard
-echo
-echo "\033[35mCleaning excessive files...\033[0m"
-git clean -f
-echo
+git pull
+echo ""
+
+# Display the latest commit in the current branch. The -1 option limits the output to one commit, and the
+# --oneline option formats the output to show only the commit hash and the commit message in a single line.
+# This command is useful for quickly checking the latest commit in the current branch without displaying
+# the full commit history.
+
+echo "${COLOR_START}HEAD:${COLOR_END}"
+git log -1 --oneline
+echo ""
+
+# Clean the working tree by recursively removing files that are not under version control, starting from
+# the current directory. The -f option is used to force the removal of files, and the -d option is used
+# to remove untracked directories. The -x option is used to remove files that are ignored by git.
+
+# This command is useful for cleaning up the working tree and removing any untracked files or directories
+# that may have been created during development, like generated cut files and acceptance and weight files.
+
+git clean -fxd # removes untracked files and directories
+echo ""
+
 echo "\033[35mPulling updates...\033[0m"
 git pull
 echo
