@@ -104,7 +104,7 @@ echo "TL_SAMPLE_Q2_CUT = ${TL_SAMPLE_Q2_CUT}"
 echo ""
 
 # Expand root files using shell globbing
-set INPUT_FILES_PATTERN = "${BASE_TL_SAMPLE_DIR}/${TL_SAMPLE_TARGET_NUCLEUS}/${TL_GENIE_TUNE}/${TL_SAMPLE_ENERGY}_${TL_SAMPLE_Q2_CUT}/master-routine_validation_01-eScattering/*.root"
+set INPUT_FILES_DIR = "${BASE_TL_SAMPLE_DIR}/${TL_SAMPLE_TARGET_NUCLEUS}/${TL_GENIE_TUNE}/${TL_SAMPLE_ENERGY}_${TL_SAMPLE_Q2_CUT}/master-routine_validation_01-eScattering/*.root"
 echo "INPUT_FILES_DIR = ${INPUT_FILES_DIR}"
 echo ""
 
