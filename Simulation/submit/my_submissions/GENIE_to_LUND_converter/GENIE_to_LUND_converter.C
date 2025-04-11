@@ -302,20 +302,31 @@ void GENIE_to_LUND_converter(TString InputFiles = "", /* TString OutputFileDir =
         MainCanvas->cd();  // Select the canvas
         MainCanvas->Clear();
 
-        h2->GetXaxis()->SetTitleSize(0.06);
-        h2->GetXaxis()->SetLabelSize(0.0425);
-        h2->GetXaxis()->CenterTitle(true);
-        h2->GetYaxis()->SetTitleSize(0.06);
-        h2->GetYaxis()->SetLabelSize(0.0425);
-        h2->GetYaxis()->CenterTitle(true);
 
         if (HistoList[i]->InheritsFrom("TH2")) {
             TH2D* h2 = dynamic_cast<TH2D*>(HistoList[i]);
+
             if (!h2) continue;
+
+            h2->GetXaxis()->SetTitleSize(0.06);
+            h2->GetXaxis()->SetLabelSize(0.0425);
+            h2->GetXaxis()->CenterTitle(true);
+            h2->GetYaxis()->SetTitleSize(0.06);
+            h2->GetYaxis()->SetLabelSize(0.0425);
+            h2->GetYaxis()->CenterTitle(true);
+
             h2->Draw("colz");  // Draw the histogram on the canvas
         } else if (HistoList[i]->InheritsFrom("TH1")) {
             TH1D* h1 = dynamic_cast<TH1D*>(HistoList[i]);
             if (!h1) continue;
+
+            h1->GetXaxis()->SetTitleSize(0.06);
+            h1->GetXaxis()->SetLabelSize(0.0425);
+            h1->GetXaxis()->CenterTitle(true);
+            h1->GetYaxis()->SetTitleSize(0.06);
+            h1->GetYaxis()->SetLabelSize(0.0425);
+            h1->GetYaxis()->CenterTitle(true);
+    
             h1->Draw();  // Draw the histogram on the canvas
         }
 
