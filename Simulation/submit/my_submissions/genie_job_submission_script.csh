@@ -52,15 +52,15 @@ unsetenv PRINT_OUT_COLOR
 if ("${BEAM_E}" == "2070MeV" && "${FC_STATUS_ENABLED}" == "0") then
     setenv PRINT_OUT_COLOR '\033[31m'
 else if ("${BEAM_E}" == "2070MeV" && "${FC_STATUS_ENABLED}" == "1") then
-    setenv PRINT_OUT_COLOR '\033[32m'
+    setenv PRINT_OUT_COLOR '\033[92m'
 else if ("${BEAM_E}" == "4029MeV" && "${FC_STATUS_ENABLED}" == "0") then
     setenv PRINT_OUT_COLOR '\033[33m'
 else if ("${BEAM_E}" == "4029MeV" && "${FC_STATUS_ENABLED}" == "1") then
-    setenv PRINT_OUT_COLOR '\033[34m'
+    setenv PRINT_OUT_COLOR '\033[94m'
 else if ("${BEAM_E}" == "5986MeV" && "${FC_STATUS_ENABLED}" == "0") then
     setenv PRINT_OUT_COLOR '\033[35m'
 else if ("${BEAM_E}" == "5986MeV" && "${FC_STATUS_ENABLED}" == "1") then
-    setenv PRINT_OUT_COLOR '\033[36m'
+    setenv PRINT_OUT_COLOR '\033[96m'
 else
     echo "Unknown beam energy: ${BEAM_E}"
     exit 1
