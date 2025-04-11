@@ -28,7 +28,7 @@
 #include "/w/hallb-scshelf2102/clas12/asportes/2N-Analyzer/framework/namespaces/general_utilities/utilities.h"
 
 // Include classes:
-#include "/w/hallb-scshelf2102/clas12/asportes/2N-Analyzer/framework/classes/AMaps/AMap.cpp"
+#include "/w/hallb-scshelf2102/clas12/asportes/2N-Analyzer/framework/classes/AMaps/AMaps.cpp"
 #include "/w/hallb-scshelf2102/clas12/asportes/2N-Analyzer/framework/classes/DSCuts/DSCuts.h"
 #include "/w/hallb-scshelf2102/clas12/asportes/2N-Analyzer/framework/classes/hPlots/hsPlots.cpp"
 
