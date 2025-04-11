@@ -83,7 +83,7 @@ void GENIE_to_LUND_converter(TString InputFiles = "", /* TString OutputFileDir =
     TString OutputFileDir = OutputFileBase + "/" + target_element + "/" + genie_tune + "/" + beam_e + "_" + Q2_cut;
     system(("mkdir -p " + std::string(OutputFileDir.Data())).c_str());
 
-    TString pdfFileName = OutputFileDir + "/" + "_" + lundfile_prefix + "_plots.pdf";
+    TString pdfFileName = OutputFileDir + "/" + lundfile_prefix + "_plots.pdf";
     const char* pdfFile = pdfFileName.Data();
 
     // Make lundfiles directory:
