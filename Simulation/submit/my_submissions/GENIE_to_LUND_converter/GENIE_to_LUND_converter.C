@@ -56,7 +56,7 @@ void GENIE_to_LUND_converter(TString InputFiles = "", /* TString OutputFileDir =
                                                                                                           : "UNKNOWN";
     if (genie_tune == "UNKNOWN") { std::cerr << "\033[31m\nGENIE tune not recognized. Please use G18_10a_00_000 or GEM21_11a_00_000. Aborting...\n\033[0m", exit(0); }
 
-    TString beam_e = (utilities::GetBeam(std::string(InputFiles.Data()), "2070MeV"))         ? "2070MeV"
+    TString beam_e = (utilities::FindSubstring(std::string(InputFiles.Data()), "2070MeV"))   ? "2070MeV"
                      : (utilities::FindSubstring(std::string(InputFiles.Data()), "4029MeV")) ? "4029MeV"
                      : (utilities::FindSubstring(std::string(InputFiles.Data()), "5986MeV")) ? "5986MeV"
                                                                                              : "UNKNOWN";
