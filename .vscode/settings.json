@@ -72,7 +72,14 @@
     "ConvertGENIE.C": "cpp",
     "GENIE_to_LUND_converter.C": "cpp",
     "GENIE_to_LUND_final.C": "cpp",
-    "GENIE_to_LUND_converter2.C": "cpp"
+    "GENIE_to_LUND_converter2.C": "cpp",
+    "GENIE_to_LUND_converter2 copy.C": "cpp",
+    "atomic": "cpp",
+    "*.tcc": "cpp",
+    "compare": "cpp",
+    "concepts": "cpp",
+    "type_traits": "cpp",
+    "utility": "cpp"
 },
   "[shellscript]": {
     "editor.defaultFormatter": "foxundermoon.shell-format"

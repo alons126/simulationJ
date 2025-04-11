@@ -3,6 +3,7 @@
 #include <iostream>
 
 #include "../../../targets.h"
+#include "/w/hallb-scshelf2102/clas12/asportes/2N-Analyzer/framework/classes/AMaps/AMap.cpp"
 #include "TFile.h"
 #include "TRandom3.h"
 #include "TString.h"
@@ -11,23 +12,22 @@
 
 using namespace std;
 
-/* root -l -q ConvertGENIE_Q2.C */
+/* root -l -q GENIE_to_LUND_converter.C */
 
 bool isInVector(int value, const std::vector<int> &vec) {
     // Check if the value is in the vector using std::find
     return std::find(vec.begin(), vec.end(), value) != vec.end();
 }
 
-void GENIE_to_LUND_Q2(TString TARGET, TString GENIE_TUNE, TString BEAM_E, TString inputFile = "", TString lundPath = "./lundfiles/", TString outputFile = "", int nFiles = 800,
-                      string target = "liquid", int A = 1, int Z = 1, double Q2_min = 0, double Q2_max = 1., double dQ2 = 0.02) {
+void GENIE_to_LUND_converter(TString TARGET, TString GENIE_TUNE, TString BEAM_E, TString inputFile = "", TString lundPath = "./lundfiles/", TString outputFile = "", int nFiles = 800,
+                             string target = "liquid", int A = 1, int Z = 1) {
     bool PrintOut = false;
     bool StepByStepPrintOut = false;
-    bool CountQ2AndExit = false;
 
     std::string sample_target0 = TARGET.Data(), sample_genie_tune0 = GENIE_TUNE.Data(), sample_beamE0 = BEAM_E.Data();
     string sample_target1, sample_genie_tune1, sample_beamE1;
     string sample_target2, sample_genie_tune2, sample_beamE2;
-    double Q2_ulim, Q2_llim, beam_e;
+    double beam_e;
 
     if (sample_target0 == "H1") {
         sample_target1 = "_H1";
@@ -54,20 +54,14 @@ void GENIE_to_LUND_Q2(TString TARGET, TString GENIE_TUNE, TString BEAM_E, TStrin
     if (sample_beamE0 == "2070MeV") {
         sample_beamE1 = "_2GeV";
         sample_beamE2 = " @2GeV";
-        Q2_ulim = 0.5;
-        Q2_llim = 0.;
         beam_e = 2.07052;
     } else if (sample_beamE0 == "4029MeV") {
         sample_beamE1 = "_4GeV";
         sample_beamE2 = " @4GeV";
-        Q2_ulim = 1.;
-        Q2_llim = 0.;
         beam_e = 4.02962;
     } else if (sample_beamE0 == "5986MeV") {
         sample_beamE1 = "_6GeV";
         sample_beamE2 = " @6GeV";
-        Q2_ulim = 2.;
-        Q2_llim = 0.;
         beam_e = 5.98636;
     }
 
@@ -79,12 +73,14 @@ void GENIE_to_LUND_Q2(TString TARGET, TString GENIE_TUNE, TString BEAM_E, TStrin
         cout << "\033[33m\n\033[0m";
     }
 
-    double Q2_master = Q2_min;
+    bool ContinueLooping = true;
 
-    while (Q2_master < (Q2_max + dQ2)) {
+    while (ContinueLooping) {
         cout << "\033[33m\n==============================================================\n\033[0m";
-        cout << "\033[33mGenerating files for Q2 = " << doubleToString(Q2_master) << " cut\n\033[0m";
+        cout << "\033[33mGenerating LUND files\n\033[0m";
         cout << "\033[33m==============================================================\n\033[0m" << endl;
+
+#pragma region  // histograms
 
         // #region My Custom Fold
         std::vector<TH1D *> histList;
@@ -222,7 +218,8 @@ void GENIE_to_LUND_Q2(TString TARGET, TString GENIE_TUNE, TString BEAM_E, TStrin
         pageTitles.push_back("");
         TH1D *Q2_2N_TL_DIS_only = new TH1D(HistNamePrefix_2N, HistTitlePrefix_2N + " (DIS Only);Q^{2} [GeV^{2}/c^{2}]", 100, Q2_llim, Q2_ulim);
         histList.push_back(Q2_2N_TL_DIS_only);
-        // #endregion
+
+#pragma endregion
 
         cout << "\033[33m\n\033[0m";
 
@@ -355,13 +352,6 @@ void GENIE_to_LUND_Q2(TString TARGET, TString GENIE_TUNE, TString BEAM_E, TStrin
                 ++Q2_above_cut_counter;
                 Q2_above_cut_ind.push_back(k);
             }
-        }
-
-        if (PrintOut) {
-            cout << "\033[33mQ2_above_cut_counter = " << Q2_above_cut_counter << "\n\033[0m";
-            cout << "\033[33mQ2_above_cut_ind.size() = " << Q2_above_cut_ind.size() << "\n\033[0m";
-
-            if (CountQ2AndExit) { exit(0); }
         }
 
         cout << "\033[33mGenerating lund files...\n\n\033[0m";
