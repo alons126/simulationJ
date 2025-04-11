@@ -64,6 +64,7 @@ endif
 echo "${PRINT_OUT_COLOR}//////////////////////////////////////////////////////////////////////\033[0m"
 echo "${PRINT_OUT_COLOR}// Setting GENIE slurm job submission                               //\033[0m"
 echo "${PRINT_OUT_COLOR}//////////////////////////////////////////////////////////////////////\033[0m"
+echo
 
 # Set Q² cut based on energy
 unsetenv Q2_CUT
@@ -240,7 +241,7 @@ mkdir -p ${OUTPATH}/mchipo ${OUTPATH}/reconhipo
 echo
 
 # Submitting job
-echo "${PRINT_OUT_COLOR}- Submitting jobs -----------------------------------------------------\033[0m"
+echo "${PRINT_OUT_COLOR}- Submitting jobs ------------------------------------------------------\033[0m"
 echo "${PRINT_OUT_COLOR}Submitting GENIE sbatch job...\033[0m"
 
 unsetenv SLURM_JOB_NAME
