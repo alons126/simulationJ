@@ -83,7 +83,8 @@ void GENIE_to_LUND_converter(TString InputFiles = "", /* TString OutputFileDir =
 
     TString OutputFileBase = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples";
     TString OutputFileDir = OutputFileBase + "/" + target_element + "/" + genie_tune + "/" + beam_e + "_" + Q2_cut;
-    system(("mkdir -p " + std::string(OutputFileDir.Data())).c_str());
+    system(("rm -rf " + std::string(OutputFileDir.Data())).c_str()); // Remove the directory if it exists
+    system(("mkdir -p " + std::string(OutputFileDir.Data())).c_str()); // Create the directory
 
     // Make lundfiles directory:
     TString lundfiles_Path = OutputFileDir + "/lundfiles";
