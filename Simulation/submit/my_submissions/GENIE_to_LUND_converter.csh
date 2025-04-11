@@ -89,7 +89,7 @@ echo "INPUT_FILES_DIR = ${INPUT_FILES_DIR}"
 echo ""
 
 # Execute ROOT macro
-root -q -p './GENIE_to_LUND_converter/GENIE_to_LUND_converter.C("'$INPUT_FILES_DIR'", "'$NUM_OF_FILES'", "'$TL_SAMPLE_TARGET'", "'$TL_SAMPLE_TARGET_A'", '$TL_SAMPLE_TARGET_Z')'
+root -q -b './GENIE_to_LUND_converter/GENIE_to_LUND_converter.C("'$INPUT_FILES_DIR'", "'$NUM_OF_FILES'", "'$TL_SAMPLE_TARGET'", "'$TL_SAMPLE_TARGET_A'", '$TL_SAMPLE_TARGET_Z')'
 
 echo
 echo "----------------------- End of job --------------------------"
