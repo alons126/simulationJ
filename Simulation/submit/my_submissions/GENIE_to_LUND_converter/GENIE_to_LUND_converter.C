@@ -43,7 +43,7 @@ void GENIE_to_LUND_converter(TString InputFiles = "", /* TString OutputFileDir =
 
     bool PrintOutElectronSliceLimits = false;
 
-    bool apply_fiducial_cuts = true;
+    bool apply_fiducial_cuts = false;
 
     // Proceeding input arguments ---------------------------------------------------------------------------------------------------------------------------------------
 
@@ -318,6 +318,7 @@ void GENIE_to_LUND_converter(TString InputFiles = "", /* TString OutputFileDir =
             h2->Draw("colz");  // Draw the histogram on the canvas
         } else if (HistoList[i]->InheritsFrom("TH1")) {
             TH1D* h1 = dynamic_cast<TH1D*>(HistoList[i]);
+
             if (!h1) continue;
 
             h1->GetXaxis()->SetTitleSize(0.06);
