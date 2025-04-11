@@ -41,7 +41,7 @@ void GENIE_to_LUND_converter(TString InputFiles = "", /* TString OutputFileDir =
 
     bool PrintOut = false;
 
-    bool apply_fiducial_cuts = false;
+    bool apply_fiducial_cuts = true;
 
     // Proceeding input arguments ---------------------------------------------------------------------------------------------------------------------------------------
 
@@ -270,7 +270,7 @@ void GENIE_to_LUND_converter(TString InputFiles = "", /* TString OutputFileDir =
             events_in_current_file = 0;
 
             if (current_file_index > nFiles) {
-                cout << "\033[33mReached file limit (\033[0m" << nFiles << "\033[33m). Stopping event writing.\033[0m" << endl;
+                cout << "\033[33m\nReached file limit (\033[0m" << nFiles << "\033[33m). Stopping event writing.\033[0m" << endl;
                 break;
             }
 
@@ -292,8 +292,10 @@ void GENIE_to_LUND_converter(TString InputFiles = "", /* TString OutputFileDir =
         MainCanvas->cd();  // Select the canvas
         MainCanvas->Clear();
 
-        if (HistoList[i]->InheritsFrom("TH2D")) {
-            TH2D* h2 = dynamic_cast<TH2D*>(HistoList[i]);
+        if (HistoList[i]->InheritsFrom(TH2D::Class())) {
+            TH2D* h2 = (TH2D*)HistoList[i];  // ROOT-style cast (safe after InheritsFrom check)
+                                             // if (HistoList[i]->InheritsFrom("TH2D")) {
+            //     TH2D* h2 = dynamic_cast<TH2D*>(HistoList[i]);
             if (!h2) continue;
             // MainCanvas->cd();
             h2->GetXaxis()->SetTitleSize(0.06);
