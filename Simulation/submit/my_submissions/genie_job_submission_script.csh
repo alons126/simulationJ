@@ -135,7 +135,7 @@ if (! -d "${OUTPATH}") then
     exit 1
 endif
 
-# Setting SUBMIT_SCRIPT_PATH based on beam energy
+# Setting RUNNING_DIR
 unsetenv RUNNING_DIR
 setenv RUNNING_DIR `pwd`
 echo "${PRINT_OUT_COLOR}RUNNING_DIR::\033[0m ${RUNNING_DIR}"
@@ -149,13 +149,13 @@ endif
 unsetenv SUBMIT_SCRIPT_PATH
 if ("${BEAM_E}" == "2070MeV") then
     echo "${PRINT_OUT_COLOR}- Setting SUBMIT_SCRIPT_PATH for 2 GeV --------------------------------\033[0m"
-    setenv SUBMIT_SCRIPT_PATH ${RUNNING_DIR}/Uniform_sample_2GeV/
+    setenv SUBMIT_SCRIPT_PATH ${RUNNING_DIR}/Uniform_sample_2GeV
 else if ("${BEAM_E}" == "4029MeV") then
     echo "${PRINT_OUT_COLOR}- Setting SUBMIT_SCRIPT_PATH for 4 GeV --------------------------------\033[0m"
-    setenv SUBMIT_SCRIPT_PATH ${RUNNING_DIR}/Uniform_sample_4GeV/
+    setenv SUBMIT_SCRIPT_PATH ${RUNNING_DIR}/Uniform_sample_4GeV
 else if ("${BEAM_E}" == "5986MeV") then
     echo "${PRINT_OUT_COLOR}- Setting SUBMIT_SCRIPT_PATH for 6 GeV --------------------------------\033[0m"
-    setenv SUBMIT_SCRIPT_PATH ${RUNNING_DIR}/Uniform_sample_6GeV/
+    setenv SUBMIT_SCRIPT_PATH ${RUNNING_DIR}/Uniform_sample_6GeV
 endif
 
 echo "${PRINT_OUT_COLOR}SUBMIT_SCRIPT_PATH:\033[0m ${SUBMIT_SCRIPT_PATH}"
