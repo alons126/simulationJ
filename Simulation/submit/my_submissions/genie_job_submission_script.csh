@@ -43,8 +43,6 @@ if ("${FC_STATUS_ENABLED}" == "1") then
 else
     setenv FC_STATUS ""
 endif
-echo "FC_STATUS: ${FC_STATUS}"
-echo ""
 
 # Set printing color based on beam energy and fiducial cuts status
 unsetenv PRINT_OUT_COLOR
@@ -82,6 +80,9 @@ else
     echo "Unknown beam energy: ${BEAM_E}"
     exit 1
 endif
+
+echo "${PRINT_OUT_COLOR}FC_STATUS:\033[0m ${FC_STATUS}"
+echo ""
 
 echo "${PRINT_OUT_COLOR}SAMPLE_TARGET_NUCLEUS:\033[0m ${SAMPLE_TARGET_NUCLEUS}"
 echo ""
