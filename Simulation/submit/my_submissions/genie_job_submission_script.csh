@@ -304,9 +304,10 @@ echo
  endif
  
 # Check if the directories were created successfully
-echo "${PRINT_OUT_COLOR}Number of lund files:\033[0m `ls ${OUTPATH}/lundfiles | wc -l`"
-echo "${PRINT_OUT_COLOR}Number of mchipo files in target directory:\033[0m `ls ${OUTPATH}/mchipo | wc -l`"
-echo "${PRINT_OUT_COLOR}Number of reconhipo files in target directory:\033[0m `ls ${OUTPATH}/reconhipo | wc -l`"
+echo "${PRINT_OUT_COLOR}Number of files in target directory (OUTPATH):\033[0m"
+echo "${PRINT_OUT_COLOR}Number of lund files:\t\t\t\t\t\033[0m `ls ${OUTPATH}/lundfiles | wc -l`"
+echo "${PRINT_OUT_COLOR}Number of mchipo files in target directory:\t\t\033[0m `ls ${OUTPATH}/mchipo | wc -l`"
+echo "${PRINT_OUT_COLOR}Number of reconhipo files in target directory:\t\033[0m `ls ${OUTPATH}/reconhipo | wc -l`"
 echo
 
 # Submitting job
