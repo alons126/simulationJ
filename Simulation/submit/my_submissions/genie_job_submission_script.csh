@@ -82,11 +82,6 @@ else
     exit 1
 endif
 
-echo "${PRINT_OUT_COLOR}//////////////////////////////////////////////////////////////////////\033[0m"
-echo "${PRINT_OUT_COLOR}// Setting GENIE slurm job submission                               //\033[0m"
-echo "${PRINT_OUT_COLOR}//////////////////////////////////////////////////////////////////////\033[0m"
-echo
-
 # Set Q² cut based on energy
 unsetenv Q2_CUT
 if ("${BEAM_E}" == "2070MeV") then
@@ -100,7 +95,31 @@ else
     exit 1
 endif
 
-echo "${PRINT_OUT_COLOR}FC_STATUS:\033[0m ${FC_STATUS}"
+# Set torus field based on beam energy
+unsetenv TORUS_FIELD
+if ("${BEAM_E}" == "2070MeV") then
+    setenv TORUS_FIELD 0.5
+else if ("${BEAM_E}" == "4029MeV" || "${BEAM_E}" == "5986MeV") then
+    setenv TORUS_FIELD -1.0
+else
+    echo "Unknown torus field configuration: ${BEAM_E}"
+    exit 1
+endif
+
+# Set GEMC data directory
+unsetenv OUTPATH
+setenv OUTPATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/GENIE_Reco_Samples/${SAMPLE_TARGET_NUCLEUS}/${GENIE_TUNE}/${BEAM_E}_${Q2_CUT}${FC_STATUS}
+
+setenv LOG_FILE ${OUTPATH}/GENIE_submission_log.txt
+echo "${PRINT_OUT_COLOR}Saving loop printout to ${LOG_FILE}"
+exec >>& ${LOG_FILE}
+
+echo "${PRINT_OUT_COLOR}//////////////////////////////////////////////////////////////////////\033[0m"
+echo "${PRINT_OUT_COLOR}// Setting GENIE slurm job submission                               //\033[0m"
+echo "${PRINT_OUT_COLOR}//////////////////////////////////////////////////////////////////////\033[0m"
+echo
+
+echo "${PRINT_OUT_COLOR}- Sample parameters ---------------------------------------------------\033[0m"
 echo ""
 
 echo "${PRINT_OUT_COLOR}SAMPLE_TARGET_NUCLEUS:\033[0m ${SAMPLE_TARGET_NUCLEUS}"
@@ -115,23 +134,23 @@ echo ""
 echo "${PRINT_OUT_COLOR}BEAM_E:\033[0m ${BEAM_E}"
 echo ""
 
+echo "${PRINT_OUT_COLOR}FC_STATUS:\033[0m ${FC_STATUS}"
+echo ""
+
 echo "${PRINT_OUT_COLOR}FC_STATUS_ENABLED:\033[0m ${FC_STATUS_ENABLED}"
 echo ""
 
-echo "${PRINT_OUT_COLOR}- Job parameters ------------------------------------------------------\033[0m"
+echo "${PRINT_OUT_COLOR}OUTPATH:\033[0m ${OUTPATH}"
 echo ""
 
-# Set torus field based on beam energy
-unsetenv TORUS_FIELD
-
-if ("${BEAM_E}" == "2070MeV") then
-    setenv TORUS_FIELD 0.5
-else if ("${BEAM_E}" == "4029MeV" || "${BEAM_E}" == "5986MeV") then
-    setenv TORUS_FIELD -1.0
-else
-    echo "Unknown torus field configuration: ${BEAM_E}"
+# Check if OUTPATH is a directory
+if (! -d "${OUTPATH}") then
+    echo "Error: Directory specified by OUTPATH does not exist: ${OUTPATH}"
     exit 1
 endif
+
+echo "${PRINT_OUT_COLOR}- Job parameters ------------------------------------------------------\033[0m"
+echo ""
 
 echo "${PRINT_OUT_COLOR}TORUS_FIELD:\033[0m ${TORUS_FIELD}"
 echo ""
@@ -150,18 +169,6 @@ unsetenv USE_GEMC_5_10
 setenv USE_GEMC_5_10 1 ## 1 for true
 echo "${PRINT_OUT_COLOR}USE_GEMC_5_10:\033[0m ${USE_GEMC_5_10}"
 echo ""
-
-# Set GEMC data directory
-unsetenv OUTPATH
-setenv OUTPATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/GENIE_Reco_Samples/${SAMPLE_TARGET_NUCLEUS}/${GENIE_TUNE}/${BEAM_E}_${Q2_CUT}${FC_STATUS}
-echo "${PRINT_OUT_COLOR}OUTPATH:\033[0m ${OUTPATH}"
-echo ""
-
-# Check if OUTPATH is a directory
-if (! -d "${OUTPATH}") then
-    echo "Error: Directory specified by OUTPATH does not exist: ${OUTPATH}"
-    exit 1
-endif
 
 # Setting RUNNING_DIR
 unsetenv RUNNING_DIR
