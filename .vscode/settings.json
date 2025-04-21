@@ -180,9 +180,9 @@
         "thread": "c",
         "SplitGLView.C": "cpp",
         "cutvaluemanager.h": "c",
-        "dataAnalyzer.h": "c",
         "histogramplottingfunctions.h": "c",
-        "eventselectionsettings.h": "c"
+        "eventselectionsettings.h": "c",
+        "GENIE_to_LUND_converter.C": "cpp"
     },
     "[jsonc]": {
         "editor.defaultFormatter": "vscode.json-language-features"

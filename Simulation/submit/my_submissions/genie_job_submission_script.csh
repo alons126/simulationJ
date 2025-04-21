@@ -286,6 +286,29 @@ echo "${PRINT_OUT_COLOR}- Setting up directory structure for MC simulation -----
 mkdir -p ${OUTPATH}/mchipo ${OUTPATH}/reconhipo
 echo
 
+ if (! -d "${OUTPATH}/lundfiles" || "`ls -A ${OUTPATH}/lundfiles`" == "") then
+     echo "Error: ${OUTPATH}/lundfiles must exist and must NOT be empty."
+     exit 1
+ endif
+
+ # Check if output folders are valid
+ if (! -d "${OUTPATH}/mchipo" || "`ls -A ${OUTPATH}/mchipo`" != "") then
+     echo "Error: ${OUTPATH}/mchipo must exist and be empty before proceeding."
+     exit 1
+ endif
+ 
+ # Check if output folders are valid
+ if (! -d "${OUTPATH}/reconhipo" || "`ls -A ${OUTPATH}/reconhipo`" != "") then
+     echo "Error: ${OUTPATH}/reconhipo must exist and be empty before proceeding."
+     exit 1
+ endif
+ 
+# Check if the directories were created successfully
+echo "${PRINT_OUT_COLOR}Number of lund files:\033[0m `du -sbh ${OUTPATH}/lundfiles | awk '{print $1, $2}'`"
+echo "${PRINT_OUT_COLOR}Number of mchipo files in target directory:\033[0m `du -sbh ${OUTPATH}/mchipo | awk '{print $1, $2}'`"
+echo "${PRINT_OUT_COLOR}Number of reconhipo files in target directory:\033[0m `du -sbh ${OUTPATH}/reconhipo | awk '{print $1, $2}'`"
+echo
+
 # Submitting job
 echo "${PRINT_OUT_COLOR}- Submitting jobs ------------------------------------------------------\033[0m"
 echo ""
