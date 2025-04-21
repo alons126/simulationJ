@@ -286,22 +286,22 @@ echo "${PRINT_OUT_COLOR}- Setting up directory structure for MC simulation -----
 mkdir -p ${OUTPATH}/mchipo ${OUTPATH}/reconhipo
 echo
 
- if (! -d "${OUTPATH}/lundfiles" || "`ls -A ${OUTPATH}/lundfiles`" == "") then
-     echo "Error: ${OUTPATH}/lundfiles must exist and must NOT be empty."
-     exit 1
- endif
+if (! -d "${OUTPATH}/lundfiles" || "`ls -A ${OUTPATH}/lundfiles`" == "") then
+    echo "Error: ${OUTPATH}/lundfiles must exist and must NOT be empty."
+    exit 1
+endif
 
- # Check if output folders are valid
- if (! -d "${OUTPATH}/mchipo" || "`ls -A ${OUTPATH}/mchipo`" != "") then
-     echo "Error: ${OUTPATH}/mchipo must exist and be empty before proceeding."
-     exit 1
- endif
+# Check if output folders are valid
+if (! -d "${OUTPATH}/mchipo" || "`ls -A ${OUTPATH}/mchipo`" != "") then
+    echo "Error: ${OUTPATH}/mchipo must exist and be empty before proceeding."
+    exit 1
+endif
  
- # Check if output folders are valid
- if (! -d "${OUTPATH}/reconhipo" || "`ls -A ${OUTPATH}/reconhipo`" != "") then
-     echo "Error: ${OUTPATH}/reconhipo must exist and be empty before proceeding."
-     exit 1
- endif
+# Check if output folders are valid
+if (! -d "${OUTPATH}/reconhipo" || "`ls -A ${OUTPATH}/reconhipo`" != "") then
+    echo "Error: ${OUTPATH}/reconhipo must exist and be empty before proceeding."
+    exit 1
+endif
  
 # Check if the directories were created successfully
 echo "${PRINT_OUT_COLOR}Number of files in target directory (OUTPATH):\033[0m"
