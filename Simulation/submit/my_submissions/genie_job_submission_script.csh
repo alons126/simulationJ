@@ -9,15 +9,34 @@ foreach SAMPLE_TARGET_NUCLEI ( C12 )
 # foreach SAMPLE_TARGET_NUCLEI ( H1 D2 C12 Ar40 )
 
 # Loop over GENIE tunes
-foreach GENIE_TUNES ( G18_10a_00_000 )
-# foreach GENIE_TUNES ( GEM21_11a_00_000 )
+# foreach GENIE_TUNES ( G18_10a_00_000 )
+foreach GENIE_TUNES ( GEM21_11a_00_000 )
 # foreach GENIE_TUNES ( G18_10a_00_000 GEM21_11a_00_000 )
 
 # Loop over beam energies
-# foreach BEAM_ENERGIES ( 2070MeV )
-foreach BEAM_ENERGIES ( 4029MeV )
+foreach BEAM_ENERGIES ( 2070MeV )
+# foreach BEAM_ENERGIES ( 4029MeV )
 # foreach BEAM_ENERGIES ( 2070MeV 4029MeV )
 # foreach BEAM_ENERGIES ( 2070MeV 4029MeV 5986MeV )
+
+# # Loop over fiducial cuts statuses
+# foreach FC_STATUSES ( 1 )
+# # foreach FC_STATUSES ( 0 1 )
+
+# # Loop over target nuclei
+# foreach SAMPLE_TARGET_NUCLEI ( C12 )
+# # foreach SAMPLE_TARGET_NUCLEI ( H1 D2 C12 Ar40 )
+
+# # Loop over GENIE tunes
+# foreach GENIE_TUNES ( G18_10a_00_000 )
+# # foreach GENIE_TUNES ( GEM21_11a_00_000 )
+# # foreach GENIE_TUNES ( G18_10a_00_000 GEM21_11a_00_000 )
+
+# # Loop over beam energies
+# # foreach BEAM_ENERGIES ( 2070MeV )
+# foreach BEAM_ENERGIES ( 4029MeV )
+# # foreach BEAM_ENERGIES ( 2070MeV 4029MeV )
+# # foreach BEAM_ENERGIES ( 2070MeV 4029MeV 5986MeV )
 
 # Job parameters
 # ============================================================================
@@ -277,7 +296,7 @@ setenv SLURM_JOB_NAME ${SAMPLE_TARGET_NUCLEUS}_${GENIE_TUNE}_${BEAM_E}_${Q2_CUT}
 echo "${PRINT_OUT_COLOR}SLURM_JOB_NAME:\033[0m ${SLURM_JOB_NAME}"
 # sbatch --job-name="${SLURM_JOB_NAME}" submit_GENIE_sample.sh || exit 1
 echo ""
-echo ""
+# echo ""
 
 end  # End of loop over beam energies
 end  # End of loop over GENIE tunes
