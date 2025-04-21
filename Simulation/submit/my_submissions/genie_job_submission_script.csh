@@ -1,8 +1,8 @@
 #!/bin/csh
 
 # Loop over fiducial cuts statuses
-# foreach FC_STATUSES ( 1 )
-foreach FC_STATUSES ( 0 )
+foreach FC_STATUSES ( 1 )
+# foreach FC_STATUSES ( 0 )
 # foreach FC_STATUSES ( 0 1 )
 
 # Loop over target nuclei
@@ -15,8 +15,8 @@ foreach GENIE_TUNES ( GEM21_11a_00_000 )
 # foreach GENIE_TUNES ( G18_10a_00_000 GEM21_11a_00_000 )
 
 # Loop over beam energies
-# foreach BEAM_ENERGIES ( 2070MeV )
-foreach BEAM_ENERGIES ( 4029MeV )
+foreach BEAM_ENERGIES ( 2070MeV )
+# foreach BEAM_ENERGIES ( 4029MeV )
 # foreach BEAM_ENERGIES ( 2070MeV 4029MeV )
 # foreach BEAM_ENERGIES ( 2070MeV 4029MeV 5986MeV )
 
@@ -327,6 +327,7 @@ echo "${PRINT_OUT_COLOR}Submitting GENIE sbatch job...\033[0m"
 unsetenv SLURM_JOB_NAME
 setenv SLURM_JOB_NAME ${SAMPLE_TARGET_NUCLEUS}_${GENIE_TUNE}_${BEAM_E}_${Q2_CUT}${FC_STATUS}
 echo "${PRINT_OUT_COLOR}SLURM_JOB_NAME:\033[0m ${SLURM_JOB_NAME}"
+echo ""
 sbatch --job-name="${SLURM_JOB_NAME}" submit_GENIE_sample.sh || exit 1
 echo ""
 # echo ""
