@@ -304,9 +304,9 @@ echo
  endif
  
 # Check if the directories were created successfully
-echo "${PRINT_OUT_COLOR}Number of lund files:\033[0m `du -sbh ${OUTPATH}/lundfiles | awk '{print $1, $2}'`"
-echo "${PRINT_OUT_COLOR}Number of mchipo files in target directory:\033[0m `du -sbh ${OUTPATH}/mchipo | awk '{print $1, $2}'`"
-echo "${PRINT_OUT_COLOR}Number of reconhipo files in target directory:\033[0m `du -sbh ${OUTPATH}/reconhipo | awk '{print $1, $2}'`"
+echo "${PRINT_OUT_COLOR}Number of lund files:\033[0m `du -sbh ${OUTPATH}/lundfiles`"
+echo "${PRINT_OUT_COLOR}Number of mchipo files in target directory:\033[0m `du -sbh ${OUTPATH}/mchipo`"
+echo "${PRINT_OUT_COLOR}Number of reconhipo files in target directory:\033[0m `du -sbh ${OUTPATH}/reconhipo`"
 echo
 
 # Submitting job
