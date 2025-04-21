@@ -9,6 +9,8 @@ unset MY_SUBMISSION_DIR
 setenv MY_SUBMISSION_DIR `pwd`
 echo "\033[1;35mMY_SUBMISSION_DIR:\033[0m ${MY_SUBMISSION_DIR}"
 
+alias pull_updates_script "source pull_updates_script.csh"
+
 # Re-pulling repository
 # ============================================================================
 echo
