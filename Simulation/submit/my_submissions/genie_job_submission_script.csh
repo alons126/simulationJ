@@ -110,9 +110,14 @@ endif
 unsetenv OUTPATH
 setenv OUTPATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/GENIE_Reco_Samples/${SAMPLE_TARGET_NUCLEUS}/${GENIE_TUNE}/${BEAM_E}_${Q2_CUT}${FC_STATUS}
 
+# Prepare log file
 setenv LOG_FILE ${OUTPATH}/GENIE_submission_log.txt
+rm -f ${LOG_FILE}
+
 echo "${PRINT_OUT_COLOR}Saving loop printout to ${LOG_FILE}"
-exec >>& ${LOG_FILE}
+
+# Wrap main execution in a subshell and tee output
+(
 
 echo "${PRINT_OUT_COLOR}//////////////////////////////////////////////////////////////////////\033[0m"
 echo "${PRINT_OUT_COLOR}// Setting GENIE slurm job submission                               //\033[0m"
@@ -329,6 +334,7 @@ echo "${PRINT_OUT_COLOR}SLURM_JOB_NAME:\033[0m ${SLURM_JOB_NAME}"
 echo ""
 # echo ""
 
+) |& tee ${LOG_FILE}
 end  # End of loop over beam energies
 end  # End of loop over GENIE tunes
 end  # End of loop over target nuclei
