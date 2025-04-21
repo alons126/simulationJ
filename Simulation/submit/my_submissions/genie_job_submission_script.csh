@@ -114,12 +114,17 @@ setenv OUTPATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Sample
 setenv LOG_FILE ${OUTPATH}/GENIE_submission_log.txt
 rm -f ${LOG_FILE}  # delete if exists to overwrite
 
-echo "${PRINT_OUT_COLOR}Saving loop printout to ${LOG_FILE}" >> ${LOG_FILE}
+echo "Saving loop printout to ${LOG_FILE}" >> ${LOG_FILE}
+echo "${PRINT_OUT_COLOR}Saving loop printout to ${LOG_FILE}"
 
-echo "${PRINT_OUT_COLOR}//////////////////////////////////////////////////////////////////////\033[0m" >> ${LOG_FILE}
-echo "${PRINT_OUT_COLOR}// Setting GENIE slurm job submission                               //\033[0m" >> ${LOG_FILE}
-echo "${PRINT_OUT_COLOR}//////////////////////////////////////////////////////////////////////\033[0m" >> ${LOG_FILE}
+echo "}//////////////////////////////////////////////////////////////////////\033[0m" >> ${LOG_FILE}
+echo "${PRINT_OUT_COLOR}//////////////////////////////////////////////////////////////////////\033[0m"
+echo "// Setting GENIE slurm job submission                               //\033[0m" >> ${LOG_FILE}
+echo "${PRINT_OUT_COLOR}// Setting GENIE slurm job submission                               //\033[0m"
+echo "//////////////////////////////////////////////////////////////////////\033[0m" >> ${LOG_FILE}
+echo "${PRINT_OUT_COLOR}//////////////////////////////////////////////////////////////////////\033[0m"
 echo "" >> ${LOG_FILE}
+echo ""
 
 echo "${PRINT_OUT_COLOR}- Sample parameters ---------------------------------------------------\033[0m" >> ${LOG_FILE}
 echo "" >> ${LOG_FILE}
