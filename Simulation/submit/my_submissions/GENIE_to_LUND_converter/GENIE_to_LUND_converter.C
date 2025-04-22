@@ -151,7 +151,7 @@ void GENIE_to_LUND_converter(TString InputFiles = "", /* TString OutputFileDir =
         new TH2D("theta_e_VS_phi_e", "#theta_{e} vs. #phi_{e};#phi_{e} [#circ];#theta_{e}", HistElectronSliceNumOfXBins, -180., 180., HistElectronSliceNumOfYBins, 0., 50.);
     HistoList.push_back(theta_e_VS_phi_e);
 
-    hsPlots theta_e_VS_phi_e_BySliceOfPe = hsPlots(ElectronMomSliceLimits, hsPlots::TH2D_TYPE, HistoList, "theta_e_VS_phi_e", "#theta_{e} vs. #phi_{e}", HistElectronSliceNumOfXBins, -180.,
+    hsPlots theta_e_VS_phi_e_BySliceOfPe = hsPlots(ElectronMomSliceLimits, hsPlots::TH2D_TYPE, HistoList, "theta_e_VS_phi_e", "#theta_{e} vs. #phi_{e};#phi_{e} [#circ];#theta_{e} [#circ]", HistElectronSliceNumOfXBins, -180.,
                                                    180., HistElectronSliceNumOfYBins, 0., 50.);
 
     // TTree variables --------------------------------------------------------------------------------------------------------------------------------------------------
