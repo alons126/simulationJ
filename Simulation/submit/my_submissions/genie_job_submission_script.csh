@@ -151,7 +151,8 @@ echo "${PRINT_OUT_COLOR}CANCEL_PREVIOUS_JOBS:\033[0m ${CANCEL_PREVIOUS_JOBS}"
 echo ""
 
 unsetenv USE_GEMC_5_10
-setenv USE_GEMC_5_10 1 ## 1 for true
+setenv USE_GEMC_5_10 0 ## 1 for true
+# setenv USE_GEMC_5_10 1 ## 1 for true
 echo "${PRINT_OUT_COLOR}USE_GEMC_5_10:\033[0m ${USE_GEMC_5_10}"
 echo ""
 
