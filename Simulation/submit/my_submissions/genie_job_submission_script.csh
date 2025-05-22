@@ -151,7 +151,8 @@ echo "${PRINT_OUT_COLOR}CANCEL_PREVIOUS_JOBS:\033[0m ${CANCEL_PREVIOUS_JOBS}"
 echo ""
 
 unsetenv USE_GEMC_5_10
-setenv USE_GEMC_5_10 0 ## 1 for true
+setenv USE_GEMC_5_10 0 ## 1 for true # for _GEMC_511_test
+# setenv USE_GEMC_5_10 1 ## 1 for true # for _GEMC_510_test
 # setenv USE_GEMC_5_10 1 ## 1 for true
 echo "${PRINT_OUT_COLOR}USE_GEMC_5_10:\033[0m ${USE_GEMC_5_10}"
 echo ""
@@ -314,7 +315,7 @@ setenv SLURM_JOB_NAME ${SAMPLE_TARGET_NUCLEUS}_${GENIE_TUNE}_${BEAM_E}_${Q2_CUT}
 # setenv SLURM_JOB_NAME ${SAMPLE_TARGET_NUCLEUS}_${GENIE_TUNE}_${BEAM_E}_${Q2_CUT}${FC_STATUS}
 echo "${PRINT_OUT_COLOR}SLURM_JOB_NAME:\033[0m ${SLURM_JOB_NAME}"
 echo ""
-sbatch --job-name="${SLURM_JOB_NAME}" submit_GENIE_sample.sh || exit 1
+# sbatch --job-name="${SLURM_JOB_NAME}" submit_GENIE_sample.sh || exit 1
 echo ""
 # echo ""
 
