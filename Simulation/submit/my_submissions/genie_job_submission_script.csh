@@ -1,8 +1,8 @@
 #!/bin/csh
 
 # Loop over fiducial cuts statuses
-foreach FC_STATUSES ( 1 )
-# foreach FC_STATUSES ( 0 )
+# foreach FC_STATUSES ( 1 )
+foreach FC_STATUSES ( 0 )
 # foreach FC_STATUSES ( 0 1 )
 
 # Loop over target nuclei
