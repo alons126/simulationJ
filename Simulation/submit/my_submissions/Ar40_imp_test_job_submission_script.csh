@@ -187,7 +187,7 @@ if ("${SAMPLE_TARGET_NUCLEUS}" == "C12") then
 else if ("${SAMPLE_TARGET_NUCLEUS}" == "Ar40") then
     echo "${PRINT_OUT_COLOR}- Setting GCARD file for ${SAMPLE_TARGET_NUCLEUS} at ${BEAM_E} ------------------------------\033[0m"
     echo ""
-    
+
     setenv GCARD_FILE ${GCARD_FILE_PATH}/rgm_fall2021_Ar_dev_test_${BEAM_E}.gcard
 else
     echo "Unknown gcard configuration for: ${SAMPLE_TARGET_NUCLEUS} at ${BEAM_E}"
@@ -205,7 +205,7 @@ endif
 
 # Setting yaml path
 unsetenv YAML_FILE_PATH
-echo "${PRINT_OUT_COLOR}- Setting YAML file for ${SAMPLE_TARGET_NUCLEUS} at ${BEAM_E} ---------\033[0m"
+echo "${PRINT_OUT_COLOR}- Setting YAML file for ${SAMPLE_TARGET_NUCLEUS} at ${BEAM_E} --------------------------------\033[0m"
 if ("${BEAM_E}" == "2070MeV") then
     setenv YAML_FILE_PATH ${RUNNING_DIR}/Uniform_sample_2GeV
 else if ("${BEAM_E}" == "4029MeV") then
