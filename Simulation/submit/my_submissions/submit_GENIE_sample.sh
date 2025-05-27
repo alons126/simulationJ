@@ -7,7 +7,8 @@
 #SBATCH --time=20:00:00                                                                                               
 #SBATCH --output=/farm_out/%u/%x-%j-%N.out                                                                           
 #SBATCH --error=//farm_out/%u/%x-%j-%N.err                                                                           
-#SBATCH --array=1-10 #Number of files 1-N                                                                                                
+######SBATCH --array=1-10 #Number of files 1-N                                                                                                
+#SBATCH --array=1-500 #Number of files 1-N                                                                                                
 ######SBATCH --array=1-2500 #Number of files 1-N                                                                                                
 
 JOB_TARGET=${SAMPLE_TARGET_NUCLEUS}

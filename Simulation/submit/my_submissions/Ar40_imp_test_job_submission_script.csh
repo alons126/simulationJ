@@ -18,10 +18,10 @@ foreach GENIE_TUNES ( G18_10a_00_000 )
 # foreach GENIE_TUNES ( G18_10a_00_000 GEM21_11a_00_000 )
 
 # Loop over beam energies
-foreach BEAM_ENERGIES ( 2070MeV )
+# foreach BEAM_ENERGIES ( 2070MeV )
 # foreach BEAM_ENERGIES ( 4029MeV )
 # foreach BEAM_ENERGIES ( 2070MeV 4029MeV )
-# foreach BEAM_ENERGIES ( 2070MeV 4029MeV 5986MeV )
+foreach BEAM_ENERGIES ( 2070MeV 4029MeV 5986MeV )
 
 # Job parameters
 # ============================================================================
