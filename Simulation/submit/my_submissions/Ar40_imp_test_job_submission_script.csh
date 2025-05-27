@@ -158,15 +158,15 @@ if (! -d "${RUNNING_DIR}") then
     exit 1
 endif
 
-# Setting submission script path
-unsetenv SUBMIT_SCRIPT_PATH_BASE
-setenv SUBMIT_SCRIPT_PATH_BASE /lustre24/expphy/volatile/clas12/asportes/Ar40_imp_GEMC/clas12-config/gemc/dev
-echo "${PRINT_OUT_COLOR}SUBMIT_SCRIPT_PATH_BASE:\033[0m ${SUBMIT_SCRIPT_PATH_BASE}"
+# Setting gcard path
+unsetenv GCARD_FILE_PATH
+setenv GCARD_FILE_PATH /lustre24/expphy/volatile/clas12/asportes/Ar40_imp_GEMC/clas12-config/gemc/dev
+echo "${PRINT_OUT_COLOR}GCARD_FILE_PATH:\033[0m ${GCARD_FILE_PATH}"
 echo ""
 
-# Check if SUBMIT_SCRIPT_PATH_BASE is a directory
-if (! -d "${SUBMIT_SCRIPT_PATH_BASE}") then
-    echo "Error: Directory specified by SUBMIT_SCRIPT_PATH_BASE does not exist: ${SUBMIT_SCRIPT_PATH_BASE}"
+# Check if GCARD_FILE_PATH is a directory
+if (! -d "${GCARD_FILE_PATH}") then
+    echo "Error: Directory specified by GCARD_FILE_PATH does not exist: ${GCARD_FILE_PATH}"
     exit 1
 endif
 
@@ -174,24 +174,23 @@ endif
 unsetenv GCARD_FILE
 if ("${SAMPLE_TARGET_NUCLEUS}" == "C12") then
     if ("${BEAM_E}" == "2070MeV") then
-        setenv GCARD_FILE ${SUBMIT_SCRIPT_PATH_BASE}/rgm_fall2021_C_v2_S_dev_test_${BEAM_E}.gcard
+        setenv GCARD_FILE ${GCARD_FILE_PATH}/rgm_fall2021_C_v2_S_dev_test_${BEAM_E}.gcard
         echo ""
     else if ("${BEAM_E}" == "4029MeV") then
-        setenv GCARD_FILE ${SUBMIT_SCRIPT_PATH_BASE}/rgm_fall2021_C_v2_L_dev_test_${BEAM_E}.gcard
+        setenv GCARD_FILE ${GCARD_FILE_PATH}/rgm_fall2021_C_v2_L_dev_test_${BEAM_E}.gcard
         echo ""
     else
         echo "Unknown gcard configuration for: ${SAMPLE_TARGET_NUCLEUS} at ${BEAM_E}"
         exit 1
     endif
 else if ("${SAMPLE_TARGET_NUCLEUS}" == "Ar40") then
-    setenv GCARD_FILE ${SUBMIT_SCRIPT_PATH_BASE}/rgm_fall2021_Ar_dev_test_${BEAM_E}.gcard
+    setenv GCARD_FILE ${GCARD_FILE_PATH}/rgm_fall2021_Ar_dev_test_${BEAM_E}.gcard
     echo ""
 else
     echo "Unknown gcard configuration for: ${SAMPLE_TARGET_NUCLEUS} at ${BEAM_E}"
     exit 1
 endif
 
-setenv GCARD_FILE ${SUBMIT_SCRIPT_PATH}/rgm_fall2021_C.gcard
 echo "${PRINT_OUT_COLOR}GCARD_FILE:\033[0m ${GCARD_FILE}"
 echo
 
@@ -201,14 +200,36 @@ if (! -f "${GCARD_FILE}") then
     exit 1
 endif
 
+# Setting yaml path
+unsetenv YAML_FILE_PATH
+if ("${BEAM_E}" == "2070MeV") then
+    echo "${PRINT_OUT_COLOR}- Setting YAML_FILE_PATH for 2 GeV --------------------------------\033[0m"
+    setenv YAML_FILE_PATH ${RUNNING_DIR}/Uniform_sample_2GeV
+    echo ""
+else if ("${BEAM_E}" == "4029MeV") then
+    echo "${PRINT_OUT_COLOR}- Setting YAML_FILE_PATH for 4 GeV --------------------------------\033[0m"
+    setenv YAML_FILE_PATH ${RUNNING_DIR}/Uniform_sample_4GeV
+    echo ""
+else if ("${BEAM_E}" == "5986MeV") then
+    echo "${PRINT_OUT_COLOR}- Setting YAML_FILE_PATH for 6 GeV --------------------------------\033[0m"
+    setenv YAML_FILE_PATH ${RUNNING_DIR}/Uniform_sample_6GeV
+    echo ""
+endif
+
+# Check if YAML_FILE_PATH is a directory
+if (! -d "${YAML_FILE_PATH}") then
+    echo "Error: Directory specified by YAML_FILE_PATH does not exist: ${YAML_FILE_PATH}"
+    exit 1
+endif
+
 # Setting YAML_FILE
 unsetenv YAML_FILE
 if ("${BEAM_E}" == "2070MeV") then
-    setenv YAML_FILE ${SUBMIT_SCRIPT_PATH}/rgm_fall2021-cv.yaml
+    setenv YAML_FILE ${YAML_FILE_PATH}/rgm_fall2021-cv.yaml
 else if ("${BEAM_E}" == "4029MeV") then
-    setenv YAML_FILE ${SUBMIT_SCRIPT_PATH}/rgm_fall2021-ai_4Gev.yaml
+    setenv YAML_FILE ${YAML_FILE_PATH}/rgm_fall2021-ai_4Gev.yaml
 else if ("${BEAM_E}" == "5986MeV") then
-    setenv YAML_FILE ${SUBMIT_SCRIPT_PATH}/rgm_fall2021-ai_6Gev.yaml
+    setenv YAML_FILE ${YAML_FILE_PATH}/rgm_fall2021-ai_6Gev.yaml
 endif
 echo "${PRINT_OUT_COLOR}YAML_FILE:\033[0m ${YAML_FILE}"
 echo
