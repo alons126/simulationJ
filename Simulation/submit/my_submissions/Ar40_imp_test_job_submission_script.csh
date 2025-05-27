@@ -149,7 +149,7 @@ echo ""
 # Setting RUNNING_DIR
 unsetenv RUNNING_DIR
 setenv RUNNING_DIR `pwd`
-echo "${PRINT_OUT_COLOR}RUNNING_DIR::\033[0m ${RUNNING_DIR}"
+echo "${PRINT_OUT_COLOR}RUNNING_DIR:\033[0m ${RUNNING_DIR}"
 echo ""
 
 # Check if RUNNING_DIR is a directory
@@ -172,6 +172,7 @@ endif
 
 # Setting GCARD_FILE
 unsetenv GCARD_FILE
+echo "${PRINT_OUT_COLOR}- Setting GCARD file for ${SAMPLE_TARGET_NUCLEUS} at ${BEAM_E} ---------\033[0m"
 if ("${SAMPLE_TARGET_NUCLEUS}" == "C12") then
     if ("${BEAM_E}" == "2070MeV") then
         setenv GCARD_FILE ${GCARD_FILE_PATH}/rgm_fall2021_C_v2_S_dev_test_${BEAM_E}.gcard
@@ -199,19 +200,16 @@ endif
 
 # Setting yaml path
 unsetenv YAML_FILE_PATH
+echo "${PRINT_OUT_COLOR}- Setting YAML file for ${SAMPLE_TARGET_NUCLEUS} at ${BEAM_E} ---------\033[0m"
 if ("${BEAM_E}" == "2070MeV") then
-    echo "${PRINT_OUT_COLOR}- Setting YAML_FILE_PATH for 2 GeV --------------------------------\033[0m"
     setenv YAML_FILE_PATH ${RUNNING_DIR}/Uniform_sample_2GeV
-    echo ""
 else if ("${BEAM_E}" == "4029MeV") then
-    echo "${PRINT_OUT_COLOR}- Setting YAML_FILE_PATH for 4 GeV --------------------------------\033[0m"
     setenv YAML_FILE_PATH ${RUNNING_DIR}/Uniform_sample_4GeV
-    echo ""
 else if ("${BEAM_E}" == "5986MeV") then
-    echo "${PRINT_OUT_COLOR}- Setting YAML_FILE_PATH for 6 GeV --------------------------------\033[0m"
     setenv YAML_FILE_PATH ${RUNNING_DIR}/Uniform_sample_6GeV
     echo ""
 endif
+echo ""
 
 # Check if YAML_FILE_PATH is a directory
 if (! -d "${YAML_FILE_PATH}") then
