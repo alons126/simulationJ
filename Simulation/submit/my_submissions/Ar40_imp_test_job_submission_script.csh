@@ -175,17 +175,14 @@ unsetenv GCARD_FILE
 if ("${SAMPLE_TARGET_NUCLEUS}" == "C12") then
     if ("${BEAM_E}" == "2070MeV") then
         setenv GCARD_FILE ${GCARD_FILE_PATH}/rgm_fall2021_C_v2_S_dev_test_${BEAM_E}.gcard
-        echo ""
     else if ("${BEAM_E}" == "4029MeV") then
         setenv GCARD_FILE ${GCARD_FILE_PATH}/rgm_fall2021_C_v2_L_dev_test_${BEAM_E}.gcard
-        echo ""
     else
         echo "Unknown gcard configuration for: ${SAMPLE_TARGET_NUCLEUS} at ${BEAM_E}"
         exit 1
     endif
 else if ("${SAMPLE_TARGET_NUCLEUS}" == "Ar40") then
     setenv GCARD_FILE ${GCARD_FILE_PATH}/rgm_fall2021_Ar_dev_test_${BEAM_E}.gcard
-    echo ""
 else
     echo "Unknown gcard configuration for: ${SAMPLE_TARGET_NUCLEUS} at ${BEAM_E}"
     exit 1
