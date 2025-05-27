@@ -62,8 +62,8 @@ echo ""
 
 # Set beam energy
 unsetenv TL_SAMPLE_ENERGY
-setenv TL_SAMPLE_ENERGY 2070MeV
-# setenv TL_SAMPLE_ENERGY 4029MeV
+# setenv TL_SAMPLE_ENERGY 2070MeV
+setenv TL_SAMPLE_ENERGY 4029MeV
 # setenv TL_SAMPLE_ENERGY 5986MeV
 echo "TL_SAMPLE_ENERGY = ${TL_SAMPLE_ENERGY}"
 echo ""
