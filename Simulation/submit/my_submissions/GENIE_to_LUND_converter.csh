@@ -117,11 +117,27 @@ endif
 echo "TL_SAMPLE_Q2_CUT = ${TL_SAMPLE_Q2_CUT}"
 echo ""
 
+# Safety check: check if directory exists
+set INPUT_FILES_DIR_PATH = "${BASE_TL_SAMPLE_DIR}/${TL_SAMPLE_TARGET_NUCLEUS}/${TL_GENIE_TUNE}/${TL_SAMPLE_ENERGY}_${TL_SAMPLE_Q2_CUT}/master-routine_validation_01-eScattering"
+if (! -d "${INPUT_FILES_DIR_PATH}") then
+    echo "Error: Directory does not exist: ${INPUT_FILES_DIR_PATH}"
+    exit 1
+endif
+
 # Expand root files using shell globbing
 set INPUT_FILES_PATTERN = "${BASE_TL_SAMPLE_DIR}/${TL_SAMPLE_TARGET_NUCLEUS}/${TL_GENIE_TUNE}/${TL_SAMPLE_ENERGY}_${TL_SAMPLE_Q2_CUT}/master-routine_validation_01-eScattering/*.root"
-set INPUT_FILES_DIR = ( $BASE_TL_SAMPLE_DIR/$TL_SAMPLE_TARGET_NUCLEUS/$TL_GENIE_TUNE/${TL_SAMPLE_ENERGY}_${TL_SAMPLE_Q2_CUT}/master-routine_validation_01-eScattering/*.root )
-set INPUT_FILES_STRING = "`echo $INPUT_FILES_DIR`"
-# echo "INPUT_FILES_DIR = ${INPUT_FILES_DIR}"
+
+# Expand into array
+set INPUT_FILES_DIR = ( ${INPUT_FILES_DIR_PATH}/*.root )
+
+# Safety check: check if array is empty
+if ( $#INPUT_FILES_DIR == 0 ) then
+    echo "Error: No .root files found in: ${INPUT_FILES_DIR_PATH}"
+    exit 1
+endif
+
+# Convert to space-separated string
+set INPUT_FILES_STRING = "`echo ${INPUT_FILES_DIR}`"
 echo ""
 
 # Execute ROOT macro
