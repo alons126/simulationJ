@@ -1,22 +1,22 @@
 #!/bin/csh
 
 echo
-echo "------------------ GENIE to LUND converter ------------------"
+echo "\033[35m------------------ GENIE to LUND converter ------------------\033[0m"
 echo
-echo "----------------------- Job parameters ----------------------"
+echo "\033[35m----------------------- Job parameters ----------------------\033[0m"
 echo
 
 # Set number of files
 unsetenv NUM_OF_FILES
 # setenv NUM_OF_FILES 2500
 setenv NUM_OF_FILES 1000
-echo "NUM_OF_FILES = ${NUM_OF_FILES}"
+echo "\033[35mNUM_OF_FILES:\033[0m ${NUM_OF_FILES}"
 echo ""
 
 # Set base directory
 unsetenv BASE_TL_SAMPLE_DIR
 setenv BASE_TL_SAMPLE_DIR /w/hallb-scshelf2102/clas12/asportes/2N_Analysis_Truth_Samples
-echo "BASE_TL_SAMPLE_DIR = ${BASE_TL_SAMPLE_DIR}"
+echo "\033[35mBASE_TL_SAMPLE_DIR:\033[0m ${BASE_TL_SAMPLE_DIR}"
 echo ""
 
 # Set target nucleus
@@ -25,7 +25,7 @@ unsetenv TL_SAMPLE_TARGET_NUCLEUS
 # setenv TL_SAMPLE_TARGET_NUCLEUS D2
 setenv TL_SAMPLE_TARGET_NUCLEUS C12
 # setenv TL_SAMPLE_TARGET_NUCLEUS Ar40
-echo "TL_SAMPLE_TARGET_NUCLEUS = ${TL_SAMPLE_TARGET_NUCLEUS}"
+echo "\033[35mTL_SAMPLE_TARGET_NUCLEUS:\033[0m ${TL_SAMPLE_TARGET_NUCLEUS}"
 echo ""
 
 # Set Z and A for selected target
@@ -45,19 +45,19 @@ else if ("${TL_SAMPLE_TARGET_NUCLEUS}" == "Ar40") then
     setenv TL_SAMPLE_TARGET_NUCLEUS_A 40
     setenv TL_SAMPLE_TARGET_NUCLEUS_Z 18
 else
-    echo "Unknown target: ${TL_SAMPLE_TARGET_NUCLEUS}"
+    echo "\033[31mError:\033[0m unknown target: ${TL_SAMPLE_TARGET_NUCLEUS}"
     exit 1
 endif
 
-echo "TL_SAMPLE_TARGET_NUCLEUS_A = ${TL_SAMPLE_TARGET_NUCLEUS_A}"
-echo "TL_SAMPLE_TARGET_NUCLEUS_Z = ${TL_SAMPLE_TARGET_NUCLEUS_Z}"
+echo "\033[35mTL_SAMPLE_TARGET_NUCLEUS_A:\033[0m ${TL_SAMPLE_TARGET_NUCLEUS_A}"
+echo "\033[35mTL_SAMPLE_TARGET_NUCLEUS_Z:\033[0m ${TL_SAMPLE_TARGET_NUCLEUS_Z}"
 echo ""
 
 # Set GENIE tune
 unsetenv TL_GENIE_TUNE
 setenv TL_GENIE_TUNE G18_10a_00_000
 # setenv TL_GENIE_TUNE GEM21_11a_00_000
-echo "TL_GENIE_TUNE = ${TL_GENIE_TUNE}"
+echo "\033[35mTL_GENIE_TUNE:\033[0m ${TL_GENIE_TUNE}"
 echo ""
 
 # Set beam energy
@@ -65,7 +65,7 @@ unsetenv TL_SAMPLE_ENERGY
 setenv TL_SAMPLE_ENERGY 2070MeV
 # setenv TL_SAMPLE_ENERGY 4029MeV
 # setenv TL_SAMPLE_ENERGY 5986MeV
-echo "TL_SAMPLE_ENERGY = ${TL_SAMPLE_ENERGY}"
+echo "\033[35mTL_SAMPLE_ENERGY:\033[0m ${TL_SAMPLE_ENERGY}"
 echo ""
 
 # Set target type
@@ -82,7 +82,7 @@ else if ("${TL_SAMPLE_ENERGY}" == "5986MeV" && "${TL_SAMPLE_TARGET_NUCLEUS}" == 
 else if ("${TL_SAMPLE_TARGET_NUCLEUS}" == "Ar40") then
     setenv TL_SAMPLE_TARGET_TYPE Ar
 else
-    echo "Unknown target type for energy/target: ${TL_SAMPLE_ENERGY}, ${TL_SAMPLE_TARGET_NUCLEUS}"
+    echo "\033[31mError:\033[0m unknown target type for energy/target: ${TL_SAMPLE_ENERGY}, ${TL_SAMPLE_TARGET_NUCLEUS}"
     exit 1
 endif
 # if ("${TL_SAMPLE_TARGET_NUCLEUS}" == "H1" || "${TL_SAMPLE_TARGET_NUCLEUS}" == "D2") then
@@ -94,11 +94,11 @@ endif
 # else if ("${TL_SAMPLE_TARGET_NUCLEUS}" == "Ar40") then
 #     setenv TL_SAMPLE_TARGET_TYPE Ar
 # else
-#     echo "Unknown target type for energy/target: ${TL_SAMPLE_ENERGY}, ${TL_SAMPLE_TARGET_NUCLEUS}"
+#     echo "\033[31mError:\033[0m unknown target type for energy/target: ${TL_SAMPLE_ENERGY}, ${TL_SAMPLE_TARGET_NUCLEUS}"
 #     exit 1
 # endif
 
-echo "TL_SAMPLE_TARGET_TYPE = ${TL_SAMPLE_TARGET_TYPE}"
+echo "\033[35mTL_SAMPLE_TARGET_TYPE:\033[0m ${TL_SAMPLE_TARGET_TYPE}"
 echo ""
 
 # Set Q² cut based on energy
@@ -110,17 +110,17 @@ else if ("${TL_SAMPLE_ENERGY}" == "4029MeV") then
 else if ("${TL_SAMPLE_ENERGY}" == "5986MeV") then
     setenv TL_SAMPLE_Q2_CUT Q2_0_40
 else
-    echo "Unknown beam energy: ${TL_SAMPLE_ENERGY}"
+    echo "\033[31mError:\033[0m unknown beam energy: ${TL_SAMPLE_ENERGY}"
     exit 1
 endif
 
-echo "TL_SAMPLE_Q2_CUT = ${TL_SAMPLE_Q2_CUT}"
+echo "\033[35mTL_SAMPLE_Q2_CUT:\033[0m ${TL_SAMPLE_Q2_CUT}"
 echo ""
 
 # Safety check: check if directory exists
 set INPUT_FILES_DIR_PATH = "${BASE_TL_SAMPLE_DIR}/${TL_SAMPLE_TARGET_NUCLEUS}/${TL_GENIE_TUNE}/${TL_SAMPLE_ENERGY}_${TL_SAMPLE_Q2_CUT}/master-routine_validation_01-eScattering"
 if (! -d "${INPUT_FILES_DIR_PATH}") then
-    echo "Error: Directory does not exist: ${INPUT_FILES_DIR_PATH}"
+    echo "\033[31mError:\033[0m Directory does not exist: ${INPUT_FILES_DIR_PATH}"
     exit 1
 endif
 
@@ -132,7 +132,7 @@ set INPUT_FILES_DIR = ( ${INPUT_FILES_DIR_PATH}/*.root )
 
 # Safety check: check if array is empty
 if ( $#INPUT_FILES_DIR == 0 ) then
-    echo "Error: No .root files found in: ${INPUT_FILES_DIR_PATH}"
+    echo "\033[31mError:\033[0m No .root files found in: ${INPUT_FILES_DIR_PATH}"
     exit 1
 endif
 
@@ -144,5 +144,5 @@ echo ""
 root -q -b './GENIE_to_LUND_converter/GENIE_to_LUND_converter.C("'"${INPUT_FILES_PATTERN}"'", '"${NUM_OF_FILES}"', "'"${TL_SAMPLE_TARGET_TYPE}"'", '"${TL_SAMPLE_TARGET_NUCLEUS_A}"', '"${TL_SAMPLE_TARGET_NUCLEUS_Z}"')'
 
 echo
-echo "----------------------- End of job --------------------------"
+echo "\033[35m----------------------- End of job --------------------------\033[0m"
 echo
