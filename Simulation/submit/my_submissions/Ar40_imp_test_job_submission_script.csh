@@ -1,8 +1,8 @@
 #!/bin/csh
 
 # Loop over fiducial cuts statuses
-foreach FC_STATUSES ( 1 )
-# foreach FC_STATUSES ( 0 )
+# foreach FC_STATUSES ( 1 )
+foreach FC_STATUSES ( 0 )
 # foreach FC_STATUSES ( 0 1 )
 
 # Loop over target nuclei
@@ -18,10 +18,10 @@ foreach GENIE_TUNES ( G18_10a_00_000 )
 # foreach GENIE_TUNES ( G18_10a_00_000 GEM21_11a_00_000 )
 
 # Loop over beam energies
-foreach BEAM_ENERGIES ( 2070MeV )
+# foreach BEAM_ENERGIES ( 2070MeV )
 # foreach BEAM_ENERGIES ( 4029MeV )
 # foreach BEAM_ENERGIES ( 2070MeV 4029MeV )
-# foreach BEAM_ENERGIES ( 2070MeV 4029MeV 5986MeV )
+foreach BEAM_ENERGIES ( 2070MeV 4029MeV 5986MeV )
 
 # Job parameters
 # ============================================================================
@@ -93,14 +93,7 @@ endif
 
 # Set GEMC data directory
 unsetenv OUTPATH
-# setenv OUTPATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/GENIE_Reco_Samples/${SAMPLE_TARGET_NUCLEUS}/${GENIE_TUNE}/${BEAM_E}_${Q2_CUT}${FC_STATUS}_GEMC_511_test
-# setenv OUTPATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/GENIE_Reco_Samples/${SAMPLE_TARGET_NUCLEUS}/${GENIE_TUNE}/${BEAM_E}_${Q2_CUT}${FC_STATUS}_GEMC_510_test
-setenv OUTPATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/GENIE_Reco_Samples/${SAMPLE_TARGET_NUCLEUS}/${GENIE_TUNE}/${BEAM_E}_${Q2_CUT}${FC_STATUS}
-
-# setenv LOG_FILE ${OUTPATH}/GENIE_submission_log.txt
-# rm -f ${LOG_FILE}
-# echo "${PRINT_OUT_COLOR}Saving loop printout to ${LOG_FILE}"
-# exec >>& ${LOG_FILE}
+setenv OUTPATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/GENIE_Reco_Samples/${SAMPLE_TARGET_NUCLEUS}/${GENIE_TUNE}/${BEAM_E}_${Q2_CUT}${FC_STATUS}_Ar40_test
 
 echo "${PRINT_OUT_COLOR}//////////////////////////////////////////////////////////////////////\033[0m"
 echo "${PRINT_OUT_COLOR}// Setting GENIE slurm job submission                               //\033[0m"
@@ -153,13 +146,6 @@ setenv CANCEL_PREVIOUS_JOBS 0 ## 1 for true
 echo "${PRINT_OUT_COLOR}CANCEL_PREVIOUS_JOBS:\033[0m ${CANCEL_PREVIOUS_JOBS}"
 echo ""
 
-unsetenv USE_GEMC_5_10
-# setenv USE_GEMC_5_10 0 ## 1 for true # for _GEMC_511_test
-# setenv USE_GEMC_5_10 1 ## 1 for true # for _GEMC_510_test
-setenv USE_GEMC_5_10 1 ## 1 for true
-echo "${PRINT_OUT_COLOR}USE_GEMC_5_10:\033[0m ${USE_GEMC_5_10}"
-echo ""
-
 # Setting RUNNING_DIR
 unsetenv RUNNING_DIR
 setenv RUNNING_DIR `pwd`
@@ -173,32 +159,38 @@ if (! -d "${RUNNING_DIR}") then
 endif
 
 # Setting submission script path
-unsetenv SUBMIT_SCRIPT_PATH
-if ("${BEAM_E}" == "2070MeV") then
-    echo "${PRINT_OUT_COLOR}- Setting SUBMIT_SCRIPT_PATH for 2 GeV --------------------------------\033[0m"
-    setenv SUBMIT_SCRIPT_PATH ${RUNNING_DIR}/Uniform_sample_2GeV
-    echo ""
-else if ("${BEAM_E}" == "4029MeV") then
-    echo "${PRINT_OUT_COLOR}- Setting SUBMIT_SCRIPT_PATH for 4 GeV --------------------------------\033[0m"
-    setenv SUBMIT_SCRIPT_PATH ${RUNNING_DIR}/Uniform_sample_4GeV
-    echo ""
-else if ("${BEAM_E}" == "5986MeV") then
-    echo "${PRINT_OUT_COLOR}- Setting SUBMIT_SCRIPT_PATH for 6 GeV --------------------------------\033[0m"
-    setenv SUBMIT_SCRIPT_PATH ${RUNNING_DIR}/Uniform_sample_6GeV
-    echo ""
-endif
-
-echo "${PRINT_OUT_COLOR}SUBMIT_SCRIPT_PATH:\033[0m ${SUBMIT_SCRIPT_PATH}"
+unsetenv SUBMIT_SCRIPT_PATH_BASE
+setenv SUBMIT_SCRIPT_PATH_BASE /lustre24/expphy/volatile/clas12/asportes/Ar40_imp_GEMC/clas12-config/gemc/dev
+echo "${PRINT_OUT_COLOR}SUBMIT_SCRIPT_PATH_BASE:\033[0m ${SUBMIT_SCRIPT_PATH_BASE}"
 echo ""
 
-# Check if SUBMIT_SCRIPT_PATH is a directory
-if (! -d "${SUBMIT_SCRIPT_PATH}") then
-    echo "Error: Directory specified by SUBMIT_SCRIPT_PATH does not exist: ${SUBMIT_SCRIPT_PATH}"
+# Check if SUBMIT_SCRIPT_PATH_BASE is a directory
+if (! -d "${SUBMIT_SCRIPT_PATH_BASE}") then
+    echo "Error: Directory specified by SUBMIT_SCRIPT_PATH_BASE does not exist: ${SUBMIT_SCRIPT_PATH_BASE}"
     exit 1
 endif
 
 # Setting GCARD_FILE
 unsetenv GCARD_FILE
+if ("${SAMPLE_TARGET_NUCLEI}" == "C12") then
+    if ("${BEAM_E}" == "2070MeV") then
+        setenv GCARD_FILE ${SUBMIT_SCRIPT_PATH_BASE}/rgm_fall2021_C_v2_S_dev_test_${BEAM_E}.gcard
+        echo ""
+    else if ("${BEAM_E}" == "4029MeV") then
+        setenv GCARD_FILE ${SUBMIT_SCRIPT_PATH_BASE}/rgm_fall2021_C_v2_L_dev_test_${BEAM_E}.gcard
+        echo ""
+    else
+        echo "Unknown gcard configuration for: ${SAMPLE_TARGET_NUCLEI} at ${BEAM_E}"
+        exit 1
+    endif
+else if ("${BEAM_E}" == "4029MeV") then
+    setenv GCARD_FILE ${SUBMIT_SCRIPT_PATH_BASE}/rgm_fall2021_Ar_dev_test_${BEAM_E}.gcard
+    echo ""
+else
+    echo "Unknown gcard configuration for: ${SAMPLE_TARGET_NUCLEI} at ${BEAM_E}"
+    exit 1
+endif
+
 setenv GCARD_FILE ${SUBMIT_SCRIPT_PATH}/rgm_fall2021_C.gcard
 echo "${PRINT_OUT_COLOR}GCARD_FILE:\033[0m ${GCARD_FILE}"
 echo
@@ -256,14 +248,13 @@ if ("${CANCEL_PREVIOUS_JOBS}" == "1") then
     echo
 endif
 
-# Optionally use GEMC 5.10
-if ("${USE_GEMC_5_10}" == "1") then
-    echo "${PRINT_OUT_COLOR}- Reverting to GEMC 5.10 ----------------------------------------------\033[0m"
-    module unload gemc
-    module load gemc/5.10
-    echo
-endif
+echo "${PRINT_OUT_COLOR}- Moving to GEMC dev --------------------------------------------------\033[0m"
+module unload gemc
+module load gemc/dev
+echo
 
+unsetenv GEMC_DATA_DIR
+setenv GEMC_DATA_DIR /lustre24/expphy/volatile/clas12/asportes/Ar40_imp_GEMC/clas12Tags
 echo "${PRINT_OUT_COLOR}GEMC_DATA_DIR:\033[0m ${GEMC_DATA_DIR}"
 echo
 
@@ -313,12 +304,10 @@ echo ""
 echo "${PRINT_OUT_COLOR}Submitting GENIE sbatch job...\033[0m"
 
 unsetenv SLURM_JOB_NAME
-# setenv SLURM_JOB_NAME ${SAMPLE_TARGET_NUCLEUS}_${GENIE_TUNE}_${BEAM_E}_${Q2_CUT}${FC_STATUS}_GEMC_511_test_2
-# setenv SLURM_JOB_NAME ${SAMPLE_TARGET_NUCLEUS}_${GENIE_TUNE}_${BEAM_E}_${Q2_CUT}${FC_STATUS}_GEMC_510_test_2
-setenv SLURM_JOB_NAME ${SAMPLE_TARGET_NUCLEUS}_${GENIE_TUNE}_${BEAM_E}_${Q2_CUT}${FC_STATUS}
+setenv SLURM_JOB_NAME ${SAMPLE_TARGET_NUCLEUS}_${GENIE_TUNE}_${BEAM_E}_${Q2_CUT}${FC_STATUS}_Ar40_test
 echo "${PRINT_OUT_COLOR}SLURM_JOB_NAME:\033[0m ${SLURM_JOB_NAME}"
 echo ""
-sbatch --job-name="${SLURM_JOB_NAME}" submit_GENIE_sample.sh || exit 1
+# sbatch --job-name="${SLURM_JOB_NAME}" submit_GENIE_sample.sh || exit 1
 echo ""
 # echo ""
 
