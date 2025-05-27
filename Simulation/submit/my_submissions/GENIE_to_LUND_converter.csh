@@ -23,8 +23,8 @@ echo ""
 unsetenv TL_SAMPLE_TARGET_NUCLEUS
 # setenv TL_SAMPLE_TARGET_NUCLEUS H1
 # setenv TL_SAMPLE_TARGET_NUCLEUS D2
-# setenv TL_SAMPLE_TARGET_NUCLEUS C12
-setenv TL_SAMPLE_TARGET_NUCLEUS Ar40
+setenv TL_SAMPLE_TARGET_NUCLEUS C12
+# setenv TL_SAMPLE_TARGET_NUCLEUS Ar40
 echo "TL_SAMPLE_TARGET_NUCLEUS = ${TL_SAMPLE_TARGET_NUCLEUS}"
 echo ""
 
@@ -73,8 +73,10 @@ unsetenv TL_SAMPLE_TARGET_TYPE
 
 if ("${TL_SAMPLE_TARGET_NUCLEUS}" == "H1" || "${TL_SAMPLE_TARGET_NUCLEUS}" == "D2") then
     setenv TL_SAMPLE_TARGET_TYPE liquid
-else if (("${TL_SAMPLE_ENERGY}" == "2070MeV" || "${TL_SAMPLE_ENERGY}" == "4029MeV") && "${TL_SAMPLE_TARGET_NUCLEUS}" == "C12") then
-    setenv TL_SAMPLE_TARGET_TYPE 1-foil
+else if ("${TL_SAMPLE_ENERGY}" == "2070MeV" && "${TL_SAMPLE_TARGET_NUCLEUS}" == "C12") then
+    setenv TL_SAMPLE_TARGET_TYPE 1-foil-small
+else if ("${TL_SAMPLE_ENERGY}" == "4029MeV" && "${TL_SAMPLE_TARGET_NUCLEUS}" == "C12") then
+    setenv TL_SAMPLE_TARGET_TYPE 1-foil-large
 else if ("${TL_SAMPLE_ENERGY}" == "5986MeV" && "${TL_SAMPLE_TARGET_NUCLEUS}" == "C12") then
     setenv TL_SAMPLE_TARGET_TYPE 4-foil
 else if ("${TL_SAMPLE_TARGET_NUCLEUS}" == "Ar40") then
@@ -83,6 +85,18 @@ else
     echo "Unknown target type for energy/target: ${TL_SAMPLE_ENERGY}, ${TL_SAMPLE_TARGET_NUCLEUS}"
     exit 1
 endif
+# if ("${TL_SAMPLE_TARGET_NUCLEUS}" == "H1" || "${TL_SAMPLE_TARGET_NUCLEUS}" == "D2") then
+#     setenv TL_SAMPLE_TARGET_TYPE liquid
+# else if (("${TL_SAMPLE_ENERGY}" == "2070MeV" || "${TL_SAMPLE_ENERGY}" == "4029MeV") && "${TL_SAMPLE_TARGET_NUCLEUS}" == "C12") then
+#     setenv TL_SAMPLE_TARGET_TYPE 1-foil
+# else if ("${TL_SAMPLE_ENERGY}" == "5986MeV" && "${TL_SAMPLE_TARGET_NUCLEUS}" == "C12") then
+#     setenv TL_SAMPLE_TARGET_TYPE 4-foil
+# else if ("${TL_SAMPLE_TARGET_NUCLEUS}" == "Ar40") then
+#     setenv TL_SAMPLE_TARGET_TYPE Ar
+# else
+#     echo "Unknown target type for energy/target: ${TL_SAMPLE_ENERGY}, ${TL_SAMPLE_TARGET_NUCLEUS}"
+#     exit 1
+# endif
 
 echo "TL_SAMPLE_TARGET_TYPE = ${TL_SAMPLE_TARGET_TYPE}"
 echo ""

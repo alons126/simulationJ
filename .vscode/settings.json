@@ -2,6 +2,7 @@
     "files.associations": {
         "*.gcard": "xml",
         "*.cpp": "cpp",
+        "*.gxml": "xml",
         "DetectorSimulationAnalyzer.C": "cpp",
         "new": "cpp",
         "string": "cpp",
@@ -182,7 +183,9 @@
         "cutvaluemanager.h": "c",
         "histogramplottingfunctions.h": "c",
         "eventselectionsettings.h": "c",
-        "GENIE_to_LUND_converter.C": "cpp"
+        "GENIE_to_LUND_converter.C": "cpp",
+        "GENIE_to_LUND_converter copy.C": "cpp",
+        "GENIE_to_LUND_converter_original.C": "cpp"
     },
     "[jsonc]": {
         "editor.defaultFormatter": "vscode.json-language-features"

@@ -43,7 +43,7 @@ void GENIE_to_LUND_converter(TString InputFiles = "", /* TString OutputFileDir =
 
     bool PrintOutElectronSliceLimits = false;
 
-    bool apply_fiducial_cuts = false;
+    bool apply_fiducial_cuts = true;
 
     // Proceeding input arguments ---------------------------------------------------------------------------------------------------------------------------------------
 
@@ -84,8 +84,7 @@ void GENIE_to_LUND_converter(TString InputFiles = "", /* TString OutputFileDir =
     cout << "\033[33m\nLUND file prefix: \t\033[0m" << lundfile_prefix << endl;
 
     TString OutputFileBase = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples";
-    TString OutputFileDir = OutputFileBase + "/" + target_element + "/" + genie_tune + "/" + beam_e + "_" + Q2_cut + ending + "_Ar40_test";
-    // TString OutputFileDir = OutputFileBase + "/" + target_element + "/" + genie_tune + "/" + beam_e + "_" + Q2_cut + ending;
+    TString OutputFileDir = OutputFileBase + "/" + target_element + "/" + genie_tune + "/" + beam_e + "_" + Q2_cut + ending;
     system(("rm -rf " + std::string(OutputFileDir.Data())).c_str());    // Remove the directory if it exists
     system(("mkdir -p " + std::string(OutputFileDir.Data())).c_str());  // Create the directory
 
