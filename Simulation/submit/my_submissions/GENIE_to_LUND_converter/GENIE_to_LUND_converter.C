@@ -83,7 +83,7 @@ void GENIE_to_LUND_converter(TString InputFiles = "", /* TString OutputTopDir = 
 
     cout << "\033[33m\nLUND file prefix: \t\033[0m" << lundfile_prefix << endl;
 
-    TString OutputFileBase = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples";
+    TString OutputFileBase = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/GENIE_Reco_Samples";
     TString OutputTopDir = OutputFileBase + "/" + target_element + "/" + genie_tune + "/" + beam_e + "_" + Q2_cut + ending + "_Ar40_test";
     // TString OutputTopDir = OutputFileBase + "/" + target_element + "/" + genie_tune + "/" + beam_e + "_" + Q2_cut + ending;
     system(("rm -rf " + std::string(OutputTopDir.Data())).c_str());    // Remove the directory if it exists
@@ -362,28 +362,29 @@ void GENIE_to_LUND_converter(TString InputFiles = "", /* TString OutputTopDir = 
     cout << "\033[33m\n=============================================================\n\033[0m";
 
     cout << "\033[33m\n\n- Input variables -------------------------------------------\n\033[0m";
-    cout << "\t\033[33mInputFiles:\033[0m " << InputFiles << endl;
-    cout << "\t\033[33mnFiles:    \033[0m " << nFiles << endl;
-    cout << "\t\033[33mtarget:    \033[0m " << target << endl;
-    cout << "\t\033[33mA:         \033[0m " << A << endl;
-    cout << "\t\033[33mZ:         \033[0m " << Z << endl;
+    cout << "\033[33mInputFiles:\033[0m " << InputFiles << endl;
+    cout << "\033[33mnFiles:    \033[0m " << nFiles << endl;
+    cout << "\033[33mtarget:    \033[0m " << target << endl;
+    cout << "\033[33mA:         \033[0m " << A << endl;
+    cout << "\033[33mZ:         \033[0m " << Z << endl;
 
     cout << "\033[33m\n\n- Conversion settings ---------------------------------------\n\033[0m";
-    cout << "\t\033[33mapply_fiducial_cuts:\033[0m     " << basic_tools::BoolToString(apply_fiducial_cuts) << endl;
-    cout << "\t\033[33mtarget_element:\033[0m          " << target_element << endl;
-    cout << "\t\033[33mgenie_tune:\033[0m              " << genie_tune << endl;
-    cout << "\t\033[33mbeam_e:\033[0m                  " << beam_e << endl;
-    cout << "\t\033[33mQ2_cut:\033[0m                  " << Q2_cut << endl;
-    cout << "\t\033[33mlundfile_prefix:\033[0m         " << lundfile_prefix << endl;
-    cout << "\t\033[33mending:\033[0m                  " << ending << endl;
+    cout << "\033[33mapply_fiducial_cuts:\033[0m     " << basic_tools::BoolToString(apply_fiducial_cuts) << endl;
+    cout << "\033[33mtarget_element:\033[0m          " << target_element << endl;
+    cout << "\033[33mgenie_tune:\033[0m              " << genie_tune << endl;
+    cout << "\033[33mbeam_e:\033[0m                  " << beam_e << endl;
+    cout << "\033[33mQ2_cut:\033[0m                  " << Q2_cut << endl;
+    cout << "\033[33mlundfile_prefix:\033[0m         " << lundfile_prefix << endl;
+    cout << "\033[33mending:\033[0m                  " << ending << endl;
 
-    cout << "\n\t\033[33mpdfFileName:\033[0m           " << pdfFileName << endl;
-    cout << "\t\033[33mAcceptanceMapsDirectory:\033[0m " << AcceptanceMapsDirectory << endl;
-    cout << "\t\033[33mOutputFileBase:\033[0m          " << OutputFileBase << endl;
-    cout << "\t\033[33mOutputTopDir:\033[0m            " << OutputTopDir << endl;
+    cout << "\n "<< endl;
+    cout << "\033[33mpdfFileName:\033[0m             " << pdfFileName << endl;
+    cout << "\033[33mAcceptanceMapsDirectory:\033[0m " << AcceptanceMapsDirectory << endl;
+    cout << "\033[33mOutputFileBase:\033[0m          " << OutputFileBase << endl;
+    cout << "\033[33mOutputTopDir:\033[0m            " << OutputTopDir << endl;
 
     cout << "\033[33m\n\n- Conversion summary ----------------------------------------\n\033[0m";
-    cout << "\t\033[33mTotal entries scanned:\033[0m " << total_entries << endl;
-    cout << "\t\033[33mEvents passing cuts: \033[0m  " << passed_events << endl;
-    cout << "\t\033[33mOutput files written:\033[0m  " << current_file_index << endl;
+    cout << "\033[33mTotal entries scanned:\033[0m " << total_entries << endl;
+    cout << "\033[33mEvents passing cuts: \033[0m  " << passed_events << endl;
+    cout << "\033[33mOutput files written:\033[0m  " << current_file_index << endl;
 }
