@@ -36,7 +36,7 @@ using namespace std;
 using namespace utilities;
 using namespace targets;
 
-void GENIE_to_LUND_converter(TString InputFiles = "", /* TString OutputFileDir = "", */ /* TString outputFile = "", */ int nFiles = 1000, string target = "liquid", int A = 1, int Z = 1) {
+void GENIE_to_LUND_converter(TString InputFiles = "", /* TString OutputTopDir = "", */ /* TString outputFile = "", */ int nFiles = 1000, string target = "liquid", int A = 1, int Z = 1) {
     // Converter settings -----------------------------------------------------------------------------------------------------------------------------------------------
 
     bool PrintOut = false;
@@ -84,33 +84,33 @@ void GENIE_to_LUND_converter(TString InputFiles = "", /* TString OutputFileDir =
     cout << "\033[33m\nLUND file prefix: \t\033[0m" << lundfile_prefix << endl;
 
     TString OutputFileBase = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples";
-    TString OutputFileDir = OutputFileBase + "/" + target_element + "/" + genie_tune + "/" + beam_e + "_" + Q2_cut + ending + "_Ar40_test";
-    // TString OutputFileDir = OutputFileBase + "/" + target_element + "/" + genie_tune + "/" + beam_e + "_" + Q2_cut + ending;
-    system(("rm -rf " + std::string(OutputFileDir.Data())).c_str());    // Remove the directory if it exists
-    system(("mkdir -p " + std::string(OutputFileDir.Data())).c_str());  // Create the directory
+    TString OutputTopDir = OutputFileBase + "/" + target_element + "/" + genie_tune + "/" + beam_e + "_" + Q2_cut + ending + "_Ar40_test";
+    // TString OutputTopDir = OutputFileBase + "/" + target_element + "/" + genie_tune + "/" + beam_e + "_" + Q2_cut + ending;
+    system(("rm -rf " + std::string(OutputTopDir.Data())).c_str());    // Remove the directory if it exists
+    system(("mkdir -p " + std::string(OutputTopDir.Data())).c_str());  // Create the directory
 
     // Make lundfiles directory:
-    TString lundfiles_Path = OutputFileDir + "/lundfiles";
+    TString lundfiles_Path = OutputTopDir + "/lundfiles";
     cout << "\033[33m\nGenerating lundfiles directory: \t\033[0m" << lundfiles_Path << endl;
     system(("mkdir -p " + std::string(lundfiles_Path.Data())).c_str());
 
     // Make mchipo directory:
-    TString mchipo_Path = OutputFileDir + "/mchipo";
+    TString mchipo_Path = OutputTopDir + "/mchipo";
     cout << "\033[33m\nGenerating mchipo directory: \t\033[0m" << mchipo_Path << endl;
     system(("mkdir -p " + std::string(mchipo_Path.Data())).c_str());
 
     // Make reconhipo directory:
-    TString reconhipo_Path = OutputFileDir + "/reconhipo";
+    TString reconhipo_Path = OutputTopDir + "/reconhipo";
     cout << "\033[33m\nGenerating reconhipo directory: \t\033[0m" << reconhipo_Path << endl;
     system(("mkdir -p " + std::string(reconhipo_Path.Data())).c_str());
 
     // Make monitoring directory:
-    TString monitoring_Path = OutputFileDir + "/monitoring_plots";
+    TString monitoring_Path = OutputTopDir + "/monitoring_plots";
     cout << "\033[33m\nGenerating monitoring plots directory: \t\033[0m" << monitoring_Path << endl;
     system(("mkdir -p " + std::string(monitoring_Path.Data())).c_str());
 
     // Make monitoring png directory:
-    TString monitoring_png_Path = OutputFileDir + "/monitoring_plots";
+    TString monitoring_png_Path = OutputTopDir + "/monitoring_plots";
     cout << "\033[33m\nGenerating monitoring png plots directory: \t\033[0m" << monitoring_png_Path << endl;
     system(("mkdir -p " + std::string(monitoring_png_Path.Data())).c_str());
 
@@ -152,8 +152,8 @@ void GENIE_to_LUND_converter(TString InputFiles = "", /* TString OutputFileDir =
         new TH2D("theta_e_VS_phi_e", "#theta_{e} vs. #phi_{e};#phi_{e} [#circ];#theta_{e}", HistElectronSliceNumOfXBins, -180., 180., HistElectronSliceNumOfYBins, 0., 50.);
     HistoList.push_back(theta_e_VS_phi_e);
 
-    hsPlots theta_e_VS_phi_e_BySliceOfPe = hsPlots(ElectronMomSliceLimits, hsPlots::TH2D_TYPE, HistoList, "theta_e_VS_phi_e", "#theta_{e} vs. #phi_{e};#phi_{e} [#circ];#theta_{e} [#circ]", HistElectronSliceNumOfXBins, -180.,
-                                                   180., HistElectronSliceNumOfYBins, 0., 50., "P_{e} [GeV/c]");
+    hsPlots theta_e_VS_phi_e_BySliceOfPe = hsPlots(ElectronMomSliceLimits, hsPlots::TH2D_TYPE, HistoList, "theta_e_VS_phi_e", "#theta_{e} vs. #phi_{e};#phi_{e} [#circ];#theta_{e} [#circ]",
+                                                   HistElectronSliceNumOfXBins, -180., 180., HistElectronSliceNumOfYBins, 0., 50., "P_{e} [GeV/c]");
 
     // TTree variables --------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -354,10 +354,36 @@ void GENIE_to_LUND_converter(TString InputFiles = "", /* TString OutputFileDir =
     MainCanvas->Print(Form("%s]", pdfFile));  // Close the PDF file
 
     outfile.close();  // Close the last file if it was opened
-    cout << "\033[33m\nFINISHED!\n\033[0m" << endl;
 
-    cout << "\033[33m\nSummary:\n\033[0m";
+    cout << "\033[33m\nOperation finished!\n\033[0m" << endl;
+
+    cout << "\033[33m\n=============================================================\n\033[0m";
+    cout << "\033[33m\n= GENIE to LUND conversion summary                           \n\033[0m";
+    cout << "\033[33m\n=============================================================\n\033[0m";
+
+    cout << "\033[33m\n\n- Input variables -------------------------------------------\n\033[0m";
+    cout << "\t\033[33mInputFiles:\033[0m " << InputFiles << endl;
+    cout << "\t\033[33mnFiles:    \033[0m " << nFiles << endl;
+    cout << "\t\033[33mtarget:    \033[0m " << target << endl;
+    cout << "\t\033[33mA:         \033[0m " << A << endl;
+    cout << "\t\033[33mZ:         \033[0m " << Z << endl;
+
+    cout << "\033[33m\n\n- Conversion settings ---------------------------------------\n\033[0m";
+    cout << "\t\033[33mapply_fiducial_cuts:\033[0m     " << basic_tools::BoolToString(apply_fiducial_cuts) << endl;
+    cout << "\t\033[33mtarget_element:\033[0m          " << target_element << endl;
+    cout << "\t\033[33mgenie_tune:\033[0m              " << genie_tune << endl;
+    cout << "\t\033[33mbeam_e:\033[0m                  " << beam_e << endl;
+    cout << "\t\033[33mQ2_cut:\033[0m                  " << Q2_cut << endl;
+    cout << "\t\033[33mlundfile_prefix:\033[0m         " << lundfile_prefix << endl;
+    cout << "\t\033[33mending:\033[0m                  " << ending << endl;
+
+    cout << "\n\t\033[33mpdfFileName:\033[0m           " << pdfFileName << endl;
+    cout << "\t\033[33mAcceptanceMapsDirectory:\033[0m " << AcceptanceMapsDirectory << endl;
+    cout << "\t\033[33mOutputFileBase:\033[0m          " << OutputFileBase << endl;
+    cout << "\t\033[33mOutputTopDir:\033[0m            " << OutputTopDir << endl;
+
+    cout << "\033[33m\n\n- Conversion summary ----------------------------------------\n\033[0m";
     cout << "\t\033[33mTotal entries scanned:\033[0m " << total_entries << endl;
-    cout << "\t\033[33mEvents passing cuts:\033[0m " << passed_events << endl;
-    cout << "\t\033[33mOutput files written:\033[0m " << current_file_index << endl;
+    cout << "\t\033[33mEvents passing cuts: \033[0m  " << passed_events << endl;
+    cout << "\t\033[33mOutput files written:\033[0m  " << current_file_index << endl;
 }
