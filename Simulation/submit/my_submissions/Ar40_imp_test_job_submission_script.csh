@@ -183,7 +183,7 @@ if ("${SAMPLE_TARGET_NUCLEI}" == "C12") then
         echo "Unknown gcard configuration for: ${SAMPLE_TARGET_NUCLEI} at ${BEAM_E}"
         exit 1
     endif
-else if ("${BEAM_E}" == "4029MeV") then
+else if ("${SAMPLE_TARGET_NUCLEI}" == "Ar40") then
     setenv GCARD_FILE ${SUBMIT_SCRIPT_PATH_BASE}/rgm_fall2021_Ar_dev_test_${BEAM_E}.gcard
     echo ""
 else
