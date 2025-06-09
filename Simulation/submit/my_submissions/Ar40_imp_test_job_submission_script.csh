@@ -8,8 +8,8 @@ foreach FC_STATUSES ( 0 )
 # Loop over target nuclei
 # foreach SAMPLE_TARGET_NUCLEI ( H1 )
 # foreach SAMPLE_TARGET_NUCLEI ( D2 )
-foreach SAMPLE_TARGET_NUCLEI ( C12 )
-# foreach SAMPLE_TARGET_NUCLEI ( Ar40 )
+# foreach SAMPLE_TARGET_NUCLEI ( C12 )
+foreach SAMPLE_TARGET_NUCLEI ( Ar40 )
 # foreach SAMPLE_TARGET_NUCLEI ( H1 D2 C12 Ar40 )
 
 # Loop over GENIE tunes
