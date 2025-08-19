@@ -8,8 +8,8 @@ echo
 
 # Set number of files
 unsetenv NUM_OF_FILES
-# setenv NUM_OF_FILES 2500
-setenv NUM_OF_FILES 1000
+setenv NUM_OF_FILES 2500
+# setenv NUM_OF_FILES 1000
 echo "\033[35mNUM_OF_FILES:\033[0m ${NUM_OF_FILES}"
 echo ""
 
@@ -63,8 +63,8 @@ echo ""
 # Set beam energy
 unsetenv TL_SAMPLE_ENERGY
 # setenv TL_SAMPLE_ENERGY 2070MeV
-setenv TL_SAMPLE_ENERGY 4029MeV
-# setenv TL_SAMPLE_ENERGY 5986MeV
+# setenv TL_SAMPLE_ENERGY 4029MeV
+setenv TL_SAMPLE_ENERGY 5986MeV
 echo "\033[35mTL_SAMPLE_ENERGY:\033[0m ${TL_SAMPLE_ENERGY}"
 echo ""
 
