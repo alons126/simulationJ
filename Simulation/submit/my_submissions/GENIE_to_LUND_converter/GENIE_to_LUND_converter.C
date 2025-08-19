@@ -288,7 +288,7 @@ void GENIE_to_LUND_converter(TString InputFiles = "", /* TString OutputTopDir = 
 
         if (events_in_current_file == 10000) {
             outfile.close();
-            cout << "\033[33m\nSaved file #\033[0m" << current_file_index << ": " << outfilename << endl;
+            cout << "\033[33m\nSaved file #\033[0m" << current_file_index << "\033[33m:\033[0m " << outfilename << endl;
 
             ++current_file_index;
             events_in_current_file = 0;
