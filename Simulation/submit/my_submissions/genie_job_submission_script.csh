@@ -10,8 +10,8 @@ foreach SAMPLE_TARGET_NUCLEI ( C12 )
 # foreach SAMPLE_TARGET_NUCLEI ( H1 D2 C12 Ar40 )
 
 # Loop over GENIE tunes
-foreach GENIE_TUNES ( G18_10a_00_000 )
-# foreach GENIE_TUNES ( GEM21_11a_00_000 )
+# foreach GENIE_TUNES ( G18_10a_00_000 )
+foreach GENIE_TUNES ( GEM21_11a_00_000 )
 # foreach GENIE_TUNES ( G18_10a_00_000 GEM21_11a_00_000 )
 
 # Loop over beam energies
