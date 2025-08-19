@@ -152,8 +152,8 @@ void GENIE_to_LUND_converter(TString InputFiles = "", /* TString OutputTopDir = 
         new TH2D("theta_e_VS_phi_e", "#theta_{e} vs. #phi_{e};#phi_{e} [#circ];#theta_{e}", HistElectronSliceNumOfXBins, -180., 180., HistElectronSliceNumOfYBins, 0., 50.);
     HistoList.push_back(theta_e_VS_phi_e);
 
-    hsPlots theta_e_VS_phi_e_BySliceOfPe = hsPlots(ElectronMomSliceLimits, hsPlots::TH2D_TYPE, HistoList, "theta_e_VS_phi_e", "#theta_{e} vs. #phi_{e};#phi_{e} [#circ];#theta_{e} [#circ]",
-                                                   HistElectronSliceNumOfXBins, -180., 180., HistElectronSliceNumOfYBins, 0., 50., "P_{e} [GeV/c]");
+    // hsPlots theta_e_VS_phi_e_BySliceOfPe = hsPlots(ElectronMomSliceLimits, hsPlots::TH2D_TYPE, HistoList, "theta_e_VS_phi_e", "#theta_{e} vs. #phi_{e};#phi_{e} [#circ];#theta_{e} [#circ]",
+    //                                                HistElectronSliceNumOfXBins, -180., 180., HistElectronSliceNumOfYBins, 0., 50., "P_{e} [GeV/c]");
 
     // TTree variables --------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -240,7 +240,7 @@ void GENIE_to_LUND_converter(TString InputFiles = "", /* TString OutputTopDir = 
         if (!(!apply_fiducial_cuts || e_inFD)) { continue; }
 
         theta_e_VS_phi_e->Fill(phi_e, theta_e);
-        theta_e_VS_phi_e_BySliceOfPe.Fill(P_e, phi_e, theta_e);
+        // theta_e_VS_phi_e_BySliceOfPe.Fill(P_e, phi_e, theta_e);
 
         double code = (qel) ? 1. : (mec) ? 2. : (res) ? 3. : (dis) ? 4. : 0.;
 
@@ -348,7 +348,7 @@ void GENIE_to_LUND_converter(TString InputFiles = "", /* TString OutputTopDir = 
         MainCanvas->Print(pdfFile);  // Save the current canvas (histogram) to the PDF
     }
 
-    theta_e_VS_phi_e_BySliceOfPe.SaveHistograms(std::string(monitoring_png_Path.Data()), std::string(lundfile_prefix.Data()));
+    // theta_e_VS_phi_e_BySliceOfPe.SaveHistograms(std::string(monitoring_png_Path.Data()), std::string(lundfile_prefix.Data()));
 
     // End the multi-page PDF
     MainCanvas->Print(Form("%s]", pdfFile));  // Close the PDF file
