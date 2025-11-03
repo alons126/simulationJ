@@ -7,9 +7,9 @@
 #include <iostream>
 
 #include "../../../targets.h"
-#include "/w/hallb-scshelf2102/clas12/asportes/2N-Analyzer/framework/classes/AMaps/AMap.cpp"
-#include "/w/hallb-scshelf2102/clas12/asportes/2N-Analyzer/framework/classes/DSCuts/DSCuts.h"
-#include "/w/hallb-scshelf2102/clas12/asportes/2N-Analyzer/framework/namespaces/general_utilities/utilities.h"
+#include "/w/hallb-scshelf2102/clas12/asportes/2N-Analyzer-e4nu/framework/classes/AMaps/AMap.cpp"
+#include "/w/hallb-scshelf2102/clas12/asportes/2N-Analyzer-e4nu/framework/classes/DSCuts/DSCuts.h"
+#include "/w/hallb-scshelf2102/clas12/asportes/2N-Analyzer-e4nu/framework/namespaces/general_utilities/utilities.h"
 
 using namespace std;
 using namespace utilities;
@@ -42,7 +42,7 @@ void GENIE_to_LUND(TString inputFile = "", TString outputFileDir = "", TString o
 
     // Acceptance maps ----------------------------------------------------
 
-    std::string AcceptanceMapsDirectory = "/w/hallb-scshelf2102/clas12/asportes/2N-Analyzer/data/AcceptanceMaps";
+    std::string AcceptanceMapsDirectory = "/w/hallb-scshelf2102/clas12/asportes/2N-Analyzer-e4nu/data/AcceptanceMaps";
 
     AMaps aMaps_master = AMaps(AcceptanceMapsDirectory, "Uniform_1e_sample_" + GetBeamEnergyFromDouble(beamE_in_lundfiles), beamE_in_lundfiles, "AMaps", false, false, {1, 1, 1});
 

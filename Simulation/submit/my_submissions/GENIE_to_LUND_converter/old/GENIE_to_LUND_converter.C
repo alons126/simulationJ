@@ -3,7 +3,7 @@
 #include <iostream>
 
 #include "../../../targets.h"
-#include "/w/hallb-scshelf2102/clas12/asportes/2N-Analyzer/framework/classes/AMaps/AMap.cpp"
+#include "/w/hallb-scshelf2102/clas12/asportes/2N-Analyzer-e4nu/framework/classes/AMaps/AMap.cpp"
 #include "TFile.h"
 #include "TRandom3.h"
 #include "TString.h"
