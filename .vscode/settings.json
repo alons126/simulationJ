@@ -185,7 +185,8 @@
         "eventselectionsettings.h": "c",
         "GENIE_to_LUND_converter.C": "cpp",
         "GENIE_to_LUND_converter copy.C": "cpp",
-        "GENIE_to_LUND_converter_original.C": "cpp"
+        "GENIE_to_LUND_converter_original.C": "cpp",
+        "GENIE_to_LUND.C": "cpp"
     },
     "[jsonc]": {
         "editor.defaultFormatter": "vscode.json-language-features"
