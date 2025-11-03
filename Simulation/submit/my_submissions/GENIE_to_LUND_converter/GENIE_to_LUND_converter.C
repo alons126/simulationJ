@@ -130,11 +130,19 @@ void GENIE_to_LUND_converter(TString InputFiles = "", /* TString OutputTopDir = 
 
     std::string AcceptanceMapsDirectory = "/w/hallb-scshelf2102/clas12/asportes/2N-Analyzer-e4nu/data/AcceptanceMaps/";
 
+    cout << "\nTEST 1\n" << endl;
+
     AMaps aMaps_master = AMaps(AcceptanceMapsDirectory, "Uniform_1e_sample_" + GetBeamEnergyFromDouble(beamE), beamE, "AMaps", false, false, {1, 1, 1});
+
+    cout << "\nTEST 2\n" << endl;
 
     int HistElectronSliceNumOfXBins = aMaps_master.GetHistElectronSliceNumOfXBins(), HistElectronSliceNumOfYBins = aMaps_master.GetHistElectronSliceNumOfYBins();
 
+    cout << "\nTEST 3\n" << endl;
+
     vector<vector<double>> ElectronMomSliceLimits = aMaps_master.GetLoadedElectronMomSliceLimits();
+
+    cout << "\nTEST 4\n" << endl;
 
     if (PrintOutElectronSliceLimits) {
         cout << "\033[33m\nElectronMomSliceLimits.size() = \033[0m" << ElectronMomSliceLimits.size() << endl;
