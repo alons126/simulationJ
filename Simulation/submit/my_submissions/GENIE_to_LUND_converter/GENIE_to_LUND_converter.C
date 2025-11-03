@@ -126,33 +126,27 @@ void GENIE_to_LUND_converter(TString InputFiles = "", /* TString OutputTopDir = 
 
     // Acceptance maps --------------------------------------------------------------------------------------------------------------------------------------------------
 
-    cout << "\nPreparing acceptance maps...\n" << endl;
+    //TODO: enable AMaps after generation!
 
-    std::string AcceptanceMapsDirectory = "/w/hallb-scshelf2102/clas12/asportes/2N-Analyzer-e4nu/data/AcceptanceMaps/";
+    // cout << "\nPreparing acceptance maps...\n" << endl;
 
-    cout << "\nTEST 1\n" << endl;
+    // std::string AcceptanceMapsDirectory = "/w/hallb-scshelf2102/clas12/asportes/2N-Analyzer-e4nu/data/AcceptanceMaps/";
 
-    AMaps aMaps_master = AMaps(AcceptanceMapsDirectory, "Uniform_1e_sample_" + GetBeamEnergyFromDouble(beamE), beamE, "AMaps", false, false, {1, 1, 1});
+    // AMaps aMaps_master = AMaps(AcceptanceMapsDirectory, "Uniform_1e_sample_" + GetBeamEnergyFromDouble(beamE), beamE, "AMaps", false, false, {1, 1, 1});
 
-    cout << "\nTEST 2\n" << endl;
+    // int HistElectronSliceNumOfXBins = aMaps_master.GetHistElectronSliceNumOfXBins(), HistElectronSliceNumOfYBins = aMaps_master.GetHistElectronSliceNumOfYBins();
 
-    int HistElectronSliceNumOfXBins = aMaps_master.GetHistElectronSliceNumOfXBins(), HistElectronSliceNumOfYBins = aMaps_master.GetHistElectronSliceNumOfYBins();
+    // vector<vector<double>> ElectronMomSliceLimits = aMaps_master.GetLoadedElectronMomSliceLimits();
 
-    cout << "\nTEST 3\n" << endl;
+    // if (PrintOutElectronSliceLimits) {
+    //     cout << "\033[33m\nElectronMomSliceLimits.size() = \033[0m" << ElectronMomSliceLimits.size() << endl;
 
-    vector<vector<double>> ElectronMomSliceLimits = aMaps_master.GetLoadedElectronMomSliceLimits();
-
-    cout << "\nTEST 4\n" << endl;
-
-    if (PrintOutElectronSliceLimits) {
-        cout << "\033[33m\nElectronMomSliceLimits.size() = \033[0m" << ElectronMomSliceLimits.size() << endl;
-
-        cout << "\033[33m\nElectron momentum slice limits:\033[0m" << endl;
-        for (int i = 0; i < ElectronMomSliceLimits.size(); i++) {
-            cout << "\t\033[33mSlice " << i + 1 << ":\033[0m " << ElectronMomSliceLimits[i][0] << " - " << ElectronMomSliceLimits[i][1] << endl;
-        }
-        cout << "\n";
-    }
+    //     cout << "\033[33m\nElectron momentum slice limits:\033[0m" << endl;
+    //     for (int i = 0; i < ElectronMomSliceLimits.size(); i++) {
+    //         cout << "\t\033[33mSlice " << i + 1 << ":\033[0m " << ElectronMomSliceLimits[i][0] << " - " << ElectronMomSliceLimits[i][1] << endl;
+    //     }
+    //     cout << "\n";
+    // }
 
     // FD theta acceptance limits ---------------------------------------------------------------------------------------------------------------------------------------
 
@@ -163,7 +157,8 @@ void GENIE_to_LUND_converter(TString InputFiles = "", /* TString OutputTopDir = 
     std::vector<TObject*> HistoList;
 
     TH2D* theta_e_VS_phi_e =
-        new TH2D("theta_e_VS_phi_e", "#theta_{e} vs. #phi_{e};#phi_{e} [#circ];#theta_{e}", HistElectronSliceNumOfXBins, -180., 180., HistElectronSliceNumOfYBins, 0., 50.);
+        new TH2D("theta_e_VS_phi_e", "#theta_{e} vs. #phi_{e};#phi_{e} [#circ];#theta_{e}", 100, -180., 180., HistElectronSliceNumOfYBins, 0., 50.);
+        // new TH2D("theta_e_VS_phi_e", "#theta_{e} vs. #phi_{e};#phi_{e} [#circ];#theta_{e}", HistElectronSliceNumOfXBins, -180., 180., HistElectronSliceNumOfYBins, 0., 50.);
     HistoList.push_back(theta_e_VS_phi_e);
 
     // hsPlots theta_e_VS_phi_e_BySliceOfPe = hsPlots(ElectronMomSliceLimits, hsPlots::TH2D_TYPE, HistoList, "theta_e_VS_phi_e", "#theta_{e} vs. #phi_{e};#phi_{e} [#circ];#theta_{e}
@@ -251,7 +246,8 @@ void GENIE_to_LUND_converter(TString InputFiles = "", /* TString OutputTopDir = 
         double theta_e = acos(pzl / sqrt(pxl * pxl + pyl * pyl + pzl * pzl)) * 180. / TMath::Pi();
         double phi_e = atan2(pyl, pxl) * 180. / TMath::Pi();
 
-        bool e_inFD = aMaps_master.IsInFDQuery((!apply_fiducial_cuts), ThetaFD, "Electron", P_e, theta_e, phi_e, false, true);
+        bool e_inFD = true;
+        // bool e_inFD = aMaps_master.IsInFDQuery((!apply_fiducial_cuts), ThetaFD, "Electron", P_e, theta_e, phi_e, false, true);
 
         // Apply electron acceptance cuts:
         if (!(!apply_fiducial_cuts || e_inFD)) { continue; }
@@ -396,7 +392,7 @@ void GENIE_to_LUND_converter(TString InputFiles = "", /* TString OutputTopDir = 
 
     cout << "\n " << endl;
     cout << "\033[33mpdfFileName:\033[0m             " << pdfFileName << endl;
-    cout << "\033[33mAcceptanceMapsDirectory:\033[0m " << AcceptanceMapsDirectory << endl;
+    // cout << "\033[33mAcceptanceMapsDirectory:\033[0m " << AcceptanceMapsDirectory << endl;
     cout << "\033[33mOutputFileBase:\033[0m          " << OutputFileBase << endl;
     cout << "\033[33mOutputTopDir:\033[0m            " << OutputTopDir << endl;
 
