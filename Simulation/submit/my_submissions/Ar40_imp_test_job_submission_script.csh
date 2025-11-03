@@ -93,8 +93,8 @@ endif
 
 # Set GEMC data directory
 unsetenv OUTPATH
-setenv OUTPATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/GENIE_Reco_Samples/${SAMPLE_TARGET_NUCLEUS}/${GENIE_TUNE}/${BEAM_E}_${Q2_CUT}${FC_STATUS}_Ar40_test_2
-# setenv OUTPATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/GENIE_Reco_Samples/${SAMPLE_TARGET_NUCLEUS}/${GENIE_TUNE}/${BEAM_E}_${Q2_CUT}${FC_STATUS}_Ar40_test
+# setenv OUTPATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/GENIE_Reco_Samples/${SAMPLE_TARGET_NUCLEUS}/${GENIE_TUNE}/${BEAM_E}_${Q2_CUT}${FC_STATUS}
+setenv OUTPATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/GENIE_Reco_Samples/${SAMPLE_TARGET_NUCLEUS}/${GENIE_TUNE}/${BEAM_E}_${Q2_CUT}${FC_STATUS}_Ar40_target_zpos_test
 
 echo "${PRINT_OUT_COLOR}//////////////////////////////////////////////////////////////////////\033[0m"
 echo "${PRINT_OUT_COLOR}// Setting GENIE slurm job submission                               //\033[0m"
@@ -328,7 +328,6 @@ echo "${PRINT_OUT_COLOR}Submitting GENIE sbatch job...\033[0m"
 unsetenv SLURM_JOB_NAME
 # setenv SLURM_JOB_NAME ${SAMPLE_TARGET_NUCLEUS}_${GENIE_TUNE}_${BEAM_E}_${Q2_CUT}${FC_STATUS}
 setenv SLURM_JOB_NAME ${SAMPLE_TARGET_NUCLEUS}_${GENIE_TUNE}_${BEAM_E}_${Q2_CUT}${FC_STATUS}_Ar40_target_zpos_test
-# setenv SLURM_JOB_NAME ${SAMPLE_TARGET_NUCLEUS}_${GENIE_TUNE}_${BEAM_E}_${Q2_CUT}${FC_STATUS}_Ar40_test
 echo "${PRINT_OUT_COLOR}SLURM_JOB_NAME:\033[0m ${SLURM_JOB_NAME}"
 echo ""
 # sbatch --job-name="${SLURM_JOB_NAME}" submit_GENIE_sample.sh || exit 1
