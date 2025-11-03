@@ -47,6 +47,8 @@ void GENIE_to_LUND_converter(TString InputFiles = "", /* TString OutputTopDir = 
 
     // Proceeding input arguments ---------------------------------------------------------------------------------------------------------------------------------------
 
+    cout << "\nProceeding input arguments...\n" << endl;
+
     TString target_element = (utilities::FindSubstring(std::string(InputFiles.Data()), "H1"))     ? "H1"
                              : (utilities::FindSubstring(std::string(InputFiles.Data()), "D2"))   ? "D2"
                              : (utilities::FindSubstring(std::string(InputFiles.Data()), "C12"))  ? "C12"
@@ -76,6 +78,8 @@ void GENIE_to_LUND_converter(TString InputFiles = "", /* TString OutputTopDir = 
     TString ending = apply_fiducial_cuts ? "_wFC" : "";
 
     // Read in target parameter files -----------------------------------------------------------------------------------------------------------------------------------
+
+    cout << "\nRead in target parameter files...\n" << endl;
 
     cout << "\033[33m\nConverting files:\t\033[0m" << InputFiles << endl;
     TChain* InChain = new TChain("gst");
@@ -122,6 +126,8 @@ void GENIE_to_LUND_converter(TString InputFiles = "", /* TString OutputTopDir = 
 
     // Acceptance maps --------------------------------------------------------------------------------------------------------------------------------------------------
 
+    cout << "\nPreparing acceptance maps...\n" << endl;
+
     std::string AcceptanceMapsDirectory = "/w/hallb-scshelf2102/clas12/asportes/2N-Analyzer-e4nu/data/AcceptanceMaps/";
 
     AMaps aMaps_master = AMaps(AcceptanceMapsDirectory, "Uniform_1e_sample_" + GetBeamEnergyFromDouble(beamE), beamE, "AMaps", false, false, {1, 1, 1});
@@ -152,10 +158,13 @@ void GENIE_to_LUND_converter(TString InputFiles = "", /* TString OutputTopDir = 
         new TH2D("theta_e_VS_phi_e", "#theta_{e} vs. #phi_{e};#phi_{e} [#circ];#theta_{e}", HistElectronSliceNumOfXBins, -180., 180., HistElectronSliceNumOfYBins, 0., 50.);
     HistoList.push_back(theta_e_VS_phi_e);
 
-    // hsPlots theta_e_VS_phi_e_BySliceOfPe = hsPlots(ElectronMomSliceLimits, hsPlots::TH2D_TYPE, HistoList, "theta_e_VS_phi_e", "#theta_{e} vs. #phi_{e};#phi_{e} [#circ];#theta_{e} [#circ]",
+    // hsPlots theta_e_VS_phi_e_BySliceOfPe = hsPlots(ElectronMomSliceLimits, hsPlots::TH2D_TYPE, HistoList, "theta_e_VS_phi_e", "#theta_{e} vs. #phi_{e};#phi_{e} [#circ];#theta_{e}
+    // [#circ]",
     //                                                HistElectronSliceNumOfXBins, -180., 180., HistElectronSliceNumOfYBins, 0., 50., "P_{e} [GeV/c]");
 
     // TTree variables --------------------------------------------------------------------------------------------------------------------------------------------------
+
+    cout << "\nSetting up TTree...\n" << endl;
 
     TTree* T = InChain;
     // TTree* T = (TTree*)InChain->Get("gst");
@@ -377,7 +386,7 @@ void GENIE_to_LUND_converter(TString InputFiles = "", /* TString OutputTopDir = 
     cout << "\033[33mlundfile_prefix:\033[0m         " << lundfile_prefix << endl;
     cout << "\033[33mending:\033[0m                  " << ending << endl;
 
-    cout << "\n "<< endl;
+    cout << "\n " << endl;
     cout << "\033[33mpdfFileName:\033[0m             " << pdfFileName << endl;
     cout << "\033[33mAcceptanceMapsDirectory:\033[0m " << AcceptanceMapsDirectory << endl;
     cout << "\033[33mOutputFileBase:\033[0m          " << OutputFileBase << endl;
