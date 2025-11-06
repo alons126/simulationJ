@@ -18,8 +18,8 @@ echo
 
 # Set paths based on BEAM_E
 unsetenv JOB_OUT_PATH
-# setenv JOB_OUT_PATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/${BEAM_E}
-setenv JOB_OUT_PATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/${BEAM_E}_target_zpos_test
+# setenv JOB_OUT_PATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/Uniform_e-p-n_samples/${BEAM_E}
+setenv JOB_OUT_PATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/Uniform_e-p-n_samples/${BEAM_E}_target_zpos_test
 echo "JOB_OUT_PATH = ${JOB_OUT_PATH}"
 echo
 
@@ -138,7 +138,7 @@ echo
 #     set clear_farm_out = $2
 
 #     # Set paths based on BEAM_E
-#     setenv JOB_OUT_PATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/${BEAM_E}
+#     setenv JOB_OUT_PATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/Uniform_e-p-n_samples/${BEAM_E}
 #     setenv JOB_OUT_PATH_1E ${JOB_OUT_PATH}/OutPut_1e
 #     setenv JOB_OUT_PATH_EP ${JOB_OUT_PATH}/OutPut_ep
 #     setenv JOB_OUT_PATH_EN ${JOB_OUT_PATH}/OutPut_en
