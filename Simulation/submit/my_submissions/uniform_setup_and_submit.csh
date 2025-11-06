@@ -80,7 +80,6 @@ if (! -d "${SUBMIT_SCRIPT_PATH}") then
     exit 1
 endif
 
-echo
 echo "\033[35mPulling updates...\033[0m"
 git pull
 echo
@@ -93,7 +92,6 @@ if ("${clear_farm_out}" == "true") then
     echo
 endif
 
-echo
 echo "\033[35mRemoving old directory structure for MC simulation here...\033[0m"
 # rm -rf ${JOB_OUT_PATH_1E}/mchipo
 # rm -rf ${JOB_OUT_PATH_1E}/reconhipo
@@ -125,5 +123,5 @@ echo
 # echo
 
 echo "\033[35mSubmitting en sbatch job for BeamE = \033[0m${BEAM_E}\033[35m...\033[0m"
-# sbatch ${SUBMIT_SCRIPT_PATH}/submit_GEMC_uniform_en.sh
+sbatch ${SUBMIT_SCRIPT_PATH}/submit_GEMC_uniform_en.sh
 echo

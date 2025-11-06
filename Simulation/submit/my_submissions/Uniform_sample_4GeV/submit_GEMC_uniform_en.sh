@@ -29,8 +29,8 @@ echo "SUBMIT_SCRIPT_DIR = ${SUBMIT_SCRIPT_DIR}"
 echo
 
 #choose the Gcard for your target type
-GCARD=${SUBMIT_SCRIPT_DIR}/rgm_fall2021_H.gcard
-# GCARD=${SUBMIT_SCRIPT_DIR}/rgm_fall2021_C.gcard
+# GCARD=${SUBMIT_SCRIPT_DIR}/rgm_fall2021_H.gcard
+GCARD=${SUBMIT_SCRIPT_DIR}/rgm_fall2021_C.gcard
 echo "GCARD = ${GCARD}"
 #Reconstruction yaml file
 YAML=${SUBMIT_SCRIPT_DIR}/rgm_fall2021-ai_4Gev.yaml
