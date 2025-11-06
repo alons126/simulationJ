@@ -4,23 +4,23 @@
 # uniform_setup_and_submit "5986MeV" true # Won’t clear farm_out.
 # uniform_setup_and_submit "5986MeV"      # Will clear farm_out.
 
-unsetenv clear_farm_out
+unsetenv clear_farm_out§
 setenv clear_farm_out false
-echo "\033[35mclear_farm_out:\033[0m${clear_farm_out}"
+echo "\033[35mclear_farm_out: \033[0m${clear_farm_out}"
 echo
 
 unsetenv BEAM_E
 setenv BEAM_E 2070MeV
 # setenv BEAM_E 4029MeV
 # setenv BEAM_E 5986MeV
-echo "\033[35mBEAM_E:\033[0m${BEAM_E}"
+echo "\033[35mBEAM_E: \033[0m${BEAM_E}"
 echo
 
 # Set paths based on BEAM_E
 unsetenv JOB_OUT_PATH
 # setenv JOB_OUT_PATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/Uniform_e-p-n_samples/${BEAM_E}
 setenv JOB_OUT_PATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/Uniform_e-p-n_samples/${BEAM_E}_target_zpos_test
-echo "\033[35mJOB_OUT_PATH:\033[0m${JOB_OUT_PATH}"
+echo "\033[35mJOB_OUT_PATH: \033[0m${JOB_OUT_PATH}"
 echo
 
 # Check if JOB_OUT_PATH is a directory
@@ -31,7 +31,7 @@ endif
 
 # unsetenv JOB_OUT_PATH_1E
 # setenv JOB_OUT_PATH_1E ${JOB_OUT_PATH}/OutPut_1e
-# echo "\033[35mJOB_OUT_PATH_1E:\033[0m${JOB_OUT_PATH_1E}"
+# echo "\033[35mJOB_OUT_PATH_1E: \033[0m${JOB_OUT_PATH_1E}"
 # echo
 
 # # Check if JOB_OUT_PATH_1E is a directory
@@ -42,7 +42,7 @@ endif
 
 # unsetenv JOB_OUT_PATH_EP
 # setenv JOB_OUT_PATH_EP ${JOB_OUT_PATH}/OutPut_ep
-# echo "\033[35mJOB_OUT_PATH_EP:\033[0m${JOB_OUT_PATH_EP}"
+# echo "\033[35mJOB_OUT_PATH_EP: \033[0m${JOB_OUT_PATH_EP}"
 # echo
 
 # # Check if JOB_OUT_PATH_EP is a directory
@@ -53,7 +53,7 @@ endif
 
 unsetenv JOB_OUT_PATH_EN
 setenv JOB_OUT_PATH_EN ${JOB_OUT_PATH}/OutPut_en
-echo "\033[35mJOB_OUT_PATH_EN:\033[0m${JOB_OUT_PATH_EN}"
+echo "\033[35mJOB_OUT_PATH_EN: \033[0m${JOB_OUT_PATH_EN}"
 echo
 
 # Check if JOB_OUT_PATH_EN is a directory
@@ -71,7 +71,7 @@ else if ("${BEAM_E}" == "4029MeV") then
 else if ("${BEAM_E}" == "2070MeV") then
     setenv SUBMIT_SCRIPT_PATH ./Uniform_sample_2GeV/
 endif
-echo "\033[35mSUBMIT_SCRIPT_PATH:\033[0m${SUBMIT_SCRIPT_PATH}"
+echo "\033[35mSUBMIT_SCRIPT_PATH: \033[0m${SUBMIT_SCRIPT_PATH}"
 echo
 
 # Check if SUBMIT_SCRIPT_PATH is a directory
