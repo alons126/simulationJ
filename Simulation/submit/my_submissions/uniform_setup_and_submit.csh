@@ -10,8 +10,8 @@ echo "\033[35mclear_farm_out: \033[0m${clear_farm_out}"
 echo
 
 unsetenv BEAM_E
-setenv BEAM_E 2070MeV
-# setenv BEAM_E 4029MeV
+# setenv BEAM_E 2070MeV
+setenv BEAM_E 4029MeV
 # setenv BEAM_E 5986MeV
 echo "\033[35mBEAM_E: \033[0m${BEAM_E}"
 echo
