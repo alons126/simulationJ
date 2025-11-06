@@ -34,7 +34,7 @@ git pull
 echo
 
 # Optionally clear the farm_out directory
-if (${clear_farm_out}) then
+if ("${clear_farm_out}") then
     echo
     echo "Clearing farm_out directory..."
     rm /u/scifarm/farm_out/asportes/*
