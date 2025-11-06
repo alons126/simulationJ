@@ -4,8 +4,10 @@
 # uniform_setup_and_submit "5986MeV" true # Won’t clear farm_out.
 # uniform_setup_and_submit "5986MeV"      # Will clear farm_out.
 
+unsetenv clear_farm_out
 setenv clear_farm_out false
 
+unsetenv BEAM_E
 setenv BEAM_E 2070MeV
 # setenv BEAM_E 4029MeV
 # setenv BEAM_E 5986MeV
@@ -18,11 +20,11 @@ setenv JOB_OUT_PATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/U
 setenv JOB_OUT_PATH_EN ${JOB_OUT_PATH}/OutPut_en
 
 # Determine the correct submit script path based on BEAM_E
-if (${BEAM_E} == "5986MeV") then
+if ("${BEAM_E}" == "5986MeV") then
     setenv SUBMIT_SCRIPT_PATH ./Uniform_sample_6GeV/
-else if (${BEAM_E} == "4029MeV") then
+else if ("${BEAM_E}" == "4029MeV") then
     setenv SUBMIT_SCRIPT_PATH ./Uniform_sample_4GeV/
-else if (${BEAM_E} == "2070MeV") then
+else if ("${BEAM_E}" == "2070MeV") then
     setenv SUBMIT_SCRIPT_PATH ./Uniform_sample_2GeV/
 endif
 
