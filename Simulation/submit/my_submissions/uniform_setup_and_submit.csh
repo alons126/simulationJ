@@ -6,26 +6,78 @@
 
 unsetenv clear_farm_out
 setenv clear_farm_out false
+echo "clear_farm_out = ${clear_farm_out}"
+echo
 
 unsetenv BEAM_E
 setenv BEAM_E 2070MeV
 # setenv BEAM_E 4029MeV
 # setenv BEAM_E 5986MeV
+echo "BEAM_E = ${BEAM_E}"
+echo
 
 # Set paths based on BEAM_E
+unsetenv JOB_OUT_PATH
 # setenv JOB_OUT_PATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/${BEAM_E}
 setenv JOB_OUT_PATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/${BEAM_E}_target_zpos_test
+echo "JOB_OUT_PATH = ${JOB_OUT_PATH}"
+echo
+
+# Check if JOB_OUT_PATH is a directory
+if (! -d "${JOB_OUT_PATH}") then
+    echo "Error: Directory specified by JOB_OUT_PATH does not exist: ${JOB_OUT_PATH}"
+    exit 1
+endif
+
+# unsetenv JOB_OUT_PATH_1E
 # setenv JOB_OUT_PATH_1E ${JOB_OUT_PATH}/OutPut_1e
+# echo "JOB_OUT_PATH_1E = ${JOB_OUT_PATH_1E}"
+# echo
+
+# # Check if JOB_OUT_PATH_1E is a directory
+# if (! -d "${JOB_OUT_PATH_1E}") then
+#     echo "Error: Directory specified by JOB_OUT_PATH_1E does not exist: ${JOB_OUT_PATH_1E}"
+#     exit 1
+# endif
+
+# unsetenv JOB_OUT_PATH_EP
 # setenv JOB_OUT_PATH_EP ${JOB_OUT_PATH}/OutPut_ep
+# echo "JOB_OUT_PATH_EP = ${JOB_OUT_PATH_EP}"
+# echo
+
+# # Check if JOB_OUT_PATH_EP is a directory
+# if (! -d "${JOB_OUT_PATH_EP}") then
+#     echo "Error: Directory specified by JOB_OUT_PATH_EP does not exist: ${JOB_OUT_PATH_EP}"
+#     exit 1
+# endif
+
+unsetenv JOB_OUT_PATH_EN
 setenv JOB_OUT_PATH_EN ${JOB_OUT_PATH}/OutPut_en
+echo "JOB_OUT_PATH_EN = ${JOB_OUT_PATH_EN}"
+echo
+
+# Check if JOB_OUT_PATH_EN is a directory
+if (! -d "${JOB_OUT_PATH_EN}") then
+    echo "Error: Directory specified by JOB_OUT_PATH_EN does not exist: ${JOB_OUT_PATH_EN}"
+    exit 1
+endif
 
 # Determine the correct submit script path based on BEAM_E
+unsetenv SUBMIT_SCRIPT_PATH
 if ("${BEAM_E}" == "5986MeV") then
     setenv SUBMIT_SCRIPT_PATH ./Uniform_sample_6GeV/
 else if ("${BEAM_E}" == "4029MeV") then
     setenv SUBMIT_SCRIPT_PATH ./Uniform_sample_4GeV/
 else if ("${BEAM_E}" == "2070MeV") then
     setenv SUBMIT_SCRIPT_PATH ./Uniform_sample_2GeV/
+endif
+echo "SUBMIT_SCRIPT_PATH = ${SUBMIT_SCRIPT_PATH}"
+echo
+
+# Check if SUBMIT_SCRIPT_PATH is a directory
+if (! -d "${SUBMIT_SCRIPT_PATH}") then
+    echo "Error: Directory specified by SUBMIT_SCRIPT_PATH does not exist: ${SUBMIT_SCRIPT_PATH}"
+    exit 1
 endif
 
 echo
