@@ -1,12 +1,13 @@
 #!/bin/csh
 
-# # Example of calling the function with a beam energy and enabling farm_out clearing
-# uniform_setup_and_submit "5986MeV" true # Won’t clear farm_out.
-# uniform_setup_and_submit "5986MeV"      # Will clear farm_out.
-
 unsetenv clear_farm_out§
 setenv clear_farm_out false
 echo "\033[35mclear_farm_out: \033[0m${clear_farm_out}"
+echo
+
+unset USE_GEMC_5_10
+setenv USE_GEMC_5_10 1 ## 1 for true
+echo "USE_GEMC_5_10: ${USE_GEMC_5_10}"
 echo
 
 unsetenv BEAM_E
@@ -92,6 +93,15 @@ if ("${clear_farm_out}" == "true") then
     echo
 endif
 
+# Optionally use GEMC 5.10
+if ("${USE_GEMC_5_10}" == "1") then
+    echo
+    echo "- Reverting to GEMC 5.10 ----------------------------------------------"
+    module unload gemc
+    module load gemc/5.10
+    echo
+endif
+
 echo "\033[35mRemoving old directory structure for MC simulation here...\033[0m"
 # rm -rf ${JOB_OUT_PATH_1E}/mchipo
 # rm -rf ${JOB_OUT_PATH_1E}/reconhipo
@@ -106,7 +116,6 @@ rm -rf ${JOB_OUT_PATH_EN}/reconhipo
 rm -rf ${JOB_OUT_PATH_EN}/rootfiles
 echo
 
-echo
 echo "\033[35mSetting up directory structure for MC simulation here...\033[0m"
 # mkdir ${JOB_OUT_PATH_1E}/mchipo ${JOB_OUT_PATH_1E}/reconhipo ${JOB_OUT_PATH_1E}/rootfiles
 # mkdir ${JOB_OUT_PATH_EP}/mchipo ${JOB_OUT_PATH_EP}/reconhipo ${JOB_OUT_PATH_EP}/rootfiles
