@@ -82,23 +82,27 @@ endif
 
 # Set torus field based on beam energy
 unsetenv TORUS_FIELD
-setenv TORUS_FIELD 1
-# if ("${BEAM_E}" == "2070MeV") then
-#     setenv TORUS_FIELD 0.5
-# else if ("${BEAM_E}" == "4029MeV" || "${BEAM_E}" == "5986MeV") then
-#     setenv TORUS_FIELD -1.0
-# else
-#     echo "Unknown torus field configuration: ${BEAM_E}"
-#     exit 1
-# endif
+
+# # For rgm_fall2021_C:
+# setenv TORUS_FIELD 1
+
+# For rgm_fall2021_C_v2_S or rgm_fall2021_C_v2_L:
+if ("${BEAM_E}" == "2070MeV") then
+    setenv TORUS_FIELD 0.5
+else if ("${BEAM_E}" == "4029MeV" || "${BEAM_E}" == "5986MeV") then
+    setenv TORUS_FIELD -1.0
+else
+    echo "Unknown torus field configuration: ${BEAM_E}"
+    exit 1
+endif
 
 # Set GEMC data directory
 unsetenv OUTPATH
 # setenv OUTPATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/GENIE_Reco_Samples/${SAMPLE_TARGET_NUCLEUS}/${GENIE_TUNE}/${BEAM_E}_${Q2_CUT}${FC_STATUS}
 # setenv OUTPATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/GENIE_Reco_Samples/${SAMPLE_TARGET_NUCLEUS}/${GENIE_TUNE}/${BEAM_E}_${Q2_CUT}${FC_STATUS}_Ar40_target_zpos_test
 # setenv OUTPATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/GENIE_Reco_Samples/${SAMPLE_TARGET_NUCLEUS}/${GENIE_TUNE}/${BEAM_E}_${Q2_CUT}${FC_STATUS}_Ar40_target_zpos_test_LATEST
-# setenv OUTPATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/GENIE_Reco_Samples/${SAMPLE_TARGET_NUCLEUS}/${GENIE_TUNE}/${BEAM_E}_${Q2_CUT}${FC_STATUS}_rgm_fall2021_Ar_test
-setenv OUTPATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/GENIE_Reco_Samples/${SAMPLE_TARGET_NUCLEUS}/${GENIE_TUNE}/${BEAM_E}_${Q2_CUT}${FC_STATUS}_rgm_fall2021_C_test
+setenv OUTPATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/GENIE_Reco_Samples/${SAMPLE_TARGET_NUCLEUS}/${GENIE_TUNE}/${BEAM_E}_${Q2_CUT}${FC_STATUS}_rgm_fall2021_Ar_test
+# setenv OUTPATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/GENIE_Reco_Samples/${SAMPLE_TARGET_NUCLEUS}/${GENIE_TUNE}/${BEAM_E}_${Q2_CUT}${FC_STATUS}_rgm_fall2021_C_test
 # setenv OUTPATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/GENIE_Reco_Samples/${SAMPLE_TARGET_NUCLEUS}/${GENIE_TUNE}/${BEAM_E}_${Q2_CUT}${FC_STATUS}_rgm_fall2021_C_v2_S_test
 # setenv OUTPATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/GENIE_Reco_Samples/${SAMPLE_TARGET_NUCLEUS}/${GENIE_TUNE}/${BEAM_E}_${Q2_CUT}${FC_STATUS}_rgm_fall2021_C_v2_L_test
 
@@ -184,15 +188,18 @@ if ("${SAMPLE_TARGET_NUCLEUS}" == "C12") then
     echo "${PRINT_OUT_COLOR}- Setting GCARD file for ${SAMPLE_TARGET_NUCLEUS} at ${BEAM_E} -------------------------------\033[0m"
     echo ""
 
-    setenv GCARD_FILE ${GCARD_FILE_PATH}/rgm_fall2021_C.gcard
-    # if ("${BEAM_E}" == "2070MeV") then
-    #     setenv GCARD_FILE ${GCARD_FILE_PATH}/rgm_fall2021_C_v2_S_dev_test_${BEAM_E}.gcard
-    # else if ("${BEAM_E}" == "4029MeV") then
-    #     setenv GCARD_FILE ${GCARD_FILE_PATH}/rgm_fall2021_C_v2_L_dev_test_${BEAM_E}.gcard
-    # else
-    #     echo "Unknown gcard configuration for: ${SAMPLE_TARGET_NUCLEUS} at ${BEAM_E}"
-    #     exit 1
-    # endif
+    # # For rgm_fall2021_C:
+    # setenv GCARD_FILE ${GCARD_FILE_PATH}/rgm_fall2021_C.gcard
+
+    # For rgm_fall2021_C_v2_S or rgm_fall2021_C_v2_L:
+    if ("${BEAM_E}" == "2070MeV") then
+        setenv GCARD_FILE ${GCARD_FILE_PATH}/rgm_fall2021_C_v2_S_dev_test_${BEAM_E}.gcard
+    else if ("${BEAM_E}" == "4029MeV") then
+        setenv GCARD_FILE ${GCARD_FILE_PATH}/rgm_fall2021_C_v2_L_dev_test_${BEAM_E}.gcard
+    else
+        echo "Unknown gcard configuration for: ${SAMPLE_TARGET_NUCLEUS} at ${BEAM_E}"
+        exit 1
+    endif
 else if ("${SAMPLE_TARGET_NUCLEUS}" == "Ar40") then
     echo "${PRINT_OUT_COLOR}- Setting GCARD file for ${SAMPLE_TARGET_NUCLEUS} at ${BEAM_E} ------------------------------\033[0m"
     echo ""
@@ -337,8 +344,8 @@ unsetenv SLURM_JOB_NAME
 # setenv SLURM_JOB_NAME ${SAMPLE_TARGET_NUCLEUS}_${GENIE_TUNE}_${BEAM_E}_${Q2_CUT}${FC_STATUS}
 # setenv SLURM_JOB_NAME ${SAMPLE_TARGET_NUCLEUS}_${GENIE_TUNE}_${BEAM_E}_${Q2_CUT}${FC_STATUS}_Ar40_target_zpos_test
 # setenv SLURM_JOB_NAME ${SAMPLE_TARGET_NUCLEUS}_${GENIE_TUNE}_${BEAM_E}_${Q2_CUT}${FC_STATUS}_Ar40_target_zpos_test_LATEST
-# setenv SLURM_JOB_NAME ${SAMPLE_TARGET_NUCLEUS}_${GENIE_TUNE}_${BEAM_E}_${Q2_CUT}${FC_STATUS}_rgm_fall2021_Ar_test
-setenv SLURM_JOB_NAME ${SAMPLE_TARGET_NUCLEUS}_${GENIE_TUNE}_${BEAM_E}_${Q2_CUT}${FC_STATUS}_rgm_fall2021_C_test
+setenv SLURM_JOB_NAME ${SAMPLE_TARGET_NUCLEUS}_${GENIE_TUNE}_${BEAM_E}_${Q2_CUT}${FC_STATUS}_rgm_fall2021_Ar_test
+# setenv SLURM_JOB_NAME ${SAMPLE_TARGET_NUCLEUS}_${GENIE_TUNE}_${BEAM_E}_${Q2_CUT}${FC_STATUS}_rgm_fall2021_C_test
 # setenv SLURM_JOB_NAME ${SAMPLE_TARGET_NUCLEUS}_${GENIE_TUNE}_${BEAM_E}_${Q2_CUT}${FC_STATUS}_rgm_fall2021_C_v2_S_test
 # setenv SLURM_JOB_NAME ${SAMPLE_TARGET_NUCLEUS}_${GENIE_TUNE}_${BEAM_E}_${Q2_CUT}${FC_STATUS}_rgm_fall2021_C_v2_L_test
 echo "${PRINT_OUT_COLOR}SLURM_JOB_NAME:\033[0m ${SLURM_JOB_NAME}"
