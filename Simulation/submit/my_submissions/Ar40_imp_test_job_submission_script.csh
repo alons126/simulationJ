@@ -338,7 +338,7 @@ setenv SLURM_JOB_NAME ${SAMPLE_TARGET_NUCLEUS}_${GENIE_TUNE}_${BEAM_E}_${Q2_CUT}
 echo "${PRINT_OUT_COLOR}SLURM_JOB_NAME:\033[0m ${SLURM_JOB_NAME}"
 echo ""
 
-# sbatch --job-name="${SLURM_JOB_NAME}" submit_GENIE_sample.sh || exit 1
+sbatch --job-name="${SLURM_JOB_NAME}" submit_GENIE_sample.sh || exit 1
 echo ""
 
 end  # End of loop over beam energies
