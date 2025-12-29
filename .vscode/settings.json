@@ -192,7 +192,7 @@
     "[jsonc]": {
         "editor.defaultFormatter": "vscode.json-language-features"
     },
-    "editor.wordWrapColumn": 200,
+    "editor.wordWrapColumn": 160,
     "editor.wordWrap": "on",
     "betterFolding.foldClosingBrackets": true,
     "betterFolding.showFoldedBrackets": true,
