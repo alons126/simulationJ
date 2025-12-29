@@ -15,4 +15,4 @@ git pull ; root 'GENIE_to_LUND_converter/GENIE_to_LUND_converter.C("/w/hallb-scs
 git pull ; root 'GENIE_to_LUND_converter/GENIE_to_LUND_converter.C("/w/hallb-scshelf2102/clas12/asportes/2N_Analysis_Truth_Samples/C12/G18_10a_00_000/2070MeV_Q2_0_02/master-routine_validation_01-eScattering/*.root",100,"1-foil-small",12,6)' -q
 
 // rgm_fall2021_C_v2_L test:
-git pull ; root 'GENIE_to_LUND_converter/GENIE_to_LUND_converter.C("/w/hallb-scshelf2102/clas12/asportes/2N_Analysis_Truth_Samples/C12/G18_10a_00_000/2070MeV_Q2_0_02/master-routine_validation_01-eScattering/*.root",100,"1-foil-large",12,6)' -q
+git pull ; root 'GENIE_to_LUND_converter/GENIE_to_LUND_converter.C("/w/hallb-scshelf2102/clas12/asportes/2N_Analysis_Truth_Samples/C12/G18_10a_00_000/4029MeV_Q2_0_25/master-routine_validation_01-eScattering/*.root",100,"1-foil-large",12,6)' -q
