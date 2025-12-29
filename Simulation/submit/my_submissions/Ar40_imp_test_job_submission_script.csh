@@ -8,8 +8,8 @@ foreach FC_STATUSES ( 0 )
 # Loop over target nuclei
 # foreach SAMPLE_TARGET_NUCLEI ( H1 )
 # foreach SAMPLE_TARGET_NUCLEI ( D2 )
-# foreach SAMPLE_TARGET_NUCLEI ( C12 )
-foreach SAMPLE_TARGET_NUCLEI ( Ar40 )
+foreach SAMPLE_TARGET_NUCLEI ( C12 )
+# foreach SAMPLE_TARGET_NUCLEI ( Ar40 )
 # foreach SAMPLE_TARGET_NUCLEI ( H1 D2 C12 Ar40 )
 
 # Loop over GENIE tunes
@@ -18,8 +18,8 @@ foreach GENIE_TUNES ( G18_10a_00_000 )
 # foreach GENIE_TUNES ( G18_10a_00_000 GEM21_11a_00_000 )
 
 # Loop over beam energies
-# foreach BEAM_ENERGIES ( 2070MeV )
-foreach BEAM_ENERGIES ( 4029MeV )
+foreach BEAM_ENERGIES ( 2070MeV )
+# foreach BEAM_ENERGIES ( 4029MeV )
 # foreach BEAM_ENERGIES ( 2070MeV 4029MeV )
 # foreach BEAM_ENERGIES ( 2070MeV 4029MeV 5986MeV )
 
@@ -96,7 +96,8 @@ unsetenv OUTPATH
 # setenv OUTPATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/GENIE_Reco_Samples/${SAMPLE_TARGET_NUCLEUS}/${GENIE_TUNE}/${BEAM_E}_${Q2_CUT}${FC_STATUS}
 # setenv OUTPATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/GENIE_Reco_Samples/${SAMPLE_TARGET_NUCLEUS}/${GENIE_TUNE}/${BEAM_E}_${Q2_CUT}${FC_STATUS}_Ar40_target_zpos_test
 # setenv OUTPATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/GENIE_Reco_Samples/${SAMPLE_TARGET_NUCLEUS}/${GENIE_TUNE}/${BEAM_E}_${Q2_CUT}${FC_STATUS}_Ar40_target_zpos_test_LATEST
-setenv OUTPATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/GENIE_Reco_Samples/${SAMPLE_TARGET_NUCLEUS}/${GENIE_TUNE}/${BEAM_E}_${Q2_CUT}${FC_STATUS}_rgm_fall2021_Ar_test
+# setenv OUTPATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/GENIE_Reco_Samples/${SAMPLE_TARGET_NUCLEUS}/${GENIE_TUNE}/${BEAM_E}_${Q2_CUT}${FC_STATUS}_rgm_fall2021_Ar_test
+setenv OUTPATH /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/GENIE_Reco_Samples/${SAMPLE_TARGET_NUCLEUS}/${GENIE_TUNE}/${BEAM_E}_${Q2_CUT}${FC_STATUS}_rgm_fall2021_C_v2_S_test
 
 echo
 echo "${PRINT_OUT_COLOR}//////////////////////////////////////////////////////////////////////\033[0m"
@@ -332,11 +333,12 @@ unsetenv SLURM_JOB_NAME
 # setenv SLURM_JOB_NAME ${SAMPLE_TARGET_NUCLEUS}_${GENIE_TUNE}_${BEAM_E}_${Q2_CUT}${FC_STATUS}
 # setenv SLURM_JOB_NAME ${SAMPLE_TARGET_NUCLEUS}_${GENIE_TUNE}_${BEAM_E}_${Q2_CUT}${FC_STATUS}_Ar40_target_zpos_test
 # setenv SLURM_JOB_NAME ${SAMPLE_TARGET_NUCLEUS}_${GENIE_TUNE}_${BEAM_E}_${Q2_CUT}${FC_STATUS}_Ar40_target_zpos_test_LATEST
-setenv SLURM_JOB_NAME ${SAMPLE_TARGET_NUCLEUS}_${GENIE_TUNE}_${BEAM_E}_${Q2_CUT}${FC_STATUS}_rgm_fall2021_Ar_test
+# setenv SLURM_JOB_NAME ${SAMPLE_TARGET_NUCLEUS}_${GENIE_TUNE}_${BEAM_E}_${Q2_CUT}${FC_STATUS}_rgm_fall2021_Ar_test
+setenv SLURM_JOB_NAME ${SAMPLE_TARGET_NUCLEUS}_${GENIE_TUNE}_${BEAM_E}_${Q2_CUT}${FC_STATUS}_rgm_fall2021_C_v2_S_test
 echo "${PRINT_OUT_COLOR}SLURM_JOB_NAME:\033[0m ${SLURM_JOB_NAME}"
 echo ""
 
-sbatch --job-name="${SLURM_JOB_NAME}" submit_GENIE_sample.sh || exit 1
+# sbatch --job-name="${SLURM_JOB_NAME}" submit_GENIE_sample.sh || exit 1
 echo ""
 
 end  # End of loop over beam energies
