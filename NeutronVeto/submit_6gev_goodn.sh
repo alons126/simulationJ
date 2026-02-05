@@ -1,7 +1,7 @@
 #!/bin/bash                                                                                                          
 #SBATCH --nodes=1                                                                                                    
 #SBATCH --ntasks=1                                                                                                   
-#SBATCH --mem-per-cpu=500
+#SBATCH --mem-per-cpu=700
 #SBATCH --account=clas12                                                                                             
 #SBATCH --job-name=veto_goodn
 #SBATCH --partition=production                                
@@ -16,7 +16,7 @@
 
 
 OUTPUT=/lustre19/expphy/volatile/clas12/users/erins/neutron-veto/d_6gev
-BUILD_DIR=/w/hallb-scshelf2102/clas/clase2/erins/repos/build_rgm/NeutronVeto
+BUILD_DIR=/w/hallb-scshelf2102/clas12/erins/build_rgm/NeutronVeto
 
 
 source /etc/profile.d/modules.sh
@@ -31,5 +31,5 @@ module load sqlite/dev
 
 INPUT=/lustre19/expphy/cache/clas12/rg-m/production/pass1/6gev/D/dst/recon/
 
-${BUILD_DIR}/D_getfeatures 5.98636 1 ${OUTPUT}/6gev_root/goodn_01${SLURM_ARRAY_TASK_ID}.root ${OUTPUT}/6gev_txt/goodn_01${SLURM_ARRAY_TASK_ID}.txt ${INPUT}/01${SLURM_ARRAY_TASK_ID}/rec_clas_*.hipo # look for good neutrons
+${BUILD_DIR}/D_getfeatures 5.98636 1 ${OUTPUT}/6gev_root/goodn_e5_pCD_01${SLURM_ARRAY_TASK_ID}.root ${OUTPUT}/6gev_txt/goodn_e5_pCD_01${SLURM_ARRAY_TASK_ID}.txt ${INPUT}/01${SLURM_ARRAY_TASK_ID}/rec_clas_01${SLURM_ARRAY_TASK_ID}.evio.*.hipo # look for good neutrons
 

@@ -1,0 +1,159 @@
+#include "TString.h"
+#include "TFile.h"
+#include "TTree.h"
+#include "TRandom3.h"
+// #include "../targets.h"
+#include <fstream>
+#include <iostream>
+
+#include "GENIE_to_LUND_Q2.C"
+
+using namespace std;
+
+/* root -l -q ConvertGENIE_Q2.C */
+
+void ConvertGENIE_Q2()
+{
+    // TString TARGET = "C12";
+    TString TARGET = "Ar40";
+    std::string target = TARGET.Data();
+
+    // TString GENIE_TUNE = "G18_10a_00_000";
+    TString GENIE_TUNE = "GEM21_11a_00_000";
+    std::string genie_tune = GENIE_TUNE.Data();
+
+    TString Q2_CUT;
+
+    TString BEAM_E;
+
+    if (target == "C12")
+    {
+        BEAM_E = "4029MeV"; // 4029MeV_def_Q2_th
+    }
+    else if (target == "Ar40")
+    {
+        BEAM_E = "5986MeV"; // 5986MeV_Q2_0_4_th
+    }
+
+    std::string beam_e = BEAM_E.Data();
+
+    int NUM_OF_FILES = 10;
+
+    string TARGET_TYPE;
+
+    int TARGET_A = 12;
+    int TARGET_Z = 6;
+
+    TString TRUTH_SAMPLE_INPUT_DIR;
+
+    if (genie_tune == "G18_10a_00_000")
+    {
+        if (beam_e == "4029MeV")
+        {
+            if (target == "C12")
+            {
+                TARGET_TYPE = "1-foil";
+            }
+            else if (target == "Ar40")
+            {
+                TARGET_TYPE = "Ar";
+            }
+
+            TRUTH_SAMPLE_INPUT_DIR = "/w/hallb-scshelf2102/clas12/asportes/2N_Analysis_Truth_Samples/" + TARGET + "/" + GENIE_TUNE +
+                                     "/Q2_th_test_samples/small_Q2_test_samples/4029MeV_def_Q2_th";
+            Q2_CUT = "def_Q2_th";
+        }
+        else if (beam_e == "5986MeV")
+        {
+            if (target == "C12")
+            {
+                TARGET_TYPE = "4-foil";
+            }
+            else if (target == "Ar40")
+            {
+                TARGET_TYPE = "Ar";
+            }
+
+            TRUTH_SAMPLE_INPUT_DIR = "/w/hallb-scshelf2102/clas12/asportes/2N_Analysis_Truth_Samples/" + TARGET + "/" + GENIE_TUNE +
+                                     "/Q2_th_test_samples/small_Q2_test_samples/5986MeV_Q2_0_4_th";
+            Q2_CUT = "Q2_0_40";
+        }
+    }
+    else if (genie_tune == "GEM21_11a_00_000")
+    {
+        if (beam_e == "4029MeV")
+        {
+            if (target == "C12")
+            {
+                TARGET_TYPE = "1-foil";
+            }
+            else if (target == "Ar40")
+            {
+                TARGET_TYPE = "Ar";
+            }
+
+            TRUTH_SAMPLE_INPUT_DIR = "/w/hallb-scshelf2102/clas12/asportes/2N_Analysis_Truth_Samples/" + TARGET + "/" + GENIE_TUNE +
+                                     "/Q2_th_test_samples/small_Q2_test_samples/4029MeV_def_Q2_th";
+            Q2_CUT = "def_Q2_th";
+        }
+        else if (beam_e == "5986MeV")
+        {
+            if (target == "C12")
+            {
+                TARGET_TYPE = "4-foil";
+            }
+            else if (target == "Ar40")
+            {
+                TARGET_TYPE = "Ar";
+            }
+
+            TRUTH_SAMPLE_INPUT_DIR = "/w/hallb-scshelf2102/clas12/asportes/2N_Analysis_Truth_Samples/" + TARGET + "/" + GENIE_TUNE +
+                                     "/Q2_th_test_samples/small_Q2_test_samples/5986MeV_Q2_0_4_th";
+            Q2_CUT = "Q2_0_40";
+        }
+    }
+
+    TString TRUTH_SAMPLE_ROOT_FILE_PREFIX = TARGET + "_" + GENIE_TUNE + "_" + Q2_CUT + "_" + BEAM_E;
+    TString TRUTH_SAMPLE_ROOT_FILE = TRUTH_SAMPLE_ROOT_FILE_PREFIX + ".root";
+
+    TString RECO_SAMPLES_TOPDIR = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/2N_Analysis_Reco_Samples";
+    TString RECO_SAMPLES_SUBDIR = "master-routine_validation_01-eScattering";
+    TString RECO_SAMPLES_LUNDDIR = "lundfiles";
+
+    gSystem->Exec("mkdir -p " + RECO_SAMPLES_TOPDIR + "/" + TARGET);
+    gSystem->Exec("mkdir -p " + RECO_SAMPLES_TOPDIR + "/" + TARGET + "/" + GENIE_TUNE);
+    gSystem->Exec("mkdir -p " + RECO_SAMPLES_TOPDIR + "/" + TARGET + "/" + GENIE_TUNE + "/Q2_th_test_samples");
+
+    TString RECO_SAMPLE_OUTPUT_DIR = RECO_SAMPLES_TOPDIR + "/" + TARGET + "/" + GENIE_TUNE + "/Q2_th_test_samples/" + BEAM_E;
+
+    gSystem->Exec("rm -rf " + RECO_SAMPLE_OUTPUT_DIR);
+
+    if (beam_e == "4029MeV")
+    {
+        GENIE_to_LUND_Q2(TARGET, GENIE_TUNE, BEAM_E,
+                         (TRUTH_SAMPLE_INPUT_DIR + "/" + RECO_SAMPLES_SUBDIR + "/" + TRUTH_SAMPLE_ROOT_FILE),
+                         RECO_SAMPLE_OUTPUT_DIR,
+                         TRUTH_SAMPLE_ROOT_FILE_PREFIX,
+                         NUM_OF_FILES,
+                         TARGET_TYPE,
+                         TARGET_A,
+                         TARGET_Z,
+                         0.02,  // start (4029MeV_def_Q2_th)
+                         0.4,   // finish (4029MeV_def_Q2_th)
+                         0.01); // delta (4029MeV_def_Q2_th)
+    }
+    else if (beam_e == "5986MeV")
+    {
+        GENIE_to_LUND_Q2(TARGET, GENIE_TUNE, BEAM_E,
+                         (TRUTH_SAMPLE_INPUT_DIR + "/" + RECO_SAMPLES_SUBDIR + "/" + TRUTH_SAMPLE_ROOT_FILE),
+                         RECO_SAMPLE_OUTPUT_DIR,
+                         TRUTH_SAMPLE_ROOT_FILE_PREFIX,
+                         NUM_OF_FILES,
+                         TARGET_TYPE,
+                         TARGET_A,
+                         TARGET_Z,
+                         0.4,   // start (5986MeV_Q2_0_4_th)
+                         0.8,   // finish (5986MeV_Q2_0_4_th)
+                         0.01); // delta (5986MeV_Q2_0_4_th)
+    }
+}
