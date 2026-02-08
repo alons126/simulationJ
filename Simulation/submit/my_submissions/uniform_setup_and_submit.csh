@@ -2,11 +2,21 @@
 
 # A scri
 
-# Setup
-# ---------------------------------------------------------------------------
-
+# Setup environment
+# ------------------------------------------------------------------------------------------------------
 source ./scripts/set_env.csh
 echo
+
+# Script banner
+# ------------------------------------------------------------------------------------------------------
+echo ""
+echo "${COLOR_START}=======================================================================${COLOR_END}"
+printf "%s%s%s\n" "${COLOR_START}= Setting and submitting uniform sample generation jobs =${COLOR_END}"
+echo "${COLOR_START}=======================================================================${COLOR_END}"
+echo ""
+
+# Setup environment variables and paths for uniform sample generation and submission
+# ------------------------------------------------------------------------------------------------------
 
 unsetenv BEAM_E
 setenv BEAM_E 2070MeV
@@ -41,7 +51,7 @@ echo "${COLOR_START}NUM_OF_JOBS:${COLOR_END} ${NUM_OF_JOBS}"
 echo
 
 # Main Script
-# ---------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 echo ""
 echo "${COLOR_START}=======================================================================${COLOR_END}"
 printf "%s%s%s\n" "${COLOR_START}= " "Starting uniform generation and submission for BeamE =${COLOR_END} ${BEAM_E}" "      ${COLOR_START}=${COLOR_END}"
@@ -131,10 +141,6 @@ foreach OUTPATH_PARTICLE ( 1e ep en )
         echo "${COLOR_ERROR_START}Error:${COLOR_END} the following file does not exist: ${GCARD_FILE}"
         exit 1
     endif
-
-    # Git operations
-    # ---------------------------------------------------------------------------
-    source ./scripts/update_script.csh
 
     # Setting YAML_FILE
     unsetenv YAML_FILE
