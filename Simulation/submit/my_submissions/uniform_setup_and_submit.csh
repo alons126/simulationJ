@@ -110,7 +110,7 @@ if ("${CLEAR_FAR_OUT}" == "true") then
     rm /u/scifarm/farm_out/asportes/*
     echo
 else
-    echo "${COLOR_START}CLEAR_FAR_OUT is set to 'false', skipping farm_out directory clearing...${COLOR_END}"
+    echo "CLEAR_FAR_OUT$ ${COLOR_START}is set to '${COLOR_END}false${COLOR_START}', skipping farm_out directory clearing...${COLOR_END}"
     echo
 endif
 
@@ -137,7 +137,7 @@ if ("${CUSTOM_GEMC_VERSION}" == "true") then
         echo
     endif
 else
-    echo "${COLOR_START}CUSTOM_GEMC_VERSION is set to 'false', skipping custom GEMC version loading...${COLOR_END}"
+    echo "CUSTOM_GEMC_VERSION$ ${COLOR_START}is set to '${COLOR_END}false${COLOR_START}', skipping custom GEMC version loading...${COLOR_END}"
     echo
 endif
 
