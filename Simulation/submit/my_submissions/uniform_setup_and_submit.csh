@@ -241,7 +241,6 @@ foreach OUTPATH_PARTICLE ( 1e )
     unsetenv GCARD_FILE
     setenv GCARD_FILE ${SUBMIT_SCRIPT_PATH}/${TARGET_VARIATION}_${BEAM_E_ROUNDED}.gcard
     echo "${COLOR_START}GCARD_FILE:${COLOR_END} ${GCARD_FILE}"
-    echo
 
     # Check if GCARD_FILE is a file
     echo "${COLOR_START}--> Checking if ${COLOR_END}GCARD_FILE${COLOR_START} is a file...${COLOR_END}"
@@ -263,7 +262,6 @@ foreach OUTPATH_PARTICLE ( 1e )
         setenv YAML_FILE ${SUBMIT_SCRIPT_PATH}/rgm_fall2021-ai_6Gev.yaml
     endif
     echo "${COLOR_START}YAML_FILE:${COLOR_END} ${YAML_FILE}"
-    echo
 
     # Check if YAML_FILE is a file
     echo "${COLOR_START}--> Checking if ${COLOR_END}YAML_FILE${COLOR_START} is a file...${COLOR_END}"
