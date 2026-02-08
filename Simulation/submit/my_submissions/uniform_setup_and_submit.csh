@@ -42,7 +42,11 @@ echo
 
 # Main Script
 # ---------------------------------------------------------------------------
-banner "Starting uniform generation and submission for BeamE = ${BEAM_E}"
+echo ""
+echo "${COLOR_START}=======================================================================${COLOR_END}"
+printf "%s%s%s\n" "${COLOR_START}= " "Starting uniform generation and submission for BeamE = ${BEAM_E}" " =${COLOR_END}"
+echo "${COLOR_START}=======================================================================${COLOR_END}"
+echo ""
 
 # Set paths based on BEAM_E
 unsetenv OUTPATH_BASE
@@ -51,7 +55,10 @@ echo "${COLOR_START}OUTPATH_BASE: ${COLOR_END}${OUTPATH_BASE}"
 echo
 
 # Check if OUTPATH_BASE is a directory
-Check_if_dir_exist "${OUTPATH_BASE}"
+if ( ! -d "${OUTPATH_BASE}" ) then
+    echo "${COLOR_ERROR_START}Error:${COLOR_END} the following directory does not exist: ${OUTPATH_BASE}"
+    exit 1
+endif
 
 # 
 # Loop over particle types
@@ -68,7 +75,10 @@ foreach OUTPATH_PARTICLE ( 1e ep en )
     echo
 
     # Check if OUTPATH_<PARTICLE> is a directory
-    Check_if_dir_exist "${OUTPATH}"
+    if ( ! -d "${OUTPATH}" ) then
+        echo "${COLOR_ERROR_START}Error:${COLOR_END} the following directory does not exist: ${OUTPATH}"
+        exit 1
+    endif
 
     # Setup other environment variables based on BEAM_E and particle type
     # ---------------------------------------------------------------------------
@@ -103,7 +113,10 @@ foreach OUTPATH_PARTICLE ( 1e ep en )
     echo
 
     # Check if SUBMIT_SCRIPT_PATH is a directory
-    Check_if_dir_exist "${SUBMIT_SCRIPT_PATH}"
+    if ( ! -d "${SUBMIT_SCRIPT_PATH}" ) then
+        echo "${COLOR_ERROR_START}Error:${COLOR_END} the following directory does not exist: ${SUBMIT_SCRIPT_PATH}"
+        exit 1
+    endif
 
     # Setting GCARD_FILE
     unsetenv GCARD_FILE
@@ -112,7 +125,10 @@ foreach OUTPATH_PARTICLE ( 1e ep en )
     echo
 
     # Check if GCARD_FILE is a file
-    Check_if_file_exist "${GCARD_FILE}"
+    if ( ! -f "${GCARD_FILE}" ) then
+        echo "${COLOR_ERROR_START}Error:${COLOR_END} the following file does not exist: ${GCARD_FILE}"
+        exit 1
+    endif
 
     # Git operations
     # ---------------------------------------------------------------------------
@@ -131,7 +147,10 @@ foreach OUTPATH_PARTICLE ( 1e ep en )
     echo
 
     # Check if YAML_FILE is a file
-    Check_if_file_exist "${YAML_FILE}"
+    if ( ! -f "${YAML_FILE}" ) then
+        echo "${COLOR_ERROR_START}Error:${COLOR_END} the following file does not exist: ${YAML_FILE}"
+        exit 1
+    endif
 
     echo "${COLOR_START}Pulling updates...\033[0m"
     git pull

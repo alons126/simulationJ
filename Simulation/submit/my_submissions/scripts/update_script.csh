@@ -4,7 +4,11 @@ source set_env.csh
 
 # Git operations
 # ---------------------------------------------------------------------------
-banner "Updating repository and cleaning working tree"
+echo ""
+echo "${COLOR_START}=======================================================================${COLOR_END}"
+printf "%s%s%s\n" "${COLOR_START}= " "Updating repository and cleaning working tree" " =${COLOR_END}"
+echo "${COLOR_START}=======================================================================${COLOR_END}"
+echo ""
 
 echo "${COLOR_START}HEAD:${COLOR_END}"
 git log -1 --oneline
