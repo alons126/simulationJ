@@ -4,9 +4,14 @@
 # ---------------------------------------------------------------------------
 
 # Colors (override by exporting COLOR_START / COLOR_END before running)
-: "${COLOR_START:=$'\033[35m'}"
-: "${COLOR_END:=$'\033[0m'}"
-: "${COLOR_ERROR_START:=$'\033[31m'}"
+unsetenv COLOR_START
+setenv COLOR_START \033[35m
+
+unsetenv COLOR_END
+setenv COLOR_END \033[0m
+
+unsetenv COLOR_ERROR_START
+setenv COLOR_ERROR_START \033[31m
 
 # Functions
 # ---------------------------------------------------------------------------
