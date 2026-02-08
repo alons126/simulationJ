@@ -154,7 +154,8 @@ echo "${COLOR_START}============================================================
 printf "%s%s%s\n" "${COLOR_START}= Looping over particle types                                         =${COLOR_END}"
 echo "${COLOR_START}=======================================================================${COLOR_END}"
 echo ""
-foreach OUTPATH_PARTICLE ( 1e ep en )
+foreach OUTPATH_PARTICLE ( 1e )
+# foreach OUTPATH_PARTICLE ( 1e ep en )
     echo "${COLOR_START}Processing particle type:${COLOR_END} ${OUTPATH_PARTICLE}"
     echo "${COLOR_START}-----------------------------------------------------------------------${COLOR_END}"
     echo
@@ -163,6 +164,13 @@ foreach OUTPATH_PARTICLE ( 1e ep en )
     # ---------------------------------------------------------------------------
 
     echo "${COLOR_START}OUTPATH_PARTICLE:${COLOR_END} ${OUTPATH_PARTICLE}"
+    echo
+
+    # Setup other environment variables based on BEAM_E and particle type
+    # ---------------------------------------------------------------------------
+
+    echo "${COLOR_START}Setting environment variables and paths for particle type ${OUTPATH_PARTICLE}${COLOR_END}"
+    echo "${COLOR_START}-----------------------------------------------------------------------${COLOR_END}"
     echo
 
     # Determine the correct submit script path based on BEAM_E
