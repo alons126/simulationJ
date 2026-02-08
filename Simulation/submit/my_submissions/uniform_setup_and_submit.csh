@@ -51,7 +51,11 @@ echo "${COLOR_START}GEMC_VERSION:${COLOR_END}        ${GEMC_VERSION}"
 echo
 
 unset NUM_OF_JOBS
-setenv NUM_OF_JOBS 2500
+# setenv NUM_OF_JOBS 10
+# setenv NUM_OF_JOBS 100
+# setenv NUM_OF_JOBS 2500
+# setenv NUM_OF_JOBS 5000
+setenv NUM_OF_JOBS 7500
 echo "${COLOR_START}NUM_OF_JOBS:${COLOR_END}         ${NUM_OF_JOBS}"
 echo
 
@@ -155,7 +159,8 @@ printf "%s%s%s\n" "${COLOR_START}= Looping over particle types                  
 echo "${COLOR_START}=======================================================================${COLOR_END}"
 echo ""
 foreach BEAM_E ( 2070MeV 4029MeV 5986MeV )
-    foreach OUTPATH_PARTICLE ( 1e )
+    # foreach OUTPATH_PARTICLE ( 1e )
+    foreach OUTPATH_PARTICLE ( en )
     # foreach OUTPATH_PARTICLE ( 1e ep en )
         echo "${COLOR_START}Processing particle type:${COLOR_END} ${OUTPATH_PARTICLE}"
         echo "${COLOR_START}-----------------------------------------------------------------------${COLOR_END}"
