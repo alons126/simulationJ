@@ -73,10 +73,10 @@ echo
 # Check if OUTPATH_BASE is a directory
 echo "${COLOR_START}--> Checking if ${COLOR_END}OUTPATH_BASE${COLOR_START} is a directory...${COLOR_END}"
 if ( ! -d "${OUTPATH_BASE}" ) then
-    printf "\t%s%s%s\n" "${COLOR_ERROR_START}Error:${COLOR_END}" " the following directory does not exist: ${OUTPATH_BASE}"
+    printf "-->%s%s%s\n" "${COLOR_ERROR_START}Error:${COLOR_END}" " the following directory does not exist: ${OUTPATH_BASE}"
     exit 1
 else
-    printf "\t%s%s%s\n" "${COLOR_GOOD_START}OUTPATH_BASE exists.${COLOR_END}"
+    printf "-->%s%s%s\n" "${COLOR_GOOD_START}OUTPATH_BASE exists.${COLOR_END}"
     echo
 endif
 
