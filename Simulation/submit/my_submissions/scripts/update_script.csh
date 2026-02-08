@@ -2,6 +2,14 @@
 
 source ./scripts/set_env.csh
 
+# Script banner
+# ---------------------------------------------------------------------------
+echo ""
+echo "${COLOR_START}///////////////////////////////////////////////////////////////////////${COLOR_END}"
+printf "%s%s%s\n" "${COLOR_START}//${COLOR_END}        Updating repository and cleaning working tree      ${COLOR_START}//${COLOR_END}"
+echo "${COLOR_START}///////////////////////////////////////////////////////////////////////${COLOR_END}"
+echo ""
+
 # Git operations
 # ---------------------------------------------------------------------------
 echo ""
