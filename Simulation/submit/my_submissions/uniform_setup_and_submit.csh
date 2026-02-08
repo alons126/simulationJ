@@ -23,12 +23,12 @@ printf "%s\n" "${COLOR_START}= Setup environment variables and paths            
 echo "${COLOR_START}=======================================================================${COLOR_END}"
 echo ""
 
-unsetenv BEAM_E
-setenv BEAM_E 2070MeV
-# setenv BEAM_E 4029MeV
-# setenv BEAM_E 5986MeV
-echo "${COLOR_START}BEAM_E:${COLOR_END}              ${BEAM_E}"
-echo
+# unsetenv BEAM_E
+# setenv BEAM_E 2070MeV
+# # setenv BEAM_E 4029MeV
+# # setenv BEAM_E 5986MeV
+# echo "${COLOR_START}BEAM_E:${COLOR_END}              ${BEAM_E}"
+# echo
 
 unset TARGET_VARIATION
 setenv TARGET_VARIATION rgm_fall2021_C_S
@@ -154,157 +154,159 @@ echo "${COLOR_START}============================================================
 printf "%s%s%s\n" "${COLOR_START}= Looping over particle types                                         =${COLOR_END}"
 echo "${COLOR_START}=======================================================================${COLOR_END}"
 echo ""
-foreach OUTPATH_PARTICLE ( 1e )
-# foreach OUTPATH_PARTICLE ( 1e ep en )
-    echo "${COLOR_START}Processing particle type:${COLOR_END} ${OUTPATH_PARTICLE}"
-    echo "${COLOR_START}-----------------------------------------------------------------------${COLOR_END}"
-    echo
-
-    # Setup other environment variables based on BEAM_E and particle type
-    # ---------------------------------------------------------------------------
-
-    echo "${COLOR_START}OUTPATH_PARTICLE:${COLOR_END} ${OUTPATH_PARTICLE}"
-    echo
-
-    # Setup environment variables based on BEAM_E and particle type
-    # ---------------------------------------------------------------------------
-    echo "${COLOR_START}Setting environment variables based on BEAM_E and particle type ${OUTPATH_PARTICLE}${COLOR_END}"
-    echo "${COLOR_START}-----------------------------------------------------------------------${COLOR_END}"
-    echo
-
-    # Determine the correct submit script path based on BEAM_E
-    unsetenv BEAM_E_ROUNDED
-    if ("${BEAM_E}" == "2070MeV") then
-        setenv BEAM_E_ROUNDED 2GeV
-    else if ("${BEAM_E}" == "4029MeV") then
-        setenv BEAM_E_ROUNDED 4GeV
-    else if ("${BEAM_E}" == "5986MeV") then
-        setenv BEAM_E_ROUNDED 6GeV
-    endif
-    echo "${COLOR_START}BEAM_E_ROUNDED:${COLOR_END} ${BEAM_E_ROUNDED}"
-    echo
-
-    # Set torus field based on beam energy
-    unsetenv TORUS_FIELD
-    if ("${BEAM_E}" == "2070MeV") then
-        setenv TORUS_FIELD 0.5
-    else if ("${BEAM_E}" == "4029MeV" || "${BEAM_E}" == "5986MeV") then
-        setenv TORUS_FIELD -1.0
-    else
-        echo "${COLOR_ERROR_START}Error:${COLOR_END} unknown torus field configuration: ${BEAM_E}"
-        exit 1
-    endif
-
-    # Set paths based on particle type
-    # --------------------------------------------------------------------------------------------------
-    echo "${COLOR_START}Setting paths based on particle type ${OUTPATH_PARTICLE}${COLOR_END}"
-    echo "${COLOR_START}-----------------------------------------------------------------------${COLOR_END}"
-    echo
-
-    unsetenv OUTPATH
-    setenv OUTPATH ${OUTPATH_BASE}/OutPut_${OUTPATH_PARTICLE}
-    echo "${COLOR_START}OUTPATH:${COLOR_END} ${OUTPATH}"
-
-    # Check if OUTPATH is a directory
-    echo "${COLOR_START}--> Checking if ${COLOR_END}OUTPATH${COLOR_START} is a directory...${COLOR_END}"
-    if ( ! -d "${OUTPATH}" ) then
-        printf "${COLOR_START}-->${COLOR_END} %s%s%s\n" "${COLOR_ERROR_START}Error:${COLOR_END}" " the following directory does not exist: ${OUTPATH}"
-        exit 1
-    else
-        printf "${COLOR_START}-->${COLOR_END} %s%s%s\n" "${COLOR_GOOD_START}OUTPATH exists.${COLOR_END}"
+foreach BEAM_E ( 2070MeV 4029MeV 5986MeV )
+    foreach OUTPATH_PARTICLE ( 1e )
+    # foreach OUTPATH_PARTICLE ( 1e ep en )
+        echo "${COLOR_START}Processing particle type:${COLOR_END} ${OUTPATH_PARTICLE}"
+        echo "${COLOR_START}-----------------------------------------------------------------------${COLOR_END}"
         echo
-    endif
 
-    # Determine the correct submit script path based on BEAM_E
-    unsetenv SUBMIT_SCRIPT_PATH
-    setenv SUBMIT_SCRIPT_PATH ./Generation_files_${BEAM_E_ROUNDED}/
-    echo "${COLOR_START}SUBMIT_SCRIPT_PATH:${COLOR_END} ${SUBMIT_SCRIPT_PATH}"
-    echo
+        # Setup other environment variables based on BEAM_E and particle type
+        # ---------------------------------------------------------------------------
 
-    # Check if SUBMIT_SCRIPT_PATH is a directory
-    echo "${COLOR_START}--> Checking if ${COLOR_END}SUBMIT_SCRIPT_PATH${COLOR_START} is a directory...${COLOR_END}"
-    if ( ! -d "${SUBMIT_SCRIPT_PATH}" ) then
-        printf "${COLOR_START}-->${COLOR_END} %s%s%s\n" "${COLOR_ERROR_START}Error:${COLOR_END}" " the following directory does not exist: ${SUBMIT_SCRIPT_PATH}"
-        exit 1
-    else
-        printf "${COLOR_START}-->${COLOR_END} %s%s%s\n" "${COLOR_GOOD_START}SUBMIT_SCRIPT_PATH exists.${COLOR_END}"
+        echo "${COLOR_START}OUTPATH_PARTICLE:${COLOR_END} ${OUTPATH_PARTICLE}"
         echo
-    endif
 
-    # Set GCARD_FILE and YAML_FILE paths based on BEAM_E and TARGET_VARIATION. These will be used in the uniform sample generation and submission scripts to ensure that the correct configurations are used for each beam energy and target variation.
-    # --------------------------------------------------------------------------------------------------
-    echo "${COLOR_START}Setting GCARD_FILE and YAML_FILE files based on BEAM_E and TARGET_VARIATION ${OUTPATH_PARTICLE}${COLOR_END}"
-    echo "${COLOR_START}-----------------------------------------------------------------------${COLOR_END}"
-    echo
-
-    # Setting GCARD_FILE
-    unsetenv GCARD_FILE
-    setenv GCARD_FILE ${SUBMIT_SCRIPT_PATH}/${TARGET_VARIATION}_${BEAM_E_ROUNDED}.gcard
-    echo "${COLOR_START}GCARD_FILE:${COLOR_END} ${GCARD_FILE}"
-
-    # Check if GCARD_FILE is a file
-    echo "${COLOR_START}--> Checking if ${COLOR_END}GCARD_FILE${COLOR_START} is a file...${COLOR_END}"
-    if ( ! -f "${GCARD_FILE}" ) then
-        printf "${COLOR_START}-->${COLOR_END} %s%s%s\n" "${COLOR_ERROR_START}Error:${COLOR_END}" " the following file does not exist: ${GCARD_FILE}"
-        exit 1
-    else
-        printf "${COLOR_START}-->${COLOR_END} %s%s%s\n" "${COLOR_GOOD_START}GCARD_FILE exists.${COLOR_END}"
+        # Setup environment variables based on BEAM_E and particle type
+        # ---------------------------------------------------------------------------
+        echo "${COLOR_START}Setting environment variables based on BEAM_E and particle type ${OUTPATH_PARTICLE}${COLOR_END}"
+        echo "${COLOR_START}-----------------------------------------------------------------------${COLOR_END}"
         echo
-    endif
 
-    # Setting YAML_FILE
-    unsetenv YAML_FILE
-    if ("${BEAM_E}" == "2070MeV") then
-        setenv YAML_FILE ${SUBMIT_SCRIPT_PATH}/rgm_fall2021-cv.yaml
-    else if ("${BEAM_E}" == "4029MeV") then
-        setenv YAML_FILE ${SUBMIT_SCRIPT_PATH}/rgm_fall2021-ai_4Gev.yaml
-    else if ("${BEAM_E}" == "5986MeV") then
-        setenv YAML_FILE ${SUBMIT_SCRIPT_PATH}/rgm_fall2021-ai_6Gev.yaml
-    endif
-    echo "${COLOR_START}YAML_FILE:${COLOR_END} ${YAML_FILE}"
-
-    # Check if YAML_FILE is a file
-    echo "${COLOR_START}--> Checking if ${COLOR_END}YAML_FILE${COLOR_START} is a file...${COLOR_END}"
-    if ( ! -f "${YAML_FILE}" ) then
-        printf "${COLOR_START}-->${COLOR_END} %s%s%s\n" "${COLOR_ERROR_START}Error:${COLOR_END}" " the following file does not exist: ${YAML_FILE}"
-        exit 1
-    else
-        printf "${COLOR_START}-->${COLOR_END} %s%s%s\n" "${COLOR_GOOD_START}YAML_FILE exists.${COLOR_END}"
+        # Determine the correct submit script path based on BEAM_E
+        unsetenv BEAM_E_ROUNDED
+        if ("${BEAM_E}" == "2070MeV") then
+            setenv BEAM_E_ROUNDED 2GeV
+        else if ("${BEAM_E}" == "4029MeV") then
+            setenv BEAM_E_ROUNDED 4GeV
+        else if ("${BEAM_E}" == "5986MeV") then
+            setenv BEAM_E_ROUNDED 6GeV
+        endif
+        echo "${COLOR_START}BEAM_E_ROUNDED:${COLOR_END} ${BEAM_E_ROUNDED}"
         echo
-    endif
 
-    # Setup output directory structure
-    # ---------------------------------------------------------------------------
-    echo "${COLOR_START}Setting output directory structure ${OUTPATH_PARTICLE}${COLOR_END}"
-    echo "${COLOR_START}-----------------------------------------------------------------------${COLOR_END}"
-    echo
+        # Set torus field based on beam energy
+        unsetenv TORUS_FIELD
+        if ("${BEAM_E}" == "2070MeV") then
+            setenv TORUS_FIELD 0.5
+        else if ("${BEAM_E}" == "4029MeV" || "${BEAM_E}" == "5986MeV") then
+            setenv TORUS_FIELD -1.0
+        else
+            echo "${COLOR_ERROR_START}Error:${COLOR_END} unknown torus field configuration: ${BEAM_E}"
+            exit 1
+        endif
 
-    echo "${COLOR_START}Removing old directory structure for MC simulation here...\033[0m"
-    rm -rf ${OUTPATH}/mchipo
-    rm -rf ${OUTPATH}/reconhipo
-    rm -rf ${OUTPATH}/rootfiles
-    echo
+        # Set paths based on particle type
+        # --------------------------------------------------------------------------------------------------
+        echo "${COLOR_START}Setting paths based on particle type ${OUTPATH_PARTICLE}${COLOR_END}"
+        echo "${COLOR_START}-----------------------------------------------------------------------${COLOR_END}"
+        echo
 
-    echo "${COLOR_START}Setting up directory structure for MC simulation here...\033[0m"
-    mkdir ${OUTPATH}/mchipo ${OUTPATH}/reconhipo ${OUTPATH}/rootfiles
-    echo
+        unsetenv OUTPATH
+        setenv OUTPATH ${OUTPATH_BASE}/OutPut_${OUTPATH_PARTICLE}
+        echo "${COLOR_START}OUTPATH:${COLOR_END} ${OUTPATH}"
 
-    # Submitting sbatch job
-    # ---------------------------------------------------------------------------
-    echo "${COLOR_START}Submitting sbatch job for BeamE = ${COLOR_END}${BEAM_E}"
-    echo "${COLOR_START}-----------------------------------------------------------------------${COLOR_END}"
-    echo
+        # Check if OUTPATH is a directory
+        echo "${COLOR_START}--> Checking if ${COLOR_END}OUTPATH${COLOR_START} is a directory...${COLOR_END}"
+        if ( ! -d "${OUTPATH}" ) then
+            printf "${COLOR_START}-->${COLOR_END} %s%s%s\n" "${COLOR_ERROR_START}Error:${COLOR_END}" " the following directory does not exist: ${OUTPATH}"
+            exit 1
+        else
+            printf "${COLOR_START}-->${COLOR_END} %s%s%s\n" "${COLOR_GOOD_START}OUTPATH exists.${COLOR_END}"
+            echo
+        endif
 
-    unsetenv SLURM_JOB_NAME
-    setenv SLURM_JOB_NAME Uniform_${OUTPATH_PARTICLE}_sample_${BEAM_E}
-    echo "${COLOR_START}SLURM_JOB_NAME:${COLOR_END} ${SLURM_JOB_NAME}"
-    echo ""
+        # Determine the correct submit script path based on BEAM_E
+        unsetenv SUBMIT_SCRIPT_PATH
+        setenv SUBMIT_SCRIPT_PATH ./Generation_files_${BEAM_E_ROUNDED}/
+        echo "${COLOR_START}SUBMIT_SCRIPT_PATH:${COLOR_END} ${SUBMIT_SCRIPT_PATH}"
+        echo
 
-    unsetenv ARRAY
-    setenv ARRAY 1-${NUM_OF_JOBS}
-    echo "${COLOR_START}ARRAY:${COLOR_END} ${ARRAY}"
-    echo ""
+        # Check if SUBMIT_SCRIPT_PATH is a directory
+        echo "${COLOR_START}--> Checking if ${COLOR_END}SUBMIT_SCRIPT_PATH${COLOR_START} is a directory...${COLOR_END}"
+        if ( ! -d "${SUBMIT_SCRIPT_PATH}" ) then
+            printf "${COLOR_START}-->${COLOR_END} %s%s%s\n" "${COLOR_ERROR_START}Error:${COLOR_END}" " the following directory does not exist: ${SUBMIT_SCRIPT_PATH}"
+            exit 1
+        else
+            printf "${COLOR_START}-->${COLOR_END} %s%s%s\n" "${COLOR_GOOD_START}SUBMIT_SCRIPT_PATH exists.${COLOR_END}"
+            echo
+        endif
 
-    # sbatch --job-name="${SLURM_JOB_NAME}" --array=${ARRAY} ${SUBMIT_SCRIPT_PATH}/submit_GEMC_uniform_${OUTPATH_PARTICLE}.sh
-    echo
-end # end foreach OUTPATH_PARTICLE ( 1e ep en )
+        # Set GCARD_FILE and YAML_FILE paths based on BEAM_E and TARGET_VARIATION. These will be used in the uniform sample generation and submission scripts to ensure that the correct configurations are used for each beam energy and target variation.
+        # --------------------------------------------------------------------------------------------------
+        echo "${COLOR_START}Setting GCARD_FILE and YAML_FILE files based on BEAM_E and TARGET_VARIATION ${OUTPATH_PARTICLE}${COLOR_END}"
+        echo "${COLOR_START}-----------------------------------------------------------------------${COLOR_END}"
+        echo
+
+        # Setting GCARD_FILE
+        unsetenv GCARD_FILE
+        setenv GCARD_FILE ${SUBMIT_SCRIPT_PATH}/${TARGET_VARIATION}_${BEAM_E_ROUNDED}.gcard
+        echo "${COLOR_START}GCARD_FILE:${COLOR_END} ${GCARD_FILE}"
+
+        # Check if GCARD_FILE is a file
+        echo "${COLOR_START}--> Checking if ${COLOR_END}GCARD_FILE${COLOR_START} is a file...${COLOR_END}"
+        if ( ! -f "${GCARD_FILE}" ) then
+            printf "${COLOR_START}-->${COLOR_END} %s%s%s\n" "${COLOR_ERROR_START}Error:${COLOR_END}" " the following file does not exist: ${GCARD_FILE}"
+            exit 1
+        else
+            printf "${COLOR_START}-->${COLOR_END} %s%s%s\n" "${COLOR_GOOD_START}GCARD_FILE exists.${COLOR_END}"
+            echo
+        endif
+
+        # Setting YAML_FILE
+        unsetenv YAML_FILE
+        if ("${BEAM_E}" == "2070MeV") then
+            setenv YAML_FILE ${SUBMIT_SCRIPT_PATH}/rgm_fall2021-cv.yaml
+        else if ("${BEAM_E}" == "4029MeV") then
+            setenv YAML_FILE ${SUBMIT_SCRIPT_PATH}/rgm_fall2021-ai_4Gev.yaml
+        else if ("${BEAM_E}" == "5986MeV") then
+            setenv YAML_FILE ${SUBMIT_SCRIPT_PATH}/rgm_fall2021-ai_6Gev.yaml
+        endif
+        echo "${COLOR_START}YAML_FILE:${COLOR_END} ${YAML_FILE}"
+
+        # Check if YAML_FILE is a file
+        echo "${COLOR_START}--> Checking if ${COLOR_END}YAML_FILE${COLOR_START} is a file...${COLOR_END}"
+        if ( ! -f "${YAML_FILE}" ) then
+            printf "${COLOR_START}-->${COLOR_END} %s%s%s\n" "${COLOR_ERROR_START}Error:${COLOR_END}" " the following file does not exist: ${YAML_FILE}"
+            exit 1
+        else
+            printf "${COLOR_START}-->${COLOR_END} %s%s%s\n" "${COLOR_GOOD_START}YAML_FILE exists.${COLOR_END}"
+            echo
+        endif
+
+        # Setup output directory structure
+        # ---------------------------------------------------------------------------
+        echo "${COLOR_START}Setting output directory structure ${OUTPATH_PARTICLE}${COLOR_END}"
+        echo "${COLOR_START}-----------------------------------------------------------------------${COLOR_END}"
+        echo
+
+        echo "${COLOR_START}Removing old directory structure for MC simulation here...\033[0m"
+        rm -rf ${OUTPATH}/mchipo
+        rm -rf ${OUTPATH}/reconhipo
+        rm -rf ${OUTPATH}/rootfiles
+        echo
+
+        echo "${COLOR_START}Setting up directory structure for MC simulation here...\033[0m"
+        mkdir ${OUTPATH}/mchipo ${OUTPATH}/reconhipo ${OUTPATH}/rootfiles
+        echo
+
+        # Submitting sbatch job
+        # ---------------------------------------------------------------------------
+        echo "${COLOR_START}Submitting sbatch job for BeamE = ${COLOR_END}${BEAM_E}"
+        echo "${COLOR_START}-----------------------------------------------------------------------${COLOR_END}"
+        echo
+
+        unsetenv SLURM_JOB_NAME
+        setenv SLURM_JOB_NAME Uniform_${OUTPATH_PARTICLE}_sample_${BEAM_E}
+        echo "${COLOR_START}SLURM_JOB_NAME:${COLOR_END} ${SLURM_JOB_NAME}"
+        echo ""
+
+        unsetenv ARRAY
+        setenv ARRAY 1-${NUM_OF_JOBS}
+        echo "${COLOR_START}ARRAY:${COLOR_END} ${ARRAY}"
+        echo ""
+
+        # sbatch --job-name="${SLURM_JOB_NAME}" --array=${ARRAY} ${SUBMIT_SCRIPT_PATH}/submit_GEMC_uniform_${OUTPATH_PARTICLE}.sh
+        echo
+    end # end foreach OUTPATH_PARTICLE ( 1e ep en )
+end # end foreach BEAM_E ( 2070MeV 4029MeV 5986MeV )
