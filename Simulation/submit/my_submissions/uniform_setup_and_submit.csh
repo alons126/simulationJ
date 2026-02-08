@@ -76,7 +76,7 @@ if ( ! -d "${OUTPATH_BASE}" ) then
     printf "\t%s%s%s\n" "${COLOR_ERROR_START}Error:${COLOR_END}" " the following directory does not exist: ${OUTPATH_BASE}"
     exit 1
 else
-    printf "\t%s%s%s\n" "${COLOR_GOOD_START}OUTPATH_BASE exists!${COLOR_END}"
+    printf "\t%s%s%s\n" "${COLOR_GOOD_START}OUTPATH_BASE exists.${COLOR_END}"
     echo
 endif
 
