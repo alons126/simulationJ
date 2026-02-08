@@ -217,18 +217,18 @@ foreach BEAM_E ( 2070MeV 4029MeV 5986MeV )
         endif
 
         # Determine the correct submit script path based on BEAM_E
-        unsetenv SUBMIT_SCRIPT_PATH
-        setenv SUBMIT_SCRIPT_PATH ./Generation_files_${BEAM_E_ROUNDED}/
-        echo "${COLOR_START}SUBMIT_SCRIPT_PATH:${COLOR_END} ${SUBMIT_SCRIPT_PATH}"
+        unsetenv REQUIREMENTS_PATH
+        setenv REQUIREMENTS_PATH ./Generation_files_${BEAM_E_ROUNDED}/
+        echo "${COLOR_START}REQUIREMENTS_PATH:${COLOR_END} ${REQUIREMENTS_PATH}"
         echo
 
-        # Check if SUBMIT_SCRIPT_PATH is a directory
-        echo "${COLOR_START}--> Checking if ${COLOR_END}SUBMIT_SCRIPT_PATH${COLOR_START} is a directory...${COLOR_END}"
-        if ( ! -d "${SUBMIT_SCRIPT_PATH}" ) then
-            printf "${COLOR_START}-->${COLOR_END} %s%s%s\n" "${COLOR_ERROR_START}Error:${COLOR_END}" " the following directory does not exist: ${SUBMIT_SCRIPT_PATH}"
+        # Check if REQUIREMENTS_PATH is a directory
+        echo "${COLOR_START}--> Checking if ${COLOR_END}REQUIREMENTS_PATH${COLOR_START} is a directory...${COLOR_END}"
+        if ( ! -d "${REQUIREMENTS_PATH}" ) then
+            printf "${COLOR_START}-->${COLOR_END} %s%s%s\n" "${COLOR_ERROR_START}Error:${COLOR_END}" " the following directory does not exist: ${REQUIREMENTS_PATH}"
             exit 1
         else
-            printf "${COLOR_START}-->${COLOR_END} %s%s%s\n" "${COLOR_GOOD_START}SUBMIT_SCRIPT_PATH exists.${COLOR_END}"
+            printf "${COLOR_START}-->${COLOR_END} %s%s%s\n" "${COLOR_GOOD_START}REQUIREMENTS_PATH exists.${COLOR_END}"
             echo
         endif
 
@@ -240,7 +240,7 @@ foreach BEAM_E ( 2070MeV 4029MeV 5986MeV )
 
         # Setting GCARD_FILE
         unsetenv GCARD_FILE
-        setenv GCARD_FILE ${SUBMIT_SCRIPT_PATH}/${TARGET_VARIATION}_${BEAM_E_ROUNDED}.gcard
+        setenv GCARD_FILE ${REQUIREMENTS_PATH}/${TARGET_VARIATION}_${BEAM_E_ROUNDED}.gcard
         echo "${COLOR_START}GCARD_FILE:${COLOR_END} ${GCARD_FILE}"
 
         # Check if GCARD_FILE is a file
@@ -256,11 +256,11 @@ foreach BEAM_E ( 2070MeV 4029MeV 5986MeV )
         # Setting YAML_FILE
         unsetenv YAML_FILE
         if ("${BEAM_E}" == "2070MeV") then
-            setenv YAML_FILE ${SUBMIT_SCRIPT_PATH}/rgm_fall2021-cv.yaml
+            setenv YAML_FILE ${REQUIREMENTS_PATH}/rgm_fall2021-cv.yaml
         else if ("${BEAM_E}" == "4029MeV") then
-            setenv YAML_FILE ${SUBMIT_SCRIPT_PATH}/rgm_fall2021-ai_4Gev.yaml
+            setenv YAML_FILE ${REQUIREMENTS_PATH}/rgm_fall2021-ai_4Gev.yaml
         else if ("${BEAM_E}" == "5986MeV") then
-            setenv YAML_FILE ${SUBMIT_SCRIPT_PATH}/rgm_fall2021-ai_6Gev.yaml
+            setenv YAML_FILE ${REQUIREMENTS_PATH}/rgm_fall2021-ai_6Gev.yaml
         endif
         echo "${COLOR_START}YAML_FILE:${COLOR_END} ${YAML_FILE}"
 
@@ -306,7 +306,21 @@ foreach BEAM_E ( 2070MeV 4029MeV 5986MeV )
         echo "${COLOR_START}ARRAY:${COLOR_END} ${ARRAY}"
         echo ""
 
-        # sbatch --job-name="${SLURM_JOB_NAME}" --array=${ARRAY} ${SUBMIT_SCRIPT_PATH}/submit_GEMC_uniform_${OUTPATH_PARTICLE}.sh
+        unsetenv SUBMIT_SCRIPT_PATH
+        setenv SUBMIT_SCRIPT_PATH ${REQUIREMENTS_PATH}/submit_GEMC_uniform.sh
+        echo "${COLOR_START}SUBMIT_SCRIPT_PATH:${COLOR_END} ${SUBMIT_SCRIPT_PATH}"
+
+        # Check if SUBMIT_SCRIPT_PATH is a file
+        echo "${COLOR_START}--> Checking if ${COLOR_END}SUBMIT_SCRIPT_PATH${COLOR_START} is a file...${COLOR_END}"
+        if ( ! -f "${SUBMIT_SCRIPT_PATH}" ) then
+            printf "${COLOR_START}-->${COLOR_END} %s%s%s\n" "${COLOR_ERROR_START}Error:${COLOR_END}" " the following file does not exist: ${SUBMIT_SCRIPT_PATH}"
+            exit 1
+        else
+            printf "${COLOR_START}-->${COLOR_END} %s%s%s\n" "${COLOR_GOOD_START}SUBMIT_SCRIPT_PATH exists.${COLOR_END}"
+            echo
+        endif
+
+        # sbatch --job-name="${SLURM_JOB_NAME}" --array=${ARRAY} ${REQUIREMENTS_PATH}/submit_GEMC_uniform_${OUTPATH_PARTICLE}.sh
         echo
     end # end foreach OUTPATH_PARTICLE ( 1e ep en )
 end # end foreach BEAM_E ( 2070MeV 4029MeV 5986MeV )

@@ -24,15 +24,11 @@ JOB_OUT_PATH=${OUTPATH}
 echo "JOB_OUT_PATH = ${JOB_OUT_PATH}"
 echo
 
-SUBMIT_SCRIPT_DIR=/u/home/asportes/clas12simulations/simulationJ/Simulation/submit/my_submissions/Uniform_sample_2GeV
-echo "SUBMIT_SCRIPT_DIR = ${SUBMIT_SCRIPT_DIR}"
-echo
-
 #choose the Gcard for your target type
-GCARD=${SUBMIT_SCRIPT_DIR}/rgm_fall2021_C.gcard
+GCARD=${GCARD_FILE}
 echo "GCARD = ${GCARD}"
 #Reconstruction yaml file
-YAML=${SUBMIT_SCRIPT_DIR}/rgm_fall2021-cv.yaml
+YAML=${YAML_FILE}
 echo "YAML = ${YAML}"
 echo
 
@@ -43,7 +39,6 @@ RECONOUT=${JOB_OUT_PATH}/reconhipo
 
 #SUBMIT GEMC MC
 gemc -USE_GUI=0  -SCALE_FIELD="binary_torus, $TORUS" -SCALE_FIELD="binary_solenoid, -1.0" -N=$NEVENTS -INPUT_GEN_FILE="lund, ${LUNDOUT}/${FILE_PREFIX}_${SLURM_ARRAY_TASK_ID}.txt" -OUTPUT="hipo, ${MCOUT}/mc_${FILE_PREFIX}_${SLURM_ARRAY_TASK_ID}_torus$TORUS.hipo" $GCARD
-# gemc -USE_GUI=0  -SCALE_FIELD="TorusSymmetric, $TORUS" -SCALE_FIELD="clas12-newSolenoid, -1.0" -N=$NEVENTS -INPUT_GEN_FILE="lund, ${LUNDOUT}/${FILE_PREFIX}_${SLURM_ARRAY_TASK_ID}.txt" -OUTPUT="hipo, ${MCOUT}/mc_${FILE_PREFIX}_${SLURM_ARRAY_TASK_ID}_torus$TORUS.hipo" $GCARD
 
 #RECONSTRUCTION
 recon-util -y $YAML -n $NEVENTS -i ${MCOUT}/mc_${FILE_PREFIX}_${SLURM_ARRAY_TASK_ID}_torus${TORUS}.hipo -o ${RECONOUT}/recon_${FILE_PREFIX}_${SLURM_ARRAY_TASK_ID}_torus${TORUS}.hipo

@@ -26,7 +26,7 @@ NEVENTS=10000
 #-1.0 for inbending(6,4 GeV) 0.5 for outbending (2 Gev)
 TORUS=${TORUS_FIELD}
 echo "TORUS = ${TORUS}"
-#Change file prefix for your simulation                                                                                                                          
+#Change file prefix for your simulation
 FILE_PREFIX=${JOB_TARGET}_${JOB_GENIE_TUNE}_${JOB_Q2_CUT}_${JOB_BEAM_E}
 echo "FILE_PREFIX = ${FILE_PREFIX}"
 echo
