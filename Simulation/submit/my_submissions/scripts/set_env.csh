@@ -5,8 +5,11 @@
 
 # Colors (override by exporting COLOR_START / COLOR_END before running)
 # Use real ESC bytes so output is colored (printf interprets these correctly)
+unsetenv SYSTEM_COLOR
+setenv SYSTEM_COLOR "`printf '\033[35m'`"
+
 unsetenv COLOR_START
-setenv COLOR_START "`printf '\033[35m'`"
+setenv COLOR_START "`printf '\033[33m'`"
 
 unsetenv COLOR_END
 setenv COLOR_END "`printf '\033[0m'`"

@@ -10,9 +10,9 @@ echo
 # Script banner
 # ======================================================================================================
 echo ""
-echo "${COLOR_START}///////////////////////////////////////////////////////////////////////${COLOR_END}"
-printf "%s%s%s\n" "${COLOR_START}//${COLOR_END}        Setting and submitting uniform sample generation jobs      ${COLOR_START}//${COLOR_END}"
-echo "${COLOR_START}///////////////////////////////////////////////////////////////////////${COLOR_END}"
+echo "${SYSTEM_COLOR}///////////////////////////////////////////////////////////////////////${COLOR_END}"
+printf "%s%s%s\n" "${SYSTEM_COLOR}//${COLOR_END}        Setting and submitting uniform sample generation jobs      ${SYSTEM_COLOR}//${COLOR_END}"
+echo "${SYSTEM_COLOR}///////////////////////////////////////////////////////////////////////${COLOR_END}"
 echo ""
 
 # Setup environment variables and paths for uniform sample generation and submission
