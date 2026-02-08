@@ -1,6 +1,6 @@
 #!/bin/csh
 
-# A scri
+# A script to setup environment variables and paths for uniform sample generation and submission, and then submit the jobs to the cluster using sbatch. This script is designed to be flexible and configurable through environment variables, allowing for easy adjustments to the simulation parameters, output paths, and other settings without needing to modify the core logic of the script. The script also includes checks to ensure that the necessary directories and files exist before attempting to submit the jobs, providing error messages if any required resources are missing. The uniform sample generation and submission is performed for different beam energies and particle types, with the appropriate configurations and paths set for each case.
 
 # Setup environment
 # ======================================================================================================

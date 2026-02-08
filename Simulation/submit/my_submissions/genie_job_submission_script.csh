@@ -1,5 +1,20 @@
 #!/bin/csh
 
+# A script to setup environment variables and paths for GENIE sample generation and submission, and then submit the jobs to the cluster using sbatch. This script is designed to be flexible and configurable through environment variables, allowing for easy adjustments to the simulation parameters, output paths, and other settings without needing to modify the core logic of the script. The script also includes checks to ensure that the necessary directories and files exist before attempting to submit the jobs, providing error messages if any required resources are missing. The GENIE sample generation and submission is performed for different beam energies, target nuclei, GENIE tunes, and fiducial cuts statuses, with the appropriate configurations and paths set for each case.
+
+# Setup environment
+# ======================================================================================================
+source ./scripts/set_env.csh
+echo
+
+# Script banner
+# ======================================================================================================
+echo ""
+echo "${SYSTEM_COLOR}///////////////////////////////////////////////////////////////////////${COLOR_END}"
+printf "%s%s%s\n" "${SYSTEM_COLOR}//${COLOR_END}        Setting and submitting GENIE sample generation jobs        ${SYSTEM_COLOR}//${COLOR_END}"
+echo "${SYSTEM_COLOR}///////////////////////////////////////////////////////////////////////${COLOR_END}"
+echo ""
+
 # Loop over fiducial cuts statuses
 # foreach FC_STATUSES ( 1 )
 foreach FC_STATUSES ( 0 )
