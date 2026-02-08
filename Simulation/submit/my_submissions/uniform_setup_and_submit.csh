@@ -103,7 +103,6 @@ echo ""
 
 # Optionally clear the farm_out directory
 if ("${CLEAR_FAR_OUT}" == "true") then
-    echo
     echo "${COLOR_START}Clearing farm_out directory...${COLOR_END}"
     echo "${COLOR_START}-----------------------------------------------------------------------${COLOR_END}"
     rm /u/scifarm/farm_out/asportes/*
@@ -123,7 +122,6 @@ echo ""
 
 # Optionally use custom GEMC version and set GEMC_DATA_DIR to a custom path
 if ("${CUSTOM_GEMC_VERSION}" == "true") then
-    echo
     echo "${COLOR_START}Loading GEMC version ${COLOR_END}${GEMC_VERSION}${COLOR_START}...${COLOR_END}"
     echo "${COLOR_START}-----------------------------------------------------------------------${COLOR_END}"
     module unload gemc
