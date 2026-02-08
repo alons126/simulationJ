@@ -149,6 +149,11 @@ endif
 
 # Loop over particle types
 # ------------------------------------------------------------------------------------------------------
+echo ""
+echo "${COLOR_START}=======================================================================${COLOR_END}"
+printf "%s%s%s\n" "${COLOR_START}= Looping over particle types                                         =${COLOR_END}"
+echo "${COLOR_START}=======================================================================${COLOR_END}"
+echo ""
 foreach OUTPATH_PARTICLE ( 1e ep en )
     echo "${COLOR_START}Processing particle type:${COLOR_END} ${OUTPATH_PARTICLE}"
     echo "${COLOR_START}-----------------------------------------------------------------------${COLOR_END}"
@@ -156,6 +161,9 @@ foreach OUTPATH_PARTICLE ( 1e ep en )
 
     # Setup other environment variables based on BEAM_E and particle type
     # ---------------------------------------------------------------------------
+
+    echo "${COLOR_START}OUTPATH_PARTICLE:${COLOR_END} ${OUTPATH_PARTICLE}"
+    echo
 
     # Determine the correct submit script path based on BEAM_E
     unsetenv BEAM_E_ROUNDED
