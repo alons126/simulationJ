@@ -306,21 +306,21 @@ foreach BEAM_E ( 2070MeV 4029MeV 5986MeV )
         echo "${COLOR_START}ARRAY:${COLOR_END} ${ARRAY}"
         echo ""
 
-        unsetenv SUBMIT_SCRIPT_PATH
-        setenv SUBMIT_SCRIPT_PATH ${REQUIREMENTS_PATH}/submit_GEMC_uniform.sh
-        echo "${COLOR_START}SUBMIT_SCRIPT_PATH:${COLOR_END} ${SUBMIT_SCRIPT_PATH}"
+        unsetenv SUBMIT_SCRIPT_FILE
+        setenv SUBMIT_SCRIPT_FILE ./scripts/job_submission_scripts/submit_GEMC_uniform.sh
+        echo "${COLOR_START}SUBMIT_SCRIPT_FILE:${COLOR_END} ${SUBMIT_SCRIPT_FILE}"
 
-        # Check if SUBMIT_SCRIPT_PATH is a file
-        echo "${COLOR_START}--> Checking if ${COLOR_END}SUBMIT_SCRIPT_PATH${COLOR_START} is a file...${COLOR_END}"
-        if ( ! -f "${SUBMIT_SCRIPT_PATH}" ) then
-            printf "${COLOR_START}-->${COLOR_END} %s%s%s\n" "${COLOR_ERROR_START}Error:${COLOR_END}" " the following file does not exist: ${SUBMIT_SCRIPT_PATH}"
+        # Check if SUBMIT_SCRIPT_FILE is a file
+        echo "${COLOR_START}--> Checking if ${COLOR_END}SUBMIT_SCRIPT_FILE${COLOR_START} is a file...${COLOR_END}"
+        if ( ! -f "${SUBMIT_SCRIPT_FILE}" ) then
+            printf "${COLOR_START}-->${COLOR_END} %s%s%s\n" "${COLOR_ERROR_START}Error:${COLOR_END}" " the following file does not exist: ${SUBMIT_SCRIPT_FILE}"
             exit 1
         else
-            printf "${COLOR_START}-->${COLOR_END} %s%s%s\n" "${COLOR_GOOD_START}SUBMIT_SCRIPT_PATH exists.${COLOR_END}"
+            printf "${COLOR_START}-->${COLOR_END} %s%s%s\n" "${COLOR_GOOD_START}SUBMIT_SCRIPT_FILE exists.${COLOR_END}"
             echo
         endif
 
-        # sbatch --job-name="${SLURM_JOB_NAME}" --array=${ARRAY} ${REQUIREMENTS_PATH}/submit_GEMC_uniform_${OUTPATH_PARTICLE}.sh
+        sbatch --job-name="${SLURM_JOB_NAME}" --array=${ARRAY} ${SUBMIT_SCRIPT_FILE}
         echo
     end # end foreach OUTPATH_PARTICLE ( 1e ep en )
 end # end foreach BEAM_E ( 2070MeV 4029MeV 5986MeV )
