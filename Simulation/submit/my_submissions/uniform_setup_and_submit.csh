@@ -41,7 +41,7 @@ echo
 
 # Main Script
 # ---------------------------------------------------------------------------
-banner "Starting uniform generation and submission for BeamE = ${BEAM_E}"
+banner "Starting uniform generation and submission for BeamE of ${BEAM_E}"
 
 # Set paths based on BEAM_E
 unsetenv OUTPATH_BASE
