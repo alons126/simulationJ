@@ -61,11 +61,12 @@ if ( ! -d "${OUTPATH_BASE}" ) then
     exit 1
 endif
 
-# 
 # Loop over particle types
 # ---------------------------------------------------------------------------
+echo
 foreach OUTPATH_PARTICLE ( 1e ep en )
     echo "${COLOR_START}Processing particle type:${COLOR_END} ${OUTPATH_PARTICLE}"
+    echo "${COLOR_START}-----------------------------------------------------------------------${COLOR_END}"
     echo
 
     # Set paths based on particle type
@@ -121,7 +122,7 @@ foreach OUTPATH_PARTICLE ( 1e ep en )
 
     # Setting GCARD_FILE
     unsetenv GCARD_FILE
-    setenv GCARD_FILE ${SUBMIT_SCRIPT_PATH}/${TARGET_VARIATION}_${BEAM_E_ROUNDED}
+    setenv GCARD_FILE ${SUBMIT_SCRIPT_PATH}/${TARGET_VARIATION}_${BEAM_E_ROUNDED}.gcard
     echo "${COLOR_START}GCARD_FILE:${COLOR_END} ${GCARD_FILE}"
     echo
 
