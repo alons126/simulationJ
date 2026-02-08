@@ -1,6 +1,6 @@
 #!/bin/csh
 
-source ./set_env.csh
+source ./scripts/set_env.csh
 
 # Git operations
 # ---------------------------------------------------------------------------
