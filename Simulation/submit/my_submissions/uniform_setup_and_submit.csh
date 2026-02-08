@@ -31,7 +31,7 @@ echo ""
 # echo
 
 unset TARGET_VARIATION
-setenv TARGET_VARIATION rgm_fall2021_C_S
+setenv TARGET_VARIATION rgm_fall2021_Ar
 echo "${COLOR_START}TARGET_VARIATION:${COLOR_END}    ${TARGET_VARIATION}"
 echo
 
