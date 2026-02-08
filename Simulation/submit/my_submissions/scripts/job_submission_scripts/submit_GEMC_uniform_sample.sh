@@ -7,29 +7,16 @@
 #SBATCH --time=20:00:00                                                                                               
 #SBATCH --output=/farm_out/%u/%x-%j-%N.out                                                                           
 #SBATCH --error=//farm_out/%u/%x-%j-%N.err                                                                           
-######SBATCH --array=1-10 #Number of files 1-N                                                                                                
-#SBATCH --array=1-100 #Number of files 1-N                                                                                                
-######SBATCH --array=1-500 #Number of files 1-N                                                                                                
-######SBATCH --array=1-2500 #Number of files 1-N                                                                                                
 
-JOB_TARGET=${SAMPLE_TARGET_NUCLEUS}
-echo "JOB_TARGET = ${JOB_TARGET}"
-JOB_GENIE_TUNE=${GENIE_TUNE}
-echo "JOB_GENIE_TUNE = ${JOB_GENIE_TUNE}"
-JOB_Q2_CUT=${Q2_CUT}
-echo "JOB_Q2_CUT = ${JOB_Q2_CUT}"
-JOB_BEAM_E=${BEAM_E}
-echo "JOB_BEAM_E = ${JOB_BEAM_E}"
+#Change file prefix for your simulation                                                                                                                          
+FILE_PREFIX=Uniform_${JOB_OUT_PATH_PARTICLE}_sample_${BEAM_E}
+echo "FILE_PREFIX = ${FILE_PREFIX}"
 echo
 
 NEVENTS=10000
 #-1.0 for inbending(6,4 GeV) 0.5 for outbending (2 Gev)
 TORUS=${TORUS_FIELD}
 echo "TORUS = ${TORUS}"
-#Change file prefix for your simulation
-FILE_PREFIX=${JOB_TARGET}_${JOB_GENIE_TUNE}_${JOB_Q2_CUT}_${JOB_BEAM_E}
-echo "FILE_PREFIX = ${FILE_PREFIX}"
-echo
 
 #set output file path location, don't forget to set up dir using setupdir.sh
 JOB_OUT_PATH=${OUTPATH}

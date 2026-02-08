@@ -314,7 +314,7 @@ foreach BEAM_E ( 2070MeV 4029MeV 5986MeV )
         echo ""
 
         unsetenv SUBMIT_SCRIPT_FILE
-        setenv SUBMIT_SCRIPT_FILE ./scripts/job_submission_scripts/submit_GEMC_uniform.sh
+        setenv SUBMIT_SCRIPT_FILE ./scripts/job_submission_scripts/submit_GEMC_uniform_sample.sh
         echo "${COLOR_START}SUBMIT_SCRIPT_FILE:${COLOR_END} ${SUBMIT_SCRIPT_FILE}"
 
         # Check if SUBMIT_SCRIPT_FILE is a file
