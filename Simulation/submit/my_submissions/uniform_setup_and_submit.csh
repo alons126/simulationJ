@@ -282,13 +282,13 @@ foreach OUTPATH_PARTICLE ( 1e )
     echo
 
     echo "${COLOR_START}Removing old directory structure for MC simulation here...\033[0m"
-    rm -rf ${OUTPATH}_${OUTPATH_PARTICLE}/mchipo
-    rm -rf ${OUTPATH}_${OUTPATH_PARTICLE}/reconhipo
-    rm -rf ${OUTPATH}_${OUTPATH_PARTICLE}/rootfiles
+    rm -rf ${OUTPATH}/mchipo
+    rm -rf ${OUTPATH}/reconhipo
+    rm -rf ${OUTPATH}/rootfiles
     echo
 
     echo "${COLOR_START}Setting up directory structure for MC simulation here...\033[0m"
-    mkdir ${OUTPATH}_${OUTPATH_PARTICLE}/mchipo ${OUTPATH}_${OUTPATH_PARTICLE}/reconhipo ${OUTPATH}_${OUTPATH_PARTICLE}/rootfiles
+    mkdir ${OUTPATH}/mchipo ${OUTPATH}/reconhipo ${OUTPATH}/rootfiles
     echo
 
     # Submitting sbatch job
