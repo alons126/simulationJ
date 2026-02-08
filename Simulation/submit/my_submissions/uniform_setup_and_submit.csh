@@ -19,7 +19,7 @@ echo ""
 # ------------------------------------------------------------------------------------------------------
 echo ""
 echo "${COLOR_START}=======================================================================${COLOR_END}"
-printf "%s%s%s\n"  "= Setup environment variables and paths                               =${COLOR_END}"
+printf "%s\n" "${COLOR_START}= Setup environment variables and paths                               =${COLOR_END}"
 echo "${COLOR_START}=======================================================================${COLOR_END}"
 echo ""
 
