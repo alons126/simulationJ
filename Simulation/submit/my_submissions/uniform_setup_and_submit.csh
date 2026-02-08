@@ -92,12 +92,15 @@ foreach OUTPATH_PARTICLE ( 1e ep en )
     unsetenv OUTPATH
     setenv OUTPATH ${OUTPATH_BASE}/OutPut_${OUTPATH_PARTICLE}
     echo "${COLOR_START}OUTPATH:${COLOR_END} ${OUTPATH}"
-    echo
 
-    # Check if OUTPATH_<PARTICLE> is a directory
+    # Check if OUTPATH is a directory
+    echo "${COLOR_START}--> Checking if ${COLOR_END}OUTPATH${COLOR_START} is a directory...${COLOR_END}"
     if ( ! -d "${OUTPATH}" ) then
-        echo "${COLOR_ERROR_START}Error:${COLOR_END} the following directory does not exist: ${OUTPATH}"
+        printf "${COLOR_START}-->${COLOR_END} %s%s%s\n" "${COLOR_ERROR_START}Error:${COLOR_END}" " the following directory does not exist: ${OUTPATH}"
         exit 1
+    else
+        printf "${COLOR_START}-->${COLOR_END} %s%s%s\n" "${COLOR_GOOD_START}OUTPATH exists.${COLOR_END}"
+        echo
     endif
 
     # Setup other environment variables based on BEAM_E and particle type
