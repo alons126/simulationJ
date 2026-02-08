@@ -136,9 +136,13 @@ foreach OUTPATH_PARTICLE ( 1e ep en )
     echo
 
     # Check if SUBMIT_SCRIPT_PATH is a directory
+    echo "${COLOR_START}--> Checking if ${COLOR_END}SUBMIT_SCRIPT_PATH${COLOR_START} is a directory...${COLOR_END}"
     if ( ! -d "${SUBMIT_SCRIPT_PATH}" ) then
-        echo "${COLOR_ERROR_START}Error:${COLOR_END} the following directory does not exist: ${SUBMIT_SCRIPT_PATH}"
+        printf "${COLOR_START}-->${COLOR_END} %s%s%s\n" "${COLOR_ERROR_START}Error:${COLOR_END}" " the following directory does not exist: ${SUBMIT_SCRIPT_PATH}"
         exit 1
+    else
+        printf "${COLOR_START}-->${COLOR_END} %s%s%s\n" "${COLOR_GOOD_START}SUBMIT_SCRIPT_PATH exists.${COLOR_END}"
+        echo
     endif
 
     # Setting GCARD_FILE
