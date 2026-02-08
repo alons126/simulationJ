@@ -93,7 +93,7 @@ else
     echo
 endif
 
-# Handle farm_out directory clearing and custom GEMC version loading based on environment variables
+# Handle farm_out directory clearing
 # ------------------------------------------------------------------------------------------------------
 echo ""
 echo "${COLOR_START}=======================================================================${COLOR_END}"
@@ -102,11 +102,10 @@ echo "${COLOR_START}============================================================
 echo ""
 
 # Optionally clear the farm_out directory
-echo "${COLOR_START}Handling farm_out directory clearing...${COLOR_END}"
-echo "${COLOR_START}-----------------------------------------------------------------------${COLOR_END}"
 if ("${CLEAR_FAR_OUT}" == "true") then
     echo
     echo "${COLOR_START}Clearing farm_out directory...${COLOR_END}"
+    echo "${COLOR_START}-----------------------------------------------------------------------${COLOR_END}"
     rm /u/scifarm/farm_out/asportes/*
     echo
 else
@@ -114,10 +113,19 @@ else
     echo
 endif
 
+# Handle custom GEMC version loading based on environment variables
+# ------------------------------------------------------------------------------------------------------
+echo ""
+echo "${COLOR_START}=======================================================================${COLOR_END}"
+printf "%s%s%s\n" "${COLOR_START}= Handling custom GEMC version                                        =${COLOR_END}"
+echo "${COLOR_START}=======================================================================${COLOR_END}"
+echo ""
+
 # Optionally use custom GEMC version and set GEMC_DATA_DIR to a custom path
 if ("${CUSTOM_GEMC_VERSION}" == "true") then
     echo
-    echo "${COLOR_START}Loading dev GEMC version ----------------------------------------------${COLOR_END}"
+    echo "${COLOR_START}Loading GEMC version ${COLOR_END}${GEMC_VERSION}${COLOR_START}...${COLOR_END}"
+    echo "${COLOR_START}-----------------------------------------------------------------------${COLOR_END}"
     module unload gemc
     module load gemc/${GEMC_VERSION}
     echo
