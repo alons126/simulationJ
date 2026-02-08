@@ -6,6 +6,7 @@
 # ---------------------------------------------------------------------------
 
 source ./scripts/set_env.csh
+echo
 
 unsetenv BEAM_E
 setenv BEAM_E 2070MeV
