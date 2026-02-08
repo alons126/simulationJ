@@ -71,9 +71,13 @@ echo "${COLOR_START}OUTPATH_BASE: ${COLOR_END}${OUTPATH_BASE}"
 echo
 
 # Check if OUTPATH_BASE is a directory
+echo "--> Checking if ${COLOR_END}OUTPATH_BASE${COLOR_START} is a directory..."
 if ( ! -d "${OUTPATH_BASE}" ) then
-    echo "${COLOR_ERROR_START}Error:${COLOR_END} the following directory does not exist: ${OUTPATH_BASE}"
+    printf "\t%s%s%s\n" "\t${COLOR_ERROR_START}Error:${COLOR_END}" " the following directory does not exist: ${OUTPATH_BASE}"
     exit 1
+else
+    printf "\t%s%s%s\n" "\t${COLOR_GOOD_START}OUTPATH_BASE exists!${COLOR_END}"
+    echo
 endif
 
 # Loop over particle types

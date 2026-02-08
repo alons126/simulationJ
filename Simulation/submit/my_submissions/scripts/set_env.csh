@@ -14,6 +14,9 @@ setenv COLOR_END "`printf '\033[0m'`"
 unsetenv COLOR_ERROR_START
 setenv COLOR_ERROR_START "`printf '\033[31m'`"
 
+unsetenv COLOR_GOOD_START
+setenv COLOR_GOOD_START "`printf '\033[32m'`"
+
 # Functions (csh/tcsh-compatible aliases)
 # ---------------------------------------------------------------------------
 # Usage:
