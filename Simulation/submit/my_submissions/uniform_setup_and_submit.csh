@@ -17,6 +17,11 @@ echo ""
 
 # Setup environment variables and paths for uniform sample generation and submission
 # ------------------------------------------------------------------------------------------------------
+echo ""
+echo "${COLOR_START}=======================================================================${COLOR_END}"
+printf "%s%s%s\n"  "= Setup environment variables and paths                               =${COLOR_END}"
+echo "${COLOR_START}=======================================================================${COLOR_END}"
+echo ""
 
 unsetenv BEAM_E
 setenv BEAM_E 2070MeV

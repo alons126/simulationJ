@@ -12,7 +12,6 @@ echo ""
 
 # Git operations
 # ---------------------------------------------------------------------------
-echo ""
 echo "${COLOR_START}=======================================================================${COLOR_END}"
 printf "%s%s%s\n" "${COLOR_START}= " "Updating repository and cleaning working tree" " =${COLOR_END}"
 echo "${COLOR_START}=======================================================================${COLOR_END}"
