@@ -11,7 +11,7 @@ echo
 # ------------------------------------------------------------------------------------------------------
 echo ""
 echo "${COLOR_START}///////////////////////////////////////////////////////////////////////${COLOR_END}"
-printf "%s%s%s\n" "${COLOR_START}//${COLOR_END} Setting and submitting uniform sample generation jobs ${COLOR_START}//${COLOR_END}"
+printf "%s%s%s\n" "${COLOR_START}//${COLOR_END}    Setting and submitting uniform sample generation jobs    ${COLOR_START}//${COLOR_END}"
 echo "${COLOR_START}///////////////////////////////////////////////////////////////////////${COLOR_END}"
 echo ""
 
