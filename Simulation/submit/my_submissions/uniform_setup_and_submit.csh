@@ -166,10 +166,9 @@ foreach OUTPATH_PARTICLE ( 1e )
     echo "${COLOR_START}OUTPATH_PARTICLE:${COLOR_END} ${OUTPATH_PARTICLE}"
     echo
 
-    # Setup other environment variables based on BEAM_E and particle type
+    # Setup environment variables based on BEAM_E and particle type
     # ---------------------------------------------------------------------------
-
-    echo "${COLOR_START}Setting environment variables and paths for particle type ${OUTPATH_PARTICLE}${COLOR_END}"
+    echo "${COLOR_START}Setting environment variables based on BEAM_E and particle type ${OUTPATH_PARTICLE}${COLOR_END}"
     echo "${COLOR_START}-----------------------------------------------------------------------${COLOR_END}"
     echo
 
@@ -198,6 +197,10 @@ foreach OUTPATH_PARTICLE ( 1e )
 
     # Set paths based on particle type
     # --------------------------------------------------------------------------------------------------
+    echo "${COLOR_START}Setting paths based on particle type ${OUTPATH_PARTICLE}${COLOR_END}"
+    echo "${COLOR_START}-----------------------------------------------------------------------${COLOR_END}"
+    echo
+
     unsetenv OUTPATH
     setenv OUTPATH ${OUTPATH_BASE}/OutPut_${OUTPATH_PARTICLE}
     echo "${COLOR_START}OUTPATH:${COLOR_END} ${OUTPATH}"
@@ -230,6 +233,9 @@ foreach OUTPATH_PARTICLE ( 1e )
 
     # Set GCARD_FILE and YAML_FILE paths based on BEAM_E and TARGET_VARIATION. These will be used in the uniform sample generation and submission scripts to ensure that the correct configurations are used for each beam energy and target variation.
     # --------------------------------------------------------------------------------------------------
+    echo "${COLOR_START}Setting GCARD_FILE and YAML_FILE files based on BEAM_E and TARGET_VARIATION ${OUTPATH_PARTICLE}${COLOR_END}"
+    echo "${COLOR_START}-----------------------------------------------------------------------${COLOR_END}"
+    echo
 
     # Setting GCARD_FILE
     unsetenv GCARD_FILE
@@ -271,6 +277,10 @@ foreach OUTPATH_PARTICLE ( 1e )
 
     # Setup output directory structure
     # ---------------------------------------------------------------------------
+    echo "${COLOR_START}Setting output directory structure ${OUTPATH_PARTICLE}${COLOR_END}"
+    echo "${COLOR_START}-----------------------------------------------------------------------${COLOR_END}"
+    echo
+
     echo "${COLOR_START}Removing old directory structure for MC simulation here...\033[0m"
     rm -rf ${OUTPATH}_${OUTPATH_PARTICLE}/mchipo
     rm -rf ${OUTPATH}_${OUTPATH_PARTICLE}/reconhipo
@@ -281,7 +291,12 @@ foreach OUTPATH_PARTICLE ( 1e )
     mkdir ${OUTPATH}_${OUTPATH_PARTICLE}/mchipo ${OUTPATH}_${OUTPATH_PARTICLE}/reconhipo ${OUTPATH}_${OUTPATH_PARTICLE}/rootfiles
     echo
 
-    echo "${COLOR_START}Submitting en sbatch job for BeamE = \033[0m${BEAM_E}${COLOR_START}...\033[0m"
+    # Submitting sbatch job
+    # ---------------------------------------------------------------------------
+    echo "${COLOR_START}Submitting sbatch job for BeamE = ${COLOR_END}${BEAM_E}"
+    echo "${COLOR_START}-----------------------------------------------------------------------${COLOR_END}"
+    echo
+
     unsetenv SLURM_JOB_NAME
     setenv SLURM_JOB_NAME Uniform_${OUTPATH_PARTICLE}_sample_${BEAM_E}
     echo "${COLOR_START}SLURM_JOB_NAME:${COLOR_END} ${SLURM_JOB_NAME}"
