@@ -3,12 +3,12 @@
 # A scri
 
 # Setup environment
-# ------------------------------------------------------------------------------------------------------
+# ======================================================================================================
 source ./scripts/set_env.csh
 echo
 
 # Script banner
-# ------------------------------------------------------------------------------------------------------
+# ======================================================================================================
 echo ""
 echo "${COLOR_START}///////////////////////////////////////////////////////////////////////${COLOR_END}"
 printf "%s%s%s\n" "${COLOR_START}//${COLOR_END}        Setting and submitting uniform sample generation jobs      ${COLOR_START}//${COLOR_END}"
@@ -16,7 +16,7 @@ echo "${COLOR_START}////////////////////////////////////////////////////////////
 echo ""
 
 # Setup environment variables and paths for uniform sample generation and submission
-# ------------------------------------------------------------------------------------------------------
+# ======================================================================================================
 echo ""
 echo "${COLOR_START}=======================================================================${COLOR_END}"
 printf "%s\n" "${COLOR_START}= Setup environment variables and paths                               =${COLOR_END}"
@@ -41,7 +41,7 @@ echo "${COLOR_START}CLEAR_FAR_OUT:${COLOR_END}       ${CLEAR_FAR_OUT}"
 echo
 
 unset CUSTOM_GEMC_VERSION
-setenv CUSTOM_GEMC_VERSION 1 # 1 for true, 0 for false
+setenv CUSTOM_GEMC_VERSION true
 echo "${COLOR_START}CUSTOM_GEMC_VERSION:${COLOR_END} ${CUSTOM_GEMC_VERSION}"
 echo
 
@@ -56,7 +56,7 @@ echo "${COLOR_START}NUM_OF_JOBS:${COLOR_END}         ${NUM_OF_JOBS}"
 echo
 
 # Main Script
-# ------------------------------------------------------------------------------------------------------
+# ======================================================================================================
 echo ""
 echo "${COLOR_START}=======================================================================${COLOR_END}"
 printf "%s%s%s\n" "${COLOR_START}= " "Starting uniform generation and submission for BeamE =${COLOR_END} ${BEAM_E}" "      ${COLOR_START}=${COLOR_END}"
@@ -79,29 +79,74 @@ else
     echo
 endif
 
+unsetenv CLAS12TAGS_DIR
+setenv CLAS12TAGS_DIR /lustre24/expphy/volatile/clas12/asportes/Ar40_imp_GEMC/clas12Tags
+echo "${COLOR_START}CLAS12TAGS_DIR:${COLOR_END} ${CLAS12TAGS_DIR}"
+
+# Check if CLAS12TAGS_DIR is a directory
+echo "${COLOR_START}--> Checking if ${COLOR_END}CLAS12TAGS_DIR${COLOR_START} is a directory...${COLOR_END}"
+if ( ! -d "${CLAS12TAGS_DIR}" ) then
+    printf "${COLOR_START}-->${COLOR_END} %s%s%s\n" "${COLOR_ERROR_START}Error:${COLOR_END}" " the following directory does not exist: ${CLAS12TAGS_DIR}"
+    exit 1
+else
+    printf "${COLOR_START}-->${COLOR_END} %s%s%s\n" "${COLOR_GOOD_START}CLAS12TAGS_DIR exists.${COLOR_END}"
+    echo
+endif
+
+# Handle farm_out directory clearing and custom GEMC version loading based on environment variables
+# ------------------------------------------------------------------------------------------------------
+echo ""
+echo "${COLOR_START}=======================================================================${COLOR_END}"
+printf "%s%s%s\n" "${COLOR_START}= Handling farm_out directory clearing and custom GEMC version        =${COLOR_END}"
+echo "${COLOR_START}=======================================================================${COLOR_END}"
+echo ""
+
+# Optionally clear the farm_out directory
+echo "${COLOR_START}Handling farm_out directory clearing...${COLOR_END}"
+echo "${COLOR_START}-----------------------------------------------------------------------${COLOR_END}"
+if ("${CLEAR_FAR_OUT}" == "true") then
+    echo
+    echo "${COLOR_START}Clearing farm_out directory...${COLOR_END}"
+    rm /u/scifarm/farm_out/asportes/*
+    echo
+else
+    echo "${COLOR_START}${CLEAR_FAR_OUT} is set to 'false', skipping farm_out directory clearing...${COLOR_END}"
+    echo
+endif
+
+# Optionally use custom GEMC version and set GEMC_DATA_DIR to a custom path
+if ("${CUSTOM_GEMC_VERSION}" == "true") then
+    echo
+    echo "${COLOR_START}Loading dev GEMC version ----------------------------------------------${COLOR_END}"
+    module unload gemc
+    module load gemc/${GEMC_VERSION}
+    echo
+
+    # Set GEMC data directory to a custom path. This is important to ensure that the correct geometry and configuration files are used for the simulations, especially if using a custom or development version of GEMC.
+    unsetenv GEMC_DATA_DIR
+    setenv GEMC_DATA_DIR ${CLAS12TAGS_DIR}
+    echo "${COLOR_START}GEMC_DATA_DIR:${COLOR_END} ${GEMC_DATA_DIR}"
+
+    # Check if GEMC_DATA_DIR is a directory
+    echo "${COLOR_START}--> Checking if ${COLOR_END}GEMC_DATA_DIR${COLOR_START} is a directory...${COLOR_END}"
+    if ( ! -d "${GEMC_DATA_DIR}" ) then
+        printf "${COLOR_START}-->${COLOR_END} %s%s%s\n" "${COLOR_ERROR_START}Error:${COLOR_END}" " the following directory does not exist: ${GEMC_DATA_DIR}"
+        exit 1
+    else
+        printf "${COLOR_START}-->${COLOR_END} %s%s%s\n" "${COLOR_GOOD_START}GEMC_DATA_DIR exists.${COLOR_END}"
+        echo
+    endif
+else
+    echo "${COLOR_START}${CUSTOM_GEMC_VERSION} is set to 'false', skipping custom GEMC version loading...${COLOR_END}"
+    echo
+endif
+
 # Loop over particle types
-# ---------------------------------------------------------------------------
-echo
+# ------------------------------------------------------------------------------------------------------
 foreach OUTPATH_PARTICLE ( 1e ep en )
     echo "${COLOR_START}Processing particle type:${COLOR_END} ${OUTPATH_PARTICLE}"
     echo "${COLOR_START}-----------------------------------------------------------------------${COLOR_END}"
     echo
-
-    # Set paths based on particle type
-    # ---------------------------------------------------------------------------
-    unsetenv OUTPATH
-    setenv OUTPATH ${OUTPATH_BASE}/OutPut_${OUTPATH_PARTICLE}
-    echo "${COLOR_START}OUTPATH:${COLOR_END} ${OUTPATH}"
-
-    # Check if OUTPATH is a directory
-    echo "${COLOR_START}--> Checking if ${COLOR_END}OUTPATH${COLOR_START} is a directory...${COLOR_END}"
-    if ( ! -d "${OUTPATH}" ) then
-        printf "${COLOR_START}-->${COLOR_END} %s%s%s\n" "${COLOR_ERROR_START}Error:${COLOR_END}" " the following directory does not exist: ${OUTPATH}"
-        exit 1
-    else
-        printf "${COLOR_START}-->${COLOR_END} %s%s%s\n" "${COLOR_GOOD_START}OUTPATH exists.${COLOR_END}"
-        echo
-    endif
 
     # Setup other environment variables based on BEAM_E and particle type
     # ---------------------------------------------------------------------------
@@ -125,8 +170,24 @@ foreach OUTPATH_PARTICLE ( 1e ep en )
     else if ("${BEAM_E}" == "4029MeV" || "${BEAM_E}" == "5986MeV") then
         setenv TORUS_FIELD -1.0
     else
-        echo "Unknown torus field configuration: ${BEAM_E}"
+        echo "${COLOR_ERROR_START}Error:${COLOR_END} unknown torus field configuration: ${BEAM_E}"
         exit 1
+    endif
+
+    # Set paths based on particle type
+    # --------------------------------------------------------------------------------------------------
+    unsetenv OUTPATH
+    setenv OUTPATH ${OUTPATH_BASE}/OutPut_${OUTPATH_PARTICLE}
+    echo "${COLOR_START}OUTPATH:${COLOR_END} ${OUTPATH}"
+
+    # Check if OUTPATH is a directory
+    echo "${COLOR_START}--> Checking if ${COLOR_END}OUTPATH${COLOR_START} is a directory...${COLOR_END}"
+    if ( ! -d "${OUTPATH}" ) then
+        printf "${COLOR_START}-->${COLOR_END} %s%s%s\n" "${COLOR_ERROR_START}Error:${COLOR_END}" " the following directory does not exist: ${OUTPATH}"
+        exit 1
+    else
+        printf "${COLOR_START}-->${COLOR_END} %s%s%s\n" "${COLOR_GOOD_START}OUTPATH exists.${COLOR_END}"
+        echo
     endif
 
     # Determine the correct submit script path based on BEAM_E
@@ -145,6 +206,9 @@ foreach OUTPATH_PARTICLE ( 1e ep en )
         echo
     endif
 
+    # Set GCARD_FILE and YAML_FILE paths based on BEAM_E and TARGET_VARIATION. These will be used in the uniform sample generation and submission scripts to ensure that the correct configurations are used for each beam energy and target variation.
+    # --------------------------------------------------------------------------------------------------
+
     # Setting GCARD_FILE
     unsetenv GCARD_FILE
     setenv GCARD_FILE ${SUBMIT_SCRIPT_PATH}/${TARGET_VARIATION}_${BEAM_E_ROUNDED}.gcard
@@ -152,9 +216,13 @@ foreach OUTPATH_PARTICLE ( 1e ep en )
     echo
 
     # Check if GCARD_FILE is a file
+    echo "${COLOR_START}--> Checking if ${COLOR_END}GCARD_FILE${COLOR_START} is a file...${COLOR_END}"
     if ( ! -f "${GCARD_FILE}" ) then
-        echo "${COLOR_ERROR_START}Error:${COLOR_END} the following file does not exist: ${GCARD_FILE}"
+        printf "${COLOR_START}-->${COLOR_END} %s%s%s\n" "${COLOR_ERROR_START}Error:${COLOR_END}" " the following file does not exist: ${GCARD_FILE}"
         exit 1
+    else
+        printf "${COLOR_START}-->${COLOR_END} %s%s%s\n" "${COLOR_GOOD_START}GCARD_FILE exists.${COLOR_END}"
+        echo
     endif
 
     # Setting YAML_FILE
@@ -170,29 +238,12 @@ foreach OUTPATH_PARTICLE ( 1e ep en )
     echo
 
     # Check if YAML_FILE is a file
+    echo "${COLOR_START}--> Checking if ${COLOR_END}YAML_FILE${COLOR_START} is a file...${COLOR_END}"
     if ( ! -f "${YAML_FILE}" ) then
-        echo "${COLOR_ERROR_START}Error:${COLOR_END} the following file does not exist: ${YAML_FILE}"
+        printf "${COLOR_START}-->${COLOR_END} %s%s%s\n" "${COLOR_ERROR_START}Error:${COLOR_END}" " the following file does not exist: ${YAML_FILE}"
         exit 1
-    endif
-
-    echo "${COLOR_START}Pulling updates...\033[0m"
-    git pull
-    echo
-
-    # Optionally clear the farm_out directory
-    if ("${CLEAR_FAR_OUT}" == "true") then
-        echo
-        echo "${COLOR_START}Clearing farm_out directory...\033[0m"
-        rm /u/scifarm/farm_out/asportes/*
-        echo
-    endif
-
-    # Optionally use dev GEMC
-    if ("${CUSTOM_GEMC_VERSION}" != "0") then
-        echo
-        banner "Loading dev GEMC version ----------------------------------------------"
-        module unload gemc
-        module load gemc/${GEMC_VERSION}
+    else
+        printf "${COLOR_START}-->${COLOR_END} %s%s%s\n" "${COLOR_GOOD_START}YAML_FILE exists.${COLOR_END}"
         echo
     endif
 
