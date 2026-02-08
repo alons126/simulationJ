@@ -44,13 +44,14 @@ echo
 # ---------------------------------------------------------------------------
 echo ""
 echo "${COLOR_START}=======================================================================${COLOR_END}"
-printf "%s%s%s\n" "${COLOR_START}= " "Starting uniform generation and submission for BeamE = ${BEAM_E}" " =${COLOR_END}"
+printf "%s%s%s\n" "${COLOR_START}= " "Starting uniform generation and submission for BeamE =${COLOR_END} ${BEAM_E}" "        ${COLOR_START}=${COLOR_END}"
 echo "${COLOR_START}=======================================================================${COLOR_END}"
 echo ""
 
 # Set paths based on BEAM_E
 unsetenv OUTPATH_BASE
-setenv OUTPATH_BASE /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/Uniform_e-p-n_samples/${BEAM_E}_devGEMC
+# setenv OUTPATH_BASE /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/Uniform_e-p-n_samples/${BEAM_E}_devGEMC
+setenv OUTPATH_BASE /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/Uniform_e-p-n_samples/${BEAM_E}_devGEMC_rgm_fall2021_C_S
 echo "${COLOR_START}OUTPATH_BASE: ${COLOR_END}${OUTPATH_BASE}"
 echo
 
