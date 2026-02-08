@@ -176,6 +176,6 @@ foreach OUTPATH_PARTICLE ( 1e ep en )
     echo "${COLOR_START}ARRAY:${COLOR_END} ${ARRAY}"
     echo ""
 
-    sbatch --job-name="${SLURM_JOB_NAME}" --array=${ARRAY} ${SUBMIT_SCRIPT_PATH}/submit_GEMC_uniform_${OUTPATH_PARTICLE}.sh
+    # sbatch --job-name="${SLURM_JOB_NAME}" --array=${ARRAY} ${SUBMIT_SCRIPT_PATH}/submit_GEMC_uniform_${OUTPATH_PARTICLE}.sh
     echo
 end # end foreach OUTPATH_PARTICLE ( 1e ep en )
