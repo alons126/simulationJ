@@ -68,7 +68,7 @@ echo "${COLOR_START}============================================================
 echo ""
 
 unsetenv CLAS12TAGS_DIR
-setenv CLAS12TAGS_DIR /lustre24/expphy/volatile/clas12/asportes/Ar40_imp_GEMC/clas12Tags
+setenv CLAS12TAGS_DIR /lustre24/expphy/volatile/clas12/asportes/Ar40_imp_GEMC/alons126-clas12Tags
 echo "${COLOR_START}CLAS12TAGS_DIR:${COLOR_END} ${CLAS12TAGS_DIR}"
 
 # Check if CLAS12TAGS_DIR is a directory
