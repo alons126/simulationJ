@@ -67,23 +67,6 @@ printf "%s%s%s\n" "${COLOR_START}= " "Starting uniform generation and submission
 echo "${COLOR_START}=======================================================================${COLOR_END}"
 echo ""
 
-# Set paths based on BEAM_E and TARGET_VARIATION for uniform sample generation and submission. These environment variables will be used in the uniform sample generation and submission scripts to ensure that the correct paths and configurations are used for each beam energy and target variation.
-unsetenv OUTPATH_BASE
-# setenv OUTPATH_BASE /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/Uniform_e-p-n_samples/${BEAM_E}_devGEMC
-setenv OUTPATH_BASE /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/Uniform_e-p-n_samples/${BEAM_E}_devGEMC_${TARGET_VARIATION}
-# setenv OUTPATH_BASE /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/Uniform_e-p-n_samples/${BEAM_E}_ConstPn_devGEMC_${TARGET_VARIATION}
-echo "${COLOR_START}OUTPATH_BASE: ${COLOR_END}${OUTPATH_BASE}"
-
-# Check if OUTPATH_BASE is a directory
-echo "${COLOR_START}--> Checking if ${COLOR_END}OUTPATH_BASE${COLOR_START} is a directory...${COLOR_END}"
-if ( ! -d "${OUTPATH_BASE}" ) then
-    printf "${COLOR_START}-->${COLOR_END} %s%s%s\n" "${COLOR_ERROR_START}Error:${COLOR_END}" " the following directory does not exist: ${OUTPATH_BASE}"
-    exit 1
-else
-    printf "${COLOR_START}-->${COLOR_END} %s%s%s\n" "${COLOR_GOOD_START}OUTPATH_BASE exists.${COLOR_END}"
-    echo
-endif
-
 unsetenv CLAS12TAGS_DIR
 setenv CLAS12TAGS_DIR /lustre24/expphy/volatile/clas12/asportes/Ar40_imp_GEMC/clas12Tags
 echo "${COLOR_START}CLAS12TAGS_DIR:${COLOR_END} ${CLAS12TAGS_DIR}"
@@ -166,6 +149,23 @@ foreach BEAM_E ( 2070MeV 4029MeV 5986MeV )
         echo "${COLOR_START}Processing particle type:${COLOR_END} ${OUTPATH_PARTICLE}"
         echo "${COLOR_START}-----------------------------------------------------------------------${COLOR_END}"
         echo
+
+        # Set paths based on BEAM_E and TARGET_VARIATION for uniform sample generation and submission. These environment variables will be used in the uniform sample generation and submission scripts to ensure that the correct paths and configurations are used for each beam energy and target variation.
+        unsetenv OUTPATH_BASE
+        # setenv OUTPATH_BASE /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/Uniform_e-p-n_samples/${BEAM_E}_devGEMC
+        setenv OUTPATH_BASE /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/Uniform_e-p-n_samples/${BEAM_E}_devGEMC_${TARGET_VARIATION}
+        # setenv OUTPATH_BASE /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/Uniform_e-p-n_samples/${BEAM_E}_ConstPn_devGEMC_${TARGET_VARIATION}
+        echo "${COLOR_START}OUTPATH_BASE: ${COLOR_END}${OUTPATH_BASE}"
+
+        # Check if OUTPATH_BASE is a directory
+        echo "${COLOR_START}--> Checking if ${COLOR_END}OUTPATH_BASE${COLOR_START} is a directory...${COLOR_END}"
+        if ( ! -d "${OUTPATH_BASE}" ) then
+            printf "${COLOR_START}-->${COLOR_END} %s%s%s\n" "${COLOR_ERROR_START}Error:${COLOR_END}" " the following directory does not exist: ${OUTPATH_BASE}"
+            exit 1
+        else
+            printf "${COLOR_START}-->${COLOR_END} %s%s%s\n" "${COLOR_GOOD_START}OUTPATH_BASE exists.${COLOR_END}"
+            echo
+        endif
 
         # Setup other environment variables based on BEAM_E and particle type
         # ---------------------------------------------------------------------------
