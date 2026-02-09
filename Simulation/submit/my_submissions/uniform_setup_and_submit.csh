@@ -51,11 +51,11 @@ echo "${COLOR_START}GEMC_VERSION:${COLOR_END}        ${GEMC_VERSION}"
 echo
 
 unset NUM_OF_JOBS
-# setenv NUM_OF_JOBS 10
+setenv NUM_OF_JOBS 10
 # setenv NUM_OF_JOBS 100
 # setenv NUM_OF_JOBS 2500
 # setenv NUM_OF_JOBS 5000
-setenv NUM_OF_JOBS 7500
+# setenv NUM_OF_JOBS 7500
 echo "${COLOR_START}NUM_OF_JOBS:${COLOR_END}         ${NUM_OF_JOBS}"
 echo
 
