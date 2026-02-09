@@ -10,12 +10,12 @@
 
 echo "GEMC_DATA_DIR = ${GEMC_DATA_DIR}"
 echo
-echo "BEAM_E = ${BEAM_E}"
+echo "TEMP_BEAM_E = ${TEMP_BEAM_E}"
 echo
-echo "OUTPATH_PARTICLE = ${OUTPATH_PARTICLE}"
+echo "TEMP_OUTPATH_PARTICLE = ${TEMP_OUTPATH_PARTICLE}"
 echo
 #Change file prefix for your simulation                                                                                                                          
-FILE_PREFIX=Uniform_${OUTPATH_PARTICLE}_sample_${BEAM_E}
+FILE_PREFIX=Uniform_${TEMP_OUTPATH_PARTICLE}_sample_${TEMP_BEAM_E}
 echo "FILE_PREFIX = ${FILE_PREFIX}"
 echo
 

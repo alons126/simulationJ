@@ -146,44 +146,53 @@ foreach BEAM_E ( 2070MeV 4029MeV 5986MeV )
     foreach OUTPATH_PARTICLE ( 1e )
     # foreach OUTPATH_PARTICLE ( en )
     # foreach OUTPATH_PARTICLE ( 1e ep en )
+        unsetenv TEMP_BEAM_E
+        setenv TEMP_BEAM_E ${BEAM_E}
+        echo "${COLOR_START}TEMP_BEAM_E:${COLOR_END} ${TEMP_BEAM_E}"
+        echo
+
+        unsetenv TEMP_OUTPATH_PARTICLE
+        setenv TEMP_OUTPATH_PARTICLE ${OUTPATH_PARTICLE}
+        echo "${COLOR_START}TEMP_OUTPATH_PARTICLE:${COLOR_END} ${TEMP_OUTPATH_PARTICLE}"
+        echo
 
         # Set printing color based on beam energy and fiducial cuts status
         unsetenv PRINT_OUT_COLOR
-        if ("${BEAM_E}" == "2070MeV" && "${OUTPATH_PARTICLE}" == "1e") then
+        if ("${TEMP_BEAM_E}" == "2070MeV" && "${TEMP_OUTPATH_PARTICLE}" == "1e") then
             setenv PRINT_OUT_COLOR "`printf '\033[34m'`"   # blue
-        else if ("${BEAM_E}" == "2070MeV" && "${OUTPATH_PARTICLE}" == "en") then
+        else if ("${TEMP_BEAM_E}" == "2070MeV" && "${TEMP_OUTPATH_PARTICLE}" == "en") then
             setenv PRINT_OUT_COLOR "`printf '\033[36m'`"   # cyan
-        else if ("${BEAM_E}" == "2070MeV" && "${OUTPATH_PARTICLE}" == "ep") then
+        else if ("${TEMP_BEAM_E}" == "2070MeV" && "${TEMP_OUTPATH_PARTICLE}" == "ep") then
             setenv PRINT_OUT_COLOR "`printf '\033[37m'`"   # white
 
-        else if ("${BEAM_E}" == "4029MeV" && "${OUTPATH_PARTICLE}" == "1e") then
+        else if ("${TEMP_BEAM_E}" == "4029MeV" && "${TEMP_OUTPATH_PARTICLE}" == "1e") then
             setenv PRINT_OUT_COLOR "`printf '\033[90m'`"   # bright black (gray)
-        else if ("${BEAM_E}" == "4029MeV" && "${OUTPATH_PARTICLE}" == "ep") then
+        else if ("${TEMP_BEAM_E}" == "4029MeV" && "${TEMP_OUTPATH_PARTICLE}" == "ep") then
             setenv PRINT_OUT_COLOR "`printf '\033[91m'`"   # bright red
-        else if ("${BEAM_E}" == "4029MeV" && "${OUTPATH_PARTICLE}" == "en") then
+        else if ("${TEMP_BEAM_E}" == "4029MeV" && "${TEMP_OUTPATH_PARTICLE}" == "en") then
             setenv PRINT_OUT_COLOR "`printf '\033[92m'`"   # bright green
 
-        else if ("${BEAM_E}" == "5986MeV" && "${OUTPATH_PARTICLE}" == "1e") then
+        else if ("${TEMP_BEAM_E}" == "5986MeV" && "${TEMP_OUTPATH_PARTICLE}" == "1e") then
             setenv PRINT_OUT_COLOR "`printf '\033[93m'`"   # bright yellow
-        else if ("${BEAM_E}" == "5986MeV" && "${OUTPATH_PARTICLE}" == "ep") then
+        else if ("${TEMP_BEAM_E}" == "5986MeV" && "${TEMP_OUTPATH_PARTICLE}" == "ep") then
             setenv PRINT_OUT_COLOR "`printf '\033[94m'`"   # bright blue
-        else if ("${BEAM_E}" == "5986MeV" && "${OUTPATH_PARTICLE}" == "en") then
+        else if ("${TEMP_BEAM_E}" == "5986MeV" && "${TEMP_OUTPATH_PARTICLE}" == "en") then
             setenv PRINT_OUT_COLOR "`printf '\033[96m'`"   # bright cyan
         else
-            echo "Unknown combination: BEAM_E=${BEAM_E}, OUTPATH_PARTICLE=${OUTPATH_PARTICLE}"
+            echo "Unknown combination: TEMP_BEAM_E=${TEMP_BEAM_E}, TEMP_OUTPATH_PARTICLE=${TEMP_OUTPATH_PARTICLE}"
             exit 1
         endif
 
         echo
-        echo "${PRINT_OUT_COLOR}Processing particle type ${COLOR_END}${OUTPATH_PARTICLE}${PRINT_OUT_COLOR} at beam energy ${COLOR_END}${BEAM_E}"
+        echo "${PRINT_OUT_COLOR}Processing particle type ${COLOR_END}${TEMP_OUTPATH_PARTICLE}${PRINT_OUT_COLOR} at beam energy ${COLOR_END}${TEMP_BEAM_E}"
         echo "${PRINT_OUT_COLOR}-----------------------------------------------------------------------${COLOR_END}"
         echo
 
-        # Set paths based on BEAM_E and TARGET_VARIATION for uniform sample generation and submission. These environment variables will be used in the uniform sample generation and submission scripts to ensure that the correct paths and configurations are used for each beam energy and target variation.
+        # Set paths based on TEMP_BEAM_E and TARGET_VARIATION for uniform sample generation and submission. These environment variables will be used in the uniform sample generation and submission scripts to ensure that the correct paths and configurations are used for each beam energy and target variation.
         unsetenv OUTPATH_BASE
-        # setenv OUTPATH_BASE /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/Uniform_e-p-n_samples/${BEAM_E}_devGEMC
-        setenv OUTPATH_BASE /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/Uniform_e-p-n_samples/${BEAM_E}_devGEMC_${TARGET_VARIATION}
-        # setenv OUTPATH_BASE /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/Uniform_e-p-n_samples/${BEAM_E}_ConstPn_devGEMC_${TARGET_VARIATION}
+        # setenv OUTPATH_BASE /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/Uniform_e-p-n_samples/${TEMP_BEAM_E}_devGEMC
+        setenv OUTPATH_BASE /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/Uniform_e-p-n_samples/${TEMP_BEAM_E}_devGEMC_${TARGET_VARIATION}
+        # setenv OUTPATH_BASE /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/Uniform_e-p-n_samples/${TEMP_BEAM_E}_ConstPn_devGEMC_${TARGET_VARIATION}
         echo "${PRINT_OUT_COLOR}OUTPATH_BASE: ${COLOR_END}${OUTPATH_BASE}"
 
         # Check if OUTPATH_BASE is a directory
@@ -196,49 +205,49 @@ foreach BEAM_E ( 2070MeV 4029MeV 5986MeV )
             echo
         endif
 
-        # Setup other environment variables based on BEAM_E and particle type
+        # Setup other environment variables based on TEMP_BEAM_E and particle type
         # ---------------------------------------------------------------------------
 
-        echo "${PRINT_OUT_COLOR}OUTPATH_PARTICLE:${COLOR_END} ${OUTPATH_PARTICLE}"
+        echo "${PRINT_OUT_COLOR}TEMP_OUTPATH_PARTICLE:${COLOR_END} ${TEMP_OUTPATH_PARTICLE}"
         echo
 
-        # Setup environment variables based on BEAM_E and particle type
+        # Setup environment variables based on TEMP_BEAM_E and particle type
         # ---------------------------------------------------------------------------
-        echo "${PRINT_OUT_COLOR}Setting environment variables based on BEAM_E and particle type ${OUTPATH_PARTICLE}${COLOR_END}"
+        echo "${PRINT_OUT_COLOR}Setting environment variables based on TEMP_BEAM_E and particle type ${TEMP_OUTPATH_PARTICLE}${COLOR_END}"
         echo "${PRINT_OUT_COLOR}-----------------------------------------------------------------------${COLOR_END}"
         echo
 
-        # Determine the correct submit script path based on BEAM_E
-        unsetenv BEAM_E_ROUNDED
-        if ("${BEAM_E}" == "2070MeV") then
-            setenv BEAM_E_ROUNDED 2GeV
-        else if ("${BEAM_E}" == "4029MeV") then
-            setenv BEAM_E_ROUNDED 4GeV
-        else if ("${BEAM_E}" == "5986MeV") then
-            setenv BEAM_E_ROUNDED 6GeV
+        # Determine the correct submit script path based on TEMP_BEAM_E
+        unsetenv TEMP_BEAM_E_ROUNDED
+        if ("${TEMP_BEAM_E}" == "2070MeV") then
+            setenv TEMP_BEAM_E_ROUNDED 2GeV
+        else if ("${TEMP_BEAM_E}" == "4029MeV") then
+            setenv TEMP_BEAM_E_ROUNDED 4GeV
+        else if ("${TEMP_BEAM_E}" == "5986MeV") then
+            setenv TEMP_BEAM_E_ROUNDED 6GeV
         endif
-        echo "${PRINT_OUT_COLOR}BEAM_E_ROUNDED:${COLOR_END} ${BEAM_E_ROUNDED}"
+        echo "${PRINT_OUT_COLOR}TEMP_BEAM_E_ROUNDED:${COLOR_END} ${TEMP_BEAM_E_ROUNDED}"
         echo
 
         # Set torus field based on beam energy
         unsetenv TORUS_FIELD
-        if ("${BEAM_E}" == "2070MeV") then
+        if ("${TEMP_BEAM_E}" == "2070MeV") then
             setenv TORUS_FIELD 0.5
-        else if ("${BEAM_E}" == "4029MeV" || "${BEAM_E}" == "5986MeV") then
+        else if ("${TEMP_BEAM_E}" == "4029MeV" || "${TEMP_BEAM_E}" == "5986MeV") then
             setenv TORUS_FIELD -1.0
         else
-            echo "${COLOR_ERROR_START}Error:${COLOR_END} unknown torus field configuration: ${BEAM_E}"
+            echo "${COLOR_ERROR_START}Error:${COLOR_END} unknown torus field configuration: ${TEMP_BEAM_E}"
             exit 1
         endif
 
         # Set paths based on particle type
         # --------------------------------------------------------------------------------------------------
-        echo "${PRINT_OUT_COLOR}Setting paths based on particle type ${OUTPATH_PARTICLE}${COLOR_END}"
+        echo "${PRINT_OUT_COLOR}Setting paths based on particle type ${TEMP_OUTPATH_PARTICLE}${COLOR_END}"
         echo "${PRINT_OUT_COLOR}-----------------------------------------------------------------------${COLOR_END}"
         echo
 
         unsetenv OUTPATH
-        setenv OUTPATH ${OUTPATH_BASE}/OutPut_${OUTPATH_PARTICLE}
+        setenv OUTPATH ${OUTPATH_BASE}/OutPut_${TEMP_OUTPATH_PARTICLE}
         echo "${PRINT_OUT_COLOR}OUTPATH:${COLOR_END} ${OUTPATH}"
 
         # Check if OUTPATH is a directory
@@ -251,9 +260,9 @@ foreach BEAM_E ( 2070MeV 4029MeV 5986MeV )
             echo
         endif
 
-        # Determine the correct submit script path based on BEAM_E
+        # Determine the correct submit script path based on TEMP_BEAM_E
         unsetenv REQUIREMENTS_PATH
-        setenv REQUIREMENTS_PATH ./Generation_files_${BEAM_E_ROUNDED}
+        setenv REQUIREMENTS_PATH ./Generation_files_${TEMP_BEAM_E_ROUNDED}
         echo "${PRINT_OUT_COLOR}REQUIREMENTS_PATH:${COLOR_END} ${REQUIREMENTS_PATH}"
         echo
 
@@ -267,15 +276,15 @@ foreach BEAM_E ( 2070MeV 4029MeV 5986MeV )
             echo
         endif
 
-        # Set GCARD_FILE and YAML_FILE paths based on BEAM_E and TARGET_VARIATION. These will be used in the uniform sample generation and submission scripts to ensure that the correct configurations are used for each beam energy and target variation.
+        # Set GCARD_FILE and YAML_FILE paths based on TEMP_BEAM_E and TARGET_VARIATION. These will be used in the uniform sample generation and submission scripts to ensure that the correct configurations are used for each beam energy and target variation.
         # --------------------------------------------------------------------------------------------------
-        echo "${PRINT_OUT_COLOR}Setting GCARD_FILE and YAML_FILE files based on BEAM_E and TARGET_VARIATION ${OUTPATH_PARTICLE}${COLOR_END}"
+        echo "${PRINT_OUT_COLOR}Setting GCARD_FILE and YAML_FILE files based on TEMP_BEAM_E and TARGET_VARIATION ${TEMP_OUTPATH_PARTICLE}${COLOR_END}"
         echo "${PRINT_OUT_COLOR}-----------------------------------------------------------------------${COLOR_END}"
         echo
 
         # Setting GCARD_FILE
         unsetenv GCARD_FILE
-        setenv GCARD_FILE ${REQUIREMENTS_PATH}/${TARGET_VARIATION}_${BEAM_E_ROUNDED}.gcard
+        setenv GCARD_FILE ${REQUIREMENTS_PATH}/${TARGET_VARIATION}_${TEMP_BEAM_E_ROUNDED}.gcard
         echo "${PRINT_OUT_COLOR}GCARD_FILE:${COLOR_END} ${GCARD_FILE}"
 
         # Check if GCARD_FILE is a file
@@ -290,11 +299,11 @@ foreach BEAM_E ( 2070MeV 4029MeV 5986MeV )
 
         # Setting YAML_FILE
         unsetenv YAML_FILE
-        if ("${BEAM_E}" == "2070MeV") then
+        if ("${TEMP_BEAM_E}" == "2070MeV") then
             setenv YAML_FILE ${REQUIREMENTS_PATH}/rgm_fall2021-cv.yaml
-        else if ("${BEAM_E}" == "4029MeV") then
+        else if ("${TEMP_BEAM_E}" == "4029MeV") then
             setenv YAML_FILE ${REQUIREMENTS_PATH}/rgm_fall2021-ai_4Gev.yaml
-        else if ("${BEAM_E}" == "5986MeV") then
+        else if ("${TEMP_BEAM_E}" == "5986MeV") then
             setenv YAML_FILE ${REQUIREMENTS_PATH}/rgm_fall2021-ai_6Gev.yaml
         endif
         echo "${PRINT_OUT_COLOR}YAML_FILE:${COLOR_END} ${YAML_FILE}"
@@ -311,7 +320,7 @@ foreach BEAM_E ( 2070MeV 4029MeV 5986MeV )
 
         # Setup output directory structure
         # ---------------------------------------------------------------------------
-        echo "${PRINT_OUT_COLOR}Setting output directory structure ${OUTPATH_PARTICLE}${COLOR_END}"
+        echo "${PRINT_OUT_COLOR}Setting output directory structure ${TEMP_OUTPATH_PARTICLE}${COLOR_END}"
         echo "${PRINT_OUT_COLOR}-----------------------------------------------------------------------${COLOR_END}"
         echo
 
@@ -327,13 +336,13 @@ foreach BEAM_E ( 2070MeV 4029MeV 5986MeV )
 
         # Submitting sbatch job
         # ---------------------------------------------------------------------------
-        echo "${PRINT_OUT_COLOR}Submitting sbatch job for BeamE = ${COLOR_END}${BEAM_E}"
+        echo "${PRINT_OUT_COLOR}Submitting sbatch job for BeamE = ${COLOR_END}${TEMP_BEAM_E}"
         echo "${PRINT_OUT_COLOR}-----------------------------------------------------------------------${COLOR_END}"
         echo
 
         unsetenv SLURM_JOB_NAME
-        setenv SLURM_JOB_NAME Uniform_${OUTPATH_PARTICLE}_sample_${BEAM_E}
-        # setenv SLURM_JOB_NAME Uniform_${OUTPATH_PARTICLE}_ConstPn_sample_${BEAM_E}
+        setenv SLURM_JOB_NAME Uniform_${TEMP_OUTPATH_PARTICLE}_sample_${TEMP_BEAM_E}
+        # setenv SLURM_JOB_NAME Uniform_${TEMP_OUTPATH_PARTICLE}_ConstPn_sample_${TEMP_BEAM_E}
         echo "${PRINT_OUT_COLOR}SLURM_JOB_NAME:${COLOR_END} ${SLURM_JOB_NAME}"
         echo ""
 
