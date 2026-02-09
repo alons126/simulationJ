@@ -23,13 +23,6 @@ printf "%s\n" "${COLOR_START}= Setup environment variables and paths            
 echo "${COLOR_START}=======================================================================${COLOR_END}"
 echo ""
 
-# unsetenv BEAM_E
-# setenv BEAM_E 2070MeV
-# # setenv BEAM_E 4029MeV
-# # setenv BEAM_E 5986MeV
-# echo "${COLOR_START}BEAM_E:${COLOR_END}              ${BEAM_E}"
-# echo
-
 unset TARGET_VARIATION
 setenv TARGET_VARIATION rgm_fall2021_Ar
 echo "${COLOR_START}TARGET_VARIATION:${COLOR_END}    ${TARGET_VARIATION}"
@@ -51,12 +44,12 @@ echo "${COLOR_START}GEMC_VERSION:${COLOR_END}        ${GEMC_VERSION}"
 echo
 
 unset NUM_OF_JOBS
-setenv NUM_OF_JOBS 10
+# setenv NUM_OF_JOBS 10
 # setenv NUM_OF_JOBS 100
 # setenv NUM_OF_JOBS 2500
 # setenv NUM_OF_JOBS 5000
 # setenv NUM_OF_JOBS 7500
-# setenv NUM_OF_JOBS 10000
+setenv NUM_OF_JOBS 10000
 echo "${COLOR_START}NUM_OF_JOBS:${COLOR_END}         ${NUM_OF_JOBS}"
 echo
 
@@ -143,10 +136,10 @@ echo "${COLOR_START}============================================================
 printf "%s%s%s\n" "${COLOR_START}= Looping over particle types                                         =${COLOR_END}"
 echo "${COLOR_START}=======================================================================${COLOR_END}"
 echo ""
-foreach BEAM_E ( 2070MeV )
-# foreach BEAM_E ( 2070MeV 4029MeV 5986MeV )
-    foreach OUTPATH_PARTICLE ( 1e )
-    # foreach OUTPATH_PARTICLE ( en )
+# foreach BEAM_E ( 2070MeV )
+foreach BEAM_E ( 2070MeV 4029MeV 5986MeV )
+    # foreach OUTPATH_PARTICLE ( 1e )
+    foreach OUTPATH_PARTICLE ( en )
     # foreach OUTPATH_PARTICLE ( 1e ep en )
         echo
         echo "${COLOR_START}Processing particle type ${COLOR_END}${OUTPATH_PARTICLE}${COLOR_START} at beam energy ${COLOR_END}${BEAM_E}"
@@ -345,8 +338,8 @@ foreach BEAM_E ( 2070MeV )
         echo
 
         unsetenv SLURM_JOB_NAME
-        setenv SLURM_JOB_NAME Uniform_${TEMP_OUTPATH_PARTICLE}_sample_${TEMP_BEAM_E}_test_2
-        # setenv SLURM_JOB_NAME Uniform_${TEMP_OUTPATH_PARTICLE}_sample_${TEMP_BEAM_E}
+        # setenv SLURM_JOB_NAME Uniform_${TEMP_OUTPATH_PARTICLE}_sample_${TEMP_BEAM_E}_test_2
+        setenv SLURM_JOB_NAME Uniform_${TEMP_OUTPATH_PARTICLE}_sample_${TEMP_BEAM_E}
         # setenv SLURM_JOB_NAME Uniform_${TEMP_OUTPATH_PARTICLE}_ConstPn_sample_${TEMP_BEAM_E}
         echo "${PRINT_OUT_COLOR}SLURM_JOB_NAME:${COLOR_END} ${SLURM_JOB_NAME}"
         echo ""
