@@ -21,6 +21,8 @@ echo "JOB_Q2_CUT = ${JOB_Q2_CUT}"
 JOB_BEAM_E=${BEAM_E}
 echo "JOB_BEAM_E = ${JOB_BEAM_E}"
 echo
+echo "GEMC_DATA_DIR = ${GEMC_DATA_DIR}"
+echo
 
 #Change file prefix for your simulation
 FILE_PREFIX=${JOB_TARGET}_${JOB_GENIE_TUNE}_${JOB_Q2_CUT}_${JOB_BEAM_E}

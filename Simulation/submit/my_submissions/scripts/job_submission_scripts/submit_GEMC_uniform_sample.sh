@@ -8,6 +8,9 @@
 #SBATCH --output=/farm_out/%u/%x-%j-%N.out                                                                           
 #SBATCH --error=//farm_out/%u/%x-%j-%N.err                                                                           
 
+echo "GEMC_DATA_DIR = ${GEMC_DATA_DIR}"
+echo
+
 #Change file prefix for your simulation                                                                                                                          
 FILE_PREFIX=Uniform_${JOB_OUT_PATH_PARTICLE}_sample_${BEAM_E}
 echo "FILE_PREFIX = ${FILE_PREFIX}"
