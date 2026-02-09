@@ -148,6 +148,23 @@ foreach BEAM_E ( 2070MeV )
     foreach OUTPATH_PARTICLE ( 1e )
     # foreach OUTPATH_PARTICLE ( en )
     # foreach OUTPATH_PARTICLE ( 1e ep en )
+        echo
+        echo "${COLOR_START}Processing particle type ${COLOR_END}${OUTPATH_PARTICLE}${COLOR_START} at beam energy ${COLOR_END}${BEAM_E}"
+        echo "${COLOR_START}-----------------------------------------------------------------------${COLOR_END}"
+        echo
+
+        # Defining a temporary environment variable for beam energy. This is crucial for the job submission script, as BEAM_E is not accepted.
+        unsetenv TEMP_BEAM_E
+        setenv TEMP_BEAM_E ${BEAM_E}
+        echo "${COLOR_START}TEMP_BEAM_E:${COLOR_END} ${TEMP_BEAM_E}"
+        echo
+
+        # Defining a temporary environment variable for particle type. This is crucial for the job submission script, as OUTPATH_PARTICLE is not accepted.
+        unsetenv TEMP_OUTPATH_PARTICLE
+        setenv TEMP_OUTPATH_PARTICLE ${OUTPATH_PARTICLE}
+        echo "${COLOR_START}TEMP_OUTPATH_PARTICLE:${COLOR_END} ${TEMP_OUTPATH_PARTICLE}"
+        echo
+
         # Set printing color based on beam energy and fiducial cuts status
         unsetenv PRINT_OUT_COLOR
         if ("${TEMP_BEAM_E}" == "2070MeV" && "${TEMP_OUTPATH_PARTICLE}" == "1e") then
@@ -174,23 +191,6 @@ foreach BEAM_E ( 2070MeV )
             echo "Unknown combination: TEMP_BEAM_E=${TEMP_BEAM_E}, TEMP_OUTPATH_PARTICLE=${TEMP_OUTPATH_PARTICLE}"
             exit 1
         endif
-
-        echo
-        echo "${PRINT_OUT_COLOR}Processing particle type ${COLOR_END}${TEMP_OUTPATH_PARTICLE}${PRINT_OUT_COLOR} at beam energy ${COLOR_END}${TEMP_BEAM_E}"
-        echo "${PRINT_OUT_COLOR}-----------------------------------------------------------------------${COLOR_END}"
-        echo
-
-        # Defining a temporary environment variable for beam energy. This is crucial for the job submission script, as BEAM_E is not accepted.
-        unsetenv TEMP_BEAM_E
-        setenv TEMP_BEAM_E ${BEAM_E}
-        echo "${COLOR_START}TEMP_BEAM_E:${COLOR_END} ${TEMP_BEAM_E}"
-        echo
-
-        # Defining a temporary environment variable for particle type. This is crucial for the job submission script, as OUTPATH_PARTICLE is not accepted.
-        unsetenv TEMP_OUTPATH_PARTICLE
-        setenv TEMP_OUTPATH_PARTICLE ${OUTPATH_PARTICLE}
-        echo "${COLOR_START}TEMP_OUTPATH_PARTICLE:${COLOR_END} ${TEMP_OUTPATH_PARTICLE}"
-        echo
 
         # Set paths based on TEMP_BEAM_E and TARGET_VARIATION for uniform sample generation and submission. These environment variables will be used in the uniform sample generation and submission scripts to ensure that the correct paths and configurations are used for each beam energy and target variation.
         unsetenv OUTPATH_BASE
