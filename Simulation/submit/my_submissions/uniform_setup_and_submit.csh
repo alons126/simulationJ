@@ -327,8 +327,8 @@ foreach BEAM_E ( 2070MeV 4029MeV 5986MeV )
             echo
         endif
 
-        echo "Submitted job with command:"
-        echo "sbatch --job-name=${SLURM_JOB_NAME} --array=${ARRAY} ${SUBMIT_SCRIPT_FILE}"
+        echo "${COLOR_START}Submitted job with command:${COLOR_END}"
+        echo "${COLOR_START}sbatch --job-name=${COLOR_END}${SLURM_JOB_NAME}${COLOR_START} --array=${COLOR_END}${ARRAY} ${SUBMIT_SCRIPT_FILE}"
         # sbatch --job-name="${SLURM_JOB_NAME}" --array=${ARRAY} ${SUBMIT_SCRIPT_FILE}
         echo
         echo
