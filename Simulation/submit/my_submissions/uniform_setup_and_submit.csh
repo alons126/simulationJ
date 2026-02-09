@@ -224,7 +224,7 @@ foreach BEAM_E ( 2070MeV 4029MeV 5986MeV )
 
         # Determine the correct submit script path based on BEAM_E
         unsetenv REQUIREMENTS_PATH
-        setenv REQUIREMENTS_PATH ./Generation_files_${BEAM_E_ROUNDED}/
+        setenv REQUIREMENTS_PATH ./Generation_files_${BEAM_E_ROUNDED}
         echo "${COLOR_START}REQUIREMENTS_PATH:${COLOR_END} ${REQUIREMENTS_PATH}"
         echo
 
@@ -327,7 +327,10 @@ foreach BEAM_E ( 2070MeV 4029MeV 5986MeV )
             echo
         endif
 
+        echo "Submitted job with command:"
+        echo "sbatch --job-name=\"${SLURM_JOB_NAME}\" --array=${ARRAY} ${SUBMIT_SCRIPT_FILE}"
         # sbatch --job-name="${SLURM_JOB_NAME}" --array=${ARRAY} ${SUBMIT_SCRIPT_FILE}
+        echo
         echo
     end # end foreach OUTPATH_PARTICLE ( 1e ep en )
 end # end foreach BEAM_E ( 2070MeV 4029MeV 5986MeV )
