@@ -63,7 +63,7 @@ echo
 # ======================================================================================================
 echo ""
 echo "${COLOR_START}=======================================================================${COLOR_END}"
-printf "%s%s%s\n" "${COLOR_START}= " "Starting uniform generation and submission for BeamE =${COLOR_END} ${BEAM_E}" "      ${COLOR_START}=${COLOR_END}"
+printf "%s%s%s\n" "${COLOR_START}= " "Starting uniform generation and submission         ${COLOR_START}=${COLOR_END}"
 echo "${COLOR_START}=======================================================================${COLOR_END}"
 echo ""
 
