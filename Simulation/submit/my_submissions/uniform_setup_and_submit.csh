@@ -137,12 +137,12 @@ printf "%s%s%s\n" "${COLOR_START}= Looping over particle types                  
 echo "${COLOR_START}=======================================================================${COLOR_END}"
 echo ""
 # foreach BEAM_E ( 2070MeV )
-foreach BEAM_E ( 4029MeV 5986MeV )
-# foreach BEAM_E ( 2070MeV 4029MeV 5986MeV )
+# foreach BEAM_E ( 4029MeV 5986MeV )
+foreach BEAM_E ( 2070MeV 4029MeV 5986MeV )
     # foreach OUTPATH_PARTICLE ( 1e )
-    foreach OUTPATH_PARTICLE ( en )
+    # foreach OUTPATH_PARTICLE ( en )
     # foreach OUTPATH_PARTICLE ( 1e en )
-    # foreach OUTPATH_PARTICLE ( 1e ep en )
+    foreach OUTPATH_PARTICLE ( 1e ep en )
         echo
         echo "${COLOR_START}Processing particle type ${COLOR_END}${OUTPATH_PARTICLE}${COLOR_START} at beam energy ${COLOR_END}${BEAM_E}"
         echo "${COLOR_START}-----------------------------------------------------------------------${COLOR_END}"
@@ -189,8 +189,8 @@ foreach BEAM_E ( 4029MeV 5986MeV )
 
         # Set paths based on TEMP_BEAM_E and TARGET_VARIATION for uniform sample generation and submission. These environment variables will be used in the uniform sample generation and submission scripts to ensure that the correct paths and configurations are used for each beam energy and target variation.
         unsetenv OUTPATH_BASE
-        # setenv OUTPATH_BASE /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/Uniform_e-p-n_samples/${TEMP_BEAM_E}_devGEMC_${TARGET_VARIATION}
-        setenv OUTPATH_BASE /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/Uniform_e-p-n_samples/${TEMP_BEAM_E}_ConstPn_devGEMC_${TARGET_VARIATION}
+        setenv OUTPATH_BASE /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/Uniform_e-p-n_samples/${TEMP_BEAM_E}_devGEMC_${TARGET_VARIATION}
+        # setenv OUTPATH_BASE /lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/Uniform_e-p-n_samples/${TEMP_BEAM_E}_ConstPn_devGEMC_${TARGET_VARIATION}
         echo "${PRINT_OUT_COLOR}OUTPATH_BASE: ${COLOR_END}${OUTPATH_BASE}"
 
         # Check if OUTPATH_BASE is a directory
@@ -339,8 +339,8 @@ foreach BEAM_E ( 4029MeV 5986MeV )
         echo
 
         unsetenv SLURM_JOB_NAME
-        # setenv SLURM_JOB_NAME Uniform_${TEMP_OUTPATH_PARTICLE}_sample_${TEMP_BEAM_E}
-        setenv SLURM_JOB_NAME Uniform_${TEMP_OUTPATH_PARTICLE}_ConstPn_sample_${TEMP_BEAM_E}
+        setenv SLURM_JOB_NAME Uniform_${TEMP_OUTPATH_PARTICLE}_sample_${TEMP_BEAM_E}
+        # setenv SLURM_JOB_NAME Uniform_${TEMP_OUTPATH_PARTICLE}_ConstPn_sample_${TEMP_BEAM_E}
         echo "${PRINT_OUT_COLOR}SLURM_JOB_NAME:${COLOR_END} ${SLURM_JOB_NAME}"
         echo ""
 
