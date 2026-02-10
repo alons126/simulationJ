@@ -139,9 +139,9 @@ echo ""
 # foreach BEAM_E ( 2070MeV )
 foreach BEAM_E ( 4029MeV 5986MeV )
 # foreach BEAM_E ( 2070MeV 4029MeV 5986MeV )
-    foreach OUTPATH_PARTICLE ( 1e )
+    # foreach OUTPATH_PARTICLE ( 1e )
     # foreach OUTPATH_PARTICLE ( en )
-    # foreach OUTPATH_PARTICLE ( 1e en )
+    foreach OUTPATH_PARTICLE ( 1e en )
     # foreach OUTPATH_PARTICLE ( 1e ep en )
         echo
         echo "${COLOR_START}Processing particle type ${COLOR_END}${OUTPATH_PARTICLE}${COLOR_START} at beam energy ${COLOR_END}${BEAM_E}"
@@ -365,7 +365,7 @@ foreach BEAM_E ( 4029MeV 5986MeV )
 
         echo "${PRINT_OUT_COLOR}Submitted job with command:${COLOR_END}"
         echo "${PRINT_OUT_COLOR}sbatch --job-name=${COLOR_END}${SLURM_JOB_NAME}${PRINT_OUT_COLOR} --array=${COLOR_END}${ARRAY} ${SUBMIT_SCRIPT_FILE}"
-        sbatch --job-name="${SLURM_JOB_NAME}" --array=${ARRAY} ${SUBMIT_SCRIPT_FILE}
+        # sbatch --job-name="${SLURM_JOB_NAME}" --array=${ARRAY} ${SUBMIT_SCRIPT_FILE}
         echo
         echo
     end # end foreach OUTPATH_PARTICLE ( 1e ep en )
