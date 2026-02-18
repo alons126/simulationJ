@@ -88,11 +88,7 @@ void GENIE_to_LUND_converter(TString InputFiles = "", /* TString OutputTopDir = 
     cout << "\033[33m\nLUND file prefix: \t\033[0m" << lundfile_prefix << endl;
 
     TString OutputFileBase = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/GENIE_Reco_Samples";
-    // TString OutputTopDir = OutputFileBase + "/" + target_element + "/" + genie_tune + "/" + beam_e + "_" + Q2_cut + ending + "_Ar40_target_zpos_test";
-    // TString OutputTopDir = OutputFileBase + "/" + target_element + "/" + genie_tune + "/" + beam_e + "_" + Q2_cut + ending + "_rgm_fall2021_Ar_test";
-    // TString OutputTopDir = OutputFileBase + "/" + target_element + "/" + genie_tune + "/" + beam_e + "_" + Q2_cut + ending + "_rgm_fall2021_C_test";
-    // TString OutputTopDir = OutputFileBase + "/" + target_element + "/" + genie_tune + "/" + beam_e + "_" + Q2_cut + ending + "_rgm_fall2021_C_v2_S_test";
-    TString OutputTopDir = OutputFileBase + "/" + target_element + "/" + genie_tune + "/" + beam_e + "_" + Q2_cut + ending + "_rgm_fall2021_C_v2_L_test";
+    TString OutputTopDir = OutputFileBase + "/" + target_element + "/" + genie_tune + "/" + beam_e + "_" + Q2_cut + ending + "_devGEMC_rgm_fall2021_C_S";
     // TString OutputTopDir = OutputFileBase + "/" + target_element + "/" + genie_tune + "/" + beam_e + "_" + Q2_cut + ending;
     system(("rm -rf " + std::string(OutputTopDir.Data())).c_str());    // Remove the directory if it exists
     system(("mkdir -p " + std::string(OutputTopDir.Data())).c_str());  // Create the directory
