@@ -8,8 +8,9 @@ echo
 
 # Set number of files
 unsetenv NUM_OF_FILES
-setenv NUM_OF_FILES 2500
 # setenv NUM_OF_FILES 1000
+# setenv NUM_OF_FILES 2500
+setenv NUM_OF_FILES 10000
 echo "\033[35mNUM_OF_FILES:\033[0m ${NUM_OF_FILES}"
 echo ""
 
@@ -18,6 +19,16 @@ unsetenv BASE_TL_SAMPLE_DIR
 setenv BASE_TL_SAMPLE_DIR /w/hallb-scshelf2102/clas12/asportes/2N_Analysis_Truth_Samples
 echo "\033[35mBASE_TL_SAMPLE_DIR:\033[0m ${BASE_TL_SAMPLE_DIR}"
 echo ""
+
+# Check if BASE_TL_SAMPLE_DIR is a directory
+echo "${COLOR_START}--> Checking if ${COLOR_END}BASE_TL_SAMPLE_DIR${COLOR_START} is a directory...${COLOR_END}"
+if ( ! -d "${BASE_TL_SAMPLE_DIR}" ) then
+    printf "${COLOR_START}-->${COLOR_END} %s%s%s\n" "${COLOR_ERROR_START}Error:${COLOR_END}" " the following directory does not exist: ${BASE_TL_SAMPLE_DIR}"
+    exit 1
+else
+    printf "${COLOR_START}-->${COLOR_END} %s%s%s\n" "${COLOR_GOOD_START}BASE_TL_SAMPLE_DIR exists.${COLOR_END}"
+    echo
+endif
 
 # Set target nucleus
 unsetenv TL_SAMPLE_TARGET_NUCLEUS
@@ -119,9 +130,15 @@ echo ""
 
 # Safety check: check if directory exists
 set INPUT_FILES_DIR_PATH = "${BASE_TL_SAMPLE_DIR}/${TL_SAMPLE_TARGET_NUCLEUS}/${TL_GENIE_TUNE}/${TL_SAMPLE_ENERGY}_${TL_SAMPLE_Q2_CUT}/master-routine_validation_01-eScattering"
-if (! -d "${INPUT_FILES_DIR_PATH}") then
-    echo "\033[31mError:\033[0m Directory does not exist: ${INPUT_FILES_DIR_PATH}"
+
+# Check if INPUT_FILES_DIR_PATH is a directory
+echo "${COLOR_START}--> Checking if ${COLOR_END}INPUT_FILES_DIR_PATH${COLOR_START} is a directory...${COLOR_END}"
+if ( ! -d "${INPUT_FILES_DIR_PATH}" ) then
+    printf "${COLOR_START}-->${COLOR_END} %s%s%s\n" "${COLOR_ERROR_START}Error:${COLOR_END}" " the following directory does not exist: ${INPUT_FILES_DIR_PATH}"
     exit 1
+else
+    printf "${COLOR_START}-->${COLOR_END} %s%s%s\n" "${COLOR_GOOD_START}INPUT_FILES_DIR_PATH exists.${COLOR_END}"
+    echo
 endif
 
 # Expand root files using shell globbing
