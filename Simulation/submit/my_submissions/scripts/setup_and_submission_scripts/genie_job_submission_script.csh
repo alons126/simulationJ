@@ -39,10 +39,10 @@ echo "${COLOR_START}GEMC_VERSION:${COLOR_END}        ${GEMC_VERSION}"
 echo
 
 unset NUM_OF_JOBS
-setenv NUM_OF_JOBS 1
+# setenv NUM_OF_JOBS 1
 # setenv NUM_OF_JOBS 10
 # setenv NUM_OF_JOBS 100
-# setenv NUM_OF_JOBS 2500
+setenv NUM_OF_JOBS 2500
 # setenv NUM_OF_JOBS 5000
 # setenv NUM_OF_JOBS 7500
 # setenv NUM_OF_JOBS 10000
@@ -155,21 +155,22 @@ foreach FC_STATUSES ( 0 )
 
     # Loop over target nuclei
     # --------------------------------------------------------------------------------------------------
-    foreach SAMPLE_TARGET_NUCLEI ( C12 )
+    # foreach SAMPLE_TARGET_NUCLEI ( C12 )
+    foreach SAMPLE_TARGET_NUCLEI ( C12 Ar40 )
     # foreach SAMPLE_TARGET_NUCLEI ( H1 D2 C12 Ar40 )
 
         # Loop over GENIE tunes
         # ----------------------------------------------------------------------------------------------
-        foreach GENIE_TUNES ( G18_10a_00_000 )
+        # foreach GENIE_TUNES ( G18_10a_00_000 )
         # foreach GENIE_TUNES ( GEM21_11a_00_000 )
-        # foreach GENIE_TUNES ( G18_10a_00_000 GEM21_11a_00_000 )
+        foreach GENIE_TUNES ( G18_10a_00_000 GEM21_11a_00_000 )
 
             # Loop over beam energies
             # ------------------------------------------------------------------------------------------
             foreach BEAM_E ( 2070MeV )
             # foreach BEAM_E ( 4029MeV )
             # foreach BEAM_E ( 5986MeV )
-            # foreach BEAM_E ( 2070MeV 4029MeV )
+            foreach BEAM_E ( 2070MeV 4029MeV )
             # foreach BEAM_E ( 2070MeV 4029MeV 5986MeV )
                 echo
                 echo "${COLOR_START}Processing GENIE sample for ${COLOR_END}${SAMPLE_TARGET_NUCLEI}${COLOR_START} (${COLOR_END}${GENIE_TUNES}${COLOR_START}) at beam energy ${COLOR_END}${BEAM_E}"
