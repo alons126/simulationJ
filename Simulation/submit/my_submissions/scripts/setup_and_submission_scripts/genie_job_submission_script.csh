@@ -4,7 +4,7 @@
 
 # Setup environment
 # ======================================================================================================
-source ../set_env.csh
+source ./scripts/set_env.csh
 echo
 
 # Script banner
