@@ -332,6 +332,13 @@ foreach BEAM_E ( 2070MeV 4029MeV 5986MeV )
         mkdir ${OUTPATH}/mchipo ${OUTPATH}/reconhipo ${OUTPATH}/rootfiles
         echo
 
+        # Check if the directories were created successfully
+        echo "${PRINT_OUT_COLOR}Number of files in target directory (OUTPATH):${COLOR_END}"
+        echo "${PRINT_OUT_COLOR}Number of lund files:     \t\t${COLOR_END} `ls ${OUTPATH}/lundfiles | wc -l`"
+        echo "${PRINT_OUT_COLOR}Number of mchipo files:   \t\t${COLOR_END} `ls ${OUTPATH}/mchipo | wc -l`"
+        echo "${PRINT_OUT_COLOR}Number of reconhipo files:\t\t${COLOR_END} `ls ${OUTPATH}/reconhipo | wc -l`"
+        echo
+
         # Submitting sbatch job
         # ---------------------------------------------------------------------------
         echo "${PRINT_OUT_COLOR}Submitting sbatch job for BeamE = ${COLOR_END}${TEMP_BEAM_E}"

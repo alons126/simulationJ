@@ -10,8 +10,8 @@ echo
 
 # Run setup and submission scripts:
 # ---------------------------------------------------------------------------
-source ./uniform_setup_and_submit.csh
-# source ./genie_job_submission_script.csh
+# source ./uniform_setup_and_submit.csh
+source ./genie_job_submission_script.csh
 
 echo "${SYSTEM_COLOR}- Operation finished --------------------------------------------------${COLOR_END}"
 echo ""
