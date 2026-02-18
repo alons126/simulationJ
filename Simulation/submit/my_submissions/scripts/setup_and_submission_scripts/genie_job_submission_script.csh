@@ -417,6 +417,7 @@ foreach FC_STATUSES ( 0 )
                 echo
 
                 echo "${PRINT_OUT_COLOR}Setting up directory structure for MC simulation here...\033[0m"
+                mkdir -p ${OUTPATH}/lundfiles
                 mkdir ${OUTPATH}/mchipo ${OUTPATH}/reconhipo
                 echo
 
