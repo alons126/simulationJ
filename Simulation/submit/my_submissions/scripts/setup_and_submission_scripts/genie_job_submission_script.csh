@@ -310,10 +310,21 @@ foreach FC_STATUSES ( 0 )
                 # Check if OUTPATH is a directory
                 echo "${COLOR_START}--> Checking if ${COLOR_END}OUTPATH${COLOR_START} is a directory...${COLOR_END}"
                 if ( ! -d "${OUTPATH}" ) then
-                    printf "${COLOR_START}-->${COLOR_END} %s%s%s\n" "${COLOR_ERROR_START}Error:${COLOR_END}" " the following directory does not exist: ${OUTPATH}"
-                    exit 1
+                    printf "${COLOR_START}-->${COLOR_END} %s%s%s\n" "${COLOR_ERROR_START}Warning:${COLOR_END}" " the following directory does not exist: ${OUTPATH}"
+                    printf "${COLOR_START}-->${COLOR_END} %s%s%s\n" "${COLOR_GOOD_START}Creating OUTPATH.${COLOR_END}"
+                    mkdir ${OUTPATH}
+
+                    # Check if OUTPATH is a directory
+                    echo "${COLOR_START}--> Checking if ${COLOR_END}OUTPATH${COLOR_START} is a directory...${COLOR_END}"
+                    if ( ! -d "${OUTPATH}" ) then
+                        printf "${COLOR_START}-->${COLOR_END} %s%s%s\n" "${COLOR_ERROR_START}Error:${COLOR_END}" " the following directory does not exist: ${OUTPATH}"
+                        exit 1
+                    else
+                        printf "${COLOR_START}-->${COLOR_END} %s%s%s\n" "${COLOR_GOOD_START}OUTPATH exists.${COLOR_END}"
+                        echo
+                    endif
                 else
-                    printf "${COLOR_START}-->${COLOR_END} %s%s%s\n" "${COLOR_GOOD_START}OUTPATH exists.${COLOR_END}"
+                    printf "${COLOR_START}-->${COLOR_END} %s%s%s\n" "${COLOR_GOOD_START}OUTPATH was created successfully.${COLOR_END}"
                     echo
                 endif
 
