@@ -331,12 +331,6 @@ foreach FC_STATUSES ( 0 )
                 echo "${PRINT_OUT_COLOR}TORUS_FIELD:${COLOR_END} ${TORUS_FIELD}"
                 echo ""
 
-                # Setting RUNNING_DIR
-                unsetenv RUNNING_DIR
-                setenv RUNNING_DIR `pwd`
-                echo "${PRINT_OUT_COLOR}RUNNING_DIR::${COLOR_END} ${RUNNING_DIR}"
-                echo ""
-
                 # Check if RUNNING_DIR is a directory
                 echo "${COLOR_START}--> Checking if ${COLOR_END}RUNNING_DIR${COLOR_START} is a directory...${COLOR_END}"
                 if ( ! -d "${RUNNING_DIR}" ) then
@@ -349,7 +343,7 @@ foreach FC_STATUSES ( 0 )
 
                 # Determine the correct submit script path based on TEMP_BEAM_E
                 unsetenv REQUIREMENTS_PATH
-                setenv REQUIREMENTS_PATH ./Generation_files_${TEMP_BEAM_E_ROUNDED}
+                setenv REQUIREMENTS_PATH ${RUNNING_DIR}/Generation_files_${TEMP_BEAM_E_ROUNDED}
                 echo "${PRINT_OUT_COLOR}REQUIREMENTS_PATH:${COLOR_END} ${REQUIREMENTS_PATH}"
                 echo
 
@@ -444,7 +438,7 @@ foreach FC_STATUSES ( 0 )
                 echo ""
 
                 unsetenv SUBMIT_SCRIPT_FILE
-                setenv SUBMIT_SCRIPT_FILE ./scripts/job_submission_scripts/submit_GEMC_GENIE_sample.sh
+                setenv SUBMIT_SCRIPT_FILE ${RUNNING_DIR}/scripts/job_submission_scripts/submit_GEMC_GENIE_sample.sh
                 echo "${PRINT_OUT_COLOR}SUBMIT_SCRIPT_FILE:${COLOR_END} ${SUBMIT_SCRIPT_FILE}"
 
                 # Check if SUBMIT_SCRIPT_FILE is a file

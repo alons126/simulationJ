@@ -23,6 +23,12 @@ setenv COLOR_GOOD_START "`printf '\033[32m'`"
 unsetenv COLOR_WARNING_START
 setenv COLOR_WARNING_START "`printf '\033[36m'`"
 
+# Setting RUNNING_DIR
+unsetenv RUNNING_DIR
+setenv RUNNING_DIR `pwd`
+echo "${COLOR_START}RUNNING_DIR::${COLOR_END} ${RUNNING_DIR}"
+echo ""
+
 # Functions (csh/tcsh-compatible aliases)
 # ---------------------------------------------------------------------------
 # Usage:
