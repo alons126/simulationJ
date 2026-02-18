@@ -39,7 +39,8 @@ echo "${COLOR_START}GEMC_VERSION:${COLOR_END}        ${GEMC_VERSION}"
 echo
 
 unset NUM_OF_JOBS
-setenv NUM_OF_JOBS 10
+setenv NUM_OF_JOBS 1
+# setenv NUM_OF_JOBS 10
 # setenv NUM_OF_JOBS 100
 # setenv NUM_OF_JOBS 2500
 # setenv NUM_OF_JOBS 5000
@@ -159,17 +160,17 @@ foreach FC_STATUSES ( 0 )
 
         # Loop over GENIE tunes
         # ----------------------------------------------------------------------------------------------
-        # foreach GENIE_TUNES ( G18_10a_00_000 )
-        foreach GENIE_TUNES ( GEM21_11a_00_000 )
+        foreach GENIE_TUNES ( G18_10a_00_000 )
+        # foreach GENIE_TUNES ( GEM21_11a_00_000 )
         # foreach GENIE_TUNES ( G18_10a_00_000 GEM21_11a_00_000 )
 
             # Loop over beam energies
             # ------------------------------------------------------------------------------------------
-            # foreach BEAM_E ( 2070MeV )
+            foreach BEAM_E ( 2070MeV )
             # foreach BEAM_E ( 4029MeV )
             # foreach BEAM_E ( 5986MeV )
             # foreach BEAM_E ( 2070MeV 4029MeV )
-            foreach BEAM_E ( 2070MeV 4029MeV 5986MeV )
+            # foreach BEAM_E ( 2070MeV 4029MeV 5986MeV )
                 echo
                 echo "${COLOR_START}Processing GENIE sample for ${COLOR_END}${SAMPLE_TARGET_NUCLEI}${COLOR_START} (${COLOR_END}${GENIE_TUNES}${COLOR_START}) at beam energy ${COLOR_END}${BEAM_E}"
                 echo "${COLOR_START}-----------------------------------------------------------------------${COLOR_END}"
@@ -453,7 +454,7 @@ foreach FC_STATUSES ( 0 )
 
                 echo "${PRINT_OUT_COLOR}Submitted job with command:${COLOR_END}"
                 echo "${PRINT_OUT_COLOR}sbatch --job-name=${COLOR_END}${SLURM_JOB_NAME}${PRINT_OUT_COLOR} --array=${COLOR_END}${ARRAY} ${SUBMIT_SCRIPT_FILE}"
-                # sbatch --job-name="${SLURM_JOB_NAME}" --array=${ARRAY} ${SUBMIT_SCRIPT_FILE}
+                sbatch --job-name="${SLURM_JOB_NAME}" --array=${ARRAY} ${SUBMIT_SCRIPT_FILE}
                 echo
                 echo
             end  # End of loop over beam energies
