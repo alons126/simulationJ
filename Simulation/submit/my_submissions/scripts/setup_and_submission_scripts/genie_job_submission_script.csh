@@ -320,11 +320,11 @@ foreach FC_STATUSES ( 0 )
                         printf "${COLOR_START}---->${COLOR_END} %s%s%s\n" "${COLOR_ERROR_START}Error:${COLOR_END}" " the following directory does not exist: ${OUTPATH}"
                         exit 1
                     else
-                        printf "${COLOR_START}---->${COLOR_END} %s%s%s\n" "${COLOR_GOOD_START}OUTPATH exists.${COLOR_END}"
+                        printf "${COLOR_START}---->${COLOR_END} %s%s%s\n" "${COLOR_GOOD_START}OUTPATH was created successfully.${COLOR_END}"
                         echo
                     endif
                 else
-                    printf "${COLOR_START}-->${COLOR_END} %s%s%s\n" "${COLOR_GOOD_START}OUTPATH was created successfully.${COLOR_END}"
+                    printf "${COLOR_START}-->${COLOR_END} %s%s%s\n" "${COLOR_GOOD_START}OUTPATH exists.${COLOR_END}"
                     echo
                 endif
 
@@ -368,7 +368,7 @@ foreach FC_STATUSES ( 0 )
 
                 # Set GCARD_FILE and YAML_FILE paths based on TEMP_BEAM_E and TARGET_VARIATION. These will be used in the uniform sample generation and submission scripts to ensure that the correct configurations are used for each beam energy and target variation.
                 # --------------------------------------------------------------------------------------------------
-                echo "${PRINT_OUT_COLOR}Setting GCARD_FILE and YAML_FILE files based on TEMP_BEAM_E and TARGET_VARIATION ${TEMP_OUTPATH_PARTICLE}${COLOR_END}"
+                echo "${PRINT_OUT_COLOR}Setting GCARD_FILE and YAML_FILE files based on TEMP_BEAM_E and TARGET_VARIATION${COLOR_END}"
                 echo "${PRINT_OUT_COLOR}-----------------------------------------------------------------------${COLOR_END}"
                 echo
 
