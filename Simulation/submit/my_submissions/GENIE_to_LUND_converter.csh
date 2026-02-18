@@ -1,5 +1,10 @@
 #!/bin/csh
 
+# Setup environment
+# ======================================================================================================
+source ./scripts/set_env.csh
+echo
+
 echo
 echo "\033[35m------------------ GENIE to LUND converter ------------------\033[0m"
 echo
