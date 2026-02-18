@@ -23,11 +23,6 @@ printf "%s\n" "${COLOR_START}= Setup environment variables and paths            
 echo "${COLOR_START}=======================================================================${COLOR_END}"
 echo ""
 
-# unset TARGET_VARIATION
-# setenv TARGET_VARIATION rgm_fall2021_Ar
-# echo "${COLOR_START}TARGET_VARIATION:${COLOR_END}    ${TARGET_VARIATION}"
-# echo
-
 unsetenv CLEAR_FAR_OUT
 setenv CLEAR_FAR_OUT false
 echo "${COLOR_START}CLEAR_FAR_OUT:${COLOR_END}       ${CLEAR_FAR_OUT}"
@@ -211,6 +206,8 @@ foreach FC_STATUSES ( 0 )
                     setenv TARGET_VARIATION rgm_fall2021_C_S
                 else if ("${TEMP_BEAM_E}" == "4029MeV" && "${SAMPLE_TARGET_NUCLEUS}" == "C12") then
                     setenv TARGET_VARIATION rgm_fall2021_C_L
+                else if ("${TEMP_BEAM_E}" == "5986MeV" && "${SAMPLE_TARGET_NUCLEUS}" == "C12") then
+                    setenv TARGET_VARIATION rgm_fall2021_Cx4
                 else if ("${SAMPLE_TARGET_NUCLEUS}" == "Ar40") then
                     setenv TARGET_VARIATION rgm_fall2021_Ar
                 # else
