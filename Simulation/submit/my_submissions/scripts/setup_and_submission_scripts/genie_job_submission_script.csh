@@ -167,7 +167,7 @@ foreach FC_STATUSES ( 0 )
 
             # Loop over beam energies
             # ------------------------------------------------------------------------------------------
-            foreach BEAM_E ( 2070MeV )
+            # foreach BEAM_E ( 2070MeV )
             # foreach BEAM_E ( 4029MeV )
             # foreach BEAM_E ( 5986MeV )
             foreach BEAM_E ( 2070MeV 4029MeV )
