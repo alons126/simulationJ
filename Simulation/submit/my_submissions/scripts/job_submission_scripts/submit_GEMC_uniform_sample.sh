@@ -4,7 +4,8 @@
 #SBATCH --mem-per-cpu=2000                                                                                            
 #SBATCH --account=clas12                                                                                             
 #SBATCH --partition=production                                                               
-#SBATCH --time=20:00:00                                                                                               
+#SBATCH --time=5:00:00                                                                                               
+########SBATCH --time=20:00:00                                                                                               
 #SBATCH --output=/farm_out/%u/%x-%j-%N.out                                                                           
 #SBATCH --error=//farm_out/%u/%x-%j-%N.err                                                                           
 
